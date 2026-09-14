@@ -229,6 +229,44 @@ function Index() {
         </div>
       </section>
 
+      <section id="services" className="relative scroll-mt-8 border-y border-deep/10 bg-sunlit py-20 md:py-28">
+        <div className="shear-wash absolute -right-24 top-0 hidden h-full w-72 bg-olive/15 lg:block" />
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-5 md:px-10 lg:grid-cols-[0.75fr_2fr]">
+          <div>
+            <p className="section-label text-coral">02 — Individual services</p>
+            <h2 className="mt-4 max-w-[12ch] font-display text-4xl font-bold leading-tight md:text-5xl">
+              Need just one thing? We do that too.
+            </h2>
+            <p className="mt-5 max-w-md leading-relaxed text-deep/70">
+              Every service can be booked on its own or folded into a care plan. Mix and match to match your property.
+            </p>
+            <a href="#contact" className="mt-8 inline-flex items-center gap-2 font-bold text-coral hover:underline">
+              Discuss a custom mix <ArrowRight className="size-4" aria-hidden="true" />
+            </a>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => {
+              const ServiceIcon = service.icon;
+              return (
+                <article key={service.title} className="service-card">
+                  <div>
+                    <div className="grid size-12 place-items-center rounded-sm bg-olive/15 text-deep">
+                      <ServiceIcon className="size-6" aria-hidden="true" />
+                    </div>
+                    <h3 className="mt-5 font-display text-xl font-bold">{service.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed opacity-70">{service.description}</p>
+                  </div>
+                  <a href="#contact" className="solid-button solid-button-dark mt-6">
+                    Request this service
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section id="smart-enquiry" className="relative overflow-hidden bg-coral py-16 md:py-20">
         <div className="shear-panel pointer-events-none absolute -right-20 top-0 hidden h-full w-72 bg-sunlit/20 md:block" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 md:px-10 lg:grid-cols-[1.3fr_1fr]">
