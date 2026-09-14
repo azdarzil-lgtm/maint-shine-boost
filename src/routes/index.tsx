@@ -131,7 +131,18 @@ function StoreButtons() {
   );
 }
 
+const navLinks = [
+  { href: "#packages", label: "Packages" },
+  { href: "#services", label: "Services" },
+  { href: "#vault", label: "Property Vault" },
+  { href: "#proof", label: "Reviews" },
+  { href: "#coverage", label: "Coverage" },
+  { href: "#faqs", label: "FAQs" },
+];
+
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
       <header className="bg-sunlit">
