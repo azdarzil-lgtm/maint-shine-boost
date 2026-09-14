@@ -159,6 +159,7 @@ function Index() {
           <Brand />
           <div className="hidden items-center gap-10 text-base font-bold uppercase tracking-wide text-sunlit/80 lg:flex">
             <a href="#packages" className="px-1 py-1 transition-colors hover:text-coral">Packages</a>
+            <a href="#services" className="px-1 py-1 transition-colors hover:text-coral">Services</a>
             <a href="#vault" className="px-1 py-1 transition-colors hover:text-coral">Property Vault</a>
             <a href="#proof" className="px-1 py-1 transition-colors hover:text-coral">Reviews</a>
             <a href="#coverage" className="px-1 py-1 transition-colors hover:text-coral">Coverage</a>
