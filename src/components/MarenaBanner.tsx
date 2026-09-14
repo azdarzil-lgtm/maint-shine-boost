@@ -39,7 +39,7 @@ export function MarenaBanner() {
     <div
       role="dialog"
       aria-label="Ask Marena a question"
-      className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center"
+      className="fixed inset-0 z-50 flex items-end justify-end p-4"
       style={{ backgroundColor: "oklch(0.31 0.052 174 / 40%)" }}
       onClick={(e) => {
         if (e.target === e.currentTarget) handleClose();
