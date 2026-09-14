@@ -310,8 +310,8 @@ function Index() {
             >
               <source src={appProcessVideo.url} type="video/mp4" />
             </video>
-            <figcaption className="absolute -bottom-7 right-5 grid size-36 place-items-center bg-deep p-5 text-center text-sunlit md:-right-7 md:size-48">
-              <span><strong className="block font-display text-4xl text-coral">100%</strong><span className="mt-2 block text-xs font-bold uppercase">visible from anywhere</span></span>
+            <figcaption className="absolute -bottom-5 right-3 grid size-28 place-items-center bg-deep p-4 text-center text-sunlit sm:size-36 md:-bottom-7 md:-right-7 md:size-48">
+              <span><strong className="block font-display text-2xl text-coral sm:text-4xl">100%</strong><span className="mt-1 block text-[0.6rem] font-bold uppercase sm:mt-2 sm:text-xs">visible from anywhere</span></span>
             </figcaption>
           </figure>
           <div className="pt-10 lg:col-span-5 lg:pl-12 lg:pt-0">
