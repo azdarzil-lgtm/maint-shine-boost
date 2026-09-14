@@ -182,7 +182,7 @@ function Index() {
         )}
 
 
-        <div className="mx-auto max-w-7xl px-5 pb-16 pt-14 text-center md:px-10 md:pb-24 md:pt-24">
+        <div className="mx-auto max-w-7xl px-5 pb-10 pt-14 text-center md:px-10 md:pb-24 md:pt-24">
           <p className="section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
           <h1 className="mx-auto mt-6 max-w-[15ch] font-display text-[2.45rem] font-semibold leading-[1.05] sm:text-6xl md:text-8xl">
             Your coast home, <span className="text-coral">effortlessly</span> maintained.
@@ -215,7 +215,7 @@ function Index() {
         </div>
       </header>
 
-      <section id="packages" className="scroll-mt-8 py-20 md:py-32">
+      <section id="packages" className="scroll-mt-8 pt-10 pb-20 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
