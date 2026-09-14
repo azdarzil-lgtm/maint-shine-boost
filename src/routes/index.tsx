@@ -184,7 +184,7 @@ function Index() {
 
         <div className="mx-auto max-w-7xl px-5 pb-16 pt-14 text-center md:px-10 md:pb-24 md:pt-24">
           <p className="section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
-          <h1 className="mx-auto mt-6 max-w-[15ch] font-display text-5xl font-semibold leading-[1.02] sm:text-6xl md:text-8xl">
+          <h1 className="mx-auto mt-6 max-w-[15ch] font-display text-[2.45rem] font-semibold leading-[1.05] sm:text-6xl md:text-8xl">
             Your coast home, <span className="text-coral">effortlessly</span> maintained.
           </h1>
           <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center justify-center gap-7 md:flex-row">
