@@ -107,6 +107,13 @@ const faqs = [
   },
 ];
 
+const team = [
+  { name: "Antonio Reyes", role: "Head of Operations", photo: team1 },
+  { name: "Marena López", role: "Client Care", photo: team2 },
+  { name: "Daniel Torres", role: "Lead Technician", photo: team3 },
+  { name: "Carmen Vidal", role: "Property Manager", photo: team4 },
+];
+
 function Brand({ light = false }: { light?: boolean }) {
   return (
     <a href="#top" className="flex items-center gap-3" aria-label="SolidMaint home">
