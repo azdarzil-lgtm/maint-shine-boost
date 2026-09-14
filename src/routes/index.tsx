@@ -197,7 +197,7 @@ function Index() {
 
           <figure className="relative mt-16 overflow-hidden rounded-[2rem] md:mt-24">
             <video
-              className="aspect-video w-full object-cover"
+              className="aspect-video w-[105%] -mx-[2.5%] object-cover md:w-full md:mx-0"
               autoPlay
               muted
               loop
@@ -208,7 +208,7 @@ function Index() {
             >
               <source src={gardenVideo.url} type="video/mp4" />
             </video>
-            <figcaption className="absolute bottom-4 left-4 bg-sunlit px-4 py-3 text-left text-xs font-bold uppercase text-deep md:bottom-7 md:left-7">
+            <figcaption className="absolute bottom-4 left-4 hidden bg-sunlit px-4 py-3 text-left text-xs font-bold uppercase text-deep md:bottom-7 md:left-7 md:block">
               Property care, carried out properly
             </figcaption>
           </figure>
