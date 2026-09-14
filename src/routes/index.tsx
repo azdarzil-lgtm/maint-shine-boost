@@ -267,8 +267,8 @@ function Index() {
               const Icon = service.icon;
               return (
                 <a key={service.title} href="#contact" className="service-row group">
-                  <span className="text-xs font-bold text-coral">0{index + 1}</span>
-                  <span className="grid size-12 place-items-center rounded-full bg-olive/15"><Icon className="size-5" aria-hidden="true" /></span>
+                  <span className="hidden text-xs font-bold text-coral sm:block">0{index + 1}</span>
+                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-olive/15 sm:size-12"><Icon className="size-5" aria-hidden="true" /></span>
                   <span>
                     <strong className="font-display text-xl font-semibold md:text-2xl">{service.title}</strong>
                     <span className="mt-1 block text-sm text-deep/60">{service.description}</span>
