@@ -116,7 +116,7 @@ function Index() {
 
         <nav className="relative z-20 mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-10">
           <Brand />
-          <div className="hidden items-center gap-10 text-base font-bold text-sunlit/80 lg:flex">
+          <div className="hidden items-center gap-10 text-base font-bold uppercase tracking-wide text-sunlit/80 lg:flex">
             <a href="#packages" className="px-1 py-1 transition-colors hover:text-coral">Packages</a>
             <a href="#vault" className="px-1 py-1 transition-colors hover:text-coral">Property Vault</a>
             <a href="#proof" className="px-1 py-1 transition-colors hover:text-coral">Reviews</a>
