@@ -11,12 +11,11 @@ export function MarenaBanner() {
 
   useEffect(() => {
     setIsMounted(true);
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined") return undefined;
     const dismissed = window.localStorage.getItem(BANNER_KEY);
-    if (!dismissed) {
-      const timer = window.setTimeout(() => setIsOpen(true), 2500);
-      return () => window.clearTimeout(timer);
-    }
+    if (dismissed) return undefined;
+    const timer = window.setTimeout(() => setIsOpen(true), 2500);
+    return () => window.clearTimeout(timer);
   }, []);
 
   const handleClose = () => {
