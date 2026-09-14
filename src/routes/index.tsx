@@ -140,6 +140,7 @@ function Index() {
             <a href="#vault" className="nav-link">Property Vault</a>
             <a href="#proof" className="nav-link">Reviews</a>
             <a href="#coverage" className="nav-link">Coverage</a>
+            <a href="#faqs" className="nav-link">FAQs</a>
           </div>
           <a href="#contact" className="solid-button solid-button-coral shadow-[0_8px_24px_-10px_oklch(0.31_0.052_174/0.5)]">Enquire</a>
         </nav>
@@ -328,7 +329,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-20 grid gap-10 border-t border-deep/15 pt-16 lg:grid-cols-[0.75fr_1.25fr]">
+          <div id="faqs" className="scroll-mt-8 mt-20 grid gap-10 border-t border-deep/15 pt-16 lg:grid-cols-[0.75fr_1.25fr]">
             <h2 className="max-w-[10ch] font-display text-4xl font-semibold">Clear answers before we begin.</h2>
             <div className="divide-y divide-deep/15 border-y border-deep/15">
               {faqs.map((faq) => (
