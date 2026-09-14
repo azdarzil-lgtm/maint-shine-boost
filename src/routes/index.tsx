@@ -12,10 +12,10 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
 import gardenVideo from "@/assets/garden-maintenance.mp4.asset.json";
 import gardenVideoPoster from "@/assets/garden-maintenance-poster.jpg.asset.json";
 import logoAsset from "@/assets/solidmaint-logo.png.asset.json";
-import propertyVault from "@/assets/property-vault.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
 
 export const Route = createFileRoute("/")({
