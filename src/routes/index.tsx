@@ -383,7 +383,7 @@ function Index() {
       <footer id="contact" className="bg-deep py-20 text-sunlit md:py-28">
         <div className="mx-auto max-w-7xl px-5 text-center md:px-10">
           <p className="section-label text-coral">Your home, handled</p>
-          <h2 className="mx-auto mt-5 max-w-[15ch] font-display text-5xl font-semibold leading-tight md:text-7xl">Let’s build the right care plan for your property.</h2>
+          <h2 className="mx-auto mt-5 max-w-[15ch] font-display text-[2.2rem] font-semibold leading-tight sm:text-5xl md:text-7xl">Let’s build the right care plan for your property.</h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/65">Tell us where your home is and what needs care. The Marbella team will reply within one working day.</p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a href="mailto:info@solidmaint.com" className="solid-button solid-button-coral">Start your enquiry <ArrowRight aria-hidden="true" /></a>
