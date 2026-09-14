@@ -9,13 +9,16 @@ import {
   FileText,
   Leaf,
   MapPin,
+  Menu,
   MessageCircle,
   ShieldCheck,
   Waves,
   Wind,
   Wrench,
+  X,
   Zap,
 } from "lucide-react";
+import { useState } from "react";
 
 import appProcessPoster from "@/assets/app-process-poster.jpg.asset.json";
 import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
