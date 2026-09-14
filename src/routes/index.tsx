@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Reliable garden, pool and home maintenance from Málaga to Sotogrande, with every visit documented in your Property Vault.",
+          "Reliable garden, pool and home maintenance from Benalmádena to Sotogrande, with every visit documented in your Property Vault.",
       },
       { property: "og:title", content: "SolidMaint | Costa del Sol Property Care" },
       {
@@ -82,7 +82,7 @@ const faqs = [
   },
   {
     question: "Which areas do you cover?",
-    answer: "SolidMaint serves homes along the Costa del Sol, from Málaga to Sotogrande.",
+    answer: "SolidMaint serves homes along the Costa del Sol, from Benalmádena to Sotogrande.",
   },
 ];
 
@@ -126,7 +126,7 @@ function Index() {
         </nav>
 
         <div className="absolute inset-x-0 bottom-0 z-10 mx-auto max-w-7xl px-5 pb-12 md:px-10 md:pb-16">
-          <p className="reveal section-label text-coral">Málaga → Sotogrande · Every visit documented</p>
+          <p className="reveal section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
           <h1 className="reveal mt-4 max-w-[17ch] font-display text-4xl font-bold leading-[1.04] text-sunlit sm:text-5xl md:text-7xl">
             Your coast home, kept brilliant while you’re away.
           </h1>
@@ -295,7 +295,7 @@ function Index() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 md:px-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="section-label text-coral">05 — Local coverage</p>
-            <h2 className="mt-4 font-display text-4xl font-bold">Málaga to Sotogrande.</h2>
+            <h2 className="mt-4 font-display text-4xl font-bold">Benalmádena to Sotogrande.</h2>
             <p className="mt-4 max-w-lg leading-relaxed text-deep/70">
               One trusted team for garden, pool, air conditioning, handyman, electrical and plumbing services.
             </p>
@@ -348,7 +348,7 @@ function Index() {
           </div>
           <div className="mt-16 flex flex-col gap-5 border-t border-sunlit/15 pt-7 text-sm text-sunlit/60 sm:flex-row sm:items-center sm:justify-between">
             <Brand />
-            <p>Marbella, Málaga · Mon–Fri, 09:00–18:00 CET</p>
+            <p>Marbella, Benalmádena · Mon–Fri, 09:00–18:00 CET</p>
             <p>© 2026 SolidMaint</p>
           </div>
         </div>
