@@ -5,11 +5,17 @@ import {
   Check,
   ChevronDown,
   Clock3,
+  Droplets,
   FileText,
+  Leaf,
   MapPin,
   MessageCircle,
   Play,
   ShieldCheck,
+  Waves,
+  Wind,
+  Wrench,
+  Zap,
 } from "lucide-react";
 
 import appProcessPoster from "@/assets/app-process-poster.jpg.asset.json";
