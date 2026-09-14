@@ -9,13 +9,16 @@ import {
   FileText,
   Leaf,
   MapPin,
+  Menu,
   MessageCircle,
   ShieldCheck,
   Waves,
   Wind,
   Wrench,
+  X,
   Zap,
 } from "lucide-react";
+import { useState } from "react";
 
 import appProcessPoster from "@/assets/app-process-poster.jpg.asset.json";
 import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
@@ -128,26 +131,60 @@ function StoreButtons() {
   );
 }
 
+const navLinks = [
+  { href: "#packages", label: "Packages" },
+  { href: "#services", label: "Services" },
+  { href: "#vault", label: "Property Vault" },
+  { href: "#proof", label: "Reviews" },
+  { href: "#coverage", label: "Coverage" },
+  { href: "#faqs", label: "FAQs" },
+];
+
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
       <header className="bg-sunlit">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-10">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-10 md:py-5">
           <Brand />
           <div className="hidden items-center gap-8 text-sm font-bold uppercase lg:flex">
-            <a href="#packages" className="nav-link">Packages</a>
-            <a href="#services" className="nav-link">Services</a>
-            <a href="#vault" className="nav-link">Property Vault</a>
-            <a href="#proof" className="nav-link">Reviews</a>
-            <a href="#coverage" className="nav-link">Coverage</a>
-            <a href="#faqs" className="nav-link">FAQs</a>
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="nav-link">{link.label}</a>
+            ))}
           </div>
-          <a href="#contact" className="solid-button solid-button-coral shadow-[0_8px_24px_-10px_oklch(0.31_0.052_174/0.5)]">Enquire</a>
+          <div className="flex items-center gap-2">
+            <a href="#contact" className="solid-button solid-button-coral px-4 py-2.5 text-[0.7rem] shadow-[0_8px_24px_-10px_oklch(0.31_0.052_174/0.5)] sm:px-5 sm:text-xs md:text-[0.78rem]">Enquire</a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-expanded={menuOpen}
+              aria-label="Toggle menu"
+              className="grid size-11 shrink-0 place-items-center rounded-md border border-deep/15 text-deep lg:hidden"
+            >
+              {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+            </button>
+          </div>
         </nav>
+        {menuOpen && (
+          <div className="border-y border-deep/10 bg-sunlit px-4 py-2 lg:hidden">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="block border-b border-deep/10 py-4 text-sm font-bold uppercase last:border-b-0"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
+
 
         <div className="mx-auto max-w-7xl px-5 pb-16 pt-14 text-center md:px-10 md:pb-24 md:pt-24">
           <p className="section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
-          <h1 className="mx-auto mt-6 max-w-[15ch] font-display text-5xl font-semibold leading-[1.02] sm:text-6xl md:text-8xl">
+          <h1 className="mx-auto mt-6 max-w-[15ch] font-display text-[2.45rem] font-semibold leading-[1.05] sm:text-6xl md:text-8xl">
             Your coast home, <span className="text-coral">effortlessly</span> maintained.
           </h1>
           <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center justify-center gap-7 md:flex-row">
@@ -230,8 +267,8 @@ function Index() {
               const Icon = service.icon;
               return (
                 <a key={service.title} href="#contact" className="service-row group">
-                  <span className="text-xs font-bold text-coral">0{index + 1}</span>
-                  <span className="grid size-12 place-items-center rounded-full bg-olive/15"><Icon className="size-5" aria-hidden="true" /></span>
+                  <span className="hidden text-xs font-bold text-coral sm:block">0{index + 1}</span>
+                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-olive/15 sm:size-12"><Icon className="size-5" aria-hidden="true" /></span>
                   <span>
                     <strong className="font-display text-xl font-semibold md:text-2xl">{service.title}</strong>
                     <span className="mt-1 block text-sm text-deep/60">{service.description}</span>
@@ -273,8 +310,8 @@ function Index() {
             >
               <source src={appProcessVideo.url} type="video/mp4" />
             </video>
-            <figcaption className="absolute -bottom-7 right-5 grid size-36 place-items-center bg-deep p-5 text-center text-sunlit md:-right-7 md:size-48">
-              <span><strong className="block font-display text-4xl text-coral">100%</strong><span className="mt-2 block text-xs font-bold uppercase">visible from anywhere</span></span>
+            <figcaption className="absolute -bottom-5 right-3 grid size-28 place-items-center bg-deep p-4 text-center text-sunlit sm:size-36 md:-bottom-7 md:-right-7 md:size-48">
+              <span><strong className="block font-display text-2xl text-coral sm:text-4xl">100%</strong><span className="mt-1 block text-[0.6rem] font-bold uppercase sm:mt-2 sm:text-xs">visible from anywhere</span></span>
             </figcaption>
           </figure>
           <div className="pt-10 lg:col-span-5 lg:pl-12 lg:pt-0">
@@ -346,7 +383,7 @@ function Index() {
       <footer id="contact" className="bg-deep py-20 text-sunlit md:py-28">
         <div className="mx-auto max-w-7xl px-5 text-center md:px-10">
           <p className="section-label text-coral">Your home, handled</p>
-          <h2 className="mx-auto mt-5 max-w-[15ch] font-display text-5xl font-semibold leading-tight md:text-7xl">Let’s build the right care plan for your property.</h2>
+          <h2 className="mx-auto mt-5 max-w-[15ch] font-display text-[2.2rem] font-semibold leading-tight sm:text-5xl md:text-7xl">Let’s build the right care plan for your property.</h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/65">Tell us where your home is and what needs care. The Marbella team will reply within one working day.</p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a href="mailto:info@solidmaint.com" className="solid-button solid-button-coral">Start your enquiry <ArrowRight aria-hidden="true" /></a>
