@@ -72,6 +72,39 @@ const packages = [
   },
 ];
 
+const services = [
+  {
+    title: "Garden Maintenance",
+    description: "Scheduled care that keeps lawns, borders and terraces tidy, healthy and inviting all year.",
+    icon: Leaf,
+  },
+  {
+    title: "Pool Maintenance",
+    description: "Regular cleaning, water testing and equipment checks so your pool is always ready to use.",
+    icon: Waves,
+  },
+  {
+    title: "AC Services",
+    description: "Filter cleaning, performance checks and seasonal servicing to keep cooling reliable and efficient.",
+    icon: Wind,
+  },
+  {
+    title: "Handyman & Repairs",
+    description: "Small fixes, fitting work and odd jobs around the property handled by a dependable team.",
+    icon: Wrench,
+  },
+  {
+    title: "Electrical Services",
+    description: "Safe installation, fault-finding and repairs for lights, sockets and outdoor power.",
+    icon: Zap,
+  },
+  {
+    title: "Plumbing Services",
+    description: "Leak repairs, tap replacements, drainage checks and bathroom maintenance as needed.",
+    icon: Droplets,
+  },
+];
+
 const faqs = [
   {
     question: "What is included in a SolidMaint care plan?",
