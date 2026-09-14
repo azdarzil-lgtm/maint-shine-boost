@@ -301,8 +301,8 @@ function Index() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            {['Mijas', 'Marbella', 'Benahavís', 'Estepona', 'Sotogrande'].map((place) => (
-              <span key={place} className="inline-flex items-center gap-2 border border-deep/15 px-4 py-3 text-sm font-bold">
+            {['Mijas', 'Benalmádena', 'Marbella', 'Benahavís', 'Estepona', 'Sotogrande'].map((place) => (
+              <span key={place} className="inline-flex items-center gap-2 border border-deep/15 px-5 py-4 text-base font-bold">
                 <MapPin className="size-4 text-coral" aria-hidden="true" /> {place}
               </span>
             ))}
