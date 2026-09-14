@@ -271,7 +271,7 @@ function Index() {
         <div className="shear-panel pointer-events-none absolute -right-20 top-0 hidden h-full w-72 bg-sunlit/20 md:block" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 md:px-10 lg:grid-cols-[1.3fr_1fr]">
           <div>
-            <p className="section-label text-deep">02 — Smart enquiry</p>
+            <p className="section-label text-deep">03 — Smart enquiry</p>
             <h2 className="mt-4 max-w-[18ch] font-display text-4xl font-bold leading-tight text-deep md:text-5xl">
               Tell us who you are. We’ll ask what matters.
             </h2>
@@ -298,7 +298,7 @@ function Index() {
       <section id="vault" className="relative bg-deep py-20 text-sunlit md:py-28">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-10 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
-            <p className="section-label text-coral">03 — Trust, documented</p>
+            <p className="section-label text-coral">04 — Trust, documented</p>
             <h2 className="mt-4 max-w-[17ch] font-display text-4xl font-bold leading-tight md:text-5xl">
               Every visit lives in your Property Vault.
             </h2>
@@ -370,7 +370,7 @@ function Index() {
       <section id="proof" className="py-20 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-10 lg:grid-cols-[1.8fr_1fr]">
           <div>
-            <p className="section-label text-coral">04 — In their words</p>
+            <p className="section-label text-coral">05 — In their words</p>
             <div className="group relative mt-5 overflow-hidden bg-olive/20">
               <img
                 src={testimonialStill}
@@ -407,7 +407,7 @@ function Index() {
       <section id="coverage" className="border-y border-deep/10 py-16">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 md:px-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="section-label text-coral">05 — Local coverage</p>
+            <p className="section-label text-coral">06 — Local coverage</p>
             <h2 className="mt-4 font-display text-4xl font-bold">Benalmádena to Sotogrande.</h2>
             <p className="mt-4 max-w-lg leading-relaxed text-deep/70">
               One trusted team for garden, pool, air conditioning, handyman, electrical and plumbing services.
