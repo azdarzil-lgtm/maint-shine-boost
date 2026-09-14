@@ -388,6 +388,8 @@ function Index() {
           </div>
         </div>
       </footer>
+
+      <MarenaBanner />
     </main>
   );
 }
