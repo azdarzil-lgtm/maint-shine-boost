@@ -132,18 +132,41 @@ function Index() {
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
       <header className="bg-sunlit">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-10">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-10 md:py-5">
           <Brand />
           <div className="hidden items-center gap-8 text-sm font-bold uppercase lg:flex">
-            <a href="#packages" className="nav-link">Packages</a>
-            <a href="#services" className="nav-link">Services</a>
-            <a href="#vault" className="nav-link">Property Vault</a>
-            <a href="#proof" className="nav-link">Reviews</a>
-            <a href="#coverage" className="nav-link">Coverage</a>
-            <a href="#faqs" className="nav-link">FAQs</a>
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="nav-link">{link.label}</a>
+            ))}
           </div>
-          <a href="#contact" className="solid-button solid-button-coral shadow-[0_8px_24px_-10px_oklch(0.31_0.052_174/0.5)]">Enquire</a>
+          <div className="flex items-center gap-2">
+            <a href="#contact" className="solid-button solid-button-coral px-4 py-2.5 text-[0.7rem] shadow-[0_8px_24px_-10px_oklch(0.31_0.052_174/0.5)] sm:px-5 sm:text-xs md:text-[0.78rem]">Enquire</a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-expanded={menuOpen}
+              aria-label="Toggle menu"
+              className="grid size-11 shrink-0 place-items-center rounded-md border border-deep/15 text-deep lg:hidden"
+            >
+              {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+            </button>
+          </div>
         </nav>
+        {menuOpen && (
+          <div className="border-y border-deep/10 bg-sunlit px-4 py-2 lg:hidden">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="block border-b border-deep/10 py-4 text-sm font-bold uppercase last:border-b-0"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
+
 
         <div className="mx-auto max-w-7xl px-5 pb-16 pt-14 text-center md:px-10 md:pb-24 md:pt-24">
           <p className="section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
