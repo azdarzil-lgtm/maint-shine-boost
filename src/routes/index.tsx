@@ -147,6 +147,7 @@ const navLinks = [
   { href: "#services", label: "Services" },
   { href: "#vault", label: "Property Vault" },
   { href: "#proof", label: "Reviews" },
+  { href: "#team", label: "Team" },
   { href: "#coverage", label: "Coverage" },
   { href: "#faqs", label: "FAQs" },
 ];
