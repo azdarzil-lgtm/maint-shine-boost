@@ -122,7 +122,7 @@ function Index() {
             <a href="#proof" className="transition-colors hover:text-coral">Reviews</a>
             <a href="#coverage" className="transition-colors hover:text-coral">Coverage</a>
           </div>
-          <a href="#contact" className="solid-button solid-button-outline">Enquire</a>
+          <a href="#contact" className="solid-button solid-button-coral shadow-[0_6px_20px_-4px_oklch(0.66_0.15_37/0.45)]">Enquire</a>
         </nav>
 
         <div className="absolute inset-x-0 bottom-0 z-10 mx-auto max-w-7xl px-5 pb-12 md:px-10 md:pb-16">
