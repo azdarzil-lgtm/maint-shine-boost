@@ -223,6 +223,18 @@
   color: var(--sunlit);
 }
 
+@utility service-card {
+  display: flex;
+  min-height: 16rem;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid color-mix(in oklab, var(--deep) 12%, transparent);
+  background-color: color-mix(in oklab, var(--sunlit) 92%, white);
+  padding: 1.5rem;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  &:hover { transform: translateY(-4px); border-color: var(--coral); box-shadow: 0 18px 40px -16px color-mix(in oklab, var(--deep) 18%, transparent); }
+}
+
 @utility featured-tag {
   background-color: var(--coral);
   color: var(--deep);

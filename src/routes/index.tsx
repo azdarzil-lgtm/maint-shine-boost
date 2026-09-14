@@ -5,11 +5,17 @@ import {
   Check,
   ChevronDown,
   Clock3,
+  Droplets,
   FileText,
+  Leaf,
   MapPin,
   MessageCircle,
   Play,
   ShieldCheck,
+  Waves,
+  Wind,
+  Wrench,
+  Zap,
 } from "lucide-react";
 
 import appProcessPoster from "@/assets/app-process-poster.jpg.asset.json";
@@ -63,6 +69,39 @@ const packages = [
     lead: "Whole-home support",
     detail: "A tailored plan for villas and homes needing broader, hands-on maintenance support.",
     items: ["Garden, pool and AC care", "Handyman and repair support", "Electrical and plumbing support"],
+  },
+];
+
+const services = [
+  {
+    title: "Garden Maintenance",
+    description: "Scheduled care that keeps lawns, borders and terraces tidy, healthy and inviting all year.",
+    icon: Leaf,
+  },
+  {
+    title: "Pool Maintenance",
+    description: "Regular cleaning, water testing and equipment checks so your pool is always ready to use.",
+    icon: Waves,
+  },
+  {
+    title: "AC Services",
+    description: "Filter cleaning, performance checks and seasonal servicing to keep cooling reliable and efficient.",
+    icon: Wind,
+  },
+  {
+    title: "Handyman & Repairs",
+    description: "Small fixes, fitting work and odd jobs around the property handled by a dependable team.",
+    icon: Wrench,
+  },
+  {
+    title: "Electrical Services",
+    description: "Safe installation, fault-finding and repairs for lights, sockets and outdoor power.",
+    icon: Zap,
+  },
+  {
+    title: "Plumbing Services",
+    description: "Leak repairs, tap replacements, drainage checks and bathroom maintenance as needed.",
+    icon: Droplets,
   },
 ];
 
@@ -120,6 +159,7 @@ function Index() {
           <Brand />
           <div className="hidden items-center gap-10 text-base font-bold uppercase tracking-wide text-sunlit/80 lg:flex">
             <a href="#packages" className="px-1 py-1 transition-colors hover:text-coral">Packages</a>
+            <a href="#services" className="px-1 py-1 transition-colors hover:text-coral">Services</a>
             <a href="#vault" className="px-1 py-1 transition-colors hover:text-coral">Property Vault</a>
             <a href="#proof" className="px-1 py-1 transition-colors hover:text-coral">Reviews</a>
             <a href="#coverage" className="px-1 py-1 transition-colors hover:text-coral">Coverage</a>
@@ -189,11 +229,49 @@ function Index() {
         </div>
       </section>
 
+      <section id="services" className="relative scroll-mt-8 border-y border-deep/10 bg-sunlit py-20 md:py-28">
+        <div className="shear-wash absolute -right-24 top-0 hidden h-full w-72 bg-olive/15 lg:block" />
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-5 md:px-10 lg:grid-cols-[0.75fr_2fr]">
+          <div>
+            <p className="section-label text-coral">02 — Individual services</p>
+            <h2 className="mt-4 max-w-[12ch] font-display text-4xl font-bold leading-tight md:text-5xl">
+              Need just one thing? We do that too.
+            </h2>
+            <p className="mt-5 max-w-md leading-relaxed text-deep/70">
+              Every service can be booked on its own or folded into a care plan. Mix and match to match your property.
+            </p>
+            <a href="#contact" className="mt-8 inline-flex items-center gap-2 font-bold text-coral hover:underline">
+              Discuss a custom mix <ArrowRight className="size-4" aria-hidden="true" />
+            </a>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => {
+              const ServiceIcon = service.icon;
+              return (
+                <article key={service.title} className="service-card">
+                  <div>
+                    <div className="grid size-12 place-items-center rounded-sm bg-olive/15 text-deep">
+                      <ServiceIcon className="size-6" aria-hidden="true" />
+                    </div>
+                    <h3 className="mt-5 font-display text-xl font-bold">{service.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed opacity-70">{service.description}</p>
+                  </div>
+                  <a href="#contact" className="solid-button solid-button-dark mt-6">
+                    Request this service
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section id="smart-enquiry" className="relative overflow-hidden bg-coral py-16 md:py-20">
         <div className="shear-panel pointer-events-none absolute -right-20 top-0 hidden h-full w-72 bg-sunlit/20 md:block" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 md:px-10 lg:grid-cols-[1.3fr_1fr]">
           <div>
-            <p className="section-label text-deep">02 — Smart enquiry</p>
+            <p className="section-label text-deep">03 — Smart enquiry</p>
             <h2 className="mt-4 max-w-[18ch] font-display text-4xl font-bold leading-tight text-deep md:text-5xl">
               Tell us who you are. We’ll ask what matters.
             </h2>
@@ -220,7 +298,7 @@ function Index() {
       <section id="vault" className="relative bg-deep py-20 text-sunlit md:py-28">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-10 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
-            <p className="section-label text-coral">03 — Trust, documented</p>
+            <p className="section-label text-coral">04 — Trust, documented</p>
             <h2 className="mt-4 max-w-[17ch] font-display text-4xl font-bold leading-tight md:text-5xl">
               Every visit lives in your Property Vault.
             </h2>
@@ -292,7 +370,7 @@ function Index() {
       <section id="proof" className="py-20 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-10 lg:grid-cols-[1.8fr_1fr]">
           <div>
-            <p className="section-label text-coral">04 — In their words</p>
+            <p className="section-label text-coral">05 — In their words</p>
             <div className="group relative mt-5 overflow-hidden bg-olive/20">
               <img
                 src={testimonialStill}
@@ -329,7 +407,7 @@ function Index() {
       <section id="coverage" className="border-y border-deep/10 py-16">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 md:px-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="section-label text-coral">05 — Local coverage</p>
+            <p className="section-label text-coral">06 — Local coverage</p>
             <h2 className="mt-4 font-display text-4xl font-bold">Benalmádena to Sotogrande.</h2>
             <p className="mt-4 max-w-lg leading-relaxed text-deep/70">
               One trusted team for garden, pool, air conditioning, handyman, electrical and plumbing services.
