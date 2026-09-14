@@ -18,6 +18,7 @@ import gardenVideo from "@/assets/garden-maintenance.mp4.asset.json";
 import gardenVideoPoster from "@/assets/garden-maintenance-poster.jpg.asset.json";
 import logoAsset from "@/assets/solidmaint-logo.png.asset.json";
 import testimonialStill from "@/assets/testimonial-still.jpg";
+import { MarenaBanner } from "@/components/MarenaBanner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -387,6 +388,8 @@ function Index() {
           </div>
         </div>
       </footer>
+
+      <MarenaBanner />
     </main>
   );
 }
