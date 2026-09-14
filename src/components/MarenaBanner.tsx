@@ -75,14 +75,14 @@ export function MarenaBanner() {
           <button
             type="button"
             onClick={handleAsk}
-            className="solid-button-coral flex-1 text-sm shadow-sm"
+            className="solid-button solid-button-coral flex-1 text-sm shadow-sm"
           >
             Ask a question
           </button>
           <button
             type="button"
             onClick={handleClose}
-            className="rounded-lg px-4 py-2.5 text-sm font-bold text-foreground/80 transition-colors hover:bg-olive/10 hover:text-foreground"
+            className="rounded-full px-4 py-2.5 text-sm font-bold text-foreground/80 transition-colors hover:bg-olive/10 hover:text-foreground"
           >
             Not now
           </button>
