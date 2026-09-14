@@ -250,6 +250,7 @@ function Index() {
               loop
               playsInline
               preload="metadata"
+              poster={appProcessPoster.url}
               aria-label="How every visit is recorded in your SolidMaint Property Vault"
             >
               <source src={appProcessVideo.url} type="video/mp4" />
