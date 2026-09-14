@@ -12,10 +12,11 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import appProcessPoster from "@/assets/app-process-poster.jpg.asset.json";
+import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
 import gardenVideo from "@/assets/garden-maintenance.mp4.asset.json";
 import gardenVideoPoster from "@/assets/garden-maintenance-poster.jpg.asset.json";
 import logoAsset from "@/assets/solidmaint-logo.png.asset.json";
-import propertyVault from "@/assets/property-vault.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
 
 export const Route = createFileRoute("/")({
@@ -241,15 +242,19 @@ function Index() {
               })}
             </div>
           </div>
-          <figure className="vault-frame">
-            <img
-              src={propertyVault}
-              alt="A property owner viewing maintenance visit records on a phone"
-              loading="lazy"
-              width={1024}
-              height={1280}
+          <figure className="vault-frame overflow-hidden">
+            <video
               className="aspect-[4/5] size-full object-cover"
-            />
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster={appProcessPoster.url}
+              aria-label="How every visit is recorded in your SolidMaint Property Vault"
+            >
+              <source src={appProcessVideo.url} type="video/mp4" />
+            </video>
           </figure>
         </div>
       </section>
