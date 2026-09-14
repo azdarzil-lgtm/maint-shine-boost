@@ -241,15 +241,18 @@ function Index() {
               })}
             </div>
           </div>
-          <figure className="vault-frame">
-            <img
-              src={propertyVault}
-              alt="A property owner viewing maintenance visit records on a phone"
-              loading="lazy"
-              width={1024}
-              height={1280}
+          <figure className="vault-frame overflow-hidden">
+            <video
               className="aspect-[4/5] size-full object-cover"
-            />
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="How every visit is recorded in your SolidMaint Property Vault"
+            >
+              <source src={appProcessVideo.url} type="video/mp4" />
+            </video>
           </figure>
         </div>
       </section>
