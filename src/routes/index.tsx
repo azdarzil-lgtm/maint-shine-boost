@@ -225,16 +225,15 @@ function Index() {
             </p>
             <div className="mt-10 grid gap-6 sm:grid-cols-3">
               {[
-                [Clock3, "01", "Verified time on site"],
-                [ShieldCheck, "02", "Time-stamped photos"],
-                [FileText, "03", "Reports and invoices"],
-              ].map(([Icon, number, label]) => {
-                const FeatureIcon = Icon;
+                { icon: Clock3, number: "01", label: "Verified time on site" },
+                { icon: ShieldCheck, number: "02", label: "Time-stamped photos" },
+                { icon: FileText, number: "03", label: "Reports and invoices" },
+              ].map(({ icon: FeatureIcon, number, label }) => {
                 return (
-                  <div key={String(number)} className="border-l border-sunlit/20 pl-5">
+                  <div key={number} className="border-l border-sunlit/20 pl-5">
                     <FeatureIcon className="size-5 text-coral" aria-hidden="true" />
-                    <span className="mt-5 block font-display text-2xl font-bold text-coral">{String(number)}</span>
-                    <p className="mt-1 text-sm font-bold">{String(label)}</p>
+                    <span className="mt-5 block font-display text-2xl font-bold text-coral">{number}</span>
+                    <p className="mt-1 text-sm font-bold">{label}</p>
                   </div>
                 );
               })}
