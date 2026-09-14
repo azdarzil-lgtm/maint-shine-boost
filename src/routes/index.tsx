@@ -25,6 +25,10 @@ import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
 import gardenVideo from "@/assets/garden-maintenance.mp4.asset.json";
 import gardenVideoPoster from "@/assets/garden-maintenance-poster.jpg.asset.json";
 import logoAsset from "@/assets/solidmaint-logo.png.asset.json";
+import team1 from "@/assets/team-1.jpg";
+import team2 from "@/assets/team-2.jpg";
+import team3 from "@/assets/team-3.jpg";
+import team4 from "@/assets/team-4.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
 import { MarenaBanner } from "@/components/MarenaBanner";
 
