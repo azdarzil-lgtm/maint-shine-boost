@@ -195,7 +195,7 @@ function Index() {
             <h2 className="mt-4 max-w-[18ch] font-display text-4xl font-bold leading-tight text-deep md:text-5xl">
               Tell us who you are. We’ll ask what matters.
             </h2>
-            <p className="mt-5 max-w-2xl leading-relaxed text-deep/80">
+            <p className="mt-5 max-w-2xl leading-relaxed text-white">
               Our guided chat will shape the questions around your property and priorities, so your first recommendation is useful—not generic.
             </p>
           </div>
