@@ -116,13 +116,13 @@ function Index() {
 
         <nav className="relative z-20 mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-10">
           <Brand />
-          <div className="hidden items-center gap-8 text-sm font-semibold text-sunlit/80 lg:flex">
-            <a href="#packages" className="transition-colors hover:text-coral">Packages</a>
-            <a href="#vault" className="transition-colors hover:text-coral">Property Vault</a>
-            <a href="#proof" className="transition-colors hover:text-coral">Reviews</a>
-            <a href="#coverage" className="transition-colors hover:text-coral">Coverage</a>
+          <div className="hidden items-center gap-10 text-base font-bold text-sunlit/80 lg:flex">
+            <a href="#packages" className="px-1 py-1 transition-colors hover:text-coral">Packages</a>
+            <a href="#vault" className="px-1 py-1 transition-colors hover:text-coral">Property Vault</a>
+            <a href="#proof" className="px-1 py-1 transition-colors hover:text-coral">Reviews</a>
+            <a href="#coverage" className="px-1 py-1 transition-colors hover:text-coral">Coverage</a>
           </div>
-          <a href="#contact" className="solid-button solid-button-coral shadow-[0_6px_20px_-4px_oklch(0.66_0.15_37/0.45)]">Enquire</a>
+          <a href="#contact" className="solid-button solid-button-coral text-sm shadow-[0_6px_20px_-4px_oklch(0.66_0.15_37/0.45)]">Enquire</a>
         </nav>
 
         <div className="absolute inset-x-0 bottom-0 z-10 mx-auto max-w-7xl px-5 pb-12 md:px-10 md:pb-16">
