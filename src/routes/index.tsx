@@ -166,7 +166,7 @@ function Index() {
             ))}
           </div>
           <div className="flex items-center gap-2">
-            <a href="#contact" className="solid-button solid-button-coral px-4 py-2.5 text-[0.7rem] shadow-[0_8px_24px_-10px_oklch(0.31_0.052_174/0.5)] sm:px-5 sm:text-xs md:text-[0.78rem]">Enquire</a>
+            <a href="#contact" className="solid-button solid-button-coral px-4 py-2.5 text-[0.7rem] sm:px-5 sm:text-xs md:text-[0.78rem]">Enquire</a>
             <button
               type="button"
               onClick={() => setMenuOpen((open) => !open)}
