@@ -402,6 +402,7 @@ function Index() {
             <div>
               <p className="section-label text-coral">07 — Local coverage</p>
               <h2 className="mt-5 max-w-[12ch] font-display text-4xl font-semibold leading-tight md:text-6xl">From Benalmádena to Sotogrande.</h2>
+              <p className="mt-5 max-w-md text-lg font-semibold leading-relaxed text-deep/65">Currently serving the Costa del Sol, from Benalmádena to Sotogrande.</p>
             </div>
             <div className="grid grid-cols-2 gap-px bg-deep/15">
               {["Mijas", "Benalmádena", "Marbella", "Benahavís", "Estepona", "Sotogrande"].map((place) => (
