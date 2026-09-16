@@ -6,20 +6,15 @@ import {
   ChevronDown,
   Clock3,
   Droplets,
-  Facebook,
   FileText,
-  Instagram,
   Leaf,
-  Linkedin,
   MapPin,
-  Menu,
   MessageCircle,
   ShieldCheck,
   Smartphone,
   Waves,
   Wind,
   Wrench,
-  X,
   Zap,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -28,12 +23,13 @@ import appProcessPoster from "@/assets/app-process-poster.jpg.asset.json";
 import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
 import familyVillaPoster from "@/assets/family-villa-footer-poster.jpg.asset.json";
 import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
-import logoAsset from "@/assets/solidmaint-logo.png.asset.json";
 import team1 from "@/assets/team-1.jpg";
 import team2 from "@/assets/team-2.jpg";
 import team3 from "@/assets/team-3.jpg";
 import team4 from "@/assets/team-4.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import { InstagramFeed } from "@/components/InstagramFeed";
 import { MarenaBanner } from "@/components/MarenaBanner";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -120,17 +116,6 @@ const team = [
   { name: "Carmen Vidal", role: "Property Manager", photo: team4 },
 ];
 
-function Brand({ light = false }: { light?: boolean }) {
-  return (
-    <a href="#top" className="flex items-center gap-3" aria-label="SolidMaint home">
-      <img src={logoAsset.url} alt="" className="size-10 rounded-md" width="40" height="40" />
-      <span className={`flex flex-col leading-tight ${light ? "text-sunlit" : "text-deep"}`}>
-        <span className="text-sm font-extrabold uppercase">SolidMaint</span>
-        <span className="text-[11px] font-medium tracking-wide opacity-80">Your home. Solidly cared for.</span>
-      </span>
-    </a>
-  );
-}
 
 function StoreButtons() {
   return (
@@ -204,86 +189,11 @@ function TypewriterHeading({ text }: { text: string }) {
   );
 }
 
-const navLinks = [
-  { href: "#packages", label: "Benefits" },
-  { href: "#services", label: "Services" },
-  { href: "#team", label: "Team" },
-  { href: "#coverage", label: "Coverage" },
-  { href: "#faqs", label: "FAQs" },
-  { href: "#journal", label: "Journal" },
-];
-
-const journalPosts = [
-  {
-    date: "August 2026",
-    title: "Preparing your garden for the September heat",
-    excerpt: "What we adjust in watering, pruning and shade across the Costa del Sol when the summer peaks.",
-  },
-  {
-    date: "July 2026",
-    title: "The quiet checks that keep a pool perfect",
-    excerpt: "Beyond cleaning: the water balance and equipment habits that stop small problems becoming big ones.",
-  },
-  {
-    date: "June 2026",
-    title: "Getting an empty home ready for your arrival",
-    excerpt: "Our arrival-ready routine for overseas owners — AC, plumbing, electrics and everything in between.",
-  },
-];
 
 function Index() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-          scrolled ? "bg-deep/85 shadow-lg backdrop-blur-md" : "bg-transparent"
-        }`}
-      >
-        <nav className="relative mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-10 md:py-5">
-          <Brand light />
-          <div className="hidden items-center gap-8 text-sm font-bold uppercase text-sunlit lg:flex">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="nav-link">{link.label}</a>
-            ))}
-          </div>
-          <div className="flex items-center gap-2">
-            <a href="#contact" className="solid-button solid-button-coral px-4 py-2.5 text-[0.7rem] sm:px-5 sm:text-xs md:text-[0.78rem]">Enquire</a>
-            <button
-              type="button"
-              onClick={() => setMenuOpen((open) => !open)}
-              aria-expanded={menuOpen}
-              aria-label="Toggle menu"
-              className="grid size-11 shrink-0 place-items-center rounded-md border border-sunlit/40 text-sunlit lg:hidden"
-            >
-              {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
-            </button>
-          </div>
-        </nav>
-        {menuOpen && (
-          <div className="border-y border-deep/10 bg-sunlit px-4 py-2 text-deep lg:hidden">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="block border-b border-deep/10 py-4 text-sm font-bold uppercase last:border-b-0"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        )}
-      </header>
+      <SiteHeader />
 
       <section className="relative isolate overflow-hidden bg-deep text-sunlit">
         <video
@@ -594,69 +504,11 @@ function Index() {
 
       <InstagramFeed />
 
-      <section id="journal" className="scroll-mt-28 bg-olive/10 py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
-            <div>
-              <p className="section-label text-coral">10 — Journal</p>
-              <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Notes from the homes we look after.</h2>
-            </div>
-            <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
-              Seasonal advice and small observations from our visits along the coast — written by the team, for owners.
-            </p>
-          </div>
-          <div className="divide-y divide-deep/15 border-b border-deep/15">
-            {journalPosts.map((post) => (
-              <a key={post.title} href="#journal" className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-5 transition-colors hover:text-coral sm:grid-cols-[7rem_minmax(0,1fr)_auto] sm:py-6">
-                <span className="hidden w-28 shrink-0 text-xs font-bold uppercase text-coral sm:block">{post.date}</span>
-                <span>
-                  <strong className="font-display text-xl font-semibold md:text-2xl">{post.title}</strong>
-                  <span className="mt-1 block text-sm text-deep/60">{post.excerpt}</span>
-                </span>
-                <ArrowRight className="ml-auto size-5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
 
 
-      <footer id="contact" className="relative bg-deep py-20 text-sunlit md:py-28">
-        <div className="mx-auto max-w-7xl px-5 text-center md:px-10">
-          <p className="section-label text-coral">Your home, handled</p>
-          <h2 className="mx-auto mt-5 max-w-[18ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Let’s talk about your home.</h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/65">Tell us where your home is and what needs care. The Marbella team will reply within one working day.</p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="mailto:info@solidmaint.com" className="solid-button solid-button-coral">Start your enquiry <ArrowRight aria-hidden="true" /></a>
-            <a href="tel:+34951798899" className="solid-button solid-button-outline">Call +34 951 798 899</a>
-          </div>
-          <div className="mt-10 flex items-center justify-center gap-4">
-            {[
-              { href: "https://www.facebook.com/solidmaint", label: "SolidMaint on Facebook", icon: Facebook },
-              { href: "https://instagram.com/solidmaint", label: "SolidMaint on Instagram", icon: Instagram },
-              { href: "https://www.linkedin.com/company/solidmaint", label: "SolidMaint on LinkedIn", icon: Linkedin },
-            ].map(({ href, label, icon: Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label={label}
-                className="grid size-11 place-items-center rounded-full border border-sunlit/25 text-sunlit transition-colors hover:border-coral hover:bg-coral hover:text-sunlit"
-              >
-                <Icon className="size-5" aria-hidden="true" />
-              </a>
-            ))}
-          </div>
-          <div className="mt-10 flex flex-col gap-5 border-t border-sunlit/15 pt-7 text-sm text-sunlit/55 sm:flex-row sm:items-center sm:justify-between">
-            <Brand light />
-            <p>Marbella, Benalmádena · Mon–Fri, 09:00–18:00 CET</p>
-            <p>© 2026 SolidMaint</p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       <WhatsAppButton />
       <MarenaBanner />
