@@ -239,6 +239,13 @@
   &:hover { transform: translateY(-5px); box-shadow: 0 24px 50px -28px color-mix(in oklab, var(--deep) 45%, transparent); }
 }
 
+@utility how-step-app {
+  border-color: transparent;
+  background-color: var(--deep);
+  color: var(--sunlit);
+  p { color: color-mix(in oklab, var(--sunlit) 78%, transparent); }
+}
+
 @utility editorial-package {
   display: flex;
   min-height: 31rem;

@@ -15,6 +15,7 @@ import {
   Menu,
   MessageCircle,
   ShieldCheck,
+  Smartphone,
   Waves,
   Wind,
   Wrench,
@@ -338,14 +339,14 @@ function Index() {
           <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
               <p className="section-label text-coral">02 — How we work</p>
-              <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">A care plan in three simple steps.</h2>
+              <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">A care plan in four simple steps.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
-              Start with a base plan, shape it around your home, and add extra hours only where you need them.
+              Start with a base plan, shape it around your home, add extra hours or services where you need them, and follow every task from your phone.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <article className="how-step">
               <span className="section-label text-coral">Step 01</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Choose your base plan</h3>
@@ -364,8 +365,8 @@ function Index() {
 
             <article className="how-step">
               <span className="section-label text-coral">Step 02</span>
-              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Customise it with extra hours</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Layer extra hours of any work we provide on top of your plan’s regular visits — mix and match freely.</p>
+              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Customise it with extra hours or services</h3>
+              <p className="mt-4 leading-relaxed text-deep/65">Layer extra hours of any work we provide — or add a standalone service — on top of your plan’s regular visits. Mix and match freely.</p>
               <div className="mt-6 grid grid-cols-2 gap-2">
                 {services.map((service) => {
                   const Icon = service.icon;
@@ -399,6 +400,16 @@ function Index() {
                   <span className="text-deep/45">Min 2h</span>
                   <span className="text-coral">Max 6h · 3-month plan</span>
                 </p>
+              </div>
+            </article>
+
+            <article className="how-step how-step-app">
+              <span className="section-label text-coral">Step 04</span>
+              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Follow it all from your phone</h3>
+              <p className="mt-4 leading-relaxed text-deep/65">Download the app and watch the progress of every task, for the lifetime of your home — each visit documented, right in your pocket.</p>
+              <div className="mt-6 flex items-center gap-3 lg:mt-auto">
+                <Smartphone className="size-10 shrink-0 text-olive" aria-hidden="true" />
+                <a href="#vault" className="solid-button solid-button-coral text-xs">Download the app</a>
               </div>
             </article>
           </div>
