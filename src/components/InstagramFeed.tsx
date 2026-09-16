@@ -25,7 +25,7 @@ export function InstagramFeed() {
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
           <div>
-            <p className="section-label text-coral">08 — From our Instagram</p>
+            <p className="section-label text-coral">09 — From our Instagram</p>
             <h2 className="mt-5 max-w-[16ch] font-display text-4xl font-semibold leading-tight md:text-5xl">
               A look at the work, week by week.
             </h2>
