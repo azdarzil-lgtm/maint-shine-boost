@@ -207,11 +207,28 @@ function TypewriterHeading({ text }: { text: string }) {
 const navLinks = [
   { href: "#packages", label: "Benefits" },
   { href: "#services", label: "Services" },
-  { href: "#vault", label: "Property Vault" },
-  { href: "#proof", label: "Reviews" },
   { href: "#team", label: "Team" },
   { href: "#coverage", label: "Coverage" },
   { href: "#faqs", label: "FAQs" },
+  { href: "#journal", label: "Journal" },
+];
+
+const journalPosts = [
+  {
+    date: "August 2026",
+    title: "Preparing your garden for the September heat",
+    excerpt: "What we adjust in watering, pruning and shade across the Costa del Sol when the summer peaks.",
+  },
+  {
+    date: "July 2026",
+    title: "The quiet checks that keep a pool perfect",
+    excerpt: "Beyond cleaning: the water balance and equipment habits that stop small problems becoming big ones.",
+  },
+  {
+    date: "June 2026",
+    title: "Getting an empty home ready for your arrival",
+    excerpt: "Our arrival-ready routine for overseas owners — AC, plumbing, electrics and everything in between.",
+  },
 ];
 
 function Index() {
@@ -576,6 +593,33 @@ function Index() {
       </section>
 
       <InstagramFeed />
+
+      <section id="journal" className="scroll-mt-28 bg-olive/10 py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
+            <div>
+              <p className="section-label text-coral">10 — Journal</p>
+              <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Notes from the homes we look after.</h2>
+            </div>
+            <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
+              Seasonal advice and small observations from our visits along the coast — written by the team, for owners.
+            </p>
+          </div>
+          <div className="divide-y divide-deep/15 border-b border-deep/15">
+            {journalPosts.map((post) => (
+              <a key={post.title} href="#journal" className="service-row group">
+                <span className="hidden w-28 shrink-0 text-xs font-bold uppercase text-coral sm:block">{post.date}</span>
+                <span>
+                  <strong className="font-display text-xl font-semibold md:text-2xl">{post.title}</strong>
+                  <span className="mt-1 block text-sm text-deep/60">{post.excerpt}</span>
+                </span>
+                <ArrowRight className="ml-auto size-5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
 
 
