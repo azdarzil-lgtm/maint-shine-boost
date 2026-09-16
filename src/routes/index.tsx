@@ -417,7 +417,7 @@ function Index() {
 
       <section id="proof" className="bg-deep py-20 text-sunlit md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <p className="section-label text-coral">05 — In their words</p>
+          <p className="section-label text-coral">06 — In their words</p>
           <div className="mt-8 grid gap-12 lg:grid-cols-[1.25fr_0.75fr]">
             <figure className="overflow-hidden rounded-[2rem]">
               <img src={testimonialStill} alt="SolidMaint customer testimonial video" loading="lazy" width="1600" height="912" className="aspect-video size-full object-cover" />
