@@ -594,6 +594,33 @@ function Index() {
 
       <InstagramFeed />
 
+      <section id="journal" className="scroll-mt-28 bg-olive/10 py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
+            <div>
+              <p className="section-label text-coral">10 — Journal</p>
+              <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Notes from the homes we look after.</h2>
+            </div>
+            <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
+              Seasonal advice and small observations from our visits along the coast — written by the team, for owners.
+            </p>
+          </div>
+          <div className="divide-y divide-deep/15 border-b border-deep/15">
+            {journalPosts.map((post) => (
+              <a key={post.title} href="#journal" className="service-row group">
+                <span className="hidden w-28 shrink-0 text-xs font-bold uppercase text-coral sm:block">{post.date}</span>
+                <span>
+                  <strong className="font-display text-xl font-semibold md:text-2xl">{post.title}</strong>
+                  <span className="mt-1 block text-sm text-deep/60">{post.excerpt}</span>
+                </span>
+                <ArrowRight className="ml-auto size-5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
 
 
       <footer id="contact" className="relative bg-deep py-20 text-sunlit md:py-28">
