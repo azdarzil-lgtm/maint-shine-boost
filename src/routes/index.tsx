@@ -15,6 +15,7 @@ import {
   Menu,
   MessageCircle,
   ShieldCheck,
+  Smartphone,
   Waves,
   Wind,
   Wrench,
@@ -399,6 +400,16 @@ function Index() {
                   <span className="text-deep/45">Min 2h</span>
                   <span className="text-coral">Max 6h · 3-month plan</span>
                 </p>
+              </div>
+            </article>
+
+            <article className="how-step how-step-app">
+              <span className="section-label text-coral">Step 04</span>
+              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Follow it all from your phone</h3>
+              <p className="mt-4 leading-relaxed text-deep/65">Download the app and watch the progress of every task, for the lifetime of your home — each visit documented, right in your pocket.</p>
+              <div className="mt-6 flex items-center gap-3 lg:mt-auto">
+                <Smartphone className="size-10 shrink-0 text-olive" aria-hidden="true" />
+                <a href="#vault" className="solid-button solid-button-coral text-xs">Download the app</a>
               </div>
             </article>
           </div>
