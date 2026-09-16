@@ -263,9 +263,9 @@ function Index() {
         )}
       </header>
 
-      <section className="relative overflow-hidden bg-deep text-sunlit">
+      <section className="relative isolate overflow-hidden bg-deep text-sunlit">
         <video
-          className="absolute inset-0 -z-20 size-full object-cover"
+          className="absolute inset-0 z-0 size-full object-cover"
           autoPlay
           muted
           loop
@@ -276,7 +276,8 @@ function Index() {
         >
           <source src={familyVillaVideo.url} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 -z-10 bg-deep/70" aria-hidden="true" />
+        <div className="absolute inset-0 z-[1] bg-deep/60" aria-hidden="true" />
+
         <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-32 text-center md:px-10 md:pb-28 md:pt-44">
           <p className="section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
           <TypewriterHeading text="Let’s build the right care plan for your home." />
