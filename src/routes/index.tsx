@@ -287,7 +287,6 @@ function Index() {
               
             </div>
           </div>
-        </div>
       </header>
 
       <section id="packages" className="scroll-mt-28 pt-10 pb-20 md:py-32">
