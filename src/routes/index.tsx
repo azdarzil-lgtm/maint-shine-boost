@@ -336,7 +336,7 @@ function Index() {
       <section id="services" className="scroll-mt-28 bg-background py-20 md:py-32">
         <div className="mx-auto grid max-w-7xl items-start gap-14 px-5 md:px-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="lg:sticky lg:top-12">
-            <p className="section-label text-coral">02 — Book one service</p>
+            <p className="section-label text-coral">03 — Book one service</p>
             <h2 className="mt-5 max-w-[11ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Need just one thing? We do that too.</h2>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-deep/65">Every service can stand alone or become part of your care plan.</p>
             <a href="#contact" className="mt-9 inline-flex items-center gap-2 font-bold text-coral">Discuss what you need <ArrowRight className="size-4" aria-hidden="true" /></a>
