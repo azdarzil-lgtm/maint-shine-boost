@@ -211,13 +211,25 @@ const navLinks = [
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
-      <header className="bg-sunlit">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+          scrolled ? "bg-deep/85 shadow-lg backdrop-blur-md" : "bg-transparent"
+        }`}
+      >
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-10 md:py-5">
-          <Brand />
-          <div className="hidden items-center gap-8 text-sm font-bold uppercase lg:flex">
+          <Brand light />
+          <div className="hidden items-center gap-8 text-sm font-bold uppercase text-sunlit lg:flex">
             {navLinks.map((link) => (
               <a key={link.href} href={link.href} className="nav-link">{link.label}</a>
             ))}
@@ -229,14 +241,14 @@ function Index() {
               onClick={() => setMenuOpen((open) => !open)}
               aria-expanded={menuOpen}
               aria-label="Toggle menu"
-              className="grid size-11 shrink-0 place-items-center rounded-md border border-deep/15 text-deep lg:hidden"
+              className="grid size-11 shrink-0 place-items-center rounded-md border border-sunlit/40 text-sunlit lg:hidden"
             >
               {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
             </button>
           </div>
         </nav>
         {menuOpen && (
-          <div className="border-y border-deep/10 bg-sunlit px-4 py-2 lg:hidden">
+          <div className="border-y border-deep/10 bg-sunlit px-4 py-2 text-deep lg:hidden">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -251,7 +263,7 @@ function Index() {
         )}
 
 
-        <div className="relative isolate overflow-hidden">
+        <div className="relative isolate overflow-hidden bg-deep">
           <video
             className="absolute inset-0 -z-20 size-full object-cover"
             autoPlay
@@ -265,7 +277,7 @@ function Index() {
             <source src={familyVillaVideo.url} type="video/mp4" />
           </video>
           <div className="absolute inset-0 -z-10 bg-deep/70" aria-hidden="true" />
-          <div className="mx-auto max-w-7xl px-5 pb-16 pt-14 text-center text-sunlit md:px-10 md:pb-28 md:pt-24">
+          <div className="mx-auto max-w-7xl px-5 pb-16 pt-32 text-center text-sunlit md:px-10 md:pb-28 md:pt-44">
             <p className="section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
             <TypewriterHeading text="Let’s build the right care plan for your home." />
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/75">
