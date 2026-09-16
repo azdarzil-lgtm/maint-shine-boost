@@ -227,19 +227,6 @@ function Index() {
           scrolled ? "bg-deep/85 shadow-lg backdrop-blur-md" : "bg-transparent"
         }`}
       >
-        <video
-          className="absolute inset-0 -z-20 size-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={familyVillaPoster.url}
-          aria-hidden="true"
-        >
-          <source src={familyVillaVideo.url} type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 -z-10 bg-deep/70" aria-hidden="true" />
         <nav className="relative mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-10 md:py-5">
           <Brand light />
           <div className="hidden items-center gap-8 text-sm font-bold uppercase text-sunlit lg:flex">
@@ -274,20 +261,33 @@ function Index() {
             ))}
           </div>
         )}
-
-
-        <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-20 text-center text-sunlit md:px-10 md:pb-28 md:pt-28">
-            <p className="section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
-            <TypewriterHeading text="Let’s build the right care plan for your home." />
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/75">
-              One dependable team for your garden, pool, air conditioning and home—with a clear record of every visit.
-            </p>
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <a href="#packages" className="solid-button solid-button-coral">Find your care plan <ArrowDownRight aria-hidden="true" /></a>
-              
-            </div>
-          </div>
       </header>
+
+      <section className="relative overflow-hidden bg-deep text-sunlit">
+        <video
+          className="absolute inset-0 -z-20 size-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={familyVillaPoster.url}
+          aria-hidden="true"
+        >
+          <source src={familyVillaVideo.url} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 -z-10 bg-deep/70" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-32 text-center md:px-10 md:pb-28 md:pt-44">
+          <p className="section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
+          <TypewriterHeading text="Let’s build the right care plan for your home." />
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/75">
+            One dependable team for your garden, pool, air conditioning and home—with a clear record of every visit.
+          </p>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <a href="#packages" className="solid-button solid-button-coral">Find your care plan <ArrowDownRight aria-hidden="true" /></a>
+          </div>
+        </div>
+      </section>
 
       <section id="packages" className="scroll-mt-28 pt-10 pb-20 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
