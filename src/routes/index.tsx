@@ -227,7 +227,20 @@ function Index() {
           scrolled ? "bg-deep/85 shadow-lg backdrop-blur-md" : "bg-transparent"
         }`}
       >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-10 md:py-5">
+        <video
+          className="absolute inset-0 -z-20 size-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={familyVillaPoster.url}
+          aria-hidden="true"
+        >
+          <source src={familyVillaVideo.url} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 -z-10 bg-deep/70" aria-hidden="true" />
+        <nav className="relative mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-10 md:py-5">
           <Brand light />
           <div className="hidden items-center gap-8 text-sm font-bold uppercase text-sunlit lg:flex">
             {navLinks.map((link) => (
