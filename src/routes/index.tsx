@@ -467,7 +467,7 @@ function Index() {
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <p className="section-label text-coral">07 — Local coverage</p>
+              <p className="section-label text-coral">08 — Local coverage</p>
               <h2 className="mt-5 max-w-[12ch] font-display text-4xl font-semibold leading-tight md:text-6xl">From Benalmádena to Sotogrande.</h2>
               <p className="mt-5 max-w-md text-lg font-semibold leading-relaxed text-deep/65">Currently serving the Costa del Sol, from Benalmádena to Sotogrande.</p>
             </div>
