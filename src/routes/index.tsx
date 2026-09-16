@@ -390,7 +390,7 @@ function Index() {
                   return (
                     <span key={service.title} className="flex items-center gap-2.5 border border-deep/15 bg-sunlit px-3 py-2.5 text-xs font-bold">
                       <Icon className="size-4 shrink-0 text-coral" aria-hidden="true" />
-                      {service.title}
+                      <span className="min-w-0 leading-snug">{service.title}</span>
                     </span>
                   );
                 })}
