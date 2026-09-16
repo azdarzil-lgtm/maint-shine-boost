@@ -384,11 +384,11 @@ function Index() {
               <span className="section-label text-coral">Step 02</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Customise it with extra hours or services</h3>
               <p className="mt-4 leading-relaxed text-deep/65">Layer extra hours of any work we provide — or add a standalone service — on top of your plan’s regular visits. Mix and match freely.</p>
-              <div className="mt-6 grid grid-cols-2 gap-2">
+              <div className="mt-6 flex flex-wrap gap-2">
                 {services.map((service) => {
                   const Icon = service.icon;
                   return (
-                    <span key={service.title} className="flex items-center gap-2.5 border border-deep/15 bg-sunlit px-3 py-2.5 text-xs font-bold">
+                    <span key={service.title} className="inline-flex items-center gap-2 border border-deep/15 bg-sunlit px-3 py-2 text-xs font-bold">
                       <Icon className="size-4 shrink-0 text-coral" aria-hidden="true" />
                       {service.title}
                     </span>
