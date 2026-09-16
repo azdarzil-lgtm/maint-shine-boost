@@ -18,7 +18,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import appProcessPoster from "@/assets/app-process-poster.jpg.asset.json";
 import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
@@ -142,6 +142,59 @@ function StoreButtons() {
         </a>
       ))}
     </div>
+  );
+}
+
+function TypewriterHeading({ text }: { text: string }) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [hasStarted, setHasStarted] = useState(false);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    const heading = headingRef.current;
+    if (!heading) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplayedText(text);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setHasStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.45 },
+    );
+
+    observer.observe(heading);
+    return () => observer.disconnect();
+  }, [text]);
+
+  useEffect(() => {
+    if (!hasStarted || displayedText.length >= text.length) return;
+
+    const timeout = window.setTimeout(
+      () => setDisplayedText(text.slice(0, displayedText.length + 1)),
+      displayedText.length === 0 ? 220 : 42,
+    );
+
+    return () => window.clearTimeout(timeout);
+  }, [displayedText, hasStarted, text]);
+
+  return (
+    <h2
+      ref={headingRef}
+      aria-label={text}
+      className="mx-auto mt-5 min-h-[3.1em] max-w-[15ch] font-display text-[2.2rem] font-semibold leading-tight sm:text-5xl md:text-7xl"
+    >
+      <span aria-hidden="true">
+        {displayedText}
+        <span className="typewriter-cursor">|</span>
+      </span>
+    </h2>
   );
 }
 
@@ -444,7 +497,7 @@ function Index() {
         <div className="absolute inset-0 -z-10 bg-deep/70" aria-hidden="true" />
         <div className="mx-auto max-w-7xl px-5 text-center md:px-10">
           <p className="section-label text-coral">Your home, handled</p>
-          <h2 className="mx-auto mt-5 max-w-[15ch] font-display text-[2.2rem] font-semibold leading-tight sm:text-5xl md:text-7xl">Let’s build the right care plan for your property.</h2>
+          <TypewriterHeading text="Let’s build the right care plan for your property." />
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/65">Tell us where your home is and what needs care. The Marbella team will reply within one working day.</p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a href="mailto:info@solidmaint.com" className="solid-button solid-button-coral">Start your enquiry <ArrowRight aria-hidden="true" /></a>
