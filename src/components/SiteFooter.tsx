@@ -17,7 +17,7 @@ export function SiteFooter() {
           Let’s talk about your home.
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/65">
-          Tell us where your home is and what needs care. The Marbella team will reply within one working day.
+          Tell us where your home is and what needs care. Our team will reply within one working day.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a href="mailto:info@solidmaint.com" className="solid-button solid-button-coral">
