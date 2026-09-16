@@ -488,6 +488,73 @@ function Index() {
             </div>
           </div>
 
+          <div id="out-of-area" className="scroll-mt-28 mt-12 border border-coral/40 bg-coral/10 p-8 md:p-12">
+            <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+              <div>
+                <p className="section-label text-coral">Coming to you soon</p>
+                <h3 className="mt-4 max-w-[18ch] font-display text-3xl font-semibold leading-tight md:text-4xl">Not in our coverage area yet?</h3>
+                <p className="mt-4 max-w-md text-base leading-relaxed text-deep/70">
+                  We are expanding along the coast town by town. Leave your details and you will be the first to know when SolidMaint reaches your area — and we will hold a place for your home in the queue.
+                </p>
+              </div>
+              <form
+                className="grid gap-5 sm:grid-cols-2"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  const data = new FormData(event.currentTarget);
+                  const body = [...data.entries()].map(([key, value]) => `${key}: ${value}`).join("\n");
+                  window.location.href = `mailto:hello@solidmaint.com?subject=${encodeURIComponent(
+                    "Out-of-area enquiry — coming to you soon",
+                  )}&body=${encodeURIComponent(body)}`;
+                }}
+              >
+                <label className="flex flex-col gap-2 text-sm font-semibold">
+                  Your name
+                  <input
+                    name="Name"
+                    required
+                    maxLength={100}
+                    className="rounded-md border border-deep/20 bg-sunlit px-4 py-3 text-base font-normal"
+                  />
+                </label>
+                <label className="flex flex-col gap-2 text-sm font-semibold">
+                  Email
+                  <input
+                    name="Email"
+                    type="email"
+                    required
+                    maxLength={255}
+                    className="rounded-md border border-deep/20 bg-sunlit px-4 py-3 text-base font-normal"
+                  />
+                </label>
+                <label className="flex flex-col gap-2 text-sm font-semibold">
+                  Phone (optional)
+                  <input
+                    name="Phone"
+                    type="tel"
+                    maxLength={30}
+                    className="rounded-md border border-deep/20 bg-sunlit px-4 py-3 text-base font-normal"
+                  />
+                </label>
+                <label className="flex flex-col gap-2 text-sm font-semibold">
+                  Your town or area
+                  <input
+                    name="Area"
+                    required
+                    maxLength={100}
+                    placeholder="e.g. Fuengirola, La Cala…"
+                    className="rounded-md border border-deep/20 bg-sunlit px-4 py-3 text-base font-normal placeholder:text-deep/40"
+                  />
+                </label>
+                <div className="sm:col-span-2">
+                  <button type="submit" className="solid-button solid-button-coral">
+                    Keep me posted
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
           <div id="faqs" className="scroll-mt-28 mt-20 grid gap-10 border-t border-deep/15 pt-16 lg:grid-cols-[0.75fr_1.25fr]">
             <h2 className="max-w-[10ch] font-display text-4xl font-semibold">Clear answers before we begin.</h2>
             <div className="divide-y divide-deep/15 border-y border-deep/15">
