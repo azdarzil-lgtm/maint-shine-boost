@@ -283,7 +283,7 @@ function Index() {
                   <a key={name} href="#packages" className="rounded-full border border-deep/20 px-3.5 py-1.5 text-xs font-bold transition-colors hover:border-coral hover:text-coral">{name}</a>
                 ))}
               </div>
-              <div className="mt-8 border border-coral/40 bg-coral/10 p-4 lg:mt-auto">
+              <div className="mt-8 rounded-2xl border border-coral/40 bg-coral/10 p-4 lg:mt-auto">
                 <MessageCircle className="size-5 text-coral" aria-hidden="true" />
                 <p className="mt-2 text-sm font-semibold leading-snug">Not sure what plan is for you?</p>
                 <a href="#contact" className="mt-3 inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-coral">Talk to us now <ArrowRight className="size-4" aria-hidden="true" /></a>
@@ -298,7 +298,7 @@ function Index() {
                 {services.map((service) => {
                   const Icon = service.icon;
                   return (
-                    <span key={service.title} className="inline-flex items-center gap-2 border border-deep/15 bg-sunlit px-3 py-2 text-xs font-bold">
+                    <span key={service.title} className="inline-flex items-center gap-2 rounded-full border border-deep/15 bg-sunlit px-3 py-2 text-xs font-bold">
                       <Icon className="size-4 shrink-0 text-coral" aria-hidden="true" />
                       {service.title}
                     </span>
@@ -317,7 +317,7 @@ function Index() {
                   {[{ h: 2, p: "38%" }, { h: 3, p: "52%" }, { h: 4, p: "66%" }, { h: 5, p: "82%" }, { h: 6, p: "100%", max: true }].map(({ h, p, max }) => (
                     <div key={h} className="text-center">
                       <div className="relative h-24 w-full">
-                        <div className={`absolute bottom-0 w-full ${max ? "bg-coral" : "bg-olive/40"}`} style={{ height: p }} />
+                        <div className={`absolute bottom-0 w-full rounded-t-full ${max ? "bg-coral" : "bg-olive/40"}`} style={{ height: p }} />
                       </div>
                       <span className="mt-2 block text-xs font-bold">{h}h</span>
                     </div>
