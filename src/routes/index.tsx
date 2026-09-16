@@ -211,13 +211,38 @@ const navLinks = [
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
-      <header className="bg-sunlit">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-10 md:py-5">
-          <Brand />
-          <div className="hidden items-center gap-8 text-sm font-bold uppercase lg:flex">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+          scrolled ? "bg-deep/85 shadow-lg backdrop-blur-md" : "bg-transparent"
+        }`}
+      >
+        <video
+          className="absolute inset-0 -z-20 size-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={familyVillaPoster.url}
+          aria-hidden="true"
+        >
+          <source src={familyVillaVideo.url} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 -z-10 bg-deep/70" aria-hidden="true" />
+        <nav className="relative mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-10 md:py-5">
+          <Brand light />
+          <div className="hidden items-center gap-8 text-sm font-bold uppercase text-sunlit lg:flex">
             {navLinks.map((link) => (
               <a key={link.href} href={link.href} className="nav-link">{link.label}</a>
             ))}
@@ -229,14 +254,14 @@ function Index() {
               onClick={() => setMenuOpen((open) => !open)}
               aria-expanded={menuOpen}
               aria-label="Toggle menu"
-              className="grid size-11 shrink-0 place-items-center rounded-md border border-deep/15 text-deep lg:hidden"
+              className="grid size-11 shrink-0 place-items-center rounded-md border border-sunlit/40 text-sunlit lg:hidden"
             >
               {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
             </button>
           </div>
         </nav>
         {menuOpen && (
-          <div className="border-y border-deep/10 bg-sunlit px-4 py-2 lg:hidden">
+          <div className="border-y border-deep/10 bg-sunlit px-4 py-2 text-deep lg:hidden">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -251,21 +276,7 @@ function Index() {
         )}
 
 
-        <div className="relative isolate overflow-hidden">
-          <video
-            className="absolute inset-0 -z-20 size-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={familyVillaPoster.url}
-            aria-hidden="true"
-          >
-            <source src={familyVillaVideo.url} type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 -z-10 bg-deep/70" aria-hidden="true" />
-          <div className="mx-auto max-w-7xl px-5 pb-16 pt-14 text-center text-sunlit md:px-10 md:pb-28 md:pt-24">
+        <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-20 text-center text-sunlit md:px-10 md:pb-28 md:pt-28">
             <p className="section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
             <TypewriterHeading text="Let’s build the right care plan for your home." />
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/75">
@@ -276,10 +287,9 @@ function Index() {
               
             </div>
           </div>
-        </div>
       </header>
 
-      <section id="packages" className="scroll-mt-8 pt-10 pb-20 md:py-32">
+      <section id="packages" className="scroll-mt-28 pt-10 pb-20 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
@@ -318,7 +328,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="services" className="scroll-mt-8 bg-background py-20 md:py-32">
+      <section id="services" className="scroll-mt-28 bg-background py-20 md:py-32">
         <div className="mx-auto grid max-w-7xl items-start gap-14 px-5 md:px-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="lg:sticky lg:top-12">
             <p className="section-label text-coral">02 — Book one service</p>
@@ -359,7 +369,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="vault" className="scroll-mt-8 py-20 md:py-32">
+      <section id="vault" className="scroll-mt-28 py-20 md:py-32">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 md:px-10 lg:grid-cols-12">
           <figure className="relative lg:col-span-7">
             <video
@@ -416,7 +426,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="team" className="scroll-mt-8 bg-sunlit py-20 md:py-32">
+      <section id="team" className="scroll-mt-28 bg-sunlit py-20 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-end">
             <div>
@@ -463,7 +473,7 @@ function Index() {
             </div>
           </div>
 
-          <div id="faqs" className="scroll-mt-8 mt-20 grid gap-10 border-t border-deep/15 pt-16 lg:grid-cols-[0.75fr_1.25fr]">
+          <div id="faqs" className="scroll-mt-28 mt-20 grid gap-10 border-t border-deep/15 pt-16 lg:grid-cols-[0.75fr_1.25fr]">
             <h2 className="max-w-[10ch] font-display text-4xl font-semibold">Clear answers before we begin.</h2>
             <div className="divide-y divide-deep/15 border-y border-deep/15">
               {faqs.map((faq) => (
