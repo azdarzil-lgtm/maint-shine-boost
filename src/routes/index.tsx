@@ -273,7 +273,7 @@ function Index() {
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <a href="#packages" className="solid-button solid-button-coral">Find your care plan <ArrowDownRight aria-hidden="true" /></a>
-              <a href="#contact" className="solid-button solid-button-outline">Start your enquiry</a>
+              
             </div>
           </div>
         </div>
