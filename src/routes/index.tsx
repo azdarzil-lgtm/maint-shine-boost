@@ -120,17 +120,6 @@ const team = [
   { name: "Carmen Vidal", role: "Property Manager", photo: team4 },
 ];
 
-function Brand({ light = false }: { light?: boolean }) {
-  return (
-    <a href="#top" className="flex items-center gap-3" aria-label="SolidMaint home">
-      <img src={logoAsset.url} alt="" className="size-10 rounded-md" width="40" height="40" />
-      <span className={`flex flex-col leading-tight ${light ? "text-sunlit" : "text-deep"}`}>
-        <span className="text-sm font-extrabold uppercase">SolidMaint</span>
-        <span className="text-[11px] font-medium tracking-wide opacity-80">Your home. Solidly cared for.</span>
-      </span>
-    </a>
-  );
-}
 
 function StoreButtons() {
   return (
@@ -204,32 +193,6 @@ function TypewriterHeading({ text }: { text: string }) {
   );
 }
 
-const navLinks = [
-  { href: "#packages", label: "Benefits" },
-  { href: "#services", label: "Services" },
-  { href: "#team", label: "Team" },
-  { href: "#coverage", label: "Coverage" },
-  { href: "#faqs", label: "FAQs" },
-  { href: "#journal", label: "Journal" },
-];
-
-const journalPosts = [
-  {
-    date: "August 2026",
-    title: "Preparing your garden for the September heat",
-    excerpt: "What we adjust in watering, pruning and shade across the Costa del Sol when the summer peaks.",
-  },
-  {
-    date: "July 2026",
-    title: "The quiet checks that keep a pool perfect",
-    excerpt: "Beyond cleaning: the water balance and equipment habits that stop small problems becoming big ones.",
-  },
-  {
-    date: "June 2026",
-    title: "Getting an empty home ready for your arrival",
-    excerpt: "Our arrival-ready routine for overseas owners — AC, plumbing, electrics and everything in between.",
-  },
-];
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -244,46 +207,8 @@ function Index() {
 
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-          scrolled ? "bg-deep/85 shadow-lg backdrop-blur-md" : "bg-transparent"
-        }`}
-      >
-        <nav className="relative mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-10 md:py-5">
-          <Brand light />
-          <div className="hidden items-center gap-8 text-sm font-bold uppercase text-sunlit lg:flex">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="nav-link">{link.label}</a>
-            ))}
-          </div>
-          <div className="flex items-center gap-2">
-            <a href="#contact" className="solid-button solid-button-coral px-4 py-2.5 text-[0.7rem] sm:px-5 sm:text-xs md:text-[0.78rem]">Enquire</a>
-            <button
-              type="button"
-              onClick={() => setMenuOpen((open) => !open)}
-              aria-expanded={menuOpen}
-              aria-label="Toggle menu"
-              className="grid size-11 shrink-0 place-items-center rounded-md border border-sunlit/40 text-sunlit lg:hidden"
-            >
-              {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
-            </button>
-          </div>
-        </nav>
-        {menuOpen && (
-          <div className="border-y border-deep/10 bg-sunlit px-4 py-2 text-deep lg:hidden">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="block border-b border-deep/10 py-4 text-sm font-bold uppercase last:border-b-0"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        )}
-      </header>
+      <SiteHeader />
+
 
       <section className="relative isolate overflow-hidden bg-deep text-sunlit">
         <video
