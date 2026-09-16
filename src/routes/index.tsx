@@ -121,7 +121,10 @@ function Brand({ light = false }: { light?: boolean }) {
   return (
     <a href="#top" className="flex items-center gap-3" aria-label="SolidMaint home">
       <img src={logoAsset.url} alt="" className="size-10 rounded-md" width="40" height="40" />
-      <span className={`text-sm font-extrabold uppercase ${light ? "text-sunlit" : "text-deep"}`}>SolidMaint</span>
+      <span className={`flex flex-col leading-tight ${light ? "text-sunlit" : "text-deep"}`}>
+        <span className="text-sm font-extrabold uppercase">SolidMaint</span>
+        <span className="text-[11px] font-medium tracking-wide opacity-80">A Care Plan for Your Home.</span>
+      </span>
     </a>
   );
 }
