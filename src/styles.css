@@ -197,8 +197,8 @@
 
 @utility solid-button-coral {
   background-color: var(--coral);
-  color: var(--deep);
-  &:hover { background-color: var(--sunlit); }
+  color: var(--sunlit);
+  &:hover { background-color: color-mix(in oklab, var(--coral) 86%, var(--deep)); }
 }
 
 @utility solid-button-dark {
