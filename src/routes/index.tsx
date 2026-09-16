@@ -394,7 +394,7 @@ function Index() {
             </figcaption>
           </figure>
           <div className="pt-10 lg:col-span-5 lg:pl-12 lg:pt-0">
-            <p className="section-label text-coral">04 — Your Property Vault</p>
+            <p className="section-label text-coral">05 — Your Property Vault</p>
             <h2 className="mt-5 font-display text-4xl font-semibold leading-tight md:text-6xl">Every visit, clearly documented.</h2>
             <p className="mt-6 text-lg leading-relaxed text-deep/65">Follow the care of your home from anywhere. Each visit is verified, photographed and filed with its report and invoice.</p>
             <div className="mt-9 space-y-5">
