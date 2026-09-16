@@ -6,20 +6,15 @@ import {
   ChevronDown,
   Clock3,
   Droplets,
-  Facebook,
   FileText,
-  Instagram,
   Leaf,
-  Linkedin,
   MapPin,
-  Menu,
   MessageCircle,
   ShieldCheck,
   Smartphone,
   Waves,
   Wind,
   Wrench,
-  X,
   Zap,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -28,12 +23,13 @@ import appProcessPoster from "@/assets/app-process-poster.jpg.asset.json";
 import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
 import familyVillaPoster from "@/assets/family-villa-footer-poster.jpg.asset.json";
 import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
-import logoAsset from "@/assets/solidmaint-logo.png.asset.json";
 import team1 from "@/assets/team-1.jpg";
 import team2 from "@/assets/team-2.jpg";
 import team3 from "@/assets/team-3.jpg";
 import team4 from "@/assets/team-4.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import { InstagramFeed } from "@/components/InstagramFeed";
 import { MarenaBanner } from "@/components/MarenaBanner";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -195,20 +191,9 @@ function TypewriterHeading({ text }: { text: string }) {
 
 
 function Index() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
       <SiteHeader />
-
 
       <section className="relative isolate overflow-hidden bg-deep text-sunlit">
         <video
