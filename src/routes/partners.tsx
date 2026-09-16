@@ -139,7 +139,7 @@ function PartnersPage() {
             <a href="#apply" className="solid-button solid-button-coral">
               Become a partner <ArrowRight aria-hidden="true" />
             </a>
-            <a href="/#contact" className="solid-button solid-button-outline">
+            <a href="/#contact" className="solid-button solid-button-dark">
               Talk to us first
             </a>
           </div>
