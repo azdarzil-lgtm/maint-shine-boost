@@ -207,11 +207,28 @@ function TypewriterHeading({ text }: { text: string }) {
 const navLinks = [
   { href: "#packages", label: "Benefits" },
   { href: "#services", label: "Services" },
-  { href: "#vault", label: "Property Vault" },
-  { href: "#proof", label: "Reviews" },
   { href: "#team", label: "Team" },
   { href: "#coverage", label: "Coverage" },
   { href: "#faqs", label: "FAQs" },
+  { href: "#journal", label: "Journal" },
+];
+
+const journalPosts = [
+  {
+    date: "August 2026",
+    title: "Preparing your garden for the September heat",
+    excerpt: "What we adjust in watering, pruning and shade across the Costa del Sol when the summer peaks.",
+  },
+  {
+    date: "July 2026",
+    title: "The quiet checks that keep a pool perfect",
+    excerpt: "Beyond cleaning: the water balance and equipment habits that stop small problems becoming big ones.",
+  },
+  {
+    date: "June 2026",
+    title: "Getting an empty home ready for your arrival",
+    excerpt: "Our arrival-ready routine for overseas owners — AC, plumbing, electrics and everything in between.",
+  },
 ];
 
 function Index() {
