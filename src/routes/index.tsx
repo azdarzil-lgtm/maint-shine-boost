@@ -263,7 +263,7 @@ function Index() {
         )}
       </header>
 
-      <section className="relative overflow-hidden text-sunlit">
+      <section className="relative overflow-hidden bg-deep text-sunlit">
         <video
           className="absolute inset-0 -z-20 size-full object-cover"
           autoPlay
