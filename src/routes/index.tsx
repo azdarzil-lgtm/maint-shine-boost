@@ -497,7 +497,7 @@ function Index() {
         <div className="absolute inset-0 -z-10 bg-deep/70" aria-hidden="true" />
         <div className="mx-auto max-w-7xl px-5 text-center md:px-10">
           <p className="section-label text-coral">Your home, handled</p>
-          <TypewriterHeading text="Let’s build the right care plan for your property." />
+          <TypewriterHeading text="Let’s build the right care plan for your family." />
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/65">Tell us where your home is and what needs care. The Marbella team will reply within one working day.</p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a href="mailto:info@solidmaint.com" className="solid-button solid-button-coral">Start your enquiry <ArrowRight aria-hidden="true" /></a>
