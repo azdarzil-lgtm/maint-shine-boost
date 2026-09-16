@@ -607,7 +607,7 @@ function Index() {
           </div>
           <div className="divide-y divide-deep/15 border-b border-deep/15">
             {journalPosts.map((post) => (
-              <a key={post.title} href="#journal" className="service-row group">
+              <a key={post.title} href="#journal" className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-5 transition-colors hover:text-coral sm:grid-cols-[7rem_minmax(0,1fr)_auto] sm:py-6">
                 <span className="hidden w-28 shrink-0 text-xs font-bold uppercase text-coral sm:block">{post.date}</span>
                 <span>
                   <strong className="font-display text-xl font-semibold md:text-2xl">{post.title}</strong>
