@@ -48,7 +48,12 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
         <Brand light />
         <div className="hidden items-center gap-8 text-sm font-bold uppercase text-sunlit lg:flex">
           {navLinks.map((link) => (
-            <Link key={link.label} to={link.to} hash={"hash" in link ? link.hash : undefined} className="nav-link">
+            <Link
+              key={link.label}
+              to={link.to}
+              {...("hash" in link ? { hash: link.hash } : {})}
+              className="nav-link"
+            >
               {link.label}
             </Link>
           ))}
