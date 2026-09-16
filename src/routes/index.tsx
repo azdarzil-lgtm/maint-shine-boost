@@ -30,6 +30,7 @@ import team2 from "@/assets/team-2.jpg";
 import team3 from "@/assets/team-3.jpg";
 import team4 from "@/assets/team-4.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
+import { InstagramFeed } from "@/components/InstagramFeed";
 import { MarenaBanner } from "@/components/MarenaBanner";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
@@ -487,6 +488,10 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <InstagramFeed />
+
+
 
       <footer id="contact" className="relative bg-deep py-20 text-sunlit md:py-28">
         <div className="mx-auto max-w-7xl px-5 text-center md:px-10">
