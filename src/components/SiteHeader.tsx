@@ -83,7 +83,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
             <Link
               key={link.label}
               to={link.to}
-              hash={"hash" in link ? link.hash : undefined}
+              {...("hash" in link ? { hash: link.hash } : {})}
               onClick={() => setMenuOpen(false)}
               className="block border-b border-deep/10 py-4 text-sm font-bold uppercase last:border-b-0"
             >
