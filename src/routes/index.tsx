@@ -279,7 +279,7 @@ function Index() {
         <div className="absolute inset-0 z-[1] bg-deep/60" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-5 pb-16 pt-32 text-center md:px-10 md:pb-28 md:pt-44">
-          <p className="section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
+          <p className="section-label text-coral">Currently serving Benalmádena → Sotogrande · Every visit documented</p>
           <TypewriterHeading text="Let’s build the right care plan for your home." />
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/75">
             One dependable team for your garden, pool, air conditioning and home—with a clear record of every visit.
