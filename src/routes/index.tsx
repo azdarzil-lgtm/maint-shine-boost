@@ -6,8 +6,11 @@ import {
   ChevronDown,
   Clock3,
   Droplets,
+  Facebook,
   FileText,
+  Instagram,
   Leaf,
+  Linkedin,
   MapPin,
   Menu,
   MessageCircle,
@@ -502,7 +505,25 @@ function Index() {
             <a href="mailto:info@solidmaint.com" className="solid-button solid-button-coral">Start your enquiry <ArrowRight aria-hidden="true" /></a>
             <a href="tel:+34951798899" className="solid-button solid-button-outline">Call +34 951 798 899</a>
           </div>
-          <div className="mt-20 flex flex-col gap-5 border-t border-sunlit/15 pt-7 text-sm text-sunlit/55 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-10 flex items-center justify-center gap-4">
+            {[
+              { href: "https://www.facebook.com/solidmaint", label: "SolidMaint on Facebook", icon: Facebook },
+              { href: "https://instagram.com/solidmaint", label: "SolidMaint on Instagram", icon: Instagram },
+              { href: "https://www.linkedin.com/company/solidmaint", label: "SolidMaint on LinkedIn", icon: Linkedin },
+            ].map(({ href, label, icon: Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label={label}
+                className="grid size-11 place-items-center rounded-full border border-sunlit/25 text-sunlit transition-colors hover:border-coral hover:bg-coral hover:text-sunlit"
+              >
+                <Icon className="size-5" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+          <div className="mt-10 flex flex-col gap-5 border-t border-sunlit/15 pt-7 text-sm text-sunlit/55 sm:flex-row sm:items-center sm:justify-between">
             <Brand light />
             <p>Marbella, Benalmádena · Mon–Fri, 09:00–18:00 CET</p>
             <p>© 2026 SolidMaint</p>
