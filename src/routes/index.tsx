@@ -333,6 +333,78 @@ function Index() {
         </div>
       </section>
 
+      <section id="how-we-work" className="scroll-mt-28 bg-olive/10 py-20 md:py-32">
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
+            <div>
+              <p className="section-label text-coral">02 — How we work</p>
+              <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">A care plan in three simple steps.</h2>
+            </div>
+            <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
+              Start with a base plan, shape it around your home, and add extra hours only where you need them.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            <article className="how-step">
+              <span className="section-label text-coral">Step 01</span>
+              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Choose your base plan</h3>
+              <p className="mt-4 leading-relaxed text-deep/65">Pick the plan closest to how you use your home. It’s a starting point — not a fixed package, and it can grow with your property.</p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {["Outdoor Care", "Home Ready", "Complete Care"].map((name) => (
+                  <a key={name} href="#packages" className="rounded-full border border-deep/20 px-3.5 py-1.5 text-xs font-bold transition-colors hover:border-coral hover:text-coral">{name}</a>
+                ))}
+              </div>
+              <div className="mt-8 border border-coral/40 bg-coral/10 p-4 lg:mt-auto">
+                <MessageCircle className="size-5 text-coral" aria-hidden="true" />
+                <p className="mt-2 text-sm font-semibold leading-snug">Not sure what plan is for you?</p>
+                <a href="#contact" className="mt-3 inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-coral">Talk to us now <ArrowRight className="size-4" aria-hidden="true" /></a>
+              </div>
+            </article>
+
+            <article className="how-step">
+              <span className="section-label text-coral">Step 02</span>
+              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Customise it with extra hours</h3>
+              <p className="mt-4 leading-relaxed text-deep/65">Layer extra hours of any work we provide on top of your plan’s regular visits — mix and match freely.</p>
+              <div className="mt-6 grid grid-cols-2 gap-2">
+                {services.map((service) => {
+                  const Icon = service.icon;
+                  return (
+                    <span key={service.title} className="flex items-center gap-2.5 border border-deep/15 bg-sunlit px-3 py-2.5 text-xs font-bold">
+                      <Icon className="size-4 shrink-0 text-coral" aria-hidden="true" />
+                      {service.title}
+                    </span>
+                  );
+                })}
+              </div>
+            </article>
+
+            <article className="how-step">
+              <span className="section-label text-coral">Step 03</span>
+              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Booked in clear time slots</h3>
+              <p className="mt-4 leading-relaxed text-deep/65">Extra hours are booked in one time slot — a minimum of 2 hours, up to a maximum of 6 added to your 3-month plan.</p>
+              <div className="mt-8 border-t border-deep/15 pt-6 lg:mt-auto">
+                <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Extra hours per time slot</p>
+                <div className="mt-4 grid grid-cols-5 gap-2" aria-hidden="true">
+                  {[{ h: 2, p: "38%" }, { h: 3, p: "52%" }, { h: 4, p: "66%" }, { h: 5, p: "82%" }, { h: 6, p: "100%", max: true }].map(({ h, p, max }) => (
+                    <div key={h} className="text-center">
+                      <div className="relative h-24 w-full">
+                        <div className={`absolute bottom-0 w-full ${max ? "bg-coral" : "bg-olive/40"}`} style={{ height: p }} />
+                      </div>
+                      <span className="mt-2 block text-xs font-bold">{h}h</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-2 flex items-baseline justify-between text-[0.65rem] font-bold uppercase tracking-wide">
+                  <span className="text-deep/45">Min 2h</span>
+                  <span className="text-coral">Max 6h · 3-month plan</span>
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="services" className="scroll-mt-28 bg-background py-20 md:py-32">
         <div className="mx-auto grid max-w-7xl items-start gap-14 px-5 md:px-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="lg:sticky lg:top-12">
