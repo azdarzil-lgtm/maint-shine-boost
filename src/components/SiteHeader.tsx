@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Team", to: "/", hash: "team" },
   { label: "Coverage", to: "/", hash: "coverage" },
   { label: "FAQs", to: "/", hash: "faqs" },
+  { label: "Partners", to: "/partners" },
   { label: "Journal", to: "/journal" },
 ] as const;
 
