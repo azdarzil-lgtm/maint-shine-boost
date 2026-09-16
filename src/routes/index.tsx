@@ -144,7 +144,7 @@ function StoreButtons() {
 }
 
 const navLinks = [
-  { href: "#packages", label: "Packages" },
+  { href: "#packages", label: "Benefits" },
   { href: "#services", label: "Services" },
   { href: "#vault", label: "Property Vault" },
   { href: "#proof", label: "Reviews" },
