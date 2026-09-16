@@ -229,6 +229,16 @@
   color: var(--sunlit);
 }
 
+@utility how-step {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid color-mix(in oklab, var(--deep) 14%, transparent);
+  background-color: color-mix(in oklab, var(--sunlit) 60%, white);
+  padding: 2rem;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  &:hover { transform: translateY(-5px); box-shadow: 0 24px 50px -28px color-mix(in oklab, var(--deep) 45%, transparent); }
+}
+
 @utility editorial-package {
   display: flex;
   min-height: 31rem;
