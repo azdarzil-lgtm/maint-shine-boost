@@ -435,7 +435,7 @@ function Index() {
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-end">
             <div>
-              <p className="section-label text-coral">06 — Meet the team</p>
+              <p className="section-label text-coral">07 — Meet the team</p>
               <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">The people behind every visit.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
