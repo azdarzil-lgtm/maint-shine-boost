@@ -24,8 +24,6 @@ import appProcessPoster from "@/assets/app-process-poster.jpg.asset.json";
 import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
 import familyVillaPoster from "@/assets/family-villa-footer-poster.jpg.asset.json";
 import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
-import gardenVideo from "@/assets/garden-maintenance.mp4.asset.json";
-import gardenVideoPoster from "@/assets/garden-maintenance-poster.jpg.asset.json";
 import logoAsset from "@/assets/solidmaint-logo.png.asset.json";
 import team1 from "@/assets/team-1.jpg";
 import team2 from "@/assets/team-2.jpg";
@@ -188,16 +186,16 @@ function TypewriterHeading({ text }: { text: string }) {
   }, [displayedText, hasStarted, text]);
 
   return (
-    <h2
+    <h1
       ref={headingRef}
       aria-label={text}
-      className="mx-auto mt-5 min-h-[3.1em] max-w-[15ch] font-display text-[2.2rem] font-semibold leading-tight sm:text-5xl md:text-7xl"
+      className="mx-auto mt-6 min-h-[3.1em] max-w-[15ch] font-display text-[2.45rem] font-semibold leading-[1.05] text-sunlit sm:text-6xl md:text-8xl"
     >
       <span aria-hidden="true">
         {displayedText}
         <span className="typewriter-cursor">|</span>
       </span>
-    </h2>
+    </h1>
   );
 }
 
@@ -253,36 +251,31 @@ function Index() {
         )}
 
 
-        <div className="mx-auto max-w-7xl px-5 pb-10 pt-14 text-center md:px-10 md:pb-24 md:pt-24">
-          <p className="section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
-          <h1 className="mx-auto mt-6 max-w-[15ch] font-display text-[2.45rem] font-semibold leading-[1.05] sm:text-6xl md:text-8xl">
-            Your coast home, <span className="text-coral">effortlessly</span> maintained.
-          </h1>
-          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center justify-center gap-7 md:flex-row">
-            <p className="max-w-md text-base leading-relaxed text-deep/68 md:text-right md:text-lg">
+        <div className="relative isolate overflow-hidden">
+          <video
+            className="absolute inset-0 -z-20 size-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={familyVillaPoster.url}
+            aria-hidden="true"
+          >
+            <source src={familyVillaVideo.url} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 -z-10 bg-deep/70" aria-hidden="true" />
+          <div className="mx-auto max-w-7xl px-5 pb-16 pt-14 text-center text-sunlit md:px-10 md:pb-28 md:pt-24">
+            <p className="section-label text-coral">Benalmádena → Sotogrande · Every visit documented</p>
+            <TypewriterHeading text="Let’s build the right care plan for your home." />
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/75">
               One dependable team for your garden, pool, air conditioning and home—with a clear record of every visit.
             </p>
-            <span className="hidden h-px w-16 bg-deep/20 md:block" />
-            <a href="#packages" className="solid-button solid-button-dark shrink-0">Find your care plan <ArrowDownRight aria-hidden="true" /></a>
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
+              <a href="#packages" className="solid-button solid-button-coral">Find your care plan <ArrowDownRight aria-hidden="true" /></a>
+              <a href="#contact" className="solid-button solid-button-outline">Start your enquiry</a>
+            </div>
           </div>
-
-          <figure className="relative mt-16 overflow-hidden rounded-[2rem] md:mt-24">
-            <video
-              className="aspect-video w-[105%] -mx-[2.5%] object-cover md:w-full md:mx-0"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster={gardenVideoPoster.url}
-              aria-label="SolidMaint garden maintenance team at work"
-            >
-              <source src={gardenVideo.url} type="video/mp4" />
-            </video>
-            <figcaption className="absolute bottom-4 left-4 hidden bg-sunlit px-4 py-3 text-left text-xs font-bold uppercase text-deep md:bottom-7 md:left-7 md:block">
-              Property care, carried out properly
-            </figcaption>
-          </figure>
         </div>
       </header>
 
@@ -484,23 +477,10 @@ function Index() {
         </div>
       </section>
 
-      <footer id="contact" className="relative isolate overflow-hidden bg-deep py-20 text-sunlit md:py-28">
-        <video
-          className="absolute inset-0 -z-20 size-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={familyVillaPoster.url}
-          aria-hidden="true"
-        >
-          <source src={familyVillaVideo.url} type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 -z-10 bg-deep/70" aria-hidden="true" />
+      <footer id="contact" className="relative bg-deep py-20 text-sunlit md:py-28">
         <div className="mx-auto max-w-7xl px-5 text-center md:px-10">
           <p className="section-label text-coral">Your home, handled</p>
-          <TypewriterHeading text="Let’s build the right care plan for your family." />
+          <h2 className="mx-auto mt-5 max-w-[18ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Let’s talk about your home.</h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/65">Tell us where your home is and what needs care. The Marbella team will reply within one working day.</p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a href="mailto:info@solidmaint.com" className="solid-button solid-button-coral">Start your enquiry <ArrowRight aria-hidden="true" /></a>
