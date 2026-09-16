@@ -22,6 +22,8 @@ import { useState } from "react";
 
 import appProcessPoster from "@/assets/app-process-poster.jpg.asset.json";
 import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
+import familyVillaPoster from "@/assets/family-villa-footer-poster.jpg.asset.json";
+import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
 import gardenVideo from "@/assets/garden-maintenance.mp4.asset.json";
 import gardenVideoPoster from "@/assets/garden-maintenance-poster.jpg.asset.json";
 import logoAsset from "@/assets/solidmaint-logo.png.asset.json";
@@ -426,7 +428,20 @@ function Index() {
         </div>
       </section>
 
-      <footer id="contact" className="bg-deep py-20 text-sunlit md:py-28">
+      <footer id="contact" className="relative isolate overflow-hidden bg-deep py-20 text-sunlit md:py-28">
+        <video
+          className="absolute inset-0 -z-20 size-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={familyVillaPoster.url}
+          aria-hidden="true"
+        >
+          <source src={familyVillaVideo.url} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 -z-10 bg-deep/70" aria-hidden="true" />
         <div className="mx-auto max-w-7xl px-5 text-center md:px-10">
           <p className="section-label text-coral">Your home, handled</p>
           <h2 className="mx-auto mt-5 max-w-[15ch] font-display text-[2.2rem] font-semibold leading-tight sm:text-5xl md:text-7xl">Let’s build the right care plan for your property.</h2>
