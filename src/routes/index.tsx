@@ -31,6 +31,7 @@ import team3 from "@/assets/team-3.jpg";
 import team4 from "@/assets/team-4.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
 import { MarenaBanner } from "@/components/MarenaBanner";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -442,6 +443,7 @@ function Index() {
         </div>
       </footer>
 
+      <WhatsAppButton />
       <MarenaBanner />
     </main>
   );
