@@ -291,7 +291,7 @@ function Index() {
         </div>
       </header>
 
-      <section id="packages" className="scroll-mt-8 pt-10 pb-20 md:py-32">
+      <section id="packages" className="scroll-mt-28 pt-10 pb-20 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
@@ -330,7 +330,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="services" className="scroll-mt-8 bg-background py-20 md:py-32">
+      <section id="services" className="scroll-mt-28 bg-background py-20 md:py-32">
         <div className="mx-auto grid max-w-7xl items-start gap-14 px-5 md:px-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="lg:sticky lg:top-12">
             <p className="section-label text-coral">02 — Book one service</p>
@@ -371,7 +371,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="vault" className="scroll-mt-8 py-20 md:py-32">
+      <section id="vault" className="scroll-mt-28 py-20 md:py-32">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 md:px-10 lg:grid-cols-12">
           <figure className="relative lg:col-span-7">
             <video
@@ -428,7 +428,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="team" className="scroll-mt-8 bg-sunlit py-20 md:py-32">
+      <section id="team" className="scroll-mt-28 bg-sunlit py-20 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-end">
             <div>
@@ -475,7 +475,7 @@ function Index() {
             </div>
           </div>
 
-          <div id="faqs" className="scroll-mt-8 mt-20 grid gap-10 border-t border-deep/15 pt-16 lg:grid-cols-[0.75fr_1.25fr]">
+          <div id="faqs" className="scroll-mt-28 mt-20 grid gap-10 border-t border-deep/15 pt-16 lg:grid-cols-[0.75fr_1.25fr]">
             <h2 className="max-w-[10ch] font-display text-4xl font-semibold">Clear answers before we begin.</h2>
             <div className="divide-y divide-deep/15 border-y border-deep/15">
               {faqs.map((faq) => (
