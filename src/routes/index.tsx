@@ -33,6 +33,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { InstagramFeed } from "@/components/InstagramFeed";
 import { MarenaBanner } from "@/components/MarenaBanner";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { PlanBuilder, type PlanKey } from "@/components/PlanBuilder";
 
 export const Route = createFileRoute("/")({
   head: () => ({
