@@ -29,10 +29,6 @@ import enquiryBg from "@/assets/enquiry-bg-2.jpg";
 import familyVillaPoster from "@/assets/family-villa-footer-poster.jpg.asset.json";
 import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
 import antonio from "@/assets/antonio.jpg";
-import team1 from "@/assets/team-1.jpg";
-import team2 from "@/assets/team-2.jpg";
-import team3 from "@/assets/team-3.jpg";
-import team4 from "@/assets/team-4.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -160,12 +156,6 @@ const faqs = [
   },
 ];
 
-const team = [
-  { name: "Antonio Reyes", role: "Head of Operations", photo: team1 },
-  { name: "Marena López", role: "Client Care", photo: team2 },
-  { name: "Daniel Torres", role: "Lead Technician", photo: team3 },
-  { name: "Carmen Vidal", role: "Property Manager", photo: team4 },
-];
 
 
 function StoreButtons() {
@@ -661,43 +651,12 @@ function Index() {
         </div>
       </section>
 
-      <section id="team" className="scroll-mt-28 bg-sunlit py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-end">
-            <div>
-              <p className="section-label text-coral">08 — Meet the team</p>
-              <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">The people behind every visit.</h2>
-            </div>
-            <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
-              A small, experienced crew based along the Costa del Sol. Our team comes from Finland and Sweden — Nordic precision, delivered with genuine Costa warmth. We know the homes, the climate and the details that keep a property running smoothly.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map((member) => (
-              <div key={member.name} className="group text-center">
-                <div className="overflow-hidden rounded-[2rem]">
-                  <img
-                    src={member.photo}
-                    alt={member.name}
-                    loading="lazy"
-                    width={600}
-                    height={600}
-                    className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <p className="mt-5 font-display text-xl font-semibold">{member.name}</p>
-                <p className="mt-1 text-sm font-bold uppercase text-coral">{member.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section id="coverage" className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <p className="section-label text-coral">09 — Local coverage</p>
+              <p className="section-label text-coral">08 — Local coverage</p>
               <h2 className="mt-5 max-w-[12ch] font-display text-4xl font-semibold leading-tight md:text-6xl">From Benalmádena to Sotogrande.</h2>
               <p className="mt-5 max-w-md text-lg font-semibold leading-relaxed text-deep/65">Currently serving the Costa del Sol, from Benalmádena to Sotogrande.</p>
             </div>
