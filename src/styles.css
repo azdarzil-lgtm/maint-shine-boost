@@ -288,13 +288,13 @@
   align-items: center;
   gap: 0.6rem;
   border-radius: 999px;
-  background-color: var(--sunlit);
-  color: var(--deep);
+  background-color: var(--coral);
+  color: var(--sunlit);
   padding: 0.85rem 1.1rem;
   font-size: 0.82rem;
   font-weight: 800;
-  transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
-  &:hover { transform: translateY(-2px); background-color: var(--coral); color: var(--sunlit); }
+  transition: transform 180ms ease, background-color 180ms ease;
+  &:hover { transform: translateY(-2px); background-color: oklch(0.62 0.15 37); }
 }
 
 @utility store-button {
