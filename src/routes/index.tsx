@@ -237,7 +237,7 @@ function Index() {
 
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
-      {builderPlan && <PlanBuilder plan={builderPlan} onClose={() => setBuilderPlan(null)} />
+      {builderPlan && <PlanBuilder plan={builderPlan} onClose={() => setBuilderPlan(null)} />}
       <SiteHeader />
 
       <section className="relative isolate overflow-hidden bg-deep text-sunlit">
