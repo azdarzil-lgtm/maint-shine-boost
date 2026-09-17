@@ -340,9 +340,15 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                   <span>{term.label} commitment</span>
                   <span className="font-semibold">{term.discount ? `−${euro(pricing.base - pricing.discounted)}` : "—"}</span>
                 </li>
-                {canAddHours && hours > 0 && (
+                {plan === "complete" && (
                   <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
-                    <span>{hours} h/month · {service} at {euro(pricing.rate)}/h</span>
+                    <span>2 h/month of extra service — included in your plan</span>
+                    <span className="font-extrabold text-coral">Free</span>
+                  </li>
+                )}
+                {canAddHours && pricing.billableHours > 0 && (
+                  <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
+                    <span>{pricing.billableHours} extra h/month · {service} at {euro(pricing.rate)}/h</span>
                     <span className="font-semibold">{euro(pricing.hoursCost)}</span>
                   </li>
                 )}
