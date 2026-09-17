@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, BadgeCheck, Building2, CalendarClock, HandHeart, KeyRound, LineChart, Percent, Phone, Users } from "lucide-react";
 
+import partnersTeam from "@/assets/partners-team.jpg";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -125,24 +126,35 @@ function PartnersPage() {
       <SiteHeader solid />
 
       <section className="pt-36 pb-16 md:pt-48 md:pb-24">
-        <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <p className="section-label text-coral">Partner programme</p>
-          <h1 className="mt-5 max-w-[18ch] font-display text-4xl font-semibold leading-tight md:text-6xl">
-            Join the family behind the homes.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-deep/70">
-            Estate agencies, rental managers and developers on the Costa del Sol trust us with the properties their
-            reputation depends on. Partnering with SolidMaint is not a supplier arrangement — it is a small, dependable
-            team that turns up as if every home were our own.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a href="#apply" className="solid-button solid-button-coral">
-              Become a partner <ArrowRight aria-hidden="true" />
-            </a>
-            <a href="/#contact" className="solid-button solid-button-dark">
-              Talk to us first
-            </a>
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <p className="section-label text-coral">Partner programme</p>
+            <h1 className="mt-5 max-w-[18ch] font-display text-4xl font-semibold leading-tight md:text-6xl">
+              Join the family behind the homes.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-deep/70">
+              Estate agencies, rental managers and developers on the Costa del Sol trust us with the properties their
+              reputation depends on. Partnering with SolidMaint is not a supplier arrangement — it is a small, dependable
+              team that turns up as if every home were our own.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a href="#apply" className="solid-button solid-button-coral">
+                Become a partner <ArrowRight aria-hidden="true" />
+              </a>
+              <a href="/#contact" className="solid-button solid-button-dark">
+                Talk to us first
+              </a>
+            </div>
           </div>
+          <figure className="overflow-hidden rounded-[1.75rem] border border-deep/10">
+            <img
+              src={partnersTeam}
+              alt="Partner agents and the SolidMaint team outside a Costa del Sol real estate office"
+              className="h-full w-full object-cover"
+              width={1536}
+              height={1024}
+            />
+          </figure>
         </div>
       </section>
 
