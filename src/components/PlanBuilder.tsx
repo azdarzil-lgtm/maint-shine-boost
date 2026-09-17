@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Check, MessageCircle, Sparkles, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, MessageCircle, Smartphone, Sparkles, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 export type PlanKey = "outdoor" | "home-ready" | "complete";
@@ -178,8 +178,16 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                 you&apos;d like us around, and you&apos;ll see an honest price built for your property — not a generic
                 number. It really does take about a minute.
               </p>
-              <ul className="mt-6 space-y-3 text-sm">
-                {["Your free Property Vault, included from day one", "Photo-documented report every month", "One dependable team, no hidden extras"].map((point) => (
+              <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4">
+                <p className="flex flex-wrap items-center gap-2 font-bold">
+                  <Smartphone className="size-5 text-coral" aria-hidden="true" />
+                  Your free Property Vault
+                  <span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Included free</span>
+                </p>
+                <p className="mt-1.5 text-sm leading-relaxed text-deep/70">Photos from every single visit, saved to your phone — see exactly what we did, from anywhere in the world.</p>
+              </div>
+              <ul className="mt-4 space-y-3 text-sm">
+                {["Photo-documented report every month", "One dependable team, no hidden extras"].map((point) => (
                   <li key={point} className="flex gap-3">
                     <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
                     <span>{point}</span>
@@ -236,11 +244,11 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                   </button>
                 ))}
               </div>
-              <div className="mt-6 rounded-2xl border border-deep/15 bg-olive/10 p-4 text-sm leading-relaxed">
-                <p className="font-semibold">Perks either way</p>
+              <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4 text-sm leading-relaxed">
+                <p className="font-bold">And your Property Vault? Always free.</p>
                 <p className="mt-1 text-deep/70">
-                  Your Property Vault is free on every plan. Stay a full year and you also get one hour of garden care
-                  free, every single month.
+                  Photos from every visit, on every plan, at no extra cost — whichever length you choose. Stay a full
+                  year and you also get one hour of garden care free, every single month.
                 </p>
               </div>
               <HelpCta />
@@ -323,8 +331,8 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                   </li>
                 )}
                 <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
-                  <span>Property Vault · monthly photo report</span>
-                  <span className="font-semibold text-coral">Free</span>
+                  <span className="font-semibold">Property Vault · photos from every visit</span>
+                  <span className="font-extrabold text-coral">Free</span>
                 </li>
                 {term.months === 12 && (
                   <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
