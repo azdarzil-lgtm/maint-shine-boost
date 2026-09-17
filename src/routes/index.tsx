@@ -233,8 +233,11 @@ function TypewriterHeading({ text }: { text: string }) {
 
 
 function Index() {
+  const [builderPlan, setBuilderPlan] = useState<PlanKey | null>(null);
+
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
+      {builderPlan && <PlanBuilder plan={builderPlan} onClose={() => setBuilderPlan(null)} />
       <SiteHeader />
 
       <section className="relative isolate overflow-hidden bg-deep text-sunlit">
