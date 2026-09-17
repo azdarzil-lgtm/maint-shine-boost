@@ -122,8 +122,10 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
     const base = planBase[plan].base + gardenSizes[garden]!.add + poolAddition;
     const discounted = base * (1 - term.discount);
     const rate = hourlyRate[term.months]!;
-    const hoursCost = hours * rate;
-    return { base, discounted, rate, hoursCost, total: discounted + hoursCost };
+    const includedHours = plan === "complete" ? 2 : 0;
+    const billableHours = Math.max(0, hours - includedHours);
+    const hoursCost = billableHours * rate;
+    return { base, discounted, rate, hoursCost, billableHours, includedHours, total: discounted + hoursCost };
   }, [plan, garden, pool, term, hours]);
 
   const steps = isGardenOnly
@@ -138,7 +140,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
       `Garden: ${gardenSizes[garden]!.label} (${gardenSizes[garden]!.note})`,
       isGardenOnly ? "Pool: not included in Garden Care" : `Pool: ${poolSizes[pool]!.label} (${poolSizes[pool]!.note})`,
       `Plan length: ${term.label}`,
-      canAddHours && hours > 0 ? `Extra hours: ${hours} h/month of ${service} at ${euro(pricing.rate)}/h` : "Extra hours: none",
+      canAddHours && hours > 0 ? `Extra hours: ${hours} h/month of ${service} at ${euro(pricing.rate)}/h${plan === "complete" ? " (first 2 h included in Complete Care)" : ""}` : "Extra hours: none",
       `Indicative total: ${euro(pricing.total)} per month`,
       "",
       "My name:",
