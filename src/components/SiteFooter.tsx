@@ -12,7 +12,7 @@ export function SiteFooter() {
   return (
     <footer id="contact" className="relative bg-deep py-20 text-sunlit md:py-28">
       <div className="mx-auto max-w-7xl px-5 text-center md:px-10">
-        <p className="section-label text-coral">Your home, handled</p>
+        <p className="section-label text-coral">Your home. Our care.</p>
         <h2 className="mx-auto mt-5 max-w-[18ch] font-display text-4xl font-semibold leading-tight md:text-6xl">
           Let’s talk about your home.
         </h2>
