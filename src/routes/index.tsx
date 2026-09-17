@@ -272,7 +272,8 @@ function Index() {
               <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Care that fits the way you use your home.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
-              Start with a practical bundle, then tailor the visit rhythm and exact work to your property. Plans start from €89/month, IVA included.
+              Every price starts from a base plan and moves with the size of your garden and pool. Answer a few quick
+              questions and you&apos;ll see your own figure in under a minute — Property Vault always included.
             </p>
           </div>
 
@@ -282,24 +283,42 @@ function Index() {
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="section-label opacity-60">{item.number}</span>
-                    {item.featured && <span className="featured-tag">Most complete</span>}
+                    {item.featured && <span className="featured-tag">Most popular</span>}
                   </div>
                   <h3 className="mt-10 font-display text-3xl font-semibold">{item.name}</h3>
                   <p className="mt-2 text-base font-semibold text-coral">{item.lead}</p>
-                  <p className="mt-6 leading-relaxed opacity-65">{item.detail}</p>
+                  <p className="mt-6 flex items-baseline gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wide opacity-55">From</span>
+                    <span className="font-display text-4xl font-semibold">€{item.price}.00</span>
+                    <span className="text-sm opacity-55">/ month</span>
+                  </p>
+                  <p className="mt-4 leading-relaxed opacity-65">{item.detail}</p>
                   <ul className="mt-8 space-y-4 text-sm">
                     {item.items.map((point) => (
-                      <li key={point} className="flex gap-3 border-t border-current/10 pt-4">
+                      <li key={point.title} className="flex gap-3 border-t border-current/10 pt-4">
                         <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
-                        <span>{point}</span>
+                        <span>
+                          <span className="font-bold">{point.title}</span>
+                          <span className="opacity-70"> — {point.body}</span>
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <a href="#contact" className={item.featured ? "solid-button solid-button-coral mt-10" : "solid-button solid-button-dark mt-10"}>Request a tailored quote</a>
+                <button
+                  type="button"
+                  onClick={() => setBuilderPlan(item.key)}
+                  className={item.featured ? "solid-button solid-button-coral mt-10" : "solid-button solid-button-dark mt-10"}
+                >
+                  Request a service <ArrowRight aria-hidden="true" />
+                </button>
               </article>
             ))}
           </div>
+          <p className="mt-6 text-sm text-deep/60">
+            Prices vary with garden and pool size. Not sure where you land?{" "}
+            <a href="#contact" className="font-bold text-coral underline-offset-4 hover:underline">Talk to us and we&apos;ll work it out with you.</a>
+          </p>
         </div>
       </section>
 
