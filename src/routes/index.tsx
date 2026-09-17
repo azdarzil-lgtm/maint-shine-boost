@@ -708,7 +708,7 @@ function Index() {
             </div>
           </div>
 
-          <div id="out-of-area" className="scroll-mt-28 mt-12 border border-coral/40 bg-coral/10 p-8 md:p-12">
+          <div id="out-of-area" className="scroll-mt-28 mt-12 rounded-[1.75rem] border border-coral/40 bg-coral/10 p-8 md:p-12">
             <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
               <div>
                 <p className="section-label text-coral">Coming to you soon</p>
