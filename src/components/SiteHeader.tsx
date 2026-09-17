@@ -8,7 +8,7 @@ const navLinks = [
   { label: "Benefits", to: "/", hash: "packages" },
   { label: "Services", to: "/", hash: "services" },
   { label: "Coverage", to: "/", hash: "coverage" },
-  { label: "FAQs", to: "/", hash: "faqs" },
+  { label: "FAQs", to: "/faqs" },
   { label: "Our Team", to: "/team" },
   { label: "Partners", to: "/partners" },
   { label: "Journal", to: "/journal" },

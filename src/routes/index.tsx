@@ -3,7 +3,7 @@ import {
   ArrowDownRight,
   ArrowRight,
   Check,
-  ChevronDown,
+  
   Clock3,
   Compass,
   Droplets,
@@ -135,28 +135,6 @@ const services = [
   { title: "Electrical Services", description: "Safe fault-finding, installations and repairs.", icon: Zap },
   { title: "Plumbing Services", description: "Leaks, taps, drainage and bathroom maintenance.", icon: Droplets },
 ];
-
-const faqs = [
-  {
-    question: "What is included in a SolidMaint care plan?",
-    answer:
-      "Plans are tailored around your property and can combine recurring garden, pool and air-conditioning care. Every visit is documented in your Property Vault.",
-  },
-  {
-    question: "How do I know what happened during a visit?",
-    answer: "Technicians check in on arrival. Time on site, task photos, reports and invoices are stored against your property.",
-  },
-  {
-    question: "Can I add repairs when something comes up?",
-    answer: "Yes. Handyman, electrical and plumbing work can be requested alongside your recurring maintenance plan.",
-  },
-  {
-    question: "Which areas do you cover?",
-    answer: "SolidMaint serves homes along the Costa del Sol, from Benalmádena to Sotogrande.",
-  },
-];
-
-
 
 function StoreButtons() {
   return (
@@ -734,17 +712,7 @@ function Index() {
             </div>
           </div>
 
-          <div id="faqs" className="scroll-mt-28 mt-20 grid gap-10 border-t border-deep/15 pt-16 lg:grid-cols-[0.75fr_1.25fr]">
-            <h2 className="max-w-[10ch] font-display text-4xl font-semibold">Clear answers before we begin.</h2>
-            <div className="divide-y divide-deep/15 border-y border-deep/15">
-              {faqs.map((faq) => (
-                <details key={faq.question} className="group">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-bold">{faq.question}<ChevronDown className="size-5 shrink-0 text-coral transition-transform group-open:rotate-180" aria-hidden="true" /></summary>
-                  <p className="max-w-2xl pb-6 leading-relaxed text-deep/65">{faq.answer}</p>
-                </details>
-              ))}
-            </div>
-          </div>
+
         </div>
       </section>
 
