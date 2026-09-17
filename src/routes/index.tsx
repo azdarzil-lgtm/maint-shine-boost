@@ -63,7 +63,7 @@ const packages: {
   lead: string;
   price: number;
   detail: string;
-  items: { title: string; body: string }[];
+  items: { title: string; body: string; perk?: boolean }[];
   featured?: boolean;
 }[] = [
   {
@@ -82,7 +82,7 @@ const packages: {
         title: "Pool care",
         body: "Cleaning, water chemistry balanced and baskets emptied, so the pool stays swim-ready.",
       },
-      { title: "Visit photos", body: "Photos from every visit saved to your free Property Vault." },
+      { title: "Visit photos", body: "Photos from every visit saved to your free Property Vault.", perk: true },
     ],
   },
   {
@@ -104,6 +104,7 @@ const packages: {
       {
         title: "Monthly photos",
         body: "Once a month our team walks the garden and sends a photo-documented report to your Property Vault, so you know exactly the condition of your garden.",
+        perk: true,
       },
     ],
     featured: true,
@@ -119,6 +120,7 @@ const packages: {
       { title: "Garden, pool and AC care", body: "Everything in Home Ready, plus air-conditioning servicing and checks." },
       { title: "Handyman and repairs", body: "Small fixes, fitting work and odd jobs handled by our own team." },
       { title: "Electrical and plumbing", body: "Fault-finding, repairs and maintenance without chasing trades." },
+      { title: "Visit photos", body: "Photos from every visit saved to your free Property Vault.", perk: true },
     ],
   },
 ];
@@ -277,7 +279,7 @@ function Index() {
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
               Every price starts from a base plan and moves with the size of your garden and pool. Answer a few quick
-              questions and you&apos;ll see your own figure in under a minute — Property Vault always included.
+              questions and you&apos;ll see your own figure in under a minute — <strong className="font-bold text-deep">your free Property Vault is always included.</strong>
             </p>
           </div>
 
@@ -298,15 +300,28 @@ function Index() {
                   </p>
                   <p className="mt-4 leading-relaxed opacity-65">{item.detail}</p>
                   <ul className="mt-8 space-y-4 text-sm">
-                    {item.items.map((point) => (
-                      <li key={point.title} className="flex gap-3 border-t border-current/10 pt-4">
-                        <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
-                        <span>
-                          <span className="font-bold">{point.title}</span>
-                          <span className="opacity-70"> — {point.body}</span>
-                        </span>
-                      </li>
-                    ))}
+                    {item.items.map((point) =>
+                      point.perk ? (
+                        <li key={point.title} className="flex gap-3 rounded-2xl bg-coral/12 p-4">
+                          <Smartphone className="mt-0.5 size-5 shrink-0 text-coral" aria-hidden="true" />
+                          <span>
+                            <span className="flex flex-wrap items-center gap-2">
+                              <span className="font-bold">{point.title}</span>
+                              <span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Free</span>
+                            </span>
+                            <span className="mt-1 block leading-relaxed opacity-75">{point.body}</span>
+                          </span>
+                        </li>
+                      ) : (
+                        <li key={point.title} className="flex gap-3 border-t border-current/10 pt-4">
+                          <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
+                          <span>
+                            <span className="font-bold">{point.title}</span>
+                            <span className="opacity-70"> — {point.body}</span>
+                          </span>
+                        </li>
+                      ),
+                    )}
                   </ul>
                 </div>
                 <button
@@ -319,6 +334,19 @@ function Index() {
               </article>
             ))}
           </div>
+
+          <div className="mt-8 flex flex-col items-start gap-6 rounded-[2rem] bg-deep p-8 text-sunlit md:flex-row md:items-center md:p-10">
+            <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-coral" aria-hidden="true">
+              <Smartphone className="size-7 text-sunlit" />
+            </span>
+            <div>
+              <p className="section-label text-coral">Included free with every plan</p>
+              <h3 className="mt-2 max-w-[26ch] font-display text-2xl font-semibold leading-tight md:text-3xl">Your Property Vault — photos from every visit, saved forever.</h3>
+              <p className="mt-2 max-w-xl leading-relaxed text-sunlit/70">Verified time on site, time-stamped photos, reports and invoices — all in your pocket, wherever you are in the world.</p>
+            </div>
+            <a href="#vault" className="solid-button solid-button-coral shrink-0 md:ml-auto">See it in action <ArrowRight aria-hidden="true" /></a>
+          </div>
+
           <p className="mt-6 text-sm text-deep/60">
             Prices vary with garden and pool size. Not sure where you land?{" "}
             <a href="#contact" className="font-bold text-coral underline-offset-4 hover:underline">Talk to us and we&apos;ll work it out with you.</a>
@@ -470,8 +498,11 @@ function Index() {
           </figure>
           <div className="pt-10 lg:col-span-5 lg:pl-12 lg:pt-0">
             <p className="section-label text-coral">05 — Your Property Vault</p>
+            <span className="mt-5 inline-flex items-center gap-2 rounded-full bg-coral px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-wider text-sunlit">
+              <Check className="size-3.5" aria-hidden="true" /> Free with every care plan
+            </span>
             <h2 className="mt-5 font-display text-4xl font-semibold leading-tight md:text-6xl">Every visit, clearly documented.</h2>
-            <p className="mt-6 text-lg leading-relaxed text-deep/65">Follow the care of your home from anywhere. Each visit is verified, photographed and filed with its report and invoice.</p>
+            <p className="mt-6 text-lg leading-relaxed text-deep/65">Yours free, on every plan. Follow the care of your home from anywhere — each visit is verified, photographed and filed with its report and invoice.</p>
             <div className="mt-9 space-y-5">
               {[
                 { icon: Clock3, label: "Verified time on site" },
