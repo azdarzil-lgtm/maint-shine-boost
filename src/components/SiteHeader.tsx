@@ -53,7 +53,8 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
               key={link.label}
               to={link.to}
               {...("hash" in link ? { hash: link.hash } : {})}
-              className="nav-link"
+              className={`nav-link ${link.label === "Partners" ? "text-coral" : ""}`}
+
             >
               {link.label}
             </Link>
@@ -86,7 +87,8 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
               to={link.to}
               {...("hash" in link ? { hash: link.hash } : {})}
               onClick={() => setMenuOpen(false)}
-              className="block border-b border-deep/10 py-4 text-sm font-bold uppercase last:border-b-0"
+              className={`block border-b border-deep/10 py-4 text-sm font-bold uppercase last:border-b-0 ${link.label === "Partners" ? "text-coral" : ""}`}
+
             >
               {link.label}
             </Link>
