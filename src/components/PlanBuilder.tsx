@@ -76,9 +76,9 @@ function Slider({
     <div>
       <div className="flex items-baseline justify-between gap-4">
         <p className="section-label text-coral">{label}</p>
-        <p className="text-sm font-semibold text-deep/60">{options[value].note}</p>
+        <p className="text-sm font-semibold text-deep/60">{options[value]!.note}</p>
       </div>
-      <p className="mt-2 font-display text-2xl font-semibold md:text-3xl">{options[value].label}</p>
+      <p className="mt-2 font-display text-2xl font-semibold md:text-3xl">{options[value]!.label}</p>
       <input
         type="range"
         min={0}
@@ -103,7 +103,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   const [pool, setPool] = useState(2);
   const [termIndex, setTermIndex] = useState(1);
   const [hours, setHours] = useState(0);
-  const [service, setService] = useState(extraServices[0]);
+  const [service, setService] = useState(extraServices[0]!);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => event.key === "Escape" && onClose();
@@ -115,11 +115,11 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
     };
   }, [onClose]);
 
-  const term = terms[termIndex];
+  const term = terms[termIndex]!;
   const pricing = useMemo(() => {
-    const base = planBase[plan].base + gardenSizes[garden].add + poolSizes[pool].add;
+    const base = planBase[plan].base + gardenSizes[garden]!.add + poolSizes[pool]!.add;
     const discounted = base * (1 - term.discount);
-    const rate = hourlyRate[term.months];
+    const rate = hourlyRate[term.months]!;
     const hoursCost = hours * rate;
     return { base, discounted, rate, hoursCost, total: discounted + hoursCost };
   }, [plan, garden, pool, term, hours]);
@@ -130,8 +130,8 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   const enquiryBody = encodeURIComponent(
     [
       `Plan: ${planBase[plan].name}`,
-      `Garden: ${gardenSizes[garden].label} (${gardenSizes[garden].note})`,
-      `Pool: ${poolSizes[pool].label} (${poolSizes[pool].note})`,
+      `Garden: ${gardenSizes[garden]!.label} (${gardenSizes[garden]!.note})`,
+      `Pool: ${poolSizes[pool]!.label} (${poolSizes[pool]!.note})`,
       `Plan length: ${term.label}`,
       canAddHours && hours > 0 ? `Extra hours: ${hours} h/month of ${service} at ${euro(pricing.rate)}/h` : "Extra hours: none",
       `Indicative total: ${euro(pricing.total)} per month`,
@@ -309,7 +309,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
               </p>
               <ul className="mt-6 space-y-3 text-sm">
                 <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
-                  <span>{planBase[plan].name} · {gardenSizes[garden].label} · {poolSizes[pool].label}</span>
+                  <span>{planBase[plan].name} · {gardenSizes[garden]!.label} · {poolSizes[pool]!.label}</span>
                   <span className="font-semibold">{euro(pricing.base)}</span>
                 </li>
                 <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
