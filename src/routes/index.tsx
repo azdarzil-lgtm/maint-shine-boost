@@ -28,6 +28,7 @@ import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
 import enquiryBg from "@/assets/enquiry-bg-2.jpg";
 import familyVillaPoster from "@/assets/family-villa-footer-poster.jpg.asset.json";
 import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
+import antonio from "@/assets/antonio.jpg";
 import team1 from "@/assets/team-1.jpg";
 import team2 from "@/assets/team-2.jpg";
 import team3 from "@/assets/team-3.jpg";
