@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as TeamRouteImport } from './routes/team'
@@ -17,6 +18,11 @@ import { Route as TeamRouteImport } from './routes/team'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqsRoute = FaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JournalRoute = JournalRouteImport.update({
@@ -37,12 +43,14 @@ const TeamRoute = TeamRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/faqs': typeof FaqsRoute
   '/journal': typeof JournalRoute
   '/partners': typeof PartnersRoute
   '/team': typeof TeamRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/faqs': typeof FaqsRoute
   '/journal': typeof JournalRoute
   '/partners': typeof PartnersRoute
   '/team': typeof TeamRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/faqs': typeof FaqsRoute
   '/journal': typeof JournalRoute
   '/partners': typeof PartnersRoute
   '/team': typeof TeamRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/journal' | '/partners' | '/team'
+  fullPaths: '/' | '/faqs' | '/journal' | '/partners' | '/team'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/journal' | '/partners' | '/team'
-  id: '__root__' | '/' | '/journal' | '/partners' | '/team'
+  to: '/' | '/faqs' | '/journal' | '/partners' | '/team'
+  id: '__root__' | '/' | '/faqs' | '/journal' | '/partners' | '/team'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FaqsRoute: typeof FaqsRoute
   JournalRoute: typeof JournalRoute
   PartnersRoute: typeof PartnersRoute
   TeamRoute: typeof TeamRoute
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faqs': {
+      id: '/faqs'
+      path: '/faqs'
+      fullPath: '/faqs'
+      preLoaderRoute: typeof FaqsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/journal': {
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FaqsRoute: FaqsRoute,
   JournalRoute: JournalRoute,
   PartnersRoute: PartnersRoute,
   TeamRoute: TeamRoute,
