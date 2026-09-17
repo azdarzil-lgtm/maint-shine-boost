@@ -501,57 +501,35 @@ function Index() {
         </div>
       </section>
 
-      <section id="smart-enquiry" className="relative overflow-hidden bg-deep py-20 text-sunlit md:py-28">
-        <img
-          src={enquiryBg}
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          width={1920}
-          height={1024}
-          className="absolute inset-0 size-full object-cover"
-        />
-        <div className="absolute inset-0 bg-deep/88" aria-hidden="true" />
-        <div className="relative mx-auto max-w-5xl px-5 text-center md:px-10">
-          <MessageCircle className="mx-auto size-8 text-coral" aria-hidden="true" />
-          <p className="section-label mt-7 text-coral">04 — A smarter first conversation</p>
-          <h2 className="mx-auto mt-5 max-w-[18ch] font-display text-4xl font-semibold leading-tight text-sunlit md:text-6xl">Tell us who you are. We’ll ask what matters.</h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-sunlit">Our guided chat shapes the questions around your property and priorities, so your first recommendation is useful—not generic.</p>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            {["Overseas owner", "Resident owner", "Property manager", "Buying a home"].map((audience) => (
-              <a key={audience} href="#contact" className="audience-pill">{audience}<ArrowRight className="size-4" aria-hidden="true" /></a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="testimonials" className="scroll-mt-28 py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <p className="section-label text-coral">05 — Word of mouth</p>
-          <h2 className="mt-5 max-w-[22ch] font-display text-4xl font-semibold leading-tight md:text-6xl">What our clients say about our top employees.</h2>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <figure className="flex flex-col overflow-hidden rounded-[1.75rem] border border-deep/10 bg-white">
-              <img
-                src={antonio}
-                alt="Antonio, garden and pool specialist at SolidMaint"
-                loading="lazy"
-                width={1024}
-                height={1024}
-                className="aspect-square w-full object-cover"
-              />
-              <figcaption className="flex flex-1 flex-col p-7">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="font-display text-xl font-semibold">Antonio</p>
-                  <span className="flex items-center gap-0.5" aria-label="Rated 5 out of 5 stars">
-                    {[0, 1, 2, 3, 4].map((star) => (
-                      <Star key={star} className="size-4 fill-coral text-coral" aria-hidden="true" />
-                    ))}
-                  </span>
+      <section id="testimonials" className="scroll-mt-28 py-14 md:py-16">
+        <div className="mx-auto max-w-6xl px-5 md:px-10">
+          <p className="section-label text-coral">04 — Word of mouth</p>
+          <h2 className="mt-3 font-display text-xl font-semibold leading-snug md:text-2xl">What our clients say about our top employees.</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <figure className="flex flex-col rounded-2xl border border-deep/10 bg-white p-5">
+              <div className="flex items-center gap-3">
+                <img
+                  src={antonio}
+                  alt="Antonio, garden and pool specialist at SolidMaint"
+                  loading="lazy"
+                  width={96}
+                  height={96}
+                  className="size-10 rounded-full object-cover"
+                />
+                <div>
+                  <p className="font-display text-sm font-semibold">Antonio</p>
+                  <p className="text-[0.7rem] font-bold uppercase text-coral">Garden &amp; pool care</p>
                 </div>
-                <p className="mt-1 text-sm font-bold uppercase text-coral">Garden &amp; pool care</p>
-                <blockquote className="mt-5 flex-1 text-base leading-relaxed text-deep/70">“Antonio was on time, polite and very helpful — and the pool has never looked better.”</blockquote>
-                <p className="mt-5 text-sm font-bold">Paul W. · Marbella</p>
-              </figcaption>
+              </div>
+              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-deep/70">“Antonio was on time, polite and very helpful — and the pool has never looked better.”</blockquote>
+              <div className="mt-4 flex items-center justify-between gap-3">
+                <span className="flex items-center gap-0.5" aria-label="Rated 5 out of 5 stars">
+                  {[0, 1, 2, 3, 4].map((star) => (
+                    <Star key={star} className="size-3 fill-coral text-coral" aria-hidden="true" />
+                  ))}
+                </span>
+                <p className="text-xs font-bold text-deep/70">Paul W. · Marbella</p>
+              </div>
             </figure>
             {[
               {
@@ -576,24 +554,30 @@ function Index() {
                 author: "Claire T. · Benahavís",
               },
             ].map(({ initials, name, role, quote, author }) => (
-              <figure key={name} className="flex flex-col rounded-[1.75rem] border border-deep/10 bg-white p-7">
-                <span className="grid size-12 place-items-center rounded-full bg-coral/15 font-display text-sm font-bold text-coral">{initials}</span>
-                <div className="mt-5 flex items-center justify-between gap-3">
-                  <p className="font-display text-xl font-semibold">{name}</p>
+              <figure key={name} className="flex flex-col rounded-2xl border border-deep/10 bg-white p-5">
+                <div className="flex items-center gap-3">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-full bg-coral/15 font-display text-xs font-bold text-coral">{initials}</span>
+                  <div>
+                    <p className="font-display text-sm font-semibold">{name}</p>
+                    <p className="text-[0.7rem] font-bold uppercase text-coral">{role}</p>
+                  </div>
+                </div>
+                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-deep/70">“{quote}”</blockquote>
+                <div className="mt-4 flex items-center justify-between gap-3">
                   <span className="flex items-center gap-0.5" aria-label="Rated 5 out of 5 stars">
                     {[0, 1, 2, 3, 4].map((star) => (
-                      <Star key={star} className="size-4 fill-coral text-coral" aria-hidden="true" />
+                      <Star key={star} className="size-3 fill-coral text-coral" aria-hidden="true" />
                     ))}
                   </span>
+                  <p className="text-xs font-bold text-deep/70">{author}</p>
                 </div>
-                <p className="mt-1 text-sm font-bold uppercase text-coral">{role}</p>
-                <blockquote className="mt-5 flex-1 text-base leading-relaxed text-deep/70">“{quote}”</blockquote>
-                <p className="mt-5 text-sm font-bold">{author}</p>
               </figure>
             ))}
           </div>
         </div>
       </section>
+
+      <section id="smart-enquiry" className="relative overflow-hidden bg-deep py-20 text-sunlit md:py-28">
 
       <section id="vault" className="scroll-mt-28 py-20 md:py-28">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 md:px-10 lg:grid-cols-12">
