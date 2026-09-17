@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 export type PlanKey = "outdoor" | "home-ready" | "complete";
 
 export const planBase: Record<PlanKey, { name: string; base: number; blurb: string }> = {
-  outdoor: { name: "Outdoor Care", base: 219, blurb: "Garden and pool kept inviting all year." },
+  outdoor: { name: "Garden Care", base: 189, blurb: "Your garden kept healthy and inviting all year." },
   "home-ready": { name: "Home Ready", base: 299, blurb: "Garden, pool and monthly photo report." },
   complete: { name: "Complete Care", base: 459, blurb: "Whole-home care with hands-on support." },
 };
@@ -116,22 +116,27 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   }, [onClose]);
 
   const term = terms[termIndex]!;
+  const isGardenOnly = plan === "outdoor";
   const pricing = useMemo(() => {
-    const base = planBase[plan].base + gardenSizes[garden]!.add + poolSizes[pool]!.add;
+    const poolAddition = plan === "outdoor" ? 0 : poolSizes[pool]!.add;
+    const base = planBase[plan].base + gardenSizes[garden]!.add + poolAddition;
     const discounted = base * (1 - term.discount);
     const rate = hourlyRate[term.months]!;
     const hoursCost = hours * rate;
     return { base, discounted, rate, hoursCost, total: discounted + hoursCost };
   }, [plan, garden, pool, term, hours]);
 
-  const steps = ["Welcome", "Your garden", "Your pool", "Your plan length", "Extra hours", "Your quote"];
+  const steps = isGardenOnly
+    ? ["Welcome", "Your garden", "Your plan length", "Extra hours", "Your quote"]
+    : ["Welcome", "Your garden", "Your pool", "Your plan length", "Extra hours", "Your quote"];
+  const stage = isGardenOnly ? [0, 1, 3, 4, 5][step] ?? 0 : step;
   const canAddHours = term.months > 1;
 
   const enquiryBody = encodeURIComponent(
     [
       `Plan: ${planBase[plan].name}`,
       `Garden: ${gardenSizes[garden]!.label} (${gardenSizes[garden]!.note})`,
-      `Pool: ${poolSizes[pool]!.label} (${poolSizes[pool]!.note})`,
+      isGardenOnly ? "Pool: not included in Garden Care" : `Pool: ${poolSizes[pool]!.label} (${poolSizes[pool]!.note})`,
       `Plan length: ${term.label}`,
       canAddHours && hours > 0 ? `Extra hours: ${hours} h/month of ${service} at ${euro(pricing.rate)}/h` : "Extra hours: none",
       `Indicative total: ${euro(pricing.total)} per month`,
@@ -167,7 +172,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
         </div>
 
         <div className="flex-1 overflow-y-auto px-5 py-7 md:px-8 md:py-9">
-          {step === 0 && (
+          {stage === 0 && (
             <div>
               <Sparkles className="size-7 text-coral" aria-hidden="true" />
               <h3 className="mt-4 font-display text-3xl font-semibold leading-tight md:text-4xl">
@@ -198,7 +203,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
             </div>
           )}
 
-          {step === 1 && (
+          {stage === 1 && (
             <div>
               <Slider label="How big is your garden?" options={gardenSizes} value={garden} onChange={setGarden} />
               <p className="mt-6 leading-relaxed text-deep/65">
@@ -209,7 +214,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
             </div>
           )}
 
-          {step === 2 && (
+          {stage === 2 && (
             <div>
               <Slider label="And your pool?" options={poolSizes} value={pool} onChange={setPool} />
               <p className="mt-6 leading-relaxed text-deep/65">
@@ -220,7 +225,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
             </div>
           )}
 
-          {step === 3 && (
+          {stage === 3 && (
             <div>
               <h3 className="font-display text-3xl font-semibold leading-tight">How long would you like us around?</h3>
               <p className="mt-3 leading-relaxed text-deep/65">The longer you stay with us, the less you pay — every month and every extra hour.</p>
@@ -255,7 +260,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
             </div>
           )}
 
-          {step === 4 && (
+          {stage === 4 && (
             <div>
               <h3 className="font-display text-3xl font-semibold leading-tight">Add home maintenance hours?</h3>
               {canAddHours ? (
@@ -308,7 +313,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
             </div>
           )}
 
-          {step === 5 && (
+          {stage === 5 && (
             <div>
               <p className="section-label text-coral">Your indicative plan</p>
               <p className="mt-3 font-display text-5xl font-semibold">
@@ -317,7 +322,10 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
               </p>
               <ul className="mt-6 space-y-3 text-sm">
                 <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
-                  <span>{planBase[plan].name} · {gardenSizes[garden]!.label} · {poolSizes[pool]!.label}</span>
+                  <span>
+                    {planBase[plan].name} · {gardenSizes[garden]!.label}
+                    {!isGardenOnly && ` · ${poolSizes[pool]!.label}`}
+                  </span>
                   <span className="font-semibold">{euro(pricing.base)}</span>
                 </li>
                 <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
