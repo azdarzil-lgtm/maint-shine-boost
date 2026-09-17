@@ -254,6 +254,7 @@
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid color-mix(in oklab, var(--deep) 14%, transparent);
+  border-radius: 1.75rem;
   background-color: var(--sunlit);
   padding: 2rem;
   transition: transform 220ms ease, box-shadow 220ms ease;
