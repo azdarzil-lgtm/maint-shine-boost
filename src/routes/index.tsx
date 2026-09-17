@@ -499,8 +499,16 @@ function Index() {
         </div>
       </section>
 
-      <section id="smart-enquiry" className="bg-coral py-20 text-deep md:py-28">
-        <div className="mx-auto max-w-5xl px-5 text-center md:px-10">
+      <section id="smart-enquiry" className="relative overflow-hidden bg-coral py-20 text-deep md:py-28">
+        <img
+          src={enquiryBg.url}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="absolute inset-0 size-full object-cover"
+        />
+        <div className="absolute inset-0 bg-coral/88" aria-hidden="true" />
+        <div className="relative mx-auto max-w-5xl px-5 text-center md:px-10">
           <MessageCircle className="mx-auto size-8" aria-hidden="true" />
           <p className="section-label mt-7">04 — A smarter first conversation</p>
           <h2 className="mx-auto mt-5 max-w-[18ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Tell us who you are. We’ll ask what matters.</h2>
