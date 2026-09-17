@@ -179,9 +179,9 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                 Give us one minute — and we&apos;ll give you the right plan.
               </h3>
               <p className="mt-4 text-lg leading-relaxed text-deep/70">
-                No two homes on this coast are the same. A few quick questions about your garden, your pool and how long
-                you&apos;d like us around, and you&apos;ll see an honest price built for your property — not a generic
-                number. It really does take about a minute.
+                {isGardenOnly
+                  ? "No two gardens on this coast are the same. A few quick questions about your garden and how long you'd like us around, and you'll see an honest price built for your property — not a generic number. It really does take about a minute."
+                  : "No two homes on this coast are the same. A few quick questions about your garden, your pool and how long you'd like us around, and you'll see an honest price built for your property — not a generic number. It really does take about a minute."}
               </p>
               <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4">
                 <p className="flex flex-wrap items-center gap-2 font-bold">
