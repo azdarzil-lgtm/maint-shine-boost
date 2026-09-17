@@ -24,6 +24,7 @@ import { useEffect, useRef, useState } from "react";
 
 import appProcessPoster from "@/assets/app-process-poster.jpg.asset.json";
 import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
+import enquiryBg from "@/assets/enquiry-bg.jpg.asset.json";
 import familyVillaPoster from "@/assets/family-villa-footer-poster.jpg.asset.json";
 import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
 import team1 from "@/assets/team-1.jpg";
