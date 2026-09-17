@@ -21,7 +21,7 @@ const posts = [
 
 export function InstagramFeed() {
   return (
-    <section id="instagram" className="scroll-mt-28 bg-sunlit py-20 md:py-28">
+    <section id="instagram" className="scroll-mt-28 bg-sunlit pb-20 pt-12 md:pb-28 md:pt-16">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
           <div>
