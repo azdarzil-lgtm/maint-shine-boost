@@ -5,7 +5,7 @@ export type PlanKey = "outdoor" | "home-ready" | "complete";
 
 export const planBase: Record<PlanKey, { name: string; base: number; blurb: string }> = {
   outdoor: { name: "Garden Care", base: 189, blurb: "Your garden kept healthy and inviting all year." },
-  "home-ready": { name: "Home Ready", base: 299, blurb: "Garden, pool and monthly photo report." },
+  "home-ready": { name: "Home Ready", base: 289, blurb: "Garden, pool and monthly photo report." },
   complete: { name: "Complete Care", base: 459, blurb: "Whole-home care with hands-on support." },
 };
 
