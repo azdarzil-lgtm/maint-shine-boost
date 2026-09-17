@@ -45,14 +45,14 @@ export function InstagramFeed() {
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
+        <div className="mt-12 grid grid-cols-3 gap-3 md:grid-cols-6 md:gap-4">
           {posts.map((post) => (
             <a
               key={post.caption}
               href={PROFILE}
               target="_blank"
               rel="noreferrer noopener"
-              className="group relative block overflow-hidden rounded-[1.5rem]"
+              className="group relative block overflow-hidden rounded-[1rem]"
             >
               <img
                 src={post.image}
