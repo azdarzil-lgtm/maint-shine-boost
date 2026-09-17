@@ -163,7 +163,7 @@ function PartnersPage() {
           <p className="section-label text-coral">Who it is for</p>
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {whoFor.map((item) => (
-              <div key={item.title} className="border border-deep/15 bg-olive/5 p-7">
+              <div key={item.title} className="rounded-[1.75rem] border border-deep/15 bg-olive/5 p-7">
                 <item.icon className="size-7 text-coral" aria-hidden="true" />
                 <h2 className="mt-5 font-display text-xl font-semibold md:text-2xl">{item.title}</h2>
                 <p className="mt-3 text-base leading-relaxed text-deep/65">{item.body}</p>
@@ -201,9 +201,10 @@ function PartnersPage() {
             {tiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`flex flex-col border p-8 ${
+                className={`flex flex-col rounded-[1.75rem] border p-8 ${
                   tier.featured ? "border-coral bg-coral/10" : "border-deep/15 bg-olive/5"
                 }`}
+
               >
                 <span className="text-xs font-bold uppercase tracking-wide text-coral">{tier.homes}</span>
                 <h3 className="mt-3 font-display text-2xl font-semibold md:text-3xl">{tier.name}</h3>
@@ -242,7 +243,7 @@ function PartnersPage() {
 
       <section id="apply" className="pb-20 md:pb-28">
         <div className="mx-auto max-w-4xl px-5 md:px-10">
-          <div className="border border-deep/15 bg-olive/10 p-8 md:p-12">
+          <div className="rounded-[1.75rem] border border-deep/15 bg-olive/10 p-8 md:p-12">
             <p className="section-label text-coral">Members area</p>
             <h2 className="mt-5 max-w-[22ch] font-display text-3xl font-semibold leading-tight md:text-4xl">
               Request your partner account.
