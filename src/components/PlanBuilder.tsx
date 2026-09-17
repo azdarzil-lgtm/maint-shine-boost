@@ -285,6 +285,12 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                       </button>
                     ))}
                   </div>
+                  {plan === "complete" && (
+                    <p className="mt-4 rounded-2xl border border-coral/40 bg-coral/10 p-4 text-sm font-semibold">
+                      Good news — your first 2 hours a month are already included in Complete Care, free. Only pick more
+                      if you&apos;d like extra.
+                    </p>
+                  )}
                   {hours > 0 && (
                     <div className="mt-6">
                       <p className="section-label text-coral">Mostly for</p>
