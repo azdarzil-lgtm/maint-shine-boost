@@ -88,7 +88,7 @@ const packages: {
     key: "home-ready",
     name: "Home Ready",
     lead: "Garden + pool + monthly report",
-    price: 299,
+    price: 289,
     detail: "Our core all-year bundle for a home that should feel ready the moment you arrive.",
     items: [
       {
@@ -118,6 +118,7 @@ const packages: {
       { title: "Garden, pool and AC care", body: "Everything in Home Ready, plus air-conditioning servicing and checks." },
       { title: "Handyman and repairs", body: "Small fixes, fitting work and odd jobs handled by our own team." },
       { title: "Electrical and plumbing", body: "Fault-finding, repairs and maintenance without chasing trades." },
+      { title: "2 service hours a month", body: "Two hours of handyman, electrical or plumbing work every month — already included in your price.", perk: true },
       { title: "Visit photos", body: "Photos from every visit saved to your free Property Vault.", perk: true },
     ],
   },

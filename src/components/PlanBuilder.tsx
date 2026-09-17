@@ -5,7 +5,7 @@ export type PlanKey = "outdoor" | "home-ready" | "complete";
 
 export const planBase: Record<PlanKey, { name: string; base: number; blurb: string }> = {
   outdoor: { name: "Garden Care", base: 189, blurb: "Your garden kept healthy and inviting all year." },
-  "home-ready": { name: "Home Ready", base: 299, blurb: "Garden, pool and monthly photo report." },
+  "home-ready": { name: "Home Ready", base: 289, blurb: "Garden, pool and monthly photo report." },
   complete: { name: "Complete Care", base: 459, blurb: "Whole-home care with hands-on support." },
 };
 
@@ -122,8 +122,10 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
     const base = planBase[plan].base + gardenSizes[garden]!.add + poolAddition;
     const discounted = base * (1 - term.discount);
     const rate = hourlyRate[term.months]!;
-    const hoursCost = hours * rate;
-    return { base, discounted, rate, hoursCost, total: discounted + hoursCost };
+    const includedHours = plan === "complete" ? 2 : 0;
+    const billableHours = Math.max(0, hours - includedHours);
+    const hoursCost = billableHours * rate;
+    return { base, discounted, rate, hoursCost, billableHours, includedHours, total: discounted + hoursCost };
   }, [plan, garden, pool, term, hours]);
 
   const steps = isGardenOnly
@@ -138,7 +140,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
       `Garden: ${gardenSizes[garden]!.label} (${gardenSizes[garden]!.note})`,
       isGardenOnly ? "Pool: not included in Garden Care" : `Pool: ${poolSizes[pool]!.label} (${poolSizes[pool]!.note})`,
       `Plan length: ${term.label}`,
-      canAddHours && hours > 0 ? `Extra hours: ${hours} h/month of ${service} at ${euro(pricing.rate)}/h` : "Extra hours: none",
+      canAddHours && hours > 0 ? `Extra hours: ${hours} h/month of ${service} at ${euro(pricing.rate)}/h${plan === "complete" ? " (first 2 h included in Complete Care)" : ""}` : "Extra hours: none",
       `Indicative total: ${euro(pricing.total)} per month`,
       "",
       "My name:",
@@ -283,6 +285,12 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                       </button>
                     ))}
                   </div>
+                  {plan === "complete" && (
+                    <p className="mt-4 rounded-2xl border border-coral/40 bg-coral/10 p-4 text-sm font-semibold">
+                      Good news — your first 2 hours a month are already included in Complete Care, free. Only pick more
+                      if you&apos;d like extra.
+                    </p>
+                  )}
                   {hours > 0 && (
                     <div className="mt-6">
                       <p className="section-label text-coral">Mostly for</p>
@@ -332,9 +340,15 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                   <span>{term.label} commitment</span>
                   <span className="font-semibold">{term.discount ? `−${euro(pricing.base - pricing.discounted)}` : "—"}</span>
                 </li>
-                {canAddHours && hours > 0 && (
+                {plan === "complete" && (
                   <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
-                    <span>{hours} h/month · {service} at {euro(pricing.rate)}/h</span>
+                    <span>2 h/month of extra service — included in your plan</span>
+                    <span className="font-extrabold text-coral">Free</span>
+                  </li>
+                )}
+                {canAddHours && pricing.billableHours > 0 && (
+                  <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
+                    <span>{pricing.billableHours} extra h/month · {service} at {euro(pricing.rate)}/h</span>
                     <span className="font-semibold">{euro(pricing.hoursCost)}</span>
                   </li>
                 )}
