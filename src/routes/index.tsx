@@ -33,6 +33,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { InstagramFeed } from "@/components/InstagramFeed";
 import { MarenaBanner } from "@/components/MarenaBanner";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { PlanBuilder, type PlanKey } from "@/components/PlanBuilder";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -55,28 +56,70 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const packages = [
+const packages: {
+  number: string;
+  key: PlanKey;
+  name: string;
+  lead: string;
+  price: number;
+  detail: string;
+  items: { title: string; body: string }[];
+  featured?: boolean;
+}[] = [
   {
     number: "01",
+    key: "outdoor",
     name: "Outdoor Care",
     lead: "Garden + pool",
-    detail: "For owners who want outdoor areas kept inviting, healthy and ready between visits.",
-    items: ["Scheduled garden care", "Pool cleaning and checks", "Visit photos and report"],
+    price: 219,
+    detail: "For owners who want the outdoor areas kept inviting, healthy and ready between visits.",
+    items: [
+      {
+        title: "Garden care",
+        body: "Lawn mowing, edging, watering and leaf blowing, plus weed removal and soil-moisture checks.",
+      },
+      {
+        title: "Pool care",
+        body: "Cleaning, water chemistry balanced and baskets emptied, so the pool stays swim-ready.",
+      },
+      { title: "Visit photos", body: "Photos from every visit saved to your free Property Vault." },
+    ],
   },
   {
     number: "02",
+    key: "home-ready",
     name: "Home Ready",
-    lead: "Garden + pool + AC",
-    detail: "Our core all-year bundle for a home that should feel ready whenever you arrive.",
-    items: ["Everything in Outdoor Care", "Air-conditioning maintenance", "Your digital Property Vault"],
+    lead: "Garden + pool + monthly report",
+    price: 299,
+    detail: "Our core all-year bundle for a home that should feel ready the moment you arrive.",
+    items: [
+      {
+        title: "Garden care",
+        body: "Lawn mowing, edging, watering and leaf blowing, plus removal of weeds, trimming of trees and hedges, and checking soil moisture levels.",
+      },
+      {
+        title: "Pool care",
+        body: "Clean the pool, check and balance water chemistry, and empty the baskets of dirt, so the pool stays swim-ready.",
+      },
+      {
+        title: "Monthly photos",
+        body: "Once a month our team walks the garden and sends a photo-documented report to your Property Vault, so you know exactly the condition of your garden.",
+      },
+    ],
     featured: true,
   },
   {
     number: "03",
+    key: "complete",
     name: "Complete Care",
     lead: "Whole-home support",
-    detail: "A tailored plan for villas and homes needing broader, hands-on maintenance support.",
-    items: ["Garden, pool and AC care", "Handyman and repair support", "Electrical and plumbing support"],
+    price: 459,
+    detail: "For villas and homes that need broader, hands-on maintenance support all year.",
+    items: [
+      { title: "Garden, pool and AC care", body: "Everything in Home Ready, plus air-conditioning servicing and checks." },
+      { title: "Handyman and repairs", body: "Small fixes, fitting work and odd jobs handled by our own team." },
+      { title: "Electrical and plumbing", body: "Fault-finding, repairs and maintenance without chasing trades." },
+    ],
   },
 ];
 
@@ -191,8 +234,11 @@ function TypewriterHeading({ text }: { text: string }) {
 
 
 function Index() {
+  const [builderPlan, setBuilderPlan] = useState<PlanKey | null>(null);
+
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
+      {builderPlan && <PlanBuilder plan={builderPlan} onClose={() => setBuilderPlan(null)} />}
       <SiteHeader />
 
       <section className="relative isolate overflow-hidden bg-deep text-sunlit">
@@ -230,7 +276,8 @@ function Index() {
               <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Care that fits the way you use your home.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
-              Start with a practical bundle, then tailor the visit rhythm and exact work to your property. Plans start from €89/month, IVA included.
+              Every price starts from a base plan and moves with the size of your garden and pool. Answer a few quick
+              questions and you&apos;ll see your own figure in under a minute — Property Vault always included.
             </p>
           </div>
 
@@ -240,24 +287,42 @@ function Index() {
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="section-label opacity-60">{item.number}</span>
-                    {item.featured && <span className="featured-tag">Most complete</span>}
+                    {item.featured && <span className="featured-tag">Most popular</span>}
                   </div>
                   <h3 className="mt-10 font-display text-3xl font-semibold">{item.name}</h3>
                   <p className="mt-2 text-base font-semibold text-coral">{item.lead}</p>
-                  <p className="mt-6 leading-relaxed opacity-65">{item.detail}</p>
+                  <p className="mt-6 flex items-baseline gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wide opacity-55">From</span>
+                    <span className="font-display text-4xl font-semibold">€{item.price}.00</span>
+                    <span className="text-sm opacity-55">/ month</span>
+                  </p>
+                  <p className="mt-4 leading-relaxed opacity-65">{item.detail}</p>
                   <ul className="mt-8 space-y-4 text-sm">
                     {item.items.map((point) => (
-                      <li key={point} className="flex gap-3 border-t border-current/10 pt-4">
+                      <li key={point.title} className="flex gap-3 border-t border-current/10 pt-4">
                         <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
-                        <span>{point}</span>
+                        <span>
+                          <span className="font-bold">{point.title}</span>
+                          <span className="opacity-70"> — {point.body}</span>
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <a href="#contact" className={item.featured ? "solid-button solid-button-coral mt-10" : "solid-button solid-button-dark mt-10"}>Request a tailored quote</a>
+                <button
+                  type="button"
+                  onClick={() => setBuilderPlan(item.key)}
+                  className={item.featured ? "solid-button solid-button-coral mt-10" : "solid-button solid-button-dark mt-10"}
+                >
+                  Request a service <ArrowRight aria-hidden="true" />
+                </button>
               </article>
             ))}
           </div>
+          <p className="mt-6 text-sm text-deep/60">
+            Prices vary with garden and pool size. Not sure where you land?{" "}
+            <a href="#contact" className="font-bold text-coral underline-offset-4 hover:underline">Talk to us and we&apos;ll work it out with you.</a>
+          </p>
         </div>
       </section>
 
