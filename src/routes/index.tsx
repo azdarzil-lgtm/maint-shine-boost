@@ -24,7 +24,7 @@ import { useEffect, useRef, useState } from "react";
 
 import appProcessPoster from "@/assets/app-process-poster.jpg.asset.json";
 import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
-import enquiryBg from "@/assets/enquiry-bg.jpg.asset.json";
+import enquiryBg from "@/assets/enquiry-bg-2.jpg";
 import familyVillaPoster from "@/assets/family-villa-footer-poster.jpg.asset.json";
 import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
 import team1 from "@/assets/team-1.jpg";
@@ -501,10 +501,12 @@ function Index() {
 
       <section id="smart-enquiry" className="relative overflow-hidden bg-coral py-20 text-deep md:py-28">
         <img
-          src={enquiryBg.url}
+          src={enquiryBg}
           alt=""
           aria-hidden="true"
           loading="lazy"
+          width={1920}
+          height={1024}
           className="absolute inset-0 size-full object-cover"
         />
         <div className="absolute inset-0 bg-coral/88" aria-hidden="true" />
