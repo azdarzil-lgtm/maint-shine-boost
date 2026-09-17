@@ -621,7 +621,7 @@ function Index() {
             </figcaption>
           </figure>
           <div className="pt-10 lg:col-span-5 lg:pl-12 lg:pt-0">
-            <p className="section-label text-coral">05 — Your Property Vault</p>
+            <p className="section-label text-coral">06 — Your Property Vault</p>
             <span className="mt-5 inline-flex items-center gap-2 rounded-full bg-coral px-4 py-1.5 text-[0.65rem] font-extrabold uppercase tracking-wider text-sunlit">
               <Check className="size-3.5" aria-hidden="true" /> Free with every care plan
             </span>
@@ -647,7 +647,7 @@ function Index() {
 
       <section id="proof" className="bg-deep py-20 text-sunlit md:py-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <p className="section-label text-coral">06 — In their words</p>
+          <p className="section-label text-coral">07 — In their words</p>
           <div className="mt-8 grid gap-12 lg:grid-cols-[1.25fr_0.75fr]">
             <figure className="overflow-hidden rounded-[2rem]">
               <img src={testimonialStill} alt="SolidMaint customer testimonial video" loading="lazy" width="1600" height="912" className="aspect-video size-full object-cover" />
@@ -665,7 +665,7 @@ function Index() {
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-end">
             <div>
-              <p className="section-label text-coral">07 — Meet the team</p>
+              <p className="section-label text-coral">08 — Meet the team</p>
               <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">The people behind every visit.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
@@ -697,7 +697,7 @@ function Index() {
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <p className="section-label text-coral">08 — Local coverage</p>
+              <p className="section-label text-coral">09 — Local coverage</p>
               <h2 className="mt-5 max-w-[12ch] font-display text-4xl font-semibold leading-tight md:text-6xl">From Benalmádena to Sotogrande.</h2>
               <p className="mt-5 max-w-md text-lg font-semibold leading-relaxed text-deep/65">Currently serving the Costa del Sol, from Benalmádena to Sotogrande.</p>
             </div>
