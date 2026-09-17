@@ -578,6 +578,28 @@ function Index() {
       </section>
 
       <section id="smart-enquiry" className="relative overflow-hidden bg-deep py-20 text-sunlit md:py-28">
+        <img
+          src={enquiryBg}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          width={1920}
+          height={1024}
+          className="absolute inset-0 size-full object-cover"
+        />
+        <div className="absolute inset-0 bg-deep/88" aria-hidden="true" />
+        <div className="relative mx-auto max-w-5xl px-5 text-center md:px-10">
+          <MessageCircle className="mx-auto size-8 text-coral" aria-hidden="true" />
+          <p className="section-label mt-7 text-coral">05 — A smarter first conversation</p>
+          <h2 className="mx-auto mt-5 max-w-[18ch] font-display text-4xl font-semibold leading-tight text-sunlit md:text-6xl">Tell us who you are. We’ll ask what matters.</h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-sunlit">Our guided chat shapes the questions around your property and priorities, so your first recommendation is useful—not generic.</p>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {["Overseas owner", "Resident owner", "Property manager", "Buying a home"].map((audience) => (
+              <a key={audience} href="#contact" className="audience-pill">{audience}<ArrowRight className="size-4" aria-hidden="true" /></a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section id="vault" className="scroll-mt-28 py-20 md:py-28">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 md:px-10 lg:grid-cols-12">
