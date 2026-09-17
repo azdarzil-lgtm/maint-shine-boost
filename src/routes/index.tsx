@@ -55,28 +55,70 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const packages = [
+const packages: {
+  number: string;
+  key: PlanKey;
+  name: string;
+  lead: string;
+  price: number;
+  detail: string;
+  items: { title: string; body: string }[];
+  featured?: boolean;
+}[] = [
   {
     number: "01",
+    key: "outdoor",
     name: "Outdoor Care",
     lead: "Garden + pool",
-    detail: "For owners who want outdoor areas kept inviting, healthy and ready between visits.",
-    items: ["Scheduled garden care", "Pool cleaning and checks", "Visit photos and report"],
+    price: 219,
+    detail: "For owners who want the outdoor areas kept inviting, healthy and ready between visits.",
+    items: [
+      {
+        title: "Garden care",
+        body: "Lawn mowing, edging, watering and leaf blowing, plus weed removal and soil-moisture checks.",
+      },
+      {
+        title: "Pool care",
+        body: "Cleaning, water chemistry balanced and baskets emptied, so the pool stays swim-ready.",
+      },
+      { title: "Visit photos", body: "Photos from every visit saved to your free Property Vault." },
+    ],
   },
   {
     number: "02",
+    key: "home-ready",
     name: "Home Ready",
-    lead: "Garden + pool + AC",
-    detail: "Our core all-year bundle for a home that should feel ready whenever you arrive.",
-    items: ["Everything in Outdoor Care", "Air-conditioning maintenance", "Your digital Property Vault"],
+    lead: "Garden + pool + monthly report",
+    price: 299,
+    detail: "Our core all-year bundle for a home that should feel ready the moment you arrive.",
+    items: [
+      {
+        title: "Garden care",
+        body: "Lawn mowing, edging, watering and leaf blowing, plus removal of weeds, trimming of trees and hedges, and checking soil moisture levels.",
+      },
+      {
+        title: "Pool care",
+        body: "Clean the pool, check and balance water chemistry, and empty the baskets of dirt, so the pool stays swim-ready.",
+      },
+      {
+        title: "Monthly photos",
+        body: "Once a month our team walks the garden and sends a photo-documented report to your Property Vault, so you know exactly the condition of your garden.",
+      },
+    ],
     featured: true,
   },
   {
     number: "03",
+    key: "complete",
     name: "Complete Care",
     lead: "Whole-home support",
-    detail: "A tailored plan for villas and homes needing broader, hands-on maintenance support.",
-    items: ["Garden, pool and AC care", "Handyman and repair support", "Electrical and plumbing support"],
+    price: 459,
+    detail: "For villas and homes that need broader, hands-on maintenance support all year.",
+    items: [
+      { title: "Garden, pool and AC care", body: "Everything in Home Ready, plus air-conditioning servicing and checks." },
+      { title: "Handyman and repairs", body: "Small fixes, fitting work and odd jobs handled by our own team." },
+      { title: "Electrical and plumbing", body: "Fault-finding, repairs and maintenance without chasing trades." },
+    ],
   },
 ];
 
