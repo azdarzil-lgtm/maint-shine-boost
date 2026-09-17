@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import logoAsset from "@/assets/solidmaint-logo.png.asset.json";
+import logoAsset from "@/assets/solidmaint-wordmark.png.asset.json";
 
 const navLinks = [
   { label: "Benefits", to: "/", hash: "packages" },
@@ -14,14 +14,16 @@ const navLinks = [
   { label: "Journal", to: "/journal" },
 ] as const;
 
-export function Brand({ light = false }: { light?: boolean }) {
+export function Brand({ light: _light = false }: { light?: boolean }) {
   return (
-    <Link to="/" className="flex items-center gap-3" aria-label="SolidMaint home">
-      <img src={logoAsset.url} alt="" className="size-10 rounded-md" width="40" height="40" />
-      <span className={`flex flex-col leading-tight ${light ? "text-sunlit" : "text-deep"}`}>
-        <span className="text-sm font-extrabold uppercase">SolidMaint</span>
-        <span className="text-[11px] font-medium tracking-wide opacity-80">Your home. Cared for.</span>
-      </span>
+    <Link to="/" className="block shrink-0" aria-label="SolidMaint home">
+      <img
+        src={logoAsset.url}
+        alt="SolidMaint — Your Home"
+        className="h-auto w-40 sm:w-48"
+        width="1500"
+        height="300"
+      />
     </Link>
   );
 }
