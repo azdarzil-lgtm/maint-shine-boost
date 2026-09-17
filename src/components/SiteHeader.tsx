@@ -20,7 +20,7 @@ export function Brand({ light = false }: { light?: boolean }) {
       <img src={logoAsset.url} alt="" className="size-10 rounded-md" width="40" height="40" />
       <span className={`flex flex-col leading-tight ${light ? "text-sunlit" : "text-deep"}`}>
         <span className="text-sm font-extrabold uppercase">SolidMaint</span>
-        <span className="text-[11px] font-medium tracking-wide opacity-80">Your home. Cared for.</span>
+        <span className="text-[11px] font-medium tracking-wide opacity-80">Let's talk about your home</span>
       </span>
     </Link>
   );
