@@ -5,6 +5,7 @@ import {
   Check,
   ChevronDown,
   Clock3,
+  Compass,
   Droplets,
   FileText,
   Leaf,
@@ -12,6 +13,8 @@ import {
   MessageCircle,
   ShieldCheck,
   Smartphone,
+  Sun,
+  TrendingUp,
   Waves,
   Wind,
   Wrench,
@@ -274,16 +277,48 @@ function Index() {
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
-              <p className="section-label text-coral">01 — Care packages</p>
-              <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Care that fits the way you use your home.</h2>
+              <p className="section-label text-coral">01 — The benefits</p>
+              <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Care-free ownership, built on Nordic precision.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
-              Every price starts from a base plan and moves with the size of your garden and pool. Answer a few quick
-              questions and you&apos;ll see your own figure in under a minute — <strong className="font-bold text-deep">your free Property Vault is always included.</strong>
+              Our team comes from Finland and Sweden — precision is simply how we work. Every plan keeps your home
+              care-free, and every visit adds to its documented history.{" "}
+              <strong className="font-bold text-deep">Your free Property Vault is always included.</strong>
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {[
+              {
+                icon: Compass,
+                title: "Nordic precision",
+                body: "Our crew comes from Finland and Sweden. Measured, scheduled and finished properly — the same exacting standard on every single visit.",
+              },
+              {
+                icon: Sun,
+                title: "Care-free ownership",
+                body: "You enjoy the Costa del Sol; we handle the rest. No chasing trades, no surprise calls — just a home that's always ready when you arrive.",
+              },
+              {
+                icon: TrendingUp,
+                title: "Value that stays up",
+                body: "A documented home is worth more. Your Property Vault holds the full history of services, repairs and renovations — solid proof of care when it's time to sell.",
+              },
+            ].map((pillar) => {
+              const Icon = pillar.icon;
+              return (
+                <div key={pillar.title} className="rounded-[1.5rem] border border-deep/15 bg-sunlit p-7">
+                  <span className="grid size-11 place-items-center rounded-full bg-coral/15">
+                    <Icon className="size-5 text-coral" aria-hidden="true" />
+                  </span>
+                  <h3 className="mt-5 font-display text-xl font-semibold md:text-2xl">{pillar.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-deep/65">{pillar.body}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-5 grid gap-5 lg:grid-cols-3">
             {packages.map((item) => (
               <article key={item.name} className={item.featured ? "editorial-package editorial-package-featured" : "editorial-package"}>
                 <div>
@@ -341,8 +376,8 @@ function Index() {
             </span>
             <div>
               <p className="section-label text-coral">Included free with every plan</p>
-              <h3 className="mt-2 max-w-[26ch] font-display text-2xl font-semibold leading-tight md:text-3xl">Your Property Vault — photos from every visit, saved forever.</h3>
-              <p className="mt-2 max-w-xl leading-relaxed text-sunlit/70">Verified time on site, time-stamped photos, reports and invoices — all in your pocket, wherever you are in the world.</p>
+              <h3 className="mt-2 max-w-[28ch] font-display text-2xl font-semibold leading-tight md:text-3xl">Your Property Vault — a lifetime history of your home, saved forever.</h3>
+              <p className="mt-2 max-w-xl leading-relaxed text-sunlit/70">Every service, repair and renovation, time-stamped and photographed. It's proof of care you can hand straight to a future buyer — history that protects your home's value.</p>
             </div>
             <a href="#vault" className="solid-button solid-button-coral shrink-0 md:ml-auto">See it in action <ArrowRight aria-hidden="true" /></a>
           </div>
@@ -545,7 +580,7 @@ function Index() {
               <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">The people behind every visit.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
-              A small, experienced crew based along the Costa del Sol. We know the homes, the climate and the details that keep a property running smoothly.
+              A small, experienced crew based along the Costa del Sol. Our team comes from Finland and Sweden — Nordic precision, delivered with genuine Costa warmth. We know the homes, the climate and the details that keep a property running smoothly.
             </p>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
