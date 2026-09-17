@@ -78,7 +78,7 @@ const packages: {
     items: [
       {
         title: "Garden care",
-        body: "Lawn mowing, edging, watering and leaf blowing, plus weed removal and soil-moisture checks.",
+        body: "Lawn mowing, edging, watering and leaf blowing, plus weed removal and soil-moisture checks. Every visit leaves your garden the way the Costa del Sun intended — lush, tidy and ready to enjoy. And because we watch the soil and the seasons, your lawn stays green and healthy all year round, without you lifting a finger.",
       },
       { title: "Visit photos", body: "Photos from every visit saved to your free Property Vault.", perk: true },
     ],
