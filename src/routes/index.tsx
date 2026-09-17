@@ -13,6 +13,7 @@ import {
   MessageCircle,
   ShieldCheck,
   Smartphone,
+  Star,
   Sun,
   TrendingUp,
   Waves,
@@ -518,6 +519,76 @@ function Index() {
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             {["Overseas owner", "Resident owner", "Property manager", "Buying a home"].map((audience) => (
               <a key={audience} href="#contact" className="audience-pill">{audience}<ArrowRight className="size-4" aria-hidden="true" /></a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" className="scroll-mt-28 py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <p className="section-label text-coral">05 — Word of mouth</p>
+          <h2 className="mt-5 max-w-[22ch] font-display text-4xl font-semibold leading-tight md:text-6xl">What our clients say about our top employees.</h2>
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <figure className="flex flex-col overflow-hidden rounded-[1.75rem] border border-deep/10 bg-white">
+              <img
+                src={antonio}
+                alt="Antonio, garden and pool specialist at SolidMaint"
+                loading="lazy"
+                width={1024}
+                height={1024}
+                className="aspect-square w-full object-cover"
+              />
+              <figcaption className="flex flex-1 flex-col p-7">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="font-display text-xl font-semibold">Antonio</p>
+                  <span className="flex items-center gap-0.5" aria-label="Rated 5 out of 5 stars">
+                    {[0, 1, 2, 3, 4].map((star) => (
+                      <Star key={star} className="size-4 fill-coral text-coral" aria-hidden="true" />
+                    ))}
+                  </span>
+                </div>
+                <p className="mt-1 text-sm font-bold uppercase text-coral">Garden &amp; pool care</p>
+                <blockquote className="mt-5 flex-1 text-base leading-relaxed text-deep/70">“Antonio was on time, polite and very helpful — and the pool has never looked better.”</blockquote>
+                <p className="mt-5 text-sm font-bold">Paul W. · Marbella</p>
+              </figcaption>
+            </figure>
+            {[
+              {
+                initials: "MI",
+                name: "Mikko",
+                role: "Handyman & repairs",
+                quote: "Mikko talked us through everything in plain English, fixed it the same week and left the place spotless.",
+                author: "Emma R. · Sotogrande",
+              },
+              {
+                initials: "JO",
+                name: "Jonas",
+                role: "Electrical services",
+                quote: "Jonas found and sorted an electrical fault two other companies missed. Proper craftsmanship.",
+                author: "David & Helen · Estepona",
+              },
+              {
+                initials: "SM",
+                name: "The whole crew",
+                role: "Complete care plans",
+                quote: "One team, one plan, no chasing anyone. It was the easiest decision we have made about our home.",
+                author: "Claire T. · Benahavís",
+              },
+            ].map(({ initials, name, role, quote, author }) => (
+              <figure key={name} className="flex flex-col rounded-[1.75rem] border border-deep/10 bg-white p-7">
+                <span className="grid size-12 place-items-center rounded-full bg-coral/15 font-display text-sm font-bold text-coral">{initials}</span>
+                <div className="mt-5 flex items-center justify-between gap-3">
+                  <p className="font-display text-xl font-semibold">{name}</p>
+                  <span className="flex items-center gap-0.5" aria-label="Rated 5 out of 5 stars">
+                    {[0, 1, 2, 3, 4].map((star) => (
+                      <Star key={star} className="size-4 fill-coral text-coral" aria-hidden="true" />
+                    ))}
+                  </span>
+                </div>
+                <p className="mt-1 text-sm font-bold uppercase text-coral">{role}</p>
+                <blockquote className="mt-5 flex-1 text-base leading-relaxed text-deep/70">“{quote}”</blockquote>
+                <p className="mt-5 text-sm font-bold">{author}</p>
+              </figure>
             ))}
           </div>
         </div>
