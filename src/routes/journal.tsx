@@ -104,7 +104,7 @@ function JournalPage() {
             <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
               Wondering what your home needs this season?
             </h2>
-            <p className="mt-4 text-base leading-relaxed whitespace-nowrap text-deep/65">
+            <p className="mt-4 text-base leading-relaxed md:whitespace-nowrap text-deep/65">
               Tell us where your home is and what needs care — we&apos;ll suggest a plan that fits it.
             </p>
             <a href="/#contact" className="solid-button solid-button-coral mt-8">
