@@ -71,18 +71,14 @@ const packages: {
   {
     number: "01",
     key: "outdoor",
-    name: "Outdoor Care",
-    lead: "Garden + pool",
-    price: 219,
-    detail: "For owners who want the outdoor areas kept inviting, healthy and ready between visits.",
+    name: "Garden Care",
+    lead: "Garden only",
+    price: 189,
+    detail: "For owners who want their garden kept healthy, tidy and inviting between visits.",
     items: [
       {
         title: "Garden care",
         body: "Lawn mowing, edging, watering and leaf blowing, plus weed removal and soil-moisture checks.",
-      },
-      {
-        title: "Pool care",
-        body: "Cleaning, water chemistry balanced and baskets emptied, so the pool stays swim-ready.",
       },
       { title: "Visit photos", body: "Photos from every visit saved to your free Property Vault.", perk: true },
     ],
@@ -104,8 +100,8 @@ const packages: {
         body: "Clean the pool, check and balance water chemistry, and empty the baskets of dirt, so the pool stays swim-ready.",
       },
       {
-        title: "Monthly photos",
-        body: "Once a month our team walks the garden and sends a photo-documented report to your Property Vault, so you know exactly the condition of your garden.",
+        title: "Monthly report",
+        body: "Once a month, our team checks the garden, grounds and pool, then sends a photo-documented report to your Property Vault, so you know the exact condition of your property’s surroundings.",
         perk: true,
       },
     ],
@@ -378,7 +374,7 @@ function Index() {
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Choose your base plan</h3>
               <p className="mt-4 leading-relaxed text-deep/65">Pick the plan closest to how you use your home. It’s a starting point — not a fixed package, and it can grow with your property.</p>
               <div className="mt-6 flex flex-wrap gap-2">
-                {["Outdoor Care", "Home Ready", "Complete Care"].map((name) => (
+                {["Garden Care", "Home Ready", "Complete Care"].map((name) => (
                   <a key={name} href="#packages" className="rounded-full border border-deep/20 px-3.5 py-1.5 text-xs font-bold transition-colors hover:border-coral hover:text-coral">{name}</a>
                 ))}
               </div>
