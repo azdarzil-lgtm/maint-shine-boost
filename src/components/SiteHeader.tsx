@@ -7,9 +7,9 @@ import logoAsset from "@/assets/solidmaint-logo.png.asset.json";
 const navLinks = [
   { label: "Benefits", to: "/", hash: "packages" },
   { label: "Services", to: "/", hash: "services" },
-  { label: "Team", to: "/", hash: "team" },
   { label: "Coverage", to: "/", hash: "coverage" },
   { label: "FAQs", to: "/", hash: "faqs" },
+  { label: "Our Team", to: "/", hash: "team" },
   { label: "Partners", to: "/partners" },
   { label: "Journal", to: "/journal" },
 ] as const;
