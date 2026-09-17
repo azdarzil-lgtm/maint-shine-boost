@@ -499,7 +499,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="smart-enquiry" className="relative overflow-hidden bg-coral py-20 text-deep md:py-28">
+      <section id="smart-enquiry" className="relative overflow-hidden bg-deep py-20 text-sunlit md:py-28">
         <img
           src={enquiryBg}
           alt=""
@@ -509,11 +509,11 @@ function Index() {
           height={1024}
           className="absolute inset-0 size-full object-cover"
         />
-        <div className="absolute inset-0 bg-coral/88" aria-hidden="true" />
+        <div className="absolute inset-0 bg-deep/88" aria-hidden="true" />
         <div className="relative mx-auto max-w-5xl px-5 text-center md:px-10">
-          <MessageCircle className="mx-auto size-8" aria-hidden="true" />
-          <p className="section-label mt-7">04 — A smarter first conversation</p>
-          <h2 className="mx-auto mt-5 max-w-[18ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Tell us who you are. We’ll ask what matters.</h2>
+          <MessageCircle className="mx-auto size-8 text-coral" aria-hidden="true" />
+          <p className="section-label mt-7 text-coral">04 — A smarter first conversation</p>
+          <h2 className="mx-auto mt-5 max-w-[18ch] font-display text-4xl font-semibold leading-tight text-coral md:text-6xl">Tell us who you are. We’ll ask what matters.</h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-sunlit">Our guided chat shapes the questions around your property and priorities, so your first recommendation is useful—not generic.</p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             {["Overseas owner", "Resident owner", "Property manager", "Buying a home"].map((audience) => (

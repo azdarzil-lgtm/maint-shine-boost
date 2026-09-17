@@ -289,11 +289,12 @@
   gap: 0.6rem;
   border-radius: 999px;
   background-color: var(--sunlit);
+  color: var(--deep);
   padding: 0.85rem 1.1rem;
   font-size: 0.82rem;
   font-weight: 800;
   transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
-  &:hover { transform: translateY(-2px); background-color: var(--deep); color: var(--sunlit); }
+  &:hover { transform: translateY(-2px); background-color: var(--coral); color: var(--sunlit); }
 }
 
 @utility store-button {
