@@ -3,28 +3,8 @@
 @import "tw-animate-css";
 @import "@fontsource-variable/inter";
 
-/* Redaction (headings) — self-hosted. Revert fonts: Outfit (display) / Figtree (body) via Google Fonts link in __root.tsx */
-@font-face {
-  font-family: "Redaction";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/fonts/redaction.woff") format("woff");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Redaction";
-  font-style: italic;
-  font-weight: 400;
-  src: url("/fonts/redaction-italic.woff") format("woff");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Redaction";
-  font-style: normal;
-  font-weight: 500 900;
-  src: url("/fonts/redaction-bold.woff") format("woff");
-  font-display: swap;
-}
+/* Headings: Outfit (Google Fonts link in __root.tsx). Body: Inter Variable.
+   Previous experiment: Redaction — woffs still in public/fonts/, restore by re-adding @font-face + --font-display. */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -43,7 +23,7 @@
  */
 
 @theme inline {
-  --font-display: "Redaction", "Georgia", serif;
+  --font-display: "Outfit", "Inter", sans-serif;
   --font-body: "Inter Variable", "Inter", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
