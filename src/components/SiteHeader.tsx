@@ -16,14 +16,22 @@ const navLinks = [
 
 export function Brand({ light: _light = false }: { light?: boolean }) {
   return (
-    <Link to="/" className="block shrink-0" aria-label="SolidMaint home">
+    <Link to="/" className="flex shrink-0 items-center gap-3" aria-label="SolidMaint home">
       <img
         src={logoAsset.url}
-        alt="SolidMaint — Your Home"
-        className="h-auto w-40 sm:w-48"
-        width="1500"
-        height="300"
+        alt="SolidMaint"
+        className="h-11 w-11 md:h-12 md:w-12"
+        width="192"
+        height="192"
       />
+      <span className="flex flex-col leading-none">
+        <span className="font-display text-xl font-bold tracking-wide text-sunlit md:text-2xl">
+          SOLIDMAINT
+        </span>
+        <span className="mt-1 text-[10px] uppercase tracking-[0.22em] text-sunlit/70 md:text-xs">
+          Your home. Cared for.
+        </span>
+      </span>
     </Link>
   );
 }
