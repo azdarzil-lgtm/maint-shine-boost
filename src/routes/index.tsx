@@ -560,7 +560,7 @@ function Index() {
           <p className="mx-auto mt-7 max-w-2xl text-xl leading-relaxed text-sunlit md:text-2xl">Our guided chat shapes the questions around your property and priorities, so your first recommendation is useful—not generic.</p>
           <div className="mt-12 flex flex-wrap justify-center gap-4">
             {["Overseas owner", "Resident owner", "Property manager", "Buying a home"].map((audience) => (
-              <a key={audience} href="#contact" className="audience-pill">{audience}<ArrowRight className="size-4" aria-hidden="true" /></a>
+              <a key={audience} href="#contact" className="audience-pill px-6 py-3.5 text-base md:text-lg">{audience}<ArrowRight className="size-5" aria-hidden="true" /></a>
             ))}
           </div>
         </div>
