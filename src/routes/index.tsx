@@ -183,6 +183,71 @@ const services = [
   },
 ];
 
+function ServiceAccordion() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <div className="border-t border-deep/15">
+      {services.map((service, index) => {
+        const Icon = service.icon;
+        const isOpen = openIndex === index;
+        return (
+          <div key={service.title} className="border-b border-deep/15">
+            <button
+              type="button"
+              aria-expanded={isOpen}
+              aria-controls={`service-panel-${index}`}
+              onClick={() => setOpenIndex(isOpen ? null : index)}
+              className="service-row group w-full cursor-pointer text-left"
+            >
+              <span className="hidden text-xs font-bold text-coral sm:block">0{index + 1}</span>
+              <span className="grid size-11 shrink-0 place-items-center rounded-full bg-olive/15 sm:size-12"><Icon className="size-5" aria-hidden="true" /></span>
+              <span>
+                <strong className="font-display text-xl font-semibold md:text-2xl">{service.title}</strong>
+                <span className="mt-1 block text-sm text-deep/60">{service.description}</span>
+              </span>
+              <ChevronDown
+                className={`ml-auto size-5 shrink-0 text-coral transition-transform duration-300 group-hover:translate-y-0.5 ${isOpen ? "rotate-180" : ""}`}
+                aria-hidden="true"
+              />
+            </button>
+            <div
+              id={`service-panel-${index}`}
+              className={`grid transition-[grid-template-rows] duration-300 ease-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+            >
+              <div className="overflow-hidden">
+                <div className="grid gap-5 px-0 pt-1 pb-7 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-4">
+                  <span className="hidden sm:block" aria-hidden="true" />
+                  <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+                    <img
+                      src={service.lead.photo}
+                      alt={service.lead.name}
+                      loading="lazy"
+                      width={96}
+                      height={96}
+                      className="size-16 shrink-0 rounded-full object-cover sm:size-20"
+                    />
+                    <div>
+                      <p className="text-[0.7rem] font-bold uppercase tracking-widest text-coral">
+                        {service.lead.name} · {service.lead.role}
+                      </p>
+                      <p className="mt-2 max-w-xl text-sm leading-relaxed text-deep/70">{service.detail}</p>
+                      <a href="#contact" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-coral hover:underline">
+                        Book this service <ArrowRight className="size-4" aria-hidden="true" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+
 function StoreButtons() {
   return (
     <div className="flex flex-wrap gap-3">
