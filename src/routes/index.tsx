@@ -3,7 +3,7 @@ import {
   ArrowDownRight,
   ArrowRight,
   Check,
-  
+  ChevronDown,
   Clock3,
   Compass,
   Droplets,
@@ -29,6 +29,11 @@ import enquiryBg from "@/assets/enquiry-bg-2.jpg";
 import familyVillaPoster from "@/assets/family-villa-footer-poster.jpg.asset.json";
 import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
 import antonio from "@/assets/antonio.jpg";
+import mikko from "@/assets/mikko.jpg";
+import jonas from "@/assets/jonas.jpg";
+import pekka from "@/assets/pekka.jpg";
+import team3 from "@/assets/team-3.jpg";
+import team4 from "@/assets/team-4.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -128,13 +133,120 @@ const packages: {
 ];
 
 const services = [
-  { title: "Garden Maintenance", description: "Scheduled care for lawns, borders and terraces, all year.", icon: Leaf },
-  { title: "Pool Maintenance", description: "Cleaning, water testing and equipment checks, done regularly.", icon: Waves },
-  { title: "AC Services", description: "Filter cleaning, performance checks and seasonal servicing.", icon: Wind },
-  { title: "Handyman & Repairs", description: "Small fixes, fitting work and odd jobs handled reliably.", icon: Wrench },
-  { title: "Electrical Services", description: "Safe fault-finding, installations and repairs.", icon: Zap },
-  { title: "Plumbing Services", description: "Leaks, taps, drainage and bathroom maintenance.", icon: Droplets },
+  {
+    title: "Garden Maintenance",
+    description: "Scheduled care for lawns, borders and terraces, all year.",
+    icon: Leaf,
+    detail:
+      "Lawns mown and edged, borders tidied and beds weeded — then a soil-moisture check so nothing quietly dries out. You come home to a garden that simply looks after itself.",
+    lead: { name: "Antonio Reyes", role: "Garden & pool care lead", photo: antonio },
+  },
+  {
+    title: "Pool Maintenance",
+    description: "Cleaning, water testing and equipment checks, done regularly.",
+    icon: Waves,
+    detail:
+      "Skimming, brushing and basket-emptying on a schedule, with the water tested and balanced on every visit. Swim-ready, whenever you are.",
+    lead: { name: "Daniel Torres", role: "Pool care lead", photo: team3 },
+  },
+  {
+    title: "AC Services",
+    description: "Filter cleaning, performance checks and seasonal servicing.",
+    icon: Wind,
+    detail:
+      "Filters cleaned, systems checked and the cooling tuned before the heat arrives. Air conditioning that is ready long before you need it.",
+    lead: { name: "Pekka Lindqvist", role: "AC specialist", photo: pekka },
+  },
+  {
+    title: "Handyman & Repairs",
+    description: "Small fixes, fitting work and odd jobs handled reliably.",
+    icon: Wrench,
+    detail:
+      "That list of little jobs — a sticky door, a shelf, a blind — done properly in one tidy visit. No job too small, and no chasing anyone.",
+    lead: { name: "Mikko Aaltonen", role: "Handyman lead", photo: mikko },
+  },
+  {
+    title: "Electrical Services",
+    description: "Safe fault-finding, installations and repairs.",
+    icon: Zap,
+    detail:
+      "Safe fault-finding, new fittings and lighting installed with care. If something is not quite right, we find it and put it right.",
+    lead: { name: "Jonas Berg", role: "Electrical lead", photo: jonas },
+  },
+  {
+    title: "Plumbing Services",
+    description: "Leaks, taps, drainage and bathroom maintenance.",
+    icon: Droplets,
+    detail:
+      "Drips, drains, taps and bathrooms sorted before small problems grow. Quiet, tidy work that keeps the water exactly where it belongs.",
+    lead: { name: "Carmen Vidal", role: "Plumbing lead", photo: team4 },
+  },
 ];
+
+function ServiceAccordion() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <div className="border-t border-deep/15">
+      {services.map((service, index) => {
+        const Icon = service.icon;
+        const isOpen = openIndex === index;
+        return (
+          <div key={service.title}>
+            <button
+              type="button"
+              aria-expanded={isOpen}
+              aria-controls={`service-panel-${index}`}
+              onClick={() => setOpenIndex(isOpen ? null : index)}
+              className="service-row group w-full cursor-pointer text-left"
+            >
+              <span className="hidden text-xs font-bold text-coral sm:block">0{index + 1}</span>
+              <span className="grid size-11 shrink-0 place-items-center rounded-full bg-olive/15 sm:size-12"><Icon className="size-5" aria-hidden="true" /></span>
+              <span>
+                <strong className="font-display text-xl font-semibold md:text-2xl">{service.title}</strong>
+                <span className="mt-1 block text-sm text-deep/60">{service.description}</span>
+              </span>
+              <ChevronDown
+                className={`ml-auto size-5 shrink-0 text-coral transition-transform duration-300 group-hover:translate-y-0.5 ${isOpen ? "rotate-180" : ""}`}
+                aria-hidden="true"
+              />
+            </button>
+            <div
+              id={`service-panel-${index}`}
+              className={`grid transition-[grid-template-rows] duration-300 ease-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+            >
+              <div className="overflow-hidden">
+                <div className="grid gap-5 px-0 pt-1 pb-7 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-4">
+                  <span className="hidden sm:block" aria-hidden="true" />
+                  <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+                    <img
+                      src={service.lead.photo}
+                      alt={service.lead.name}
+                      loading="lazy"
+                      width={96}
+                      height={96}
+                      className="size-16 shrink-0 rounded-full object-cover sm:size-20"
+                    />
+                    <div>
+                      <p className="text-[0.7rem] font-bold uppercase tracking-widest text-coral">
+                        {service.lead.name} · {service.lead.role}
+                      </p>
+                      <p className="mt-2 max-w-xl text-sm leading-relaxed text-deep/70">{service.detail}</p>
+                      <a href="#contact" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-coral hover:underline">
+                        Book this service <ArrowRight className="size-4" aria-hidden="true" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 
 function StoreButtons() {
   return (
@@ -450,22 +562,7 @@ function Index() {
             <p className="mt-6 max-w-md text-lg leading-relaxed text-deep/65">Every service can stand alone or become part of your care plan.</p>
             <a href="#contact" className="mt-9 inline-flex items-center gap-2 font-bold text-coral">Discuss what you need <ArrowRight className="size-4" aria-hidden="true" /></a>
           </div>
-          <div className="border-t border-deep/15">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <a key={service.title} href="#contact" className="service-row group">
-                  <span className="hidden text-xs font-bold text-coral sm:block">0{index + 1}</span>
-                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-olive/15 sm:size-12"><Icon className="size-5" aria-hidden="true" /></span>
-                  <span>
-                    <strong className="font-display text-xl font-semibold md:text-2xl">{service.title}</strong>
-                    <span className="mt-1 block text-sm text-deep/60">{service.description}</span>
-                  </span>
-                  <ArrowRight className="ml-auto size-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                </a>
-              );
-            })}
-          </div>
+          <ServiceAccordion />
         </div>
       </section>
 
