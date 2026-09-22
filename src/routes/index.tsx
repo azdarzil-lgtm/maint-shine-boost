@@ -313,7 +313,7 @@ function Index() {
                           <span>
                             <span className="flex flex-wrap items-center gap-2">
                               <span className="font-bold">{point.title}</span>
-                              <span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Free</span>
+                              <span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">{point.perkTag ?? "Free"}</span>
                             </span>
                             <span className="mt-1 block leading-relaxed opacity-75">{point.body}</span>
                           </span>
