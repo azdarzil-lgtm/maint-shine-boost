@@ -3,7 +3,7 @@ import {
   ArrowDownRight,
   ArrowRight,
   Check,
-  
+  ChevronDown,
   Clock3,
   Compass,
   Droplets,
@@ -29,6 +29,11 @@ import enquiryBg from "@/assets/enquiry-bg-2.jpg";
 import familyVillaPoster from "@/assets/family-villa-footer-poster.jpg.asset.json";
 import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
 import antonio from "@/assets/antonio.jpg";
+import mikko from "@/assets/mikko.jpg";
+import jonas from "@/assets/jonas.jpg";
+import pekka from "@/assets/pekka.jpg";
+import team3 from "@/assets/team-3.jpg";
+import team4 from "@/assets/team-4.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
