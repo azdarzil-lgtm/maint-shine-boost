@@ -122,7 +122,6 @@ const packages: {
       { title: "Garden and pool care", body: "Add the exact level each part of your property needs." },
       { title: "4 maintenance hours", body: "Four hours of general maintenance every month are already included in your plan.", perk: true },
       { title: "Priority coordination", body: "One dependable team to spot, organise and document what needs attention." },
-      { title: "Property Vault", body: "Every check, service and repair recorded in your home’s private history.", perk: true },
     ],
   },
 ];
