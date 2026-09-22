@@ -133,12 +133,54 @@ const packages: {
 ];
 
 const services = [
-  { title: "Garden Maintenance", description: "Scheduled care for lawns, borders and terraces, all year.", icon: Leaf },
-  { title: "Pool Maintenance", description: "Cleaning, water testing and equipment checks, done regularly.", icon: Waves },
-  { title: "AC Services", description: "Filter cleaning, performance checks and seasonal servicing.", icon: Wind },
-  { title: "Handyman & Repairs", description: "Small fixes, fitting work and odd jobs handled reliably.", icon: Wrench },
-  { title: "Electrical Services", description: "Safe fault-finding, installations and repairs.", icon: Zap },
-  { title: "Plumbing Services", description: "Leaks, taps, drainage and bathroom maintenance.", icon: Droplets },
+  {
+    title: "Garden Maintenance",
+    description: "Scheduled care for lawns, borders and terraces, all year.",
+    icon: Leaf,
+    detail:
+      "Lawns mown and edged, borders tidied and beds weeded — then a soil-moisture check so nothing quietly dries out. You come home to a garden that simply looks after itself.",
+    lead: { name: "Antonio Reyes", role: "Garden & pool care lead", photo: antonio },
+  },
+  {
+    title: "Pool Maintenance",
+    description: "Cleaning, water testing and equipment checks, done regularly.",
+    icon: Waves,
+    detail:
+      "Skimming, brushing and basket-emptying on a schedule, with the water tested and balanced on every visit. Swim-ready, whenever you are.",
+    lead: { name: "Daniel Torres", role: "Pool care lead", photo: team3 },
+  },
+  {
+    title: "AC Services",
+    description: "Filter cleaning, performance checks and seasonal servicing.",
+    icon: Wind,
+    detail:
+      "Filters cleaned, systems checked and the cooling tuned before the heat arrives. Air conditioning that is ready long before you need it.",
+    lead: { name: "Pekka Lindqvist", role: "AC specialist", photo: pekka },
+  },
+  {
+    title: "Handyman & Repairs",
+    description: "Small fixes, fitting work and odd jobs handled reliably.",
+    icon: Wrench,
+    detail:
+      "That list of little jobs — a sticky door, a shelf, a blind — done properly in one tidy visit. No job too small, and no chasing anyone.",
+    lead: { name: "Mikko Aaltonen", role: "Handyman lead", photo: mikko },
+  },
+  {
+    title: "Electrical Services",
+    description: "Safe fault-finding, installations and repairs.",
+    icon: Zap,
+    detail:
+      "Safe fault-finding, new fittings and lighting installed with care. If something is not quite right, we find it and put it right.",
+    lead: { name: "Jonas Berg", role: "Electrical lead", photo: jonas },
+  },
+  {
+    title: "Plumbing Services",
+    description: "Leaks, taps, drainage and bathroom maintenance.",
+    icon: Droplets,
+    detail:
+      "Drips, drains, taps and bathrooms sorted before small problems grow. Quiet, tidy work that keeps the water exactly where it belongs.",
+    lead: { name: "Carmen Vidal", role: "Plumbing lead", photo: team4 },
+  },
 ];
 
 function StoreButtons() {
