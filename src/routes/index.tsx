@@ -121,7 +121,7 @@ const packages: {
     items: [
       { title: "Whole-property checks", body: "We proactively check AC, plumbing, electrics, fixtures and the general condition of your home." },
       { title: "Garden and pool care", body: "Add the exact level each part of your property needs." },
-      { title: "4 maintenance hours", body: "Four hours of general maintenance every month are already included in your plan.", perk: true },
+      { title: "4 maintenance hours", body: "Four hours of general maintenance every month are already included in your plan.", perk: true, perkTag: "Included" },
       { title: "Priority coordination", body: "One dependable team to spot, organise and document what needs attention." },
     ],
   },
