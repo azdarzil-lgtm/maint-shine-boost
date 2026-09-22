@@ -65,7 +65,7 @@ const packages: {
   lead: string;
   price: number;
   detail: string;
-  items: { title: string; body: string; perk?: boolean }[];
+  items: { title: string; body: string; perk?: boolean; perkTag?: string }[];
   featured?: boolean;
 }[] = [
   {
