@@ -105,6 +105,7 @@ const packages: {
         title: "2 maintenance hours",
         body: "Two hours of general maintenance every month are already included in your plan.",
         perk: true,
+        perkTag: "Included",
       },
       { title: "Property report", body: "A photo-documented view of your home’s condition, stored in your Property Vault." },
     ],
