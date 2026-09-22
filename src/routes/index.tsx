@@ -192,7 +192,7 @@ function ServiceAccordion() {
         const Icon = service.icon;
         const isOpen = openIndex === index;
         return (
-          <div key={service.title} className="border-b border-deep/15">
+          <div key={service.title}>
             <button
               type="button"
               aria-expanded={isOpen}
