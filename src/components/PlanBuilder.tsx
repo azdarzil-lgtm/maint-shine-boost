@@ -1,398 +1,197 @@
-import { ArrowLeft, ArrowRight, Check, MessageCircle, Smartphone, Sparkles, X } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  MessageCircle,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  X,
+} from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 export type PlanKey = "outdoor" | "home-ready" | "complete";
 
-export const planBase: Record<PlanKey, { name: string; base: number; blurb: string }> = {
-  outdoor: { name: "Garden Care", base: 189, blurb: "Your garden kept healthy and inviting all year." },
-  "home-ready": { name: "Home Ready", base: 289, blurb: "Garden, pool and monthly photo report." },
-  complete: { name: "Complete Care", base: 459, blurb: "Whole-home care with hands-on support." },
+type PropertyKey = "flat" | "townhouse" | "villa" | "finca";
+
+export const planBase: Record<PlanKey, { name: string; base: number; blurb: string; includedHours: number }> = {
+  outdoor: { name: "Essential Care", base: 189, blurb: "Reliable essentials, tailored to your home.", includedHours: 0 },
+  "home-ready": { name: "Home Ready", base: 289, blurb: "Regular care with practical maintenance time built in.", includedHours: 2 },
+  complete: { name: "VIP Care", base: 459, blurb: "Proactive oversight of your whole property.", includedHours: 4 },
 };
 
-const gardenSizes = [
-  { label: "Patio / courtyard", note: "up to 100 m²", add: 0 },
-  { label: "Small garden", note: "100 – 300 m²", add: 35 },
-  { label: "Family garden", note: "300 – 700 m²", add: 80 },
-  { label: "Large garden", note: "700 – 1,500 m²", add: 140 },
+const propertyTypes: { key: PropertyKey; label: string; note: string; add: number }[] = [
+  { key: "flat", label: "Flat", note: "Apartment or penthouse", add: 0 },
+  { key: "townhouse", label: "Townhouse", note: "Shared or private outdoor space", add: 25 },
+  { key: "villa", label: "Villa", note: "Detached home and grounds", add: 70 },
+  { key: "finca", label: "Finca", note: "Larger rural property", add: 130 },
+];
+
+const outdoorSizes = [
+  { label: "No garden / yard", note: "No regular outdoor care", add: 0 },
+  { label: "Patio / courtyard", note: "up to 100 m²", add: 20 },
+  { label: "Small garden", note: "100–300 m²", add: 35 },
+  { label: "Family garden", note: "300–700 m²", add: 80 },
+  { label: "Large garden", note: "700–1,500 m²", add: 140 },
   { label: "Estate grounds", note: "1,500 m² +", add: 210 },
 ];
 
 const poolSizes = [
-  { label: "No pool", note: "garden care only", add: 0 },
+  { label: "No pool", note: "No regular pool care", add: 0 },
   { label: "Plunge pool", note: "up to 15 m²", add: 30 },
-  { label: "Standard pool", note: "15 – 32 m²", add: 60 },
-  { label: "Large pool", note: "32 – 60 m²", add: 105 },
+  { label: "Standard pool", note: "15–32 m²", add: 60 },
+  { label: "Large pool", note: "32–60 m²", add: 105 },
   { label: "XL / infinity pool", note: "60 m² +", add: 160 },
 ];
 
 const terms = [
-  { key: "trial", label: "Monthly try-out", months: 1, discount: 0, note: "Rolling month, cancel any time" },
-  { key: "3", label: "3 months", months: 3, discount: 0.05, note: "5% off · extra hours at €42/h" },
-  { key: "6", label: "6 months", months: 6, discount: 0.1, note: "10% off · extra hours at €38/h" },
-  { key: "12", label: "12 months", months: 12, discount: 0.15, note: "15% off · extra hours at €34/h · 1 free garden hour a month" },
+  { key: "trial", label: "Monthly try-out", discount: 0, note: "Rolling monthly, cancel any time" },
+  { key: "3", label: "3 months", discount: 0.05, note: "5% off your monthly plan" },
+  { key: "6", label: "6 months", discount: 0.08, note: "8% off your monthly plan" },
+  { key: "12", label: "12 months", discount: 0.1, note: "10% off your monthly plan" },
 ] as const;
 
-const hourlyRate: Record<number, number> = { 1: 48, 3: 42, 6: 38, 12: 34 };
+const extraServices = ["Handyman & repairs", "Electrical services", "Plumbing services", "AC servicing", "Deep garden work", "Pre-arrival home prep"];
+const extraHourRate = 48;
+const euro = (value: number) => `€${value.toFixed(2)}`;
 
-const extraServices = [
-  "Handyman & repairs",
-  "Electrical services",
-  "Plumbing services",
-  "AC servicing",
-  "Deep garden work",
-  "Pre-arrival home prep",
-];
-
-const euro = (n: number) => `€${n.toFixed(2).replace(/\.00$/, ".00")}`;
+function PropertyDrawing({ type }: { type: PropertyKey }) {
+  if (type === "flat") {
+    return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M24 56V9h48v47M18 56h60M35 19h8v8h-8zm18 0h8v8h-8zM35 35h8v8h-8zm18 0h8v8h-8zM45 56V45h8v11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" /></svg>;
+  }
+  if (type === "townhouse") {
+    return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M12 56V26l18-14 18 14v30m0 0V26l18-14 18 14v30M7 56h82M21 34h9v9h-9zm36 0h9v9h-9zM35 56V39h8v17m28 0V39h8v17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" /></svg>;
+  }
+  if (type === "villa") {
+    return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M10 56h76M18 56V29L48 10l30 19v27M10 31l38-24 38 24M29 35h11v10H29zm27 0h11v10H56zM44 56V39h9v17M76 22V10h7v17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" /></svg>;
+  }
+  return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M7 56h82M18 56V31L48 13l30 18v25M12 34l36-24 36 24M29 37h11v9H29zm27 0h11v9H56zM44 56V40h9v16M8 29v-9m-5 5h10M83 19v-9m-5 5h10" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
 
 function HelpCta() {
   return (
-    <a
-      href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan"
-      className="mt-6 flex items-center gap-3 rounded-2xl border border-coral/40 bg-coral/10 p-4 text-left"
-    >
+    <a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" className="mt-6 flex items-center gap-3 rounded-2xl border border-coral/40 bg-coral/10 p-4 text-left">
       <MessageCircle className="size-5 shrink-0 text-coral" aria-hidden="true" />
-      <span className="text-sm leading-snug">
-        <span className="font-semibold">Stuck, or not sure what to pick?</span>{" "}
-        <span className="text-deep/70">Tell us about your home and we&apos;ll answer today.</span>
-      </span>
+      <span className="text-sm leading-snug"><span className="font-semibold">Not sure what your home needs?</span> <span className="text-deep/70">Tell us about it and we’ll help today.</span></span>
       <ArrowRight className="ml-auto size-4 shrink-0 text-coral" aria-hidden="true" />
     </a>
   );
 }
 
-function Slider({
-  label,
-  options,
-  value,
-  onChange,
-}: {
-  label: string;
-  options: { label: string; note: string; add: number }[];
-  value: number;
-  onChange: (v: number) => void;
-}) {
+function Slider({ label, options, value, onChange }: { label: string; options: { label: string; note: string; add: number }[]; value: number; onChange: (value: number) => void }) {
+  const selected = options[value] ?? options[0];
+  if (!selected) return null;
   return (
     <div>
-      <div className="flex items-baseline justify-between gap-4">
-        <p className="section-label text-coral">{label}</p>
-        <p className="text-sm font-semibold text-deep/60">{options[value]!.note}</p>
-      </div>
-      <p className="mt-2 font-display text-2xl font-semibold md:text-3xl">{options[value]!.label}</p>
-      <input
-        type="range"
-        min={0}
-        max={options.length - 1}
-        step={1}
-        value={value}
-        onChange={(event) => onChange(Number(event.target.value))}
-        aria-label={label}
-        className="mt-5 w-full accent-[var(--coral)]"
-      />
-      <div className="mt-2 flex justify-between text-[0.65rem] font-bold uppercase tracking-wide text-deep/45">
-        <span>Smallest</span>
-        <span>Largest</span>
-      </div>
+      <div className="flex items-baseline justify-between gap-4"><p className="section-label text-coral">{label}</p><p className="text-sm font-semibold text-deep/60">{selected.note}</p></div>
+      <p className="mt-2 font-display text-2xl font-semibold md:text-3xl">{selected.label}</p>
+      <input type="range" min={0} max={options.length - 1} step={1} value={value} onChange={(event) => onChange(Number(event.target.value))} aria-label={label} className="mt-5 w-full accent-[var(--coral)]" />
+      <div className="mt-2 flex justify-between text-[0.65rem] font-bold uppercase tracking-wide text-deep/45"><span>None / smallest</span><span>Largest</span></div>
     </div>
   );
 }
 
 export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => void }) {
+  const initialPlanIndex = plan === "outdoor" ? 0 : plan === "home-ready" ? 1 : 2;
   const [step, setStep] = useState(0);
-  const [garden, setGarden] = useState(1);
-  const [pool, setPool] = useState(2);
+  const [propertyIndex, setPropertyIndex] = useState(1);
+  const [outdoor, setOutdoor] = useState(1);
+  const [pool, setPool] = useState(0);
+  const [careIndex, setCareIndex] = useState(initialPlanIndex);
+  const [extraHours, setExtraHours] = useState(0);
+  const [service, setService] = useState(extraServices[0] ?? "Handyman & repairs");
   const [termIndex, setTermIndex] = useState(1);
-  const [hours, setHours] = useState(0);
-  const [service, setService] = useState(extraServices[0]!);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => event.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
   }, [onClose]);
 
-  const term = terms[termIndex]!;
-  const isGardenOnly = plan === "outdoor";
+  const planKeys: PlanKey[] = ["outdoor", "home-ready", "complete"];
+  const selectedPlanKey = planKeys[careIndex] ?? "outdoor";
+  const selectedPlan = planBase[selectedPlanKey];
+  const property = propertyTypes[propertyIndex] ?? propertyTypes[0];
+  const outdoorChoice = outdoorSizes[outdoor] ?? outdoorSizes[0];
+  const poolChoice = poolSizes[pool] ?? poolSizes[0];
+  const term = terms[termIndex] ?? terms[0];
+
   const pricing = useMemo(() => {
-    const poolAddition = plan === "outdoor" ? 0 : poolSizes[pool]!.add;
-    const base = planBase[plan].base + gardenSizes[garden]!.add + poolAddition;
-    const discounted = base * (1 - term.discount);
-    const rate = hourlyRate[term.months]!;
-    const includedHours = plan === "complete" ? 2 : 0;
-    const billableHours = Math.max(0, hours - includedHours);
-    const hoursCost = billableHours * rate;
-    return { base, discounted, rate, hoursCost, billableHours, includedHours, total: discounted + hoursCost };
-  }, [plan, garden, pool, term, hours]);
+    const beforeDiscount = selectedPlan.base + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0) + extraHours * extraHourRate;
+    const saving = beforeDiscount * term.discount;
+    return { beforeDiscount, saving, total: beforeDiscount - saving };
+  }, [selectedPlan, property, outdoorChoice, poolChoice, extraHours, term]);
 
-  const steps = isGardenOnly
-    ? ["Welcome", "Your garden", "Your plan length", "Extra hours", "Your quote"]
-    : ["Welcome", "Your garden", "Your pool", "Your plan length", "Extra hours", "Your quote"];
-  const stage = isGardenOnly ? [0, 1, 3, 4, 5][step] ?? 0 : step;
-  const canAddHours = term.months > 1;
-
-  const enquiryBody = encodeURIComponent(
-    [
-      `Plan: ${planBase[plan].name}`,
-      `Garden: ${gardenSizes[garden]!.label} (${gardenSizes[garden]!.note})`,
-      isGardenOnly ? "Pool: not included in Garden Care" : `Pool: ${poolSizes[pool]!.label} (${poolSizes[pool]!.note})`,
-      `Plan length: ${term.label}`,
-      canAddHours && hours > 0 ? `Extra hours: ${hours} h/month of ${service} at ${euro(pricing.rate)}/h${plan === "complete" ? " (first 2 h included in Complete Care)" : ""}` : "Extra hours: none",
-      `Indicative total: ${euro(pricing.total)} per month`,
-      "",
-      "My name:",
-      "Property address:",
-      "Best number to reach me:",
-    ].join("\n"),
-  );
+  const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "Care level", "Maintenance hours", "Plan length & quote"];
+  const enquiryBody = encodeURIComponent([
+    `Care level: ${selectedPlan.name}`,
+    `Property: ${property?.label ?? "Not selected"}`,
+    `Garden / yard: ${outdoorChoice?.label ?? "Not selected"}`,
+    `Pool: ${poolChoice?.label ?? "Not selected"}`,
+    `Included maintenance: ${selectedPlan.includedHours} h/month`,
+    `Additional maintenance: ${extraHours ? `${extraHours} h/month, mainly for ${service}` : "none"}`,
+    `Plan length: ${term.label} (${Math.round(term.discount * 100)}% discount)`,
+    `Indicative total: ${euro(pricing.total)} per month`, "", "My name:", "Property address:", "Best number to reach me:",
+  ].join("\n"));
 
   return (
     <div className="fixed inset-0 z-[70] flex items-end justify-center bg-deep/70 p-0 backdrop-blur-sm sm:items-center sm:p-6">
-      <div className="relative flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl bg-sunlit text-deep shadow-2xl sm:rounded-3xl">
+      <div className="relative flex max-h-[94vh] w-full max-w-4xl flex-col overflow-hidden rounded-t-3xl bg-sunlit text-deep shadow-2xl sm:rounded-3xl">
         <div className="flex items-center justify-between gap-4 border-b border-deep/10 px-5 py-4 md:px-8">
-          <div>
-            <p className="section-label text-coral">{planBase[plan].name}</p>
-            <p className="text-sm text-deep/60">
-              Step {step + 1} of {steps.length} · {steps[step]}
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close plan builder"
-            className="grid size-10 place-items-center rounded-full border border-deep/20 transition-colors hover:border-coral hover:text-coral"
-          >
-            <X className="size-5" aria-hidden="true" />
-          </button>
+          <div><p className="section-label text-coral">Your bespoke care plan</p><p className="text-sm text-deep/60">Step {step + 1} of {steps.length} · {steps[step]}</p></div>
+          <button type="button" onClick={onClose} aria-label="Close plan builder" className="grid size-10 place-items-center rounded-full border border-deep/20 transition-colors hover:border-coral hover:text-coral"><X className="size-5" aria-hidden="true" /></button>
         </div>
-
-        <div className="h-1 w-full bg-deep/10">
-          <div className="h-full bg-coral transition-all duration-300" style={{ width: `${((step + 1) / steps.length) * 100}%` }} />
-        </div>
+        <div className="h-1 w-full bg-deep/10"><div className="h-full bg-coral transition-all duration-300" style={{ width: `${((step + 1) / steps.length) * 100}%` }} /></div>
 
         <div className="flex-1 overflow-y-auto px-5 py-7 md:px-8 md:py-9">
-          {stage === 0 && (
-            <div>
-              <Sparkles className="size-7 text-coral" aria-hidden="true" />
-              <h3 className="mt-4 font-display text-3xl font-semibold leading-tight md:text-4xl">
-                Give us one minute — and we&apos;ll give you the right plan.
-              </h3>
-              <p className="mt-4 text-lg leading-relaxed text-deep/70">
-                {isGardenOnly
-                  ? "No two gardens on this coast are the same. A few quick questions about your garden and how long you'd like us around, and you'll see an honest price built for your property — not a generic number. It really does take about a minute."
-                  : "No two homes on this coast are the same. A few quick questions about your garden, your pool and how long you'd like us around, and you'll see an honest price built for your property — not a generic number. It really does take about a minute."}
-              </p>
-              <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4">
-                <p className="flex flex-wrap items-center gap-2 font-bold">
-                  <Smartphone className="size-5 text-coral" aria-hidden="true" />
-                  Your free Property Vault
-                  <span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Included free</span>
-                </p>
-                <p className="mt-1.5 text-sm leading-relaxed text-deep/70">Photos from every single visit, saved to your phone — see exactly what we did, from anywhere in the world.</p>
-              </div>
-              <ul className="mt-4 space-y-3 text-sm">
-                {["Photo-documented report every month", "One dependable team, no hidden extras"].map((point) => (
-                  <li key={point} className="flex gap-3">
-                    <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-              <HelpCta />
-            </div>
-          )}
+          {step === 0 && <div>
+            <Sparkles className="size-7 text-coral" aria-hidden="true" />
+            <h3 className="mt-4 max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">Tell us about your property. We’ll create a care plan made for it.</h3>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-deep/70">A flat with a courtyard needs something very different from a finca with gardens and a pool. Stay with us for one minute and we’ll shape the services, maintenance time and price around your actual home.</p>
+            <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4"><p className="flex flex-wrap items-center gap-2 font-bold"><Smartphone className="size-5 text-coral" aria-hidden="true" />Your free Property Vault<span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Always included</span></p><p className="mt-1.5 text-sm leading-relaxed text-deep/70">A photo-documented history of every visit, check, service and repair — whatever care level you choose.</p></div>
+            <HelpCta />
+          </div>}
 
-          {stage === 1 && (
-            <div>
-              <Slider label="How big is your garden?" options={gardenSizes} value={garden} onChange={setGarden} />
-              <p className="mt-6 leading-relaxed text-deep/65">
-                Mowing, edging, watering, leaf blowing, weeding, trimming and soil-moisture checks — the bigger the
-                grounds, the more hours your garden needs each month.
-              </p>
-              <HelpCta />
-            </div>
-          )}
+          {step === 1 && <div>
+            <p className="section-label text-coral">What kind of property is it?</p>
+            <h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Choose the closest match.</h3>
+            <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">{propertyTypes.map((option, index) => <button key={option.key} type="button" onClick={() => setPropertyIndex(index)} className={`rounded-2xl border p-4 text-left transition-colors ${propertyIndex === index ? "border-coral bg-coral/10 text-coral" : "border-deep/15 hover:border-coral/60"}`}><PropertyDrawing type={option.key} /><span className="mt-3 block font-display text-lg font-semibold text-deep">{option.label}</span><span className="mt-1 block text-xs leading-snug text-deep/60">{option.note}</span></button>)}</div>
+            <HelpCta />
+          </div>}
 
-          {stage === 2 && (
-            <div>
-              <Slider label="And your pool?" options={poolSizes} value={pool} onChange={setPool} />
-              <p className="mt-6 leading-relaxed text-deep/65">
-                Cleaning, water chemistry balancing and emptying the baskets, so the pool is always swim-ready when you
-                walk through the door.
-              </p>
-              <HelpCta />
-            </div>
-          )}
+          {step === 2 && <div><Slider label="Does your home have a garden or yard?" options={outdoorSizes} value={outdoor} onChange={setOutdoor} /><p className="mt-6 leading-relaxed text-deep/65">Choose “No garden / yard” for a flat without outdoor space. Otherwise, pick the closest size and we’ll tailor the regular care accordingly.</p><HelpCta /></div>}
+          {step === 3 && <div><Slider label="Would you like regular pool care?" options={poolSizes} value={pool} onChange={setPool} /><p className="mt-6 leading-relaxed text-deep/65">No pool? No problem. Pool care is optional on every plan and only affects your price when you include it.</p><HelpCta /></div>}
 
-          {stage === 3 && (
-            <div>
-              <h3 className="font-display text-3xl font-semibold leading-tight">How long would you like us around?</h3>
-              <p className="mt-3 leading-relaxed text-deep/65">The longer you stay with us, the less you pay — every month and every extra hour.</p>
-              <div className="mt-6 grid gap-3">
-                {terms.map((option, index) => (
-                  <button
-                    key={option.key}
-                    type="button"
-                    onClick={() => setTermIndex(index)}
-                    className={`flex items-center justify-between gap-4 rounded-2xl border p-4 text-left transition-colors ${
-                      index === termIndex ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"
-                    }`}
-                  >
-                    <span>
-                      <span className="block font-display text-xl font-semibold">{option.label}</span>
-                      <span className="block text-sm text-deep/60">{option.note}</span>
-                    </span>
-                    <span className="font-display text-lg font-semibold text-coral">
-                      {option.discount ? `−${Math.round(option.discount * 100)}%` : "Flexible"}
-                    </span>
-                  </button>
-                ))}
-              </div>
-              <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4 text-sm leading-relaxed">
-                <p className="font-bold">And your Property Vault? Always free.</p>
-                <p className="mt-1 text-deep/70">
-                  Photos from every visit, on every plan, at no extra cost — whichever length you choose. Stay a full
-                  year and you also get one hour of garden care free, every single month.
-                </p>
-              </div>
-              <HelpCta />
-            </div>
-          )}
+          {step === 4 && <div>
+            <p className="section-label text-coral">Choose your care level</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">How hands-on would you like us to be?</h3>
+            <div className="mt-6 grid gap-3 md:grid-cols-3">{planKeys.map((key, index) => { const option = planBase[key]; return <button key={key} type="button" onClick={() => setCareIndex(index)} className={`flex min-h-52 flex-col rounded-2xl border p-5 text-left transition-colors ${careIndex === index ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}><span className="font-display text-2xl font-semibold">{option.name}</span><span className="mt-2 text-sm leading-relaxed text-deep/65">{option.blurb}</span><span className="mt-auto pt-5 text-sm font-bold text-coral">{option.includedHours === 0 ? "Add maintenance hours as needed" : `${option.includedHours} maintenance hours included monthly`}</span>{key === "complete" && <span className="mt-2 flex items-center gap-2 text-xs font-semibold text-deep/65"><ShieldCheck className="size-4 text-coral" />AC, plumbing, electrics and condition checks</span>}</button>; })}</div>
+            <HelpCta />
+          </div>}
 
-          {stage === 4 && (
-            <div>
-              <h3 className="font-display text-3xl font-semibold leading-tight">Add home maintenance hours?</h3>
-              {canAddHours ? (
-                <>
-                  <p className="mt-3 leading-relaxed text-deep/65">
-                    Bank hours from our whole service portfolio and use them whenever something needs doing. Minimum two
-                    hours in one slot, up to six hours a month — at {euro(pricing.rate)} an hour on your {term.label.toLowerCase()} plan.
-                  </p>
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {[0, 2, 3, 4, 5, 6].map((option) => (
-                      <button
-                        key={option}
-                        type="button"
-                        onClick={() => setHours(option)}
-                        className={`rounded-full border px-4 py-2 text-sm font-bold transition-colors ${
-                          hours === option ? "border-coral bg-coral text-sunlit" : "border-deep/20 hover:border-coral"
-                        }`}
-                      >
-                        {option === 0 ? "No extra hours" : `${option} h / month`}
-                      </button>
-                    ))}
-                  </div>
-                  {plan === "complete" && (
-                    <p className="mt-4 rounded-2xl border border-coral/40 bg-coral/10 p-4 text-sm font-semibold">
-                      Good news — your first 2 hours a month are already included in Complete Care, free. Only pick more
-                      if you&apos;d like extra.
-                    </p>
-                  )}
-                  {hours > 0 && (
-                    <div className="mt-6">
-                      <p className="section-label text-coral">Mostly for</p>
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {extraServices.map((item) => (
-                          <button
-                            key={item}
-                            type="button"
-                            onClick={() => setService(item)}
-                            className={`rounded-full border px-3.5 py-1.5 text-xs font-bold transition-colors ${
-                              service === item ? "border-coral bg-coral text-sunlit" : "border-deep/20 hover:border-coral"
-                            }`}
-                          >
-                            {item}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <p className="mt-3 leading-relaxed text-deep/65">
-                  Extra service hours come with our 3, 6 and 12-month plans. Step back and choose a longer plan to unlock
-                  them — or start on the monthly try-out and add them later.
-                </p>
-              )}
-              <HelpCta />
-            </div>
-          )}
+          {step === 5 && <div>
+            <p className="section-label text-coral">Maintenance time</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Would you like any additional hours?</h3>
+            <p className="mt-3 leading-relaxed text-deep/65">Your {selectedPlan.name} plan includes <strong className="text-deep">{selectedPlan.includedHours} general maintenance hours each month</strong>. Add another 2–6 hours for repairs, practical jobs or pre-arrival preparation.</p>
+            <div className="mt-6 flex flex-wrap gap-2">{[0, 2, 3, 4, 5, 6].map((option) => <button key={option} type="button" onClick={() => setExtraHours(option)} className={`rounded-full border px-4 py-2 text-sm font-bold transition-colors ${extraHours === option ? "border-coral bg-coral text-sunlit" : "border-deep/20 hover:border-coral"}`}>{option === 0 ? "No extra hours" : `+ ${option} h / month`}</button>)}</div>
+            {extraHours > 0 && <div className="mt-6"><p className="section-label text-coral">Mostly for</p><div className="mt-3 flex flex-wrap gap-2">{extraServices.map((item) => <button key={item} type="button" onClick={() => setService(item)} className={`rounded-full border px-3.5 py-1.5 text-xs font-bold transition-colors ${service === item ? "border-coral bg-coral text-sunlit" : "border-deep/20 hover:border-coral"}`}>{item}</button>)}</div></div>}
+            <HelpCta />
+          </div>}
 
-          {stage === 5 && (
-            <div>
-              <p className="section-label text-coral">Your indicative plan</p>
-              <p className="mt-3 font-display text-5xl font-semibold">
-                {euro(pricing.total)}
-                <span className="ml-2 align-middle text-base font-semibold text-deep/55">/ month</span>
-              </p>
-              <ul className="mt-6 space-y-3 text-sm">
-                <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
-                  <span>
-                    {planBase[plan].name} · {gardenSizes[garden]!.label}
-                    {!isGardenOnly && ` · ${poolSizes[pool]!.label}`}
-                  </span>
-                  <span className="font-semibold">{euro(pricing.base)}</span>
-                </li>
-                <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
-                  <span>{term.label} commitment</span>
-                  <span className="font-semibold">{term.discount ? `−${euro(pricing.base - pricing.discounted)}` : "—"}</span>
-                </li>
-                {plan === "complete" && (
-                  <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
-                    <span>2 h/month of extra service — included in your plan</span>
-                    <span className="font-extrabold text-coral">Free</span>
-                  </li>
-                )}
-                {canAddHours && pricing.billableHours > 0 && (
-                  <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
-                    <span>{pricing.billableHours} extra h/month · {service} at {euro(pricing.rate)}/h</span>
-                    <span className="font-semibold">{euro(pricing.hoursCost)}</span>
-                  </li>
-                )}
-                <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
-                  <span className="font-semibold">Property Vault · photos from every visit</span>
-                  <span className="font-extrabold text-coral">Free</span>
-                </li>
-                {term.months === 12 && (
-                  <li className="flex justify-between gap-4 border-t border-deep/10 pt-3">
-                    <span>1 hour of garden care, every month</span>
-                    <span className="font-semibold text-coral">Free</span>
-                  </li>
-                )}
-              </ul>
-              <p className="mt-5 text-xs leading-relaxed text-deep/55">
-                Indicative pricing, IVA included. We confirm the final figure after a quick look at your property — no
-                surprises, ever.
-              </p>
-              <a
-                href={`mailto:info@solidmaint.com?subject=Service%20request%20—%20${encodeURIComponent(planBase[plan].name)}&body=${enquiryBody}`}
-                className="solid-button solid-button-coral mt-6 w-full"
-              >
-                Request this service <ArrowRight aria-hidden="true" />
-              </a>
-              <HelpCta />
+          {step === 6 && <div>
+            <p className="section-label text-coral">Choose your plan length</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Stay flexible, or save by staying longer.</h3>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">{terms.map((option, index) => <button key={option.key} type="button" onClick={() => setTermIndex(index)} className={`flex items-center justify-between gap-4 rounded-2xl border p-4 text-left transition-colors ${termIndex === index ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}><span><span className="block font-display text-xl font-semibold">{option.label}</span><span className="block text-sm text-deep/60">{option.note}</span></span><span className="font-display text-lg font-semibold text-coral">{option.discount ? `−${Math.round(option.discount * 100)}%` : "Flexible"}</span></button>)}</div>
+            <div className="mt-7 rounded-2xl bg-deep p-5 text-sunlit md:p-6"><div className="flex flex-wrap items-end justify-between gap-4"><div><p className="section-label text-coral">Your indicative bespoke plan</p><p className="mt-2 font-display text-4xl font-semibold md:text-5xl">{euro(pricing.total)}<span className="ml-2 text-base text-sunlit/60">/ month</span></p></div>{pricing.saving > 0 && <p className="text-sm font-bold text-coral">You save {euro(pricing.saving)} each month</p>}</div>
+              <ul className="mt-5 space-y-2 border-t border-sunlit/15 pt-4 text-sm text-sunlit/75"><li className="flex justify-between gap-4"><span>{selectedPlan.name} · {property?.label}</span><span>{euro(selectedPlan.base + (property?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{outdoorChoice?.label} · {poolChoice?.label}</span><span>{euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{selectedPlan.includedHours} maintenance hours included</span><span className="font-bold text-coral">Included</span></li>{extraHours > 0 && <li className="flex justify-between gap-4"><span>{extraHours} additional hours · {service}</span><span>{euro(extraHours * extraHourRate)}</span></li>}<li className="flex justify-between gap-4"><span>Property Vault</span><span className="font-bold text-coral">Free</span></li></ul>
             </div>
-          )}
+            <p className="mt-4 text-xs leading-relaxed text-deep/55">Indicative pricing, IVA included. We confirm the final plan after a quick look at your property — no surprises, ever.</p>
+            <a href={`mailto:info@solidmaint.com?subject=Bespoke%20care%20plan%20request&body=${enquiryBody}`} className="solid-button solid-button-coral mt-5 w-full">Request my bespoke plan <ArrowRight aria-hidden="true" /></a>
+            <HelpCta />
+          </div>}
         </div>
 
         <div className="flex items-center justify-between gap-3 border-t border-deep/10 px-5 py-4 md:px-8">
-          <button
-            type="button"
-            onClick={() => (step === 0 ? onClose() : setStep((s) => s - 1))}
-            className="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-deep/60 transition-colors hover:text-coral"
-          >
-            <ArrowLeft className="size-4" aria-hidden="true" /> {step === 0 ? "Not now" : "Back"}
-          </button>
-          {step < steps.length - 1 ? (
-            <button type="button" onClick={() => setStep((s) => s + 1)} className="solid-button solid-button-coral">
-              {step === 0 ? "Let's go" : "Continue"} <ArrowRight aria-hidden="true" />
-            </button>
-          ) : (
-            <p className="font-display text-lg font-semibold">{euro(pricing.total)} / month</p>
-          )}
+          <button type="button" onClick={() => (step === 0 ? onClose() : setStep((current) => current - 1))} className="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-deep/60 transition-colors hover:text-coral"><ArrowLeft className="size-4" aria-hidden="true" /> {step === 0 ? "Not now" : "Back"}</button>
+          {step < steps.length - 1 ? <button type="button" onClick={() => setStep((current) => current + 1)} className="solid-button solid-button-coral">{step === 0 ? "Let’s begin" : "Continue"} <ArrowRight aria-hidden="true" /></button> : <p className="hidden font-display text-lg font-semibold sm:block">{euro(pricing.total)} / month</p>}
         </div>
       </div>
     </div>

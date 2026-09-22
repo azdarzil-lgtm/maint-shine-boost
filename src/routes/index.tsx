@@ -71,15 +71,17 @@ const packages: {
   {
     number: "01",
     key: "outdoor",
-    name: "Garden Care",
-    lead: "Garden only",
+    name: "Essential Care",
+    lead: "The dependable essentials",
     price: 189,
-    detail: "For owners who want their garden kept healthy, tidy and inviting between visits.",
+    detail: "A flexible starting point for flats, townhouses and smaller homes. Choose only the regular care your property needs.",
     items: [
       {
-        title: "Garden care",
-        body: "Lawn mowing, edging, watering and leaf blowing, plus weed removal and soil-moisture checks. Every visit leaves your garden just as the Costa del Sol intended — lush, tidy and ready to enjoy. And because we watch the soil and the seasons, your lawn stays green and healthy all year round, without you lifting a finger.",
+        title: "Garden or yard care",
+        body: "Optional care shaped around your outdoor space — from a small townhouse patio to generous finca grounds.",
       },
+      { title: "Pool care", body: "Add regular pool care only if your home needs it." },
+      { title: "Maintenance hours", body: "Add hours whenever you need help with a repair or practical job." },
       { title: "Visit photos", body: "Photos from every visit saved to your free Property Vault.", perk: true },
     ],
   },
@@ -87,39 +89,40 @@ const packages: {
     number: "02",
     key: "home-ready",
     name: "Home Ready",
-    lead: "Garden + pool + monthly report",
+    lead: "More support, already built in",
     price: 289,
-    detail: "Our core all-year bundle for a home that should feel ready the moment you arrive.",
+    detail: "Our most popular level for owners who want regular care plus practical time set aside for the little things.",
     items: [
       {
-        title: "Garden care",
-        body: "Lawn mowing, edging, watering and leaf blowing, plus removal of weeds, trimming of trees and hedges, and checking soil moisture levels.",
+        title: "Garden or yard care",
+        body: "Choose the right level for your outdoor space, or leave it out completely.",
       },
       {
         title: "Pool care",
-        body: "Clean the pool, check and balance water chemistry, and empty the baskets of dirt, so the pool stays swim-ready.",
+        body: "Optional cleaning, water chemistry and equipment checks for homes with a pool.",
       },
       {
-        title: "Monthly report",
-        body: "Once a month, our team checks the garden, grounds and pool, then sends a photo-documented report to your Property Vault, so you know the exact condition of your property’s surroundings.",
+        title: "2 maintenance hours",
+        body: "Two hours of general maintenance every month are already included in your plan.",
         perk: true,
       },
+      { title: "Property report", body: "A photo-documented view of your home’s condition, stored in your Property Vault." },
     ],
     featured: true,
   },
   {
     number: "03",
     key: "complete",
-    name: "Complete Care",
-    lead: "Whole-home support",
+    name: "VIP Care",
+    lead: "Full-property peace of mind",
     price: 459,
-    detail: "For villas and homes that need broader, hands-on maintenance support all year.",
+    detail: "Proactive, hands-on oversight for villas, fincas and any home whose owner wants everything checked and ready.",
     items: [
-      { title: "Garden, pool and AC care", body: "Everything in Home Ready, plus air-conditioning servicing and checks." },
-      { title: "Handyman and repairs", body: "Small fixes, fitting work and odd jobs handled by our own team." },
-      { title: "Electrical and plumbing", body: "Fault-finding, repairs and maintenance without chasing trades." },
-      { title: "Maintenance Service", body: "Two hours of handyman, electrical or plumbing work every month — already included in your price.", perk: true },
-      { title: "Visit photos", body: "Photos from every visit saved to your free Property Vault.", perk: true },
+      { title: "Whole-property checks", body: "We proactively check AC, plumbing, electrics, fixtures and the general condition of your home." },
+      { title: "Garden and pool care", body: "Add the exact level each part of your property needs." },
+      { title: "4 maintenance hours", body: "Four hours of general maintenance every month are already included in your plan.", perk: true },
+      { title: "Priority coordination", body: "One dependable team to spot, organise and document what needs attention." },
+      { title: "Property Vault", body: "Every check, service and repair recorded in your home’s private history.", perk: true },
     ],
   },
 ];
@@ -332,7 +335,7 @@ function Index() {
                   onClick={() => setBuilderPlan(item.key)}
                   className={item.featured ? "solid-button solid-button-coral mt-10" : "solid-button solid-button-dark mt-10"}
                 >
-                  Request a service <ArrowRight aria-hidden="true" />
+                  Build my bespoke plan <ArrowRight aria-hidden="true" />
                 </button>
               </article>
             ))}
@@ -351,7 +354,7 @@ function Index() {
           </div>
 
           <p className="mt-6 text-sm text-deep/60">
-            Prices vary with garden and pool size. Not sure where you land?{" "}
+            Every plan is bespoke. Your indicative price reflects your property type, outdoor space, pool, maintenance hours and plan length. Not sure where you land?{" "}
             <a href="#contact" className="font-bold text-coral underline-offset-4 hover:underline">Talk to us and we&apos;ll work it out with you.</a>
           </p>
         </div>
@@ -365,17 +368,17 @@ function Index() {
               <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">A care plan in four simple steps.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
-              Start with a base plan, shape it around your home, add extra hours or services where you need them, and follow every task from your phone.
+              Tell us about your property, choose the care it needs and we’ll build a bespoke monthly plan around it — then document every task on your phone.
             </p>
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <article className="how-step">
               <span className="section-label text-coral">Step 01</span>
-              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Choose your base plan</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Pick the plan closest to how you use your home. It’s a starting point — not a fixed package, and it can grow with your property.</p>
+              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Tell us about your home</h3>
+              <p className="mt-4 leading-relaxed text-deep/65">Flat, townhouse, villa or finca — with a small yard, a large garden, a pool or neither. We begin with the home you actually own.</p>
               <div className="mt-6 flex flex-wrap gap-2">
-                {["Garden Care", "Home Ready", "Complete Care"].map((name) => (
+                {["Flat", "Townhouse", "Villa", "Finca"].map((name) => (
                   <a key={name} href="#packages" className="rounded-full border border-deep/20 px-3.5 py-1.5 text-xs font-bold transition-colors hover:border-coral hover:text-coral">{name}</a>
                 ))}
               </div>
@@ -388,8 +391,8 @@ function Index() {
 
             <article className="how-step">
               <span className="section-label text-coral">Step 02</span>
-              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Customise it with extra hours or services</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Layer extra hours of any work we provide — or add a standalone service — on top of your plan’s regular visits. Mix and match freely.</p>
+              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Choose the care you need</h3>
+              <p className="mt-4 leading-relaxed text-deep/65">Garden and pool care are both optional. Add either, both or neither, then choose the care level that feels right.</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {services.map((service) => {
                   const Icon = service.icon;
@@ -405,8 +408,8 @@ function Index() {
 
             <article className="how-step">
               <span className="section-label text-coral">Step 03</span>
-              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Booked in clear time slots</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Extra hours are booked in one time slot — a minimum of 2 hours, up to a maximum of 6 added to your 3-month plan.</p>
+              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Add maintenance time</h3>
+              <p className="mt-4 leading-relaxed text-deep/65">Home Ready includes 2 hours and VIP Care includes 4. Add more in clear 2–6 hour monthly blocks whenever your property needs them.</p>
               <div className="mt-8 border-t border-deep/15 pt-6 lg:mt-auto">
                 <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Extra hours per time slot</p>
                 <div className="mt-4 grid grid-cols-5 gap-2" aria-hidden="true">
@@ -421,7 +424,7 @@ function Index() {
                 </div>
                 <p className="mt-2 flex items-baseline justify-between text-[0.65rem] font-bold uppercase tracking-wide">
                   <span className="text-deep/45">Min 2h</span>
-                  <span className="text-coral">Max 6h · 3-month plan</span>
+                   <span className="text-coral">Up to 6 extra hours</span>
                 </p>
               </div>
             </article>
