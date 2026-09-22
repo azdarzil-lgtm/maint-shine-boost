@@ -51,8 +51,6 @@ const terms = [
   { key: "12", label: "12 months", discount: 0.1, note: "10% off your monthly plan" },
 ] as const;
 
-const extraServices = ["Handyman & repairs", "Electrical services", "Plumbing services", "AC servicing", "Deep garden work", "Pre-arrival home prep"];
-const extraHourRate = 48;
 const euro = (value: number) => `€${value.toFixed(2)}`;
 
 function PropertyDrawing({ type }: { type: PropertyKey }) {
@@ -98,8 +96,6 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   const [outdoor, setOutdoor] = useState(1);
   const [pool, setPool] = useState(0);
   const [careIndex, setCareIndex] = useState(initialPlanIndex);
-  const [extraHours, setExtraHours] = useState(0);
-  const [service, setService] = useState(extraServices[0] ?? "Handyman & repairs");
   const [termIndex, setTermIndex] = useState(1);
 
   useEffect(() => {
@@ -118,19 +114,18 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   const term = terms[termIndex] ?? terms[0];
 
   const pricing = useMemo(() => {
-    const beforeDiscount = selectedPlan.base + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0) + extraHours * extraHourRate;
+    const beforeDiscount = selectedPlan.base + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0);
     const saving = beforeDiscount * term.discount;
     return { beforeDiscount, saving, total: beforeDiscount - saving };
-  }, [selectedPlan, property, outdoorChoice, poolChoice, extraHours, term]);
+  }, [selectedPlan, property, outdoorChoice, poolChoice, term]);
 
-  const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "Care level", "Maintenance hours", "Plan length & quote"];
+  const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "Care level", "Plan length & quote"];
   const enquiryBody = encodeURIComponent([
     `Care level: ${selectedPlan.name}`,
     `Property: ${property?.label ?? "Not selected"}`,
     `Garden / yard: ${outdoorChoice?.label ?? "Not selected"}`,
     `Pool: ${poolChoice?.label ?? "Not selected"}`,
     `Included maintenance: ${selectedPlan.includedHours} h/month`,
-    `Additional maintenance: ${extraHours ? `${extraHours} h/month, mainly for ${service}` : "none"}`,
     `Plan length: ${term.label} (${Math.round(term.discount * 100)}% discount)`,
     `Indicative total: ${euro(pricing.total)} per month`, "", "My name:", "Property address:", "Best number to reach me:",
   ].join("\n"));
