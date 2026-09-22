@@ -5,3 +5,7 @@
 - [x] Use solid-colour buttons only; no button gradients.
 - [x] Verify the finished page on desktop and mobile.
 - [x] Rework the homepage into the selected Casa-inspired editorial narrative using SolidMaint colours and Outfit/Figtree.
+- [x] Reframe the three packages as bespoke care levels with optional garden and pool care.
+- [x] Add property-type illustrations and rebuild the calculator around the individual home.
+- [x] Move plan length to the final quote step with 5%, 8% and 10% discounts.
+- [x] Verify the new package journey on desktop and mobile.
