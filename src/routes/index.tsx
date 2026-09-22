@@ -497,22 +497,7 @@ function Index() {
             <p className="mt-6 max-w-md text-lg leading-relaxed text-deep/65">Every service can stand alone or become part of your care plan.</p>
             <a href="#contact" className="mt-9 inline-flex items-center gap-2 font-bold text-coral">Discuss what you need <ArrowRight className="size-4" aria-hidden="true" /></a>
           </div>
-          <div className="border-t border-deep/15">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <a key={service.title} href="#contact" className="service-row group">
-                  <span className="hidden text-xs font-bold text-coral sm:block">0{index + 1}</span>
-                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-olive/15 sm:size-12"><Icon className="size-5" aria-hidden="true" /></span>
-                  <span>
-                    <strong className="font-display text-xl font-semibold md:text-2xl">{service.title}</strong>
-                    <span className="mt-1 block text-sm text-deep/60">{service.description}</span>
-                  </span>
-                  <ArrowRight className="ml-auto size-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                </a>
-              );
-            })}
-          </div>
+          <ServiceAccordion />
         </div>
       </section>
 
