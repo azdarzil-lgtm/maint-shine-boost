@@ -51,8 +51,6 @@ const terms = [
   { key: "12", label: "12 months", discount: 0.1, note: "10% off your monthly plan" },
 ] as const;
 
-const extraServices = ["Handyman & repairs", "Electrical services", "Plumbing services", "AC servicing", "Deep garden work", "Pre-arrival home prep"];
-const extraHourRate = 48;
 const euro = (value: number) => `€${value.toFixed(2)}`;
 
 function PropertyDrawing({ type }: { type: PropertyKey }) {
@@ -98,8 +96,6 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   const [outdoor, setOutdoor] = useState(1);
   const [pool, setPool] = useState(0);
   const [careIndex, setCareIndex] = useState(initialPlanIndex);
-  const [extraHours, setExtraHours] = useState(0);
-  const [service, setService] = useState(extraServices[0] ?? "Handyman & repairs");
   const [termIndex, setTermIndex] = useState(1);
 
   useEffect(() => {
@@ -118,19 +114,18 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   const term = terms[termIndex] ?? terms[0];
 
   const pricing = useMemo(() => {
-    const beforeDiscount = selectedPlan.base + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0) + extraHours * extraHourRate;
+    const beforeDiscount = selectedPlan.base + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0);
     const saving = beforeDiscount * term.discount;
     return { beforeDiscount, saving, total: beforeDiscount - saving };
-  }, [selectedPlan, property, outdoorChoice, poolChoice, extraHours, term]);
+  }, [selectedPlan, property, outdoorChoice, poolChoice, term]);
 
-  const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "Care level", "Maintenance hours", "Plan length & quote"];
+  const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "Care level", "Plan length & quote"];
   const enquiryBody = encodeURIComponent([
     `Care level: ${selectedPlan.name}`,
     `Property: ${property?.label ?? "Not selected"}`,
     `Garden / yard: ${outdoorChoice?.label ?? "Not selected"}`,
     `Pool: ${poolChoice?.label ?? "Not selected"}`,
     `Included maintenance: ${selectedPlan.includedHours} h/month`,
-    `Additional maintenance: ${extraHours ? `${extraHours} h/month, mainly for ${service}` : "none"}`,
     `Plan length: ${term.label} (${Math.round(term.discount * 100)}% discount)`,
     `Indicative total: ${euro(pricing.total)} per month`, "", "My name:", "Property address:", "Best number to reach me:",
   ].join("\n"));
@@ -170,18 +165,10 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
           </div>}
 
           {step === 5 && <div>
-            <p className="section-label text-coral">Maintenance time</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Would you like any additional hours?</h3>
-            <p className="mt-3 leading-relaxed text-deep/65">Your {selectedPlan.name} plan includes <strong className="text-deep">{selectedPlan.includedHours} general maintenance hours each month</strong>. Add another 2–6 hours for repairs, practical jobs or pre-arrival preparation.</p>
-            <div className="mt-6 flex flex-wrap gap-2">{[0, 2, 3, 4, 5, 6].map((option) => <button key={option} type="button" onClick={() => setExtraHours(option)} className={`rounded-full border px-4 py-2 text-sm font-bold transition-colors ${extraHours === option ? "border-coral bg-coral text-sunlit" : "border-deep/20 hover:border-coral"}`}>{option === 0 ? "No extra hours" : `+ ${option} h / month`}</button>)}</div>
-            {extraHours > 0 && <div className="mt-6"><p className="section-label text-coral">Mostly for</p><div className="mt-3 flex flex-wrap gap-2">{extraServices.map((item) => <button key={item} type="button" onClick={() => setService(item)} className={`rounded-full border px-3.5 py-1.5 text-xs font-bold transition-colors ${service === item ? "border-coral bg-coral text-sunlit" : "border-deep/20 hover:border-coral"}`}>{item}</button>)}</div></div>}
-            <HelpCta />
-          </div>}
-
-          {step === 6 && <div>
             <p className="section-label text-coral">Choose your plan length</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Stay flexible, or save by staying longer.</h3>
             <div className="mt-5 grid gap-3 sm:grid-cols-2">{terms.map((option, index) => <button key={option.key} type="button" onClick={() => setTermIndex(index)} className={`flex items-center justify-between gap-4 rounded-2xl border p-4 text-left transition-colors ${termIndex === index ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}><span><span className="block font-display text-xl font-semibold">{option.label}</span><span className="block text-sm text-deep/60">{option.note}</span></span><span className="font-display text-lg font-semibold text-coral">{option.discount ? `−${Math.round(option.discount * 100)}%` : "Flexible"}</span></button>)}</div>
             <div className="mt-7 rounded-2xl bg-deep p-5 text-sunlit md:p-6"><div className="flex flex-wrap items-end justify-between gap-4"><div><p className="section-label text-coral">Your indicative bespoke plan</p><p className="mt-2 font-display text-4xl font-semibold md:text-5xl">{euro(pricing.total)}<span className="ml-2 text-base text-sunlit/60">/ month</span></p></div>{pricing.saving > 0 && <p className="text-sm font-bold text-coral">You save {euro(pricing.saving)} each month</p>}</div>
-              <ul className="mt-5 space-y-2 border-t border-sunlit/15 pt-4 text-sm text-sunlit/75"><li className="flex justify-between gap-4"><span>{selectedPlan.name} · {property?.label}</span><span>{euro(selectedPlan.base + (property?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{outdoorChoice?.label} · {poolChoice?.label}</span><span>{euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{selectedPlan.includedHours} maintenance hours included</span><span className="font-bold text-coral">Included</span></li>{extraHours > 0 && <li className="flex justify-between gap-4"><span>{extraHours} additional hours · {service}</span><span>{euro(extraHours * extraHourRate)}</span></li>}<li className="flex justify-between gap-4"><span>Property Vault</span><span className="font-bold text-coral">Free</span></li></ul>
+              <ul className="mt-5 space-y-2 border-t border-sunlit/15 pt-4 text-sm text-sunlit/75"><li className="flex justify-between gap-4"><span>{selectedPlan.name} · {property?.label}</span><span>{euro(selectedPlan.base + (property?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{outdoorChoice?.label} · {poolChoice?.label}</span><span>{euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{selectedPlan.includedHours} maintenance hours included</span><span className="font-bold text-coral">Included</span></li><li className="flex justify-between gap-4"><span>Property Vault</span><span className="font-bold text-coral">Free</span></li></ul>
             </div>
             <p className="mt-4 text-xs leading-relaxed text-deep/55">Indicative pricing, IVA included. We confirm the final plan after a quick look at your property — no surprises, ever.</p>
             <a href={`mailto:info@solidmaint.com?subject=Bespoke%20care%20plan%20request&body=${enquiryBody}`} className="solid-button solid-button-coral mt-5 w-full">Request my bespoke plan <ArrowRight aria-hidden="true" /></a>
