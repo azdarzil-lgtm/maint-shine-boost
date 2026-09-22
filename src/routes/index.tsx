@@ -65,7 +65,7 @@ const packages: {
   lead: string;
   price: number;
   detail: string;
-  items: { title: string; body: string; perk?: boolean }[];
+  items: { title: string; body: string; perk?: boolean; perkTag?: string }[];
   featured?: boolean;
 }[] = [
   {
@@ -105,6 +105,7 @@ const packages: {
         title: "2 maintenance hours",
         body: "Two hours of general maintenance every month are already included in your plan.",
         perk: true,
+        perkTag: "Included",
       },
       { title: "Property report", body: "A photo-documented view of your home’s condition, stored in your Property Vault." },
     ],
@@ -120,7 +121,7 @@ const packages: {
     items: [
       { title: "Whole-property checks", body: "We proactively check AC, plumbing, electrics, fixtures and the general condition of your home." },
       { title: "Garden and pool care", body: "Add the exact level each part of your property needs." },
-      { title: "4 maintenance hours", body: "Four hours of general maintenance every month are already included in your plan.", perk: true },
+      { title: "4 maintenance hours", body: "Four hours of general maintenance every month are already included in your plan.", perk: true, perkTag: "Included" },
       { title: "Priority coordination", body: "One dependable team to spot, organise and document what needs attention." },
     ],
   },
@@ -312,7 +313,7 @@ function Index() {
                           <span>
                             <span className="flex flex-wrap items-center gap-2">
                               <span className="font-bold">{point.title}</span>
-                              <span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Free</span>
+                              <span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">{point.perkTag ?? "Free"}</span>
                             </span>
                             <span className="mt-1 block leading-relaxed opacity-75">{point.body}</span>
                           </span>
