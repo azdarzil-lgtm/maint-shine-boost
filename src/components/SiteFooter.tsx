@@ -50,7 +50,7 @@ export function SiteFooter() {
           <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-sunlit/20 px-5 py-2.5 text-xs text-sunlit/70 sm:text-sm">
             <span className="font-medium text-sunlit/85">SolidMaint.</span>
             <Heart className="size-3.5 fill-coral text-coral" aria-hidden="true" />
-            <span>Run by humans</span>
+            <span>Ran by humans</span>
             <span className="text-sunlit/30" aria-hidden="true">·</span>
             <Sparkles className="size-3.5 text-coral" aria-hidden="true" />
             <span>Powered by AI</span>
