@@ -41,6 +41,7 @@ import { InstagramFeed } from "@/components/InstagramFeed";
 import { MarenaBanner } from "@/components/MarenaBanner";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PlanBuilder, type PlanKey } from "@/components/PlanBuilder";
+import { SmartEnquiry } from "@/components/SmartEnquiry";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -658,11 +659,7 @@ function Index() {
           <p className="section-label mt-8 text-[0.85rem] text-coral md:text-[1rem]">05 — A smarter first conversation</p>
           <h2 className="mx-auto mt-5 font-display text-5xl font-semibold leading-tight text-sunlit md:text-7xl"><span className="block">Tell us who you are.</span> <span className="block">We’ll ask what matters.</span></h2>
           <p className="mx-auto mt-7 max-w-2xl text-xl leading-relaxed text-sunlit md:text-2xl">Our guided chat shapes the questions around your property and priorities, so your first recommendation is useful—not generic.</p>
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
-            {["Overseas owner", "Resident owner", "Property manager", "Buying a home"].map((audience) => (
-              <a key={audience} href="#contact" className="audience-pill px-6 py-3.5 text-base md:text-lg">{audience}<ArrowRight className="size-5" aria-hidden="true" /></a>
-            ))}
-          </div>
+          <SmartEnquiry />
         </div>
       </section>
 
