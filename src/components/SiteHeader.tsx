@@ -64,7 +64,7 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
           <Link
             to="/"
             hash="contact"
-            className="solid-button solid-button-coral px-4 py-2.5 text-[0.7rem] sm:px-5 sm:text-xs md:text-[0.78rem]"
+            className="solid-button solid-button-coral px-4 py-2.5 text-[0.7rem] font-extrabold uppercase tracking-[0.04em] sm:px-5 sm:text-xs md:text-[0.78rem]"
           >
             Enquire
           </Link>
