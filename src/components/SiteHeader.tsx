@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import logoAsset from "@/assets/solidmaint-wordmark-gold.png.asset.json";
+import logoAsset from "@/assets/solidmaint-wordmark-gold-light.png.asset.json";
 
 const navLinks = [
   { label: "Benefits", to: "/", hash: "packages" },
