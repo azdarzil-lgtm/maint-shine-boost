@@ -87,8 +87,8 @@ function TeamPage() {
             The people behind every visit.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-deep/65">
-            A small, experienced crew based along the Costa del Sol. Our team has deep Nordic roots — Nordic
-            precision, delivered with genuine Costa warmth. We know the homes, the climate and the details that keep a
+            A small, experienced crew based along the Costa del Sol. Our team has deep Nordic roots — precision,
+            delivered with genuine Costa warmth. We know the homes, the climate and the details that keep a
             property running smoothly.
           </p>
         </div>
