@@ -88,8 +88,5 @@ export function MarenaBanner() {
         </div>
       </div>
     </div>
-
-      </div>
-    </div>
   );
 }
