@@ -158,7 +158,7 @@ export function SmartEnquiry() {
                 ))}
               </div>
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                <button type="submit" className="btn-coral rounded-full px-7 py-3.5 text-base font-bold">
+                <button type="submit" className="inline-flex items-center gap-2 rounded-full bg-coral px-7 py-3.5 text-base font-bold text-sunlit transition hover:-translate-y-0.5 hover:bg-[oklch(0.62_0.15_37)]">
                   Get my recommendation <ArrowRight className="size-4" aria-hidden="true" />
                 </button>
                 <p className="text-sm text-deep/55">Our team will reply within one working day.</p>
