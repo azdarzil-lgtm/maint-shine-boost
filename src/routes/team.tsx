@@ -1,10 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
-import team1 from "@/assets/team-1.jpg";
-import team2 from "@/assets/team-2.jpg";
 import team3 from "@/assets/team-3.jpg";
 import team4 from "@/assets/team-4.jpg";
+import antonio from "@/assets/antonio.jpg";
+import pekka from "@/assets/pekka.jpg";
+import mikko from "@/assets/mikko.jpg";
+import jonas from "@/assets/jonas.jpg";
+import marenaAsset from "@/assets/marena.webp.asset.json";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -16,7 +19,7 @@ export const Route = createFileRoute("/team")({
       {
         name: "description",
         content:
-          "Meet the SolidMaint team — a small, experienced crew from Finland and Sweden caring for homes along the Costa del Sol, from Benalmádena to Sotogrande.",
+          "Meet the SolidMaint team — management and a small, experienced crew from Finland and Sweden caring for homes along the Costa del Sol, from Benalmádena to Sotogrande.",
       },
       { property: "og:title", content: "Meet the SolidMaint team" },
       {
@@ -30,19 +33,54 @@ export const Route = createFileRoute("/team")({
   component: TeamPage,
 });
 
-const team = [
-  { name: "Antonio Reyes", role: "Head of Operations", photo: team1 },
-  { name: "Marena López", role: "Client Care", photo: team2 },
-  { name: "Daniel Torres", role: "Lead Technician", photo: team3 },
+const management = [
+  { name: "Antonio Reyes", role: "Head of Operations", photo: antonio },
+  { name: "Marena López", role: "Client Care Director", photo: marenaAsset.url },
   { name: "Carmen Vidal", role: "Property Manager", photo: team4 },
 ];
+
+const team = [
+  { name: "Daniel Torres", role: "Lead Technician", photo: team3 },
+  { name: "Pekka Lindqvist", role: "AC Specialist", photo: pekka },
+  { name: "Mikko Aaltonen", role: "Handyman Lead", photo: mikko },
+  { name: "Jonas Berg", role: "Electrical Lead", photo: jonas },
+];
+
+function MemberCard({
+  name,
+  role,
+  photo,
+  imageClass,
+}: {
+  name: string;
+  role: string;
+  photo: string;
+  imageClass: string;
+}) {
+  return (
+    <div className="group text-center">
+      <div className={`mx-auto overflow-hidden rounded-[1.75rem] ${imageClass}`}>
+        <img
+          src={photo}
+          alt={name}
+          loading="lazy"
+          width={600}
+          height={600}
+          className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      </div>
+      <p className="mt-4 font-display text-lg font-semibold">{name}</p>
+      <p className="mt-1 text-xs font-bold uppercase text-coral">{role}</p>
+    </div>
+  );
+}
 
 function TeamPage() {
   return (
     <main className="min-h-screen bg-sunlit text-deep">
       <SiteHeader solid />
 
-      <section className="pt-36 pb-16 md:pt-48 md:pb-24">
+      <section className="pt-36 pb-16 md:pt-48 md:pb-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <p className="section-label text-coral">Meet the team</p>
           <h1 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">
@@ -56,28 +94,27 @@ function TeamPage() {
         </div>
       </section>
 
+      <section className="pb-14 md:pb-20">
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Management</h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {management.map((member) => (
+              <MemberCard key={member.name} {...member} imageClass="max-w-[240px] md:max-w-[260px]" />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="pb-20 md:pb-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our crew</h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((member) => (
-              <div key={member.name} className="group text-center">
-                <div className="overflow-hidden rounded-[2rem]">
-                  <img
-                    src={member.photo}
-                    alt={member.name}
-                    loading="lazy"
-                    width={600}
-                    height={600}
-                    className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <p className="mt-5 font-display text-xl font-semibold">{member.name}</p>
-                <p className="mt-1 text-sm font-bold uppercase text-coral">{member.role}</p>
-              </div>
+              <MemberCard key={member.name} {...member} imageClass="max-w-[200px] md:max-w-[220px]" />
             ))}
           </div>
 
-          <div className="mt-16 border border-deep/15 bg-olive/10 p-8 md:p-12">
+          <div className="mt-16 rounded-[1.75rem] border border-deep/15 bg-olive/10 p-8 md:p-12">
             <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
               Want these faces looking after your home?
             </h2>
