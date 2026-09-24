@@ -1,4 +1,4 @@
-import { ArrowRight, Facebook, Instagram, Linkedin } from "lucide-react";
+import { ArrowRight, Facebook, Heart, Instagram, Linkedin, Sparkles } from "lucide-react";
 
 import { Brand } from "@/components/SiteHeader";
 
