@@ -120,6 +120,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   const [pool, setPool] = useState(0);
   const [careIndex, setCareIndex] = useState(initialPlanIndex);
   const [termIndex, setTermIndex] = useState(1);
+  const [showHours, setShowHours] = useState(false);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => event.key === "Escape" && onClose();
@@ -183,7 +184,22 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
 
           {step === 4 && <div>
             <p className="section-label text-coral">Choose your care level</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">How hands-on would you like us to be?</h3>
-            <div className="mt-6 grid gap-3 md:grid-cols-3">{planKeys.map((key, index) => { const option = planBase[key]; return <button key={key} type="button" onClick={() => setCareIndex(index)} className={`flex min-h-52 flex-col rounded-2xl border p-5 text-left transition-colors ${careIndex === index ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}><span className="font-display text-2xl font-semibold">{option.name}</span><span className="mt-2 text-sm leading-relaxed text-deep/65">{option.blurb}</span><span className="mt-auto pt-5 text-sm font-bold text-coral">{option.includedHours === 0 ? "Add maintenance hours as needed" : `${option.includedHours} maintenance hours included monthly`}</span>{key === "complete" && <span className="mt-2 flex items-center gap-2 text-xs font-semibold text-deep/65"><ShieldCheck className="size-4 text-coral" />AC, plumbing, electrics and condition checks</span>}</button>; })}</div>
+            <div className="mt-6 grid gap-3 md:grid-cols-3">{planKeys.map((key, index) => { const option = planBase[key]; return <button key={key} type="button" onClick={() => setCareIndex(index)} className={`flex min-h-52 flex-col rounded-2xl border p-5 text-left transition-colors ${careIndex === index ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}><span className="font-display text-2xl font-semibold">{option.name}</span><span className="mt-2 text-sm leading-relaxed text-deep/65">{option.blurb}</span><span className="mt-auto flex items-center gap-1.5 pt-5 text-sm font-bold text-coral">{option.includedHours === 0 ? "Add maintenance hours as needed" : `${option.includedHours} maintenance hours included monthly`}</span>{key === "complete" && <span className="mt-2 flex items-center gap-2 text-xs font-semibold text-deep/65"><ShieldCheck className="size-4 text-coral" />AC, plumbing, electrics and condition checks</span>}</button>; })}</div>
+            <button type="button" onClick={() => setShowHours((open) => !open)} aria-expanded={showHours} className="mt-5 flex w-full items-center justify-between gap-4 rounded-2xl border border-coral/40 bg-coral/10 p-4 text-left transition-colors hover:border-coral">
+              <span className="text-sm leading-snug"><span className="font-semibold">What can your maintenance hours cover?</span> <span className="text-deep/70">Tap to see the services you can spend them on.</span></span>
+              <ChevronDown className={`size-5 shrink-0 text-coral transition-transform ${showHours ? "rotate-180" : ""}`} aria-hidden="true" />
+            </button>
+            <div className={`grid transition-all duration-300 ${showHours ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+              <div className="overflow-hidden">
+                <div className="mt-4 rounded-2xl border border-deep/10 bg-sunlit/60 p-5">
+                  <p className="text-sm leading-relaxed text-deep/70">Your included hours can be spent on any of these services — the longer your plan, the less each extra hour costs.</p>
+                  <ul className="mt-4 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
+                    {hourServices.map((service) => <li key={service} className="flex items-start gap-2.5 text-sm leading-snug"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{service}</span></li>)}
+                  </ul>
+                  <p className="mt-4 text-xs leading-relaxed text-deep/55">Essential Care starts without included hours — you can always add them, or choose Home Ready or VIP Care to have hours ready every month.</p>
+                </div>
+              </div>
+            </div>
             <HelpCta />
           </div>}
 
