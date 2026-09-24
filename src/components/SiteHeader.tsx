@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import logoAsset from "@/assets/solidmaint-wordmark-script.png";
+import logoAsset from "@/assets/solidmaint-wordmark-gold-light.png.asset.json";
 
 const navLinks = [
   { label: "Benefits", to: "/", hash: "packages" },
@@ -18,7 +18,7 @@ export function Brand({ light: _light = false }: { light?: boolean }) {
   return (
     <Link to="/" className="flex shrink-0 items-center" aria-label="SolidMaint home">
       <img
-        src={logoAsset}
+        src={logoAsset.url}
         alt="SolidMaint — Your Home"
         className="h-auto w-40 sm:w-48"
       />
