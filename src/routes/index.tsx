@@ -365,8 +365,8 @@ function Index() {
               <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Care-free ownership, built on Nordic precision.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
-              Our team has deep Nordic roots — precision is simply how we work. Every plan keeps your home
-              care-free, and every visit adds to its documented history.{" "}
+              Our team has deep Nordic roots — precision is simply how we work. Every plan includes regular garden
+              and pool care, AC servicing and hands-on maintenance hours, tailored to your property.{" "}
               <strong className="font-bold text-deep">Your free Property Vault is always included.</strong>
             </p>
           </div>
