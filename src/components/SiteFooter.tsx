@@ -45,17 +45,18 @@ export function SiteFooter() {
           <Brand light />
           <p>© 2026 SolidMaint</p>
         </div>
-        <div className="mt-8 flex justify-center">
-          <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-sunlit/20 px-5 py-2.5 text-xs text-sunlit/70 sm:text-sm">
-            <span className="font-medium text-sunlit/85">SolidMaint.</span>
-            <Heart className="size-3.5 fill-coral text-coral" aria-hidden="true" />
-            <span>Ran by humans</span>
-            <span className="text-sunlit/30" aria-hidden="true">·</span>
-            <span>Marbella, Benalmádena · Mon–Fri, 09:00–18:00 CET</span>
-            <span className="text-sunlit/30" aria-hidden="true">·</span>
-            <Sparkles className="size-3.5 text-coral" aria-hidden="true" />
-            <span>Powered by AI</span>
-          </p>
+        <div className="mt-8 space-y-3 text-center">
+          <p className="text-xs text-sunlit/55 sm:text-sm">Marbella, Benalmádena · Mon–Fri, 09:00–18:00 CET</p>
+          <div className="flex justify-center">
+            <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-sunlit/20 px-5 py-2.5 text-xs text-sunlit/70 sm:text-sm">
+              <span className="font-medium text-sunlit/85">SolidMaint.</span>
+              <Heart className="size-3.5 fill-coral text-coral" aria-hidden="true" />
+              <span>Ran by humans</span>
+              <span className="text-sunlit/30" aria-hidden="true">·</span>
+              <Sparkles className="size-3.5 text-coral" aria-hidden="true" />
+              <span>Powered by AI</span>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
