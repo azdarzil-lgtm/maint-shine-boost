@@ -41,9 +41,8 @@ export function SiteFooter() {
             </a>
           ))}
         </div>
-        <div className="mt-10 flex flex-col gap-5 border-t border-sunlit/15 pt-7 text-sm text-sunlit/55 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col items-center gap-5 border-t border-sunlit/15 pt-7 text-sm text-sunlit/55 sm:flex-row sm:justify-between">
           <Brand light />
-          <p>Marbella, Benalmádena · Mon–Fri, 09:00–18:00 CET</p>
           <p>© 2026 SolidMaint</p>
         </div>
         <div className="mt-8 flex justify-center">
@@ -51,6 +50,8 @@ export function SiteFooter() {
             <span className="font-medium text-sunlit/85">SolidMaint.</span>
             <Heart className="size-3.5 fill-coral text-coral" aria-hidden="true" />
             <span>Ran by humans</span>
+            <span className="text-sunlit/30" aria-hidden="true">·</span>
+            <span>Marbella, Benalmádena · Mon–Fri, 09:00–18:00 CET</span>
             <span className="text-sunlit/30" aria-hidden="true">·</span>
             <Sparkles className="size-3.5 text-coral" aria-hidden="true" />
             <span>Powered by AI</span>
