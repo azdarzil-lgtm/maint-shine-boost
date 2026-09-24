@@ -2,6 +2,7 @@ import {
   ArrowLeft,
   ArrowRight,
   Check,
+  ChevronDown,
   MessageCircle,
   ShieldCheck,
   Smartphone,
@@ -50,6 +51,28 @@ const terms = [
   { key: "6", label: "6 months", discount: 0.08, note: "8% off your monthly plan" },
   { key: "12", label: "12 months", discount: 0.1, note: "10% off your monthly plan" },
 ] as const;
+
+const hourServices = [
+  "AC seasonal service",
+  "Deep cleaning",
+  "Ventilation duct and vent cleaning",
+  "Range hood filter cleaning or replacement",
+  "Pool filter sand or glass replacement",
+  "Irrigation system inspection, repair and timer adjustment",
+  "Solar panel cleaning",
+  "Drain and trap cleaning (indoor, terrace, roof)",
+  "EV charging point installation",
+  "Bathroom silicone and grout renewal",
+  "Roof cleaning",
+  "Roof coating and moss removal",
+  "Facade cleaning",
+  "Terrace and walkway pressure washing",
+  "Exterior window cleaning",
+  "Hydrophobic terrace coating",
+  "Palm tree pruning",
+  "Tree pruning",
+  "Pest control",
+];
 
 const euro = (value: number) => `€${value.toFixed(2)}`;
 
