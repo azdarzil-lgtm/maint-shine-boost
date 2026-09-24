@@ -365,7 +365,7 @@ function Index() {
               <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Care-free ownership, built on Nordic precision.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
-              Our team comes from Finland and Sweden — precision is simply how we work. Every plan keeps your home
+              Our team has deep Nordic roots — precision is simply how we work. Every plan keeps your home
               care-free, and every visit adds to its documented history.{" "}
               <strong className="font-bold text-deep">Your free Property Vault is always included.</strong>
             </p>
@@ -376,7 +376,7 @@ function Index() {
               {
                 icon: Compass,
                 title: "Nordic precision",
-                body: "Our crew comes from Finland and Sweden. Measured, scheduled and finished properly — the same exacting standard on every single visit.",
+                body: "Our crew has deep Nordic roots. Measured, scheduled and finished properly — the same exacting standard on every single visit.",
               },
               {
                 icon: Sun,
