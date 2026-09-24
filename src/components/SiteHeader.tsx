@@ -21,7 +21,7 @@ export function Brand({ light = false }: { light?: boolean }) {
       <img
         src={light ? whiteLogoAsset.url : greenLogoAsset.url}
         alt="SolidMaint — Your home. Cared for."
-        className="h-auto w-40 sm:w-48"
+        className="h-auto w-44 sm:w-[13.2rem]"
       />
     </Link>
   );
