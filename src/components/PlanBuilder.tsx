@@ -28,7 +28,7 @@ export const planBase: Record<PlanKey, { name: string; base: number; blurb: stri
     includes: ["Everything in Essential Care", "2 maintenance hours monthly", "Monthly photo report"],
   },
   complete: {
-    name: "VIP Care",
+    name: "Signature Care",
     base: 459,
     blurb: "Your whole property, proactively cared for.",
     includedHours: 4,
@@ -200,7 +200,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                   <ul className="mt-4 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
                     {hourServices.map((service) => <li key={service} className="flex items-start gap-2.5 text-sm leading-snug"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{service}</span></li>)}
                   </ul>
-                  <p className="mt-4 text-xs leading-relaxed text-deep/55">Essential Care starts without included hours — you can always add them, or choose Home Ready or VIP Care to have hours ready every month.</p>
+                  <p className="mt-4 text-xs leading-relaxed text-deep/55">Essential Care starts without included hours — you can always add them, or choose Home Ready or Signature Care to have hours ready every month.</p>
                 </div>
               </div>
             </div>

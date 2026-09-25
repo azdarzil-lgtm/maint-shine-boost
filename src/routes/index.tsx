@@ -120,7 +120,7 @@ const packages: {
   {
     number: "03",
     key: "complete",
-    name: "VIP Care",
+    name: "Signature Care",
     lead: "Full-property peace of mind",
     price: 459,
     detail: "Proactive, hands-on oversight for villas, fincas and any home whose owner wants everything checked and ready.",
@@ -536,7 +536,7 @@ function Index() {
             <article className="how-step">
               <span className="section-label text-coral">Step 03</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Add maintenance time</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Home Ready includes 2 hours and VIP Care includes 4. Add more in clear 2–6 hour monthly blocks whenever your property needs them.</p>
+              <p className="mt-4 leading-relaxed text-deep/65">Home Ready includes 2 hours and Signature Care includes 4. Add more in clear 2–6 hour monthly blocks whenever your property needs them.</p>
               <div className="mt-8 border-t border-deep/15 pt-6 lg:mt-auto">
                 <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Extra hours per time slot</p>
                 <div className="mt-4 grid grid-cols-5 gap-2" aria-hidden="true">
