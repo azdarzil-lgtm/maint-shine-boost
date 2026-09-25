@@ -15,6 +15,9 @@ type PropertyKey = "flat" | "townhouse" | "villa" | "finca";
 
 export const planBase: Record<PlanKey, { name: string; base: number; blurb: string; includedHours: number; includes: string[] }> = {
   outdoor: {
+    ...
+    includes: ["Garden or yard care", "Optional pool care", "Free Property Vault"],
+  outdoor: {
     name: "Essential Care",
     base: 189,
     blurb: "Reliable essentials, tailored to your home.",
