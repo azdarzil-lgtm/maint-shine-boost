@@ -204,7 +204,7 @@ function PartnersPage() {
               width={1376}
               height={768}
             />
-            <figcaption className="w-full py-2.5 pl-2 pr-2 text-center text-[0.66rem] font-semibold leading-snug text-coral sm:px-6 sm:text-sm lg:px-10 lg:pb-5 lg:text-sm lg:whitespace-nowrap">
+            <figcaption className="w-full py-2.5 pl-2 pr-2 text-center text-[0.66rem] font-semibold leading-snug text-deep sm:px-6 sm:text-sm lg:px-10 lg:pb-5 lg:text-sm lg:whitespace-nowrap">
               <span className="block min-h-[1.4em]">
                 <TypewriterCaption text="Questions? Our sales specialists Janita and Tuukka have you covered." />
               </span>
