@@ -128,6 +128,11 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   const [careIndex, setCareIndex] = useState(initialPlanIndex);
   const [termIndex, setTermIndex] = useState(1);
   const [showHours, setShowHours] = useState(false);
+  const [callbackOpen, setCallbackOpen] = useState(false);
+  const [callbackName, setCallbackName] = useState("");
+  const [callbackPhone, setCallbackPhone] = useState("");
+  const [callbackTime, setCallbackTime] = useState("Any time, 09:00–18:00");
+  const [callbackSent, setCallbackSent] = useState(false);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => event.key === "Escape" && onClose();
