@@ -385,9 +385,42 @@
   animation: cursor-blink 720ms step-end infinite;
 }
 
+@keyframes phone-ring {
+  0%, 52%, 100% { transform: rotate(0deg); }
+  6% { transform: rotate(-10deg); }
+  14% { transform: rotate(9deg); }
+  22% { transform: rotate(-7deg); }
+  30% { transform: rotate(5deg); }
+  38% { transform: rotate(-2deg); }
+  45% { transform: rotate(1deg); }
+}
+
+@keyframes phone-wave {
+  0%, 40%, 100% { opacity: 0; }
+  16% { opacity: 1; }
+  36% { opacity: 0.15; }
+}
+
+@utility phone-ring {
+  transform-origin: 50% 85%;
+  animation: phone-ring 1.6s ease-in-out infinite;
+}
+
+@utility phone-wave {
+  opacity: 0;
+  animation: phone-wave 1.6s ease-out infinite;
+}
+
+@utility phone-wave-2 {
+  opacity: 0;
+  animation: phone-wave 1.6s ease-out 0.18s infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { animation: none; }
   .typewriter-cursor { animation: none; opacity: 0; }
+  .phone-ring { animation: none; }
+  .phone-wave, .phone-wave-2 { animation: none; opacity: 0; }
   * { transition-duration: 0.01ms !important; }
 }
