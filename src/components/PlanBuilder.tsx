@@ -14,10 +14,28 @@ export type PlanKey = "outdoor" | "home-ready" | "complete";
 
 type PropertyKey = "flat" | "townhouse" | "villa" | "finca";
 
-export const planBase: Record<PlanKey, { name: string; base: number; blurb: string; includedHours: number }> = {
-  outdoor: { name: "Essential Care", base: 189, blurb: "Reliable essentials, tailored to your home.", includedHours: 0 },
-  "home-ready": { name: "Home Ready", base: 289, blurb: "Regular care with practical maintenance time built in.", includedHours: 2 },
-  complete: { name: "VIP Care", base: 459, blurb: "Proactive oversight of your whole property.", includedHours: 4 },
+export const planBase: Record<PlanKey, { name: string; base: number; blurb: string; includedHours: number; includes: string[] }> = {
+  outdoor: {
+    name: "Essential Care",
+    base: 189,
+    blurb: "Reliable essentials, tailored to your home.",
+    includedHours: 0,
+    includes: ["Garden or yard care, shaped to your space", "Optional pool care only if you have one", "Maintenance hours whenever a job comes up", "Visit photos saved to your free Property Vault"],
+  },
+  "home-ready": {
+    name: "Home Ready",
+    base: 289,
+    blurb: "Regular care with practical maintenance time built in.",
+    includedHours: 2,
+    includes: ["Everything in Essential Care", "2 maintenance hours every month, included", "A monthly photo-documented property report", "Pool care optional, added to your price"],
+  },
+  complete: {
+    name: "VIP Care",
+    base: 459,
+    blurb: "Proactive oversight of your whole property.",
+    includedHours: 4,
+    includes: ["Everything in Home Ready", "Whole-property checks — AC, plumbing, electrics, fixtures", "4 maintenance hours every month, included", "Priority coordination and full documentation"],
+  },
 };
 
 const propertyTypes: { key: PropertyKey; label: string; note: string; add: number }[] = [
