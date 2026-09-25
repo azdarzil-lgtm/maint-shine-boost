@@ -172,7 +172,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
 
         <div className="flex-1 overflow-y-auto px-5 py-7 md:px-8 md:py-9">
           {step === 0 && <div>
-            <h3 className="max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">Tell us about your property. We’ll create a care plan made for it.</h3>
+            <h3 className="max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">Tell us about your property. We’ll create a bespoke home care plan made for it.</h3>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-deep/70">A flat with a courtyard needs something very different from a finca or estate with gardens and a pool. Stay with us for one minute and we’ll shape the services, maintenance time and price around your actual home.</p>
             <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4"><p className="flex flex-wrap items-center gap-2 font-bold"><Smartphone className="size-5 text-coral" aria-hidden="true" />Your free Property Vault<span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Always included</span></p><p className="mt-1.5 text-sm leading-relaxed text-deep/70">A photo-documented history of every visit, check, service and repair — whatever care level you choose.</p></div>
           </div>}
