@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, BadgeCheck, Building2, CalendarClock, HandHeart, KeyRound, LineChart, Percent, Phone, Users } from "lucide-react";
 
