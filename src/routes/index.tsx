@@ -186,6 +186,18 @@ const services = [
 
 function ServiceAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const toggle = (index: number) => {
+    const opening = openIndex !== index;
+    setOpenIndex(opening ? index : null);
+    if (opening) {
+      // Wait for the expand animation, then bring the opened row into view
+      window.setTimeout(() => {
+        rowRefs.current[index]?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 320);
+    }
+  };
 
   return (
     <div className="border-t border-deep/15">
@@ -193,12 +205,12 @@ function ServiceAccordion() {
         const Icon = service.icon;
         const isOpen = openIndex === index;
         return (
-          <div key={service.title}>
+          <div key={service.title} ref={(el) => { rowRefs.current[index] = el; }} className="scroll-mt-28">
             <button
               type="button"
               aria-expanded={isOpen}
               aria-controls={`service-panel-${index}`}
-              onClick={() => setOpenIndex(isOpen ? null : index)}
+              onClick={() => toggle(index)}
               className="service-row group w-full cursor-pointer text-left"
             >
               <span className="hidden text-xs font-bold text-coral sm:block">0{index + 1}</span>
