@@ -204,8 +204,10 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                 </div>
               </div>
             </div>
-            <p className="mt-5 text-sm leading-relaxed text-deep/70">Not sure which package suits your home best?</p>
-            <p className="mt-1 text-sm leading-relaxed text-deep/70"><a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" className="font-bold text-coral underline decoration-coral/40 underline-offset-4 transition-colors hover:decoration-coral">Simply reach out — our property specialist is here to help.</a></p>
+            <div className="mt-6 flex items-center gap-3.5">
+              <a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" aria-label="Email our property specialist" className="shrink-0 transition-transform hover:scale-110"><svg viewBox="0 0 64 46" className="size-12 text-coral" aria-hidden="true"><g className="phone-ring"><circle cx="11" cy="17" r="4.5" fill="currentColor" /><circle cx="47" cy="17" r="4.5" fill="currentColor" /><path d="M11 16 Q29 5 47 16" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" /><path d="M15 40 L19 24 Q29 20 39 24 L43 40 Z" fill="currentColor" /><circle cx="29" cy="32" r="4.5" fill="var(--sunlit)" /></g><path className="phone-wave" d="M53 10 a8 8 0 0 1 0 11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /><path className="phone-wave-2" d="M58 7 a13 13 0 0 1 0 17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /></svg></a>
+              <p className="text-sm leading-relaxed text-deep/70">Not sure which package suits your home best?<br /><a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" className="font-bold text-coral underline decoration-coral/40 underline-offset-4 transition-colors hover:decoration-coral">Simply reach out — our property specialist is here to help.</a></p>
+            </div>
           </div>}
 
           {step === 5 && <div>
