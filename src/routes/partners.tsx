@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, BadgeCheck, Building2, CalendarClock, HandHeart, KeyRound, LineChart, Percent, Phone, Users } from "lucide-react";
 
-import partnersTeam from "@/assets/partners-team.jpg";
+import partnersPeople from "@/assets/partners-people-cutout.png";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -146,13 +146,13 @@ function PartnersPage() {
               </a>
             </div>
           </div>
-          <figure className="overflow-hidden rounded-[1.75rem] border border-deep/10">
+          <figure className="flex min-h-[22rem] items-end overflow-hidden rounded-[1.75rem] border border-deep/10 bg-olive/10 px-3 pt-8 sm:min-h-[28rem] sm:px-6 lg:min-h-[32rem]">
             <img
-              src={partnersTeam}
-              alt="Partner agents and the SolidMaint team outside a Costa del Sol real estate office"
-              className="h-full w-full object-cover"
-              width={1536}
-              height={1024}
+              src={partnersPeople}
+              alt="Two members of the SolidMaint partnership team"
+              className="h-auto w-full object-contain object-bottom"
+              width={1376}
+              height={768}
             />
           </figure>
         </div>
