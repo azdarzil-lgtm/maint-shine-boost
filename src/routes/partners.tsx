@@ -146,11 +146,11 @@ function PartnersPage() {
               </a>
             </div>
           </div>
-          <figure className="flex min-h-[22rem] items-end overflow-hidden rounded-[1.75rem] border border-deep/10 bg-olive/10 px-3 pt-8 sm:min-h-[28rem] sm:px-6 lg:min-h-[32rem]">
+          <figure className="flex min-h-[22rem] items-end justify-center overflow-hidden rounded-[1.75rem] border border-deep/10 bg-olive/10 px-3 pt-4 sm:min-h-[25rem] sm:px-6 lg:h-[25rem] lg:min-h-0 lg:self-end lg:px-0 lg:pt-0">
             <img
               src={partnersPeople}
               alt="Two members of the SolidMaint partnership team"
-              className="h-auto w-full object-contain object-bottom"
+              className="h-auto w-full max-w-none object-contain object-bottom lg:w-[120%]"
               width={1376}
               height={768}
             />
