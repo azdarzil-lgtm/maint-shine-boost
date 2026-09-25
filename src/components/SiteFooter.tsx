@@ -1,7 +1,7 @@
 import { ArrowRight, Facebook, Heart, Instagram, Linkedin, Sparkles } from "lucide-react";
 
 import { Brand } from "@/components/SiteHeader";
-import footerPeople from "@/assets/footer-home-people.jpg";
+import enquiryBg from "@/assets/enquiry-bg-2.jpg";
 
 const socials = [
   { href: "https://www.facebook.com/solidmaint", label: "SolidMaint on Facebook", icon: Facebook },
@@ -11,42 +11,34 @@ const socials = [
 
 export function SiteFooter() {
   return (
-    <footer id="contact" className="relative bg-deep py-20 text-sunlit md:py-28">
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 text-center md:px-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 lg:text-left">
-        <div>
-          <p className="section-label text-coral">Your home. Our care.</p>
-          <h2 className="mt-5 max-w-[18ch] font-display text-4xl font-semibold leading-tight md:text-6xl lg:mx-0">
-            Let’s talk about your home.
-          </h2>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-sunlit/65 lg:mx-0">
-            Tell us where your home is and what needs care. Our team will reply within one working day.
-          </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4 lg:justify-start">
-            <a href="mailto:info@solidmaint.com" className="solid-button solid-button-coral">
-              Start your enquiry <ArrowRight aria-hidden="true" />
-            </a>
-            <a href="tel:+34951798899" className="solid-button solid-button-outline">
-              Call +34 951 798 899
-            </a>
-          </div>
+    <footer id="contact" className="relative overflow-hidden bg-deep py-20 text-sunlit md:py-28">
+      <img
+        src={enquiryBg}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        width={1920}
+        height={1024}
+        className="absolute inset-0 size-full object-cover"
+      />
+      <div className="absolute inset-0 bg-deep/88" aria-hidden="true" />
+      <div className="relative mx-auto max-w-4xl px-5 text-center md:px-10">
+        <p className="section-label text-coral">Your home. Our care.</p>
+        <h2 className="mt-5 font-display text-4xl font-semibold leading-tight md:text-6xl">
+          Let’s talk about your home.
+        </h2>
+        <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-sunlit/65">
+          Tell us where your home is and what needs care. Our team will reply within one working day.
+        </p>
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <a href="mailto:info@solidmaint.com" className="solid-button solid-button-coral">
+            Start your enquiry <ArrowRight aria-hidden="true" />
+          </a>
+          <a href="tel:+34951798899" className="solid-button solid-button-outline">
+            Call +34 951 798 899
+          </a>
         </div>
-        <figure className="mx-auto w-full max-w-md lg:max-w-none">
-          <img
-            src={footerPeople}
-            alt="Happy homeowners at the gate of their Costa del Sol villa"
-            width={1024}
-            height={1280}
-            loading="lazy"
-            className="aspect-[4/5] w-full rounded-[1.75rem] border border-sunlit/15 object-cover shadow-2xl"
-          />
-          <figcaption className="mt-4 text-sm text-sunlit/55">
-            Part of the family — homes cared for from Benalmádena to Sotogrande.
-          </figcaption>
-        </figure>
-      </div>
-      <div className="mx-auto max-w-7xl px-5 md:px-10">
         <div className="mt-14 flex items-center justify-center gap-4">
-
           {socials.map(({ href, label, icon: Icon }) => (
             <a
               key={label}
