@@ -204,7 +204,8 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                 </div>
               </div>
             </div>
-            <p className="mt-5 text-sm leading-relaxed text-deep/70">Not certain about the package or have questions? <a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" className="font-bold text-coral underline decoration-coral/40 underline-offset-4 transition-colors hover:decoration-coral">Simply reach out. We will arrange for our property specialist to help you with your choice.</a></p>
+            <p className="mt-5 text-sm leading-relaxed text-deep/70">Not certain about the package or have questions?</p>
+            <p className="mt-1 text-sm leading-relaxed text-deep/70"><a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" className="font-bold text-coral underline decoration-coral/40 underline-offset-4 transition-colors hover:decoration-coral">Simply reach out. We will arrange for our property specialist to help you with your choice.</a></p>
           </div>}
 
           {step === 5 && <div>
