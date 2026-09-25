@@ -5,6 +5,7 @@ import {
   ChevronDown,
   Phone,
   Smartphone,
+  Video,
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -133,6 +134,10 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   const [callbackPhone, setCallbackPhone] = useState("");
   const [callbackTime, setCallbackTime] = useState("Any time, 09:00–18:00");
   const [callbackSent, setCallbackSent] = useState(false);
+  const [videoOpen, setVideoOpen] = useState(false);
+  const [videoName, setVideoName] = useState("");
+  const [videoContact, setVideoContact] = useState("");
+  const [videoSent, setVideoSent] = useState(false);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => event.key === "Escape" && onClose();
