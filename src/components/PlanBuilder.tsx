@@ -202,6 +202,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                   </ul>
                   <p className="mt-4 text-xs leading-relaxed text-deep/55">Essential Care starts without included hours — you can always add them, or choose Home Ready or VIP Care to have hours ready every month.</p>
                 </div>
+              </div>
             </div>
             </div>}
             <p className="mt-5 text-sm leading-relaxed text-deep/70">Not certain about the package or have questions? <a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" className="font-bold text-coral underline decoration-coral/40 underline-offset-4 transition-colors hover:decoration-coral">We can arrange a property manager to contact you and help you with your choice.</a></p>
