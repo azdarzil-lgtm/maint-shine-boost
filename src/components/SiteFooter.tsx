@@ -1,6 +1,7 @@
 import { ArrowRight, Facebook, Heart, Instagram, Linkedin, Sparkles } from "lucide-react";
 
 import { Brand } from "@/components/SiteHeader";
+import footerContactBg from "@/assets/footer-contact-bg.jpg.asset.json";
 
 const socials = [
   { href: "https://www.facebook.com/solidmaint", label: "SolidMaint on Facebook", icon: Facebook },
