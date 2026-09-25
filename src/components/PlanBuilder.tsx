@@ -3,7 +3,6 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
-  MessageCircle,
   ShieldCheck,
   Smartphone,
   Sparkles,
