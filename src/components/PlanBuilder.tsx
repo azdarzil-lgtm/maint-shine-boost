@@ -89,15 +89,6 @@ function PropertyDrawing({ type }: { type: PropertyKey }) {
   return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M7 56h82M18 56V31L48 13l30 18v25M12 34l36-24 36 24M29 37h11v9H29zm27 0h11v9H56zM44 56V40h9v16M8 29v-9m-5 5h10M83 19v-9m-5 5h10" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 }
 
-function HelpCta() {
-  return (
-    <a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" className="mt-6 flex items-center gap-3 rounded-2xl border border-coral/40 bg-coral/10 p-4 text-left">
-      <MessageCircle className="size-5 shrink-0 text-coral" aria-hidden="true" />
-      <span className="text-sm leading-snug"><span className="font-semibold">Not sure what your home needs?</span> <span className="text-deep/70">Tell us about it and we’ll help today.</span></span>
-      <ArrowRight className="ml-auto size-4 shrink-0 text-coral" aria-hidden="true" />
-    </a>
-  );
-}
 
 function Slider({ label, options, value, onChange }: { label: string; options: { label: string; note: string; add: number }[]; value: number; onChange: (value: number) => void }) {
   const selected = options[value] ?? options[0];
@@ -169,18 +160,17 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
             <h3 className="mt-4 max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">Tell us about your property. We’ll create a care plan made for it.</h3>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-deep/70">A flat with a courtyard needs something very different from a finca with gardens and a pool. Stay with us for one minute and we’ll shape the services, maintenance time and price around your actual home.</p>
             <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4"><p className="flex flex-wrap items-center gap-2 font-bold"><Smartphone className="size-5 text-coral" aria-hidden="true" />Your free Property Vault<span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Always included</span></p><p className="mt-1.5 text-sm leading-relaxed text-deep/70">A photo-documented history of every visit, check, service and repair — whatever care level you choose.</p></div>
-            <HelpCta />
           </div>}
 
           {step === 1 && <div>
             <p className="section-label text-coral">What kind of property is it?</p>
             <h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Choose the closest match.</h3>
             <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">{propertyTypes.map((option, index) => <button key={option.key} type="button" onClick={() => setPropertyIndex(index)} className={`rounded-2xl border p-4 text-left transition-colors ${propertyIndex === index ? "border-coral bg-coral/10 text-coral" : "border-deep/15 hover:border-coral/60"}`}><PropertyDrawing type={option.key} /><span className="mt-3 block font-display text-lg font-semibold text-deep">{option.label}</span><span className="mt-1 block text-xs leading-snug text-deep/60">{option.note}</span></button>)}</div>
-            <HelpCta />
           </div>}
 
-          {step === 2 && <div><Slider label="Does your home have a garden or yard?" options={outdoorSizes} value={outdoor} onChange={setOutdoor} /><p className="mt-6 leading-relaxed text-deep/65">Choose “No garden / yard” for a flat without outdoor space. Otherwise, pick the closest size and we’ll tailor the regular care accordingly.</p><HelpCta /></div>}
-          {step === 3 && <div><Slider label="Would you like regular pool care?" options={poolSizes} value={pool} onChange={setPool} /><p className="mt-6 leading-relaxed text-deep/65">No pool? No problem. Pool care is optional on every plan and only affects your price when you include it.</p><HelpCta /></div>}
+          {step === 2 && <div><Slider label="Does your home have a garden or yard?" options={outdoorSizes} value={outdoor} onChange={setOutdoor} /><p className="mt-6 leading-relaxed text-deep/65">Choose “No garden / yard” for a flat without outdoor space. Otherwise, pick the closest size and we’ll tailor the regular care accordingly.</p></div>}
+          {step === 3 && <div><Slider label="Would you like regular pool care?" options={poolSizes} value={pool} onChange={setPool} /><p className="mt-6 leading-relaxed text-deep/65">No pool? No problem. Pool care is optional on every plan and only affects your price when you include it.</p></div>}
+
 
           {step === 4 && <div>
             <p className="section-label text-coral">Choose your care level</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">How hands-on would you like us to be?</h3>
@@ -200,7 +190,6 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                 </div>
               </div>
             </div>
-            <HelpCta />
           </div>}
 
           {step === 5 && <div>
@@ -211,7 +200,6 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
             </div>
             <p className="mt-4 text-xs leading-relaxed text-deep/55">Indicative pricing, IVA included. We confirm the final plan after a quick look at your property — no surprises, ever.</p>
             <a href={`mailto:info@solidmaint.com?subject=Bespoke%20care%20plan%20request&body=${enquiryBody}`} className="solid-button solid-button-coral mt-5 w-full">Request my bespoke plan <ArrowRight aria-hidden="true" /></a>
-            <HelpCta />
           </div>}
         </div>
 
