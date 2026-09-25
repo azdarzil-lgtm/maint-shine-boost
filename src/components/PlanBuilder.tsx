@@ -103,7 +103,7 @@ function PropertyDrawing({ type }: { type: PropertyKey }) {
   if (type === "villa") {
     return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M10 56h76M18 56V29L48 10l30 19v27M10 31l38-24 38 24M29 35h11v10H29zm27 0h11v10H56zM44 56V39h9v17M76 22V10h7v17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" /></svg>;
   }
-  return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M7 56h82M18 56V31L48 13l30 18v25M12 34l36-24 36 24M29 37h11v9H29zm27 0h11v9H56zM44 56V40h9v16M8 29v-9m-5 5h10M83 19v-9m-5 5h10" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+  return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M7 56h82M18 56V31L48 13l30 18v25M12 34l36-24 36 24M29 37h11v9H29zm27 0h11v9H56zM44 56V40h9v16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 }
 
 
