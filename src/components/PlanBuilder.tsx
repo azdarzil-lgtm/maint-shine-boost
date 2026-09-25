@@ -222,7 +222,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
 
         <div className="flex items-center justify-between gap-3 border-t border-deep/10 px-5 py-4 md:px-8">
           <button type="button" onClick={() => (step === 0 ? onClose() : setStep((current) => current - 1))} className="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-deep/60 transition-colors hover:text-coral"><ArrowLeft className="size-4" aria-hidden="true" /> {step === 0 ? "Not now" : "Back"}</button>
-          {step < steps.length - 1 ? <button type="button" onClick={() => setStep((current) => current + 1)} className="solid-button solid-button-coral">{step === 0 ? "Let’s begin" : "Continue"} <ArrowRight aria-hidden="true" /></button> : <p className="hidden font-display text-lg font-semibold sm:block">{euro(pricing.total)} / month</p>}
+          {step < steps.length - 1 ? <>{step >= 1 && <p className="text-sm text-deep/60"><span className="hidden sm:inline">Indicative price · </span><span className="font-display text-lg font-bold text-deep">{euro(pricing.total)}</span><span className="text-deep/60">/ month</span></p>}<button type="button" onClick={() => setStep((current) => current + 1)} className="solid-button solid-button-coral">{step === 0 ? "Let’s begin" : "Continue"} <ArrowRight aria-hidden="true" /></button></> : <p className="hidden font-display text-lg font-semibold sm:block">{euro(pricing.total)} / month</p>}
         </div>
       </div>
     </div>
