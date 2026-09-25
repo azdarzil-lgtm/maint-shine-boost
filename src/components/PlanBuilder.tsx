@@ -204,9 +204,53 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                 </div>
               </div>
             </div>
-            <div className="mt-6 flex items-center gap-3.5">
-              <a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" aria-label="Email our property specialist" className="shrink-0 transition-transform hover:scale-110"><svg viewBox="0 0 64 46" className="size-12 text-coral" aria-hidden="true"><g className="phone-ring"><circle cx="11" cy="17" r="4.5" fill="currentColor" /><circle cx="47" cy="17" r="4.5" fill="currentColor" /><path d="M11 16 Q29 5 47 16" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" /><path d="M15 40 L19 24 Q29 20 39 24 L43 40 Z" fill="currentColor" /><circle cx="29" cy="32" r="4.5" fill="var(--sunlit)" /></g><path className="phone-wave" d="M53 10 a8 8 0 0 1 0 11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /><path className="phone-wave-2" d="M58 7 a13 13 0 0 1 0 17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /></svg></a>
-              <p className="text-sm leading-relaxed text-deep/70">Not sure which package suits your home best?<br /><a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" className="font-bold text-coral underline decoration-coral/40 underline-offset-4 transition-colors hover:decoration-coral">Simply reach out — our property specialist is here to help.</a></p>
+            <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4 sm:p-5">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+                <a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" aria-label="Email our property specialist" className="shrink-0 self-start transition-transform hover:scale-110 sm:self-center"><svg viewBox="0 0 64 46" className="size-12 text-coral" aria-hidden="true"><g className="phone-ring"><circle cx="11" cy="17" r="4.5" fill="currentColor" /><circle cx="47" cy="17" r="4.5" fill="currentColor" /><path d="M11 16 Q29 5 47 16" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" /><path d="M15 40 L19 24 Q29 20 39 24 L43 40 Z" fill="currentColor" /><circle cx="29" cy="32" r="4.5" fill="var(--sunlit)" /></g><path className="phone-wave" d="M53 10 a8 8 0 0 1 0 11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /><path className="phone-wave-2" d="M58 7 a13 13 0 0 1 0 17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /></svg></a>
+                <p className="text-sm leading-relaxed text-deep/70">Not sure which package suits your home best?<br /><a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" className="font-bold text-coral underline decoration-coral/40 underline-offset-4 transition-colors hover:decoration-coral">Simply reach out — our property specialist is here to help.</a></p>
+                <button type="button" onClick={() => setCallbackOpen((open) => !open)} aria-expanded={callbackOpen} className="solid-button solid-button-coral ml-0 shrink-0 self-start !px-5 !py-2.5 !text-sm sm:ml-auto sm:self-center"><Phone className="size-4" aria-hidden="true" /> Request a callback</button>
+              </div>
+              <div className={`grid transition-all duration-300 ${callbackOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                <div className="overflow-hidden">
+                  {callbackSent ? (
+                    <p className="mt-4 rounded-xl bg-sunlit/70 p-4 text-sm font-semibold text-deep">Thank you! Our property specialist will call you back within one working day.</p>
+                  ) : (
+                    <form
+                      className="mt-4 rounded-xl bg-sunlit/70 p-4"
+                      onSubmit={(event) => {
+                        event.preventDefault();
+                        const details = [
+                          `Name: ${callbackName.trim()}`,
+                          `Phone number: ${callbackPhone.trim()}`,
+                          `Preferred callback time: ${callbackTime}`,
+                        ].join("\n");
+                        window.location.href = `mailto:info@solidmaint.com?subject=${encodeURIComponent("Callback request — care plan")}&body=${encodeURIComponent(details)}`;
+                        setCallbackSent(true);
+                      }}
+                    >
+                      <p className="text-sm font-semibold">Prefer a call? Share your details and we'll ring you.</p>
+                      <div className="mt-3 grid gap-3 sm:grid-cols-3">
+                        <label className="block text-xs font-semibold text-deep/70">Name
+                          <input required maxLength={80} value={callbackName} onChange={(event) => setCallbackName(event.target.value)} placeholder="Your name" className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" />
+                        </label>
+                        <label className="block text-xs font-semibold text-deep/70">Phone number
+                          <input required type="tel" maxLength={30} value={callbackPhone} onChange={(event) => setCallbackPhone(event.target.value)} placeholder="+34 ..." className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" />
+                        </label>
+                        <label className="block text-xs font-semibold text-deep/70">Preferred callback time
+                          <select value={callbackTime} onChange={(event) => setCallbackTime(event.target.value)} className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep focus:border-coral focus:outline-none">
+                            <option>Any time, 09:00–18:00</option>
+                            <option>Morning, 09:00–12:00</option>
+                            <option>Midday, 12:00–14:00</option>
+                            <option>Afternoon, 14:00–18:00</option>
+                          </select>
+                        </label>
+                      </div>
+                      <button type="submit" className="solid-button solid-button-coral mt-4 !px-5 !py-2.5 !text-sm"><Phone className="size-4" aria-hidden="true" /> Call me back</button>
+                      <p className="mt-2 text-xs text-deep/55">Mon–Fri, 09:00–18:00 CET — we'll call you back within one working day.</p>
+                    </form>
+                  )}
+                </div>
+              </div>
             </div>
           </div>}
 
@@ -217,7 +261,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
               <ul className="mt-5 space-y-2 border-t border-sunlit/15 pt-4 text-sm text-sunlit/75"><li className="flex justify-between gap-4"><span>{selectedPlan.name} · {property?.label}</span><span>{euro(selectedPlan.base + (property?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{outdoorChoice?.label} · {poolChoice?.label}</span><span>{euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{selectedPlan.includedHours === 0 ? "No maintenance hours at the moment" : `${selectedPlan.includedHours} maintenance hours included`}</span><span className="font-bold text-coral">{selectedPlan.includedHours === 0 ? "—" : "Included"}</span></li><li className="flex justify-between gap-4"><span>Property Vault</span><span className="font-bold text-coral">Free</span></li></ul>
             </div>
             <p className="mt-4 text-xs leading-relaxed text-deep/55">Indicative pricing, IVA included. We confirm the final plan after a quick look at your property — no surprises, ever.</p>
-            <p className="mt-2 text-xs leading-relaxed text-deep/55">* Please note the packages include services only. Cost of materials are not included.</p>
+            <p className="mt-2 text-xs leading-relaxed text-deep/55">* A quick note: our package prices cover services only — any materials needed are quoted separately before we begin.</p>
             <a href={`mailto:info@solidmaint.com?subject=Bespoke%20care%20plan%20request&body=${enquiryBody}`} className="solid-button solid-button-coral mt-5 w-full">Request my bespoke plan <ArrowRight aria-hidden="true" /></a>
           </div>}
         </div>
