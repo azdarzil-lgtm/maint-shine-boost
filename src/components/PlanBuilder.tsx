@@ -14,10 +14,28 @@ export type PlanKey = "outdoor" | "home-ready" | "complete";
 
 type PropertyKey = "flat" | "townhouse" | "villa" | "finca";
 
-export const planBase: Record<PlanKey, { name: string; base: number; blurb: string; includedHours: number }> = {
-  outdoor: { name: "Essential Care", base: 189, blurb: "Reliable essentials, tailored to your home.", includedHours: 0 },
-  "home-ready": { name: "Home Ready", base: 289, blurb: "Regular care with practical maintenance time built in.", includedHours: 2 },
-  complete: { name: "VIP Care", base: 459, blurb: "Proactive oversight of your whole property.", includedHours: 4 },
+export const planBase: Record<PlanKey, { name: string; base: number; blurb: string; includedHours: number; includes: string[] }> = {
+  outdoor: {
+    name: "Essential Care",
+    base: 189,
+    blurb: "Reliable essentials, tailored to your home.",
+    includedHours: 0,
+    includes: ["Garden or yard care, shaped to your space", "Optional pool care only if you have one", "Maintenance hours whenever a job comes up", "Visit photos saved to your free Property Vault"],
+  },
+  "home-ready": {
+    name: "Home Ready",
+    base: 289,
+    blurb: "Regular care with practical maintenance time built in.",
+    includedHours: 2,
+    includes: ["Everything in Essential Care", "2 maintenance hours every month, included", "A monthly photo-documented property report", "Pool care optional, added to your price"],
+  },
+  complete: {
+    name: "VIP Care",
+    base: 459,
+    blurb: "Proactive oversight of your whole property.",
+    includedHours: 4,
+    includes: ["Everything in Home Ready", "Whole-property checks — AC, plumbing, electrics, fixtures", "4 maintenance hours every month, included", "Priority coordination and full documentation"],
+  },
 };
 
 const propertyTypes: { key: PropertyKey; label: string; note: string; add: number }[] = [
@@ -173,7 +191,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
 
           {step === 4 && <div>
             <p className="section-label text-coral">Choose your care level</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">How hands-on would you like us to be?</h3>
-            <div className="mt-6 grid gap-3 md:grid-cols-3">{planKeys.map((key, index) => { const option = planBase[key]; return <button key={key} type="button" onClick={() => setCareIndex(index)} className={`flex min-h-52 flex-col rounded-2xl border p-5 text-left transition-colors ${careIndex === index ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}><span className="font-display text-2xl font-semibold">{option.name}</span><span className="mt-2 text-sm leading-relaxed text-deep/65">{option.blurb}</span><span className="mt-auto flex items-center gap-1.5 pt-5 text-sm font-bold text-coral">{option.includedHours === 0 ? "Add maintenance hours as needed" : `${option.includedHours} maintenance hours included monthly`}</span>{key === "complete" && <span className="mt-2 flex items-center gap-2 text-xs font-semibold text-deep/65"><ShieldCheck className="size-4 text-coral" />AC, plumbing, electrics and condition checks</span>}</button>; })}</div>
+            <div className="mt-6 grid gap-3 md:grid-cols-3">{planKeys.map((key, index) => { const option = planBase[key]; return <button key={key} type="button" onClick={() => setCareIndex(index)} className={`flex min-h-52 flex-col rounded-2xl border p-5 text-left transition-colors ${careIndex === index ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}><span className="font-display text-2xl font-semibold">{option.name}</span><span className="mt-2 text-sm leading-relaxed text-deep/65">{option.blurb}</span><ul className="mt-3 space-y-1.5">{option.includes.map((item) => <li key={item} className="flex items-start gap-2 text-xs leading-snug text-deep/70"><Check className="mt-0.5 size-3.5 shrink-0 text-coral" aria-hidden="true" /><span>{item}</span></li>)}</ul><span className="mt-auto flex items-center gap-1.5 pt-5 text-sm font-bold text-coral">{option.includedHours === 0 ? "Add maintenance hours as needed" : `${option.includedHours} maintenance hours included monthly`}</span>{key === "complete" && <span className="mt-2 flex items-center gap-2 text-xs font-semibold text-deep/65"><ShieldCheck className="size-4 text-coral" />AC, plumbing, electrics and condition checks</span>}</button>; })}</div>
             <button type="button" onClick={() => setShowHours((open) => !open)} aria-expanded={showHours} className="mt-5 flex w-full items-center justify-between gap-4 rounded-2xl border border-coral/40 bg-coral/10 p-4 text-left transition-colors hover:border-coral">
               <span className="text-sm leading-snug"><span className="font-semibold">What can your maintenance hours cover?</span> <span className="text-deep/70">Tap to see the services you can spend them on.</span></span>
               <ChevronDown className={`size-5 shrink-0 text-coral transition-transform ${showHours ? "rotate-180" : ""}`} aria-hidden="true" />
