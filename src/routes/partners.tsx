@@ -121,6 +121,55 @@ const steps = [
   { n: "04", title: "You are part of the family", body: "We look after the homes; you look after the clients. Everyone sleeps better." },
 ];
 
+function TypewriterCaption({ text }: { text: string }) {
+  const [displayed, setDisplayed] = useState("");
+  const [hasStarted, setHasStarted] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplayed(text);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setHasStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.6 },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [text]);
+
+  useEffect(() => {
+    if (!hasStarted || displayed.length >= text.length) return;
+
+    const timeout = window.setTimeout(
+      () => setDisplayed(text.slice(0, displayed.length + 1)),
+      displayed.length === 0 ? 260 : 36,
+    );
+
+    return () => window.clearTimeout(timeout);
+  }, [displayed, hasStarted, text]);
+
+  return (
+    <span ref={ref} aria-label={text}>
+      <span aria-hidden="true">
+        {displayed}
+        <span className="typewriter-cursor">|</span>
+      </span>
+    </span>
+  );
+}
+
 function PartnersPage() {
   return (
     <main className="min-h-screen bg-sunlit text-deep">
