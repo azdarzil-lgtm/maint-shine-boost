@@ -146,7 +146,7 @@ function PartnersPage() {
               </a>
             </div>
           </div>
-          <figure className="flex min-h-[22rem] flex-col items-center justify-end overflow-hidden rounded-[1.75rem] border border-deep/10 bg-olive/10 px-3 pt-4 sm:min-h-[25rem] sm:px-6 lg:h-[25rem] lg:min-h-0 lg:self-end lg:px-0 lg:pt-0">
+          <figure className="flex min-h-[22rem] flex-col items-center justify-end overflow-hidden rounded-[1.75rem] border border-deep/10 bg-olive/10 px-3 pt-4 sm:min-h-[25rem] sm:px-6 lg:h-[27rem] lg:min-h-0 lg:self-end lg:px-0 lg:pt-0">
             <img
               src={partnersPeople}
               alt="Janita and Tuukka, the SolidMaint sales team"
@@ -154,7 +154,7 @@ function PartnersPage() {
               width={1376}
               height={768}
             />
-            <figcaption className="w-full py-3 pl-4 pr-16 pb-5 text-center font-display text-base font-semibold text-coral sm:px-6 sm:text-lg sm:pb-5 lg:px-10 lg:pb-6">
+            <figcaption className="w-full py-2.5 pl-2 pr-2 text-center text-[0.66rem] font-semibold leading-snug text-coral sm:px-6 sm:text-sm lg:px-10 lg:pb-5 lg:text-sm lg:whitespace-nowrap">
               Questions? Our sales specialists Janita and Tuukka have you covered.
             </figcaption>
           </figure>
