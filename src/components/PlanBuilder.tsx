@@ -215,6 +215,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
               <ul className="mt-5 space-y-2 border-t border-sunlit/15 pt-4 text-sm text-sunlit/75"><li className="flex justify-between gap-4"><span>{selectedPlan.name} · {property?.label}</span><span>{euro(selectedPlan.base + (property?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{outdoorChoice?.label} · {poolChoice?.label}</span><span>{euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{selectedPlan.includedHours === 0 ? "No maintenance hours at the moment" : `${selectedPlan.includedHours} maintenance hours included`}</span><span className="font-bold text-coral">{selectedPlan.includedHours === 0 ? "—" : "Included"}</span></li><li className="flex justify-between gap-4"><span>Property Vault</span><span className="font-bold text-coral">Free</span></li></ul>
             </div>
             <p className="mt-4 text-xs leading-relaxed text-deep/55">Indicative pricing, IVA included. We confirm the final plan after a quick look at your property — no surprises, ever.</p>
+            <p className="mt-2 text-xs leading-relaxed text-deep/55">* Please note the packages include services only. Cost of materials are not included.</p>
             <a href={`mailto:info@solidmaint.com?subject=Bespoke%20care%20plan%20request&body=${enquiryBody}`} className="solid-button solid-button-coral mt-5 w-full">Request my bespoke plan <ArrowRight aria-hidden="true" /></a>
           </div>}
         </div>
