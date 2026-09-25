@@ -283,7 +283,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                         setVideoSent(true);
                       }}
                     >
-                      <p className="text-sm font-semibold">Feel like a movie star? 🎬 Film a quick tour of your home and garden — show us what needs care, and we'll recommend the perfect plan.</p>
+                      <p className="text-sm font-semibold">Feel like a movie star? 🎬 Film a quick tour of your yard, pool or garden — show us what needs care, and we'll recommend the perfect plan.</p>
                       <p className="mt-1.5 text-xs leading-relaxed text-deep/55">Just tell us where to reach you — we'll send you a link to share your video (about a minute is plenty).</p>
                       <div className="mt-3 grid gap-3 sm:grid-cols-2">
                         <label className="block text-xs font-semibold text-deep/70">Name
