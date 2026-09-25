@@ -150,11 +150,11 @@ function PartnersPage() {
             <img
               src={partnersPeople}
               alt="Janita and Tuukka, the SolidMaint sales team"
-              className="h-auto w-full max-w-none origin-bottom scale-[1.06] object-contain object-bottom lg:w-[120%]"
+              className="h-auto w-full max-w-none origin-bottom scale-[1.04] object-contain object-bottom lg:w-[120%]"
               width={1376}
               height={768}
             />
-            <figcaption className="w-full px-4 pb-5 pt-3 text-center font-display text-lg font-semibold text-coral sm:px-6 lg:px-10 lg:pb-6">
+            <figcaption className="w-full py-3 pl-4 pr-16 pb-5 text-center font-display text-base font-semibold text-coral sm:px-6 sm:text-lg sm:pb-5 lg:px-10 lg:pb-6">
               Our amazing sales team: Janita and Tuukka are here to answer all your questions.
             </figcaption>
           </figure>
