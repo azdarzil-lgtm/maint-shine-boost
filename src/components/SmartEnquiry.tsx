@@ -21,7 +21,7 @@ const audiences: Audience[] = [
     label: "Overseas owner",
     intro: "Tell us about your home away from home — we'll shape the care around how you use it.",
     fields: [
-      { kind: "select", key: "property", label: "What kind of property is it?", options: ["Flat or apartment", "Townhouse", "Villa", "Finca or country home"] },
+      { kind: "select", key: "property", label: "What kind of property is it?", options: ["Flat or apartment", "Townhouse", "Villa", "Finca or estate"] },
       { kind: "select", key: "town", label: "Where is it?", options: ["Benalmádena", "Fuengirola", "Mijas", "Marbella", "Estepona", "Sotogrande", "Somewhere else on the Costa del Sol"] },
       { kind: "select", key: "visits", label: "How often do you visit?", options: ["A few times a year", "Every couple of months", "Monthly", "Rarely — it is mostly rented or empty"] },
       { kind: "select", key: "worry", label: "What worries you most while you're away?", options: ["Security and checks", "The pool", "The garden", "Storms, leaks and damp", "Everything, honestly"] },
@@ -34,7 +34,7 @@ const audiences: Audience[] = [
     label: "Resident owner",
     intro: "You live here full-time — let's take the upkeep off your plate.",
     fields: [
-      { kind: "select", key: "property", label: "What kind of home is it?", options: ["Flat or apartment", "Townhouse", "Villa", "Finca or country home"] },
+      { kind: "select", key: "property", label: "What kind of home is it?", options: ["Flat or apartment", "Townhouse", "Villa", "Finca or estate"] },
       { kind: "select", key: "town", label: "Where do you live?", options: ["Benalmádena", "Fuengirola", "Mijas", "Marbella", "Estepona", "Sotogrande", "Somewhere else on the Costa del Sol"] },
       { kind: "select", key: "priority", label: "What needs the most care?", options: ["The garden", "The pool", "Repairs and odd jobs", "Air conditioning", "A bit of everything"] },
       { kind: "select", key: "start", label: "When would you like to start?", options: ["As soon as possible", "Within a month", "Just comparing for now"] },

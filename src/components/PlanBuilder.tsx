@@ -24,7 +24,7 @@ const propertyTypes: { key: PropertyKey; label: string; note: string; add: numbe
   { key: "flat", label: "Flat", note: "Apartment or penthouse", add: 0 },
   { key: "townhouse", label: "Townhouse", note: "Shared or private outdoor space", add: 25 },
   { key: "villa", label: "Villa", note: "Detached home and grounds", add: 70 },
-  { key: "finca", label: "Finca", note: "Larger rural property", add: 130 },
+  { key: "finca", label: "Finca / Estate", note: "Larger rural property or estate", add: 130 },
 ];
 
 const outdoorSizes = [
