@@ -24,16 +24,16 @@ export const planBase: Record<PlanKey, { name: string; base: number; blurb: stri
   "home-ready": {
     name: "Home Ready",
     base: 289,
-    blurb: "Regular care with practical maintenance time built in.",
+    blurb: "Maintenance time built in.",
     includedHours: 2,
-    includes: ["Everything in Essential Care", "2 maintenance hours every month, included", "A monthly photo-documented property report", "Pool care optional, added to your price"],
+    includes: ["Everything in Essential Care", "2 maintenance hours monthly", "Monthly photo report"],
   },
   complete: {
     name: "VIP Care",
     base: 459,
-    blurb: "Proactive oversight of your whole property.",
+    blurb: "Your whole property, proactively cared for.",
     includedHours: 4,
-    includes: ["Everything in Home Ready", "Whole-property checks — AC, plumbing, electrics, fixtures", "4 maintenance hours every month, included", "Priority coordination and full documentation"],
+    includes: ["Everything in Home Ready", "AC, plumbing & electrics checks", "4 maintenance hours monthly"],
   },
 };
 
