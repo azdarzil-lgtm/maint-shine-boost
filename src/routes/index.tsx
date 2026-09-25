@@ -491,9 +491,9 @@ function Index() {
             <article className="how-step">
               <span className="section-label text-coral">Step 01</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Tell us about your home</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Flat, townhouse, villa or finca — with a small yard, a large garden, a pool or neither. We begin with the home you actually own.</p>
+              <p className="mt-4 leading-relaxed text-deep/65">Flat, townhouse, villa, finca or estate — with a small yard, a large garden, a pool or neither. We begin with the home you actually own.</p>
               <div className="mt-6 flex flex-wrap gap-2">
-                {["Flat", "Townhouse", "Villa", "Finca"].map((name) => (
+                {["Flat", "Townhouse", "Villa", "Finca / Estate"].map((name) => (
                   <a key={name} href="#packages" className="rounded-full border border-deep/20 px-3.5 py-1.5 text-xs font-bold transition-colors hover:border-coral hover:text-coral">{name}</a>
                 ))}
               </div>
