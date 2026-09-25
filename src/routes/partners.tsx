@@ -155,7 +155,7 @@ function PartnersPage() {
               height={768}
             />
             <figcaption className="w-full py-3 pl-4 pr-16 pb-5 text-center font-display text-base font-semibold text-coral sm:px-6 sm:text-lg sm:pb-5 lg:px-10 lg:pb-6">
-              Our amazing sales team: Janita and Tuukka are here to answer all your questions.
+              Questions? Our sales specialists Janita and Tuukka have you covered.
             </figcaption>
           </figure>
         </div>
