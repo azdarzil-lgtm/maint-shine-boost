@@ -3,7 +3,6 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
-  ShieldCheck,
   Smartphone,
   X,
 } from "lucide-react";
