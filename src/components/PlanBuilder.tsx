@@ -5,7 +5,6 @@ import {
   ChevronDown,
   ShieldCheck,
   Smartphone,
-  Sparkles,
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
