@@ -11,16 +11,6 @@ const socials = [
 export function SiteFooter() {
   return (
     <footer id="contact" className="relative overflow-hidden bg-deep py-20 text-sunlit md:py-28">
-      <img
-        src={enquiryBg}
-        alt=""
-        aria-hidden="true"
-        loading="lazy"
-        width={1920}
-        height={1024}
-        className="absolute inset-0 size-full object-cover"
-      />
-      <div className="absolute inset-0 bg-deep/88" aria-hidden="true" />
       <div className="relative mx-auto max-w-4xl px-5 text-center md:px-10">
         <p className="section-label text-coral">Your home. Our care.</p>
         <h2 className="mt-5 font-display text-4xl font-semibold leading-tight md:text-6xl">
