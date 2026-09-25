@@ -5,6 +5,7 @@ import {
   ChevronDown,
   Phone,
   Smartphone,
+  Video,
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -133,6 +134,10 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   const [callbackPhone, setCallbackPhone] = useState("");
   const [callbackTime, setCallbackTime] = useState("Any time, 09:00–18:00");
   const [callbackSent, setCallbackSent] = useState(false);
+  const [videoOpen, setVideoOpen] = useState(false);
+  const [videoName, setVideoName] = useState("");
+  const [videoContact, setVideoContact] = useState("");
+  const [videoSent, setVideoSent] = useState(false);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => event.key === "Escape" && onClose();
@@ -214,7 +219,10 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" aria-label="Email our property specialist" className="shrink-0 self-start transition-transform hover:scale-110 sm:self-center"><svg viewBox="0 0 64 46" className="size-12 text-coral" aria-hidden="true"><g className="phone-ring"><circle cx="11" cy="17" r="4.5" fill="currentColor" /><circle cx="47" cy="17" r="4.5" fill="currentColor" /><path d="M11 16 Q29 5 47 16" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" /><path d="M15 40 L19 24 Q29 20 39 24 L43 40 Z" fill="currentColor" /><circle cx="29" cy="32" r="4.5" fill="var(--sunlit)" /></g><path className="phone-wave" d="M53 10 a8 8 0 0 1 0 11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /><path className="phone-wave-2" d="M58 7 a13 13 0 0 1 0 17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /></svg></a>
                 <p className="text-sm leading-relaxed text-deep/70">Not sure which package suits your home best?<br /><a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" className="font-bold text-coral underline decoration-coral/40 underline-offset-4 transition-colors hover:decoration-coral">Simply reach out — our property specialist is here to help.</a></p>
-                <button type="button" onClick={() => setCallbackOpen((open) => !open)} aria-expanded={callbackOpen} className="solid-button solid-button-coral ml-0 shrink-0 self-start !px-5 !py-2.5 !text-sm sm:ml-auto sm:self-center"><Phone className="size-4" aria-hidden="true" /> Request a callback</button>
+                <div className="ml-0 flex shrink-0 flex-col gap-2 self-start sm:ml-auto sm:self-center">
+                  <button type="button" onClick={() => setCallbackOpen((open) => !open)} aria-expanded={callbackOpen} className="solid-button solid-button-coral !px-5 !py-2.5 !text-sm"><Phone className="size-4" aria-hidden="true" /> Request a callback</button>
+                  <button type="button" onClick={() => setVideoOpen((open) => !open)} aria-expanded={videoOpen} className="solid-button !bg-deep !px-5 !py-2.5 !text-sm !text-sunlit hover:!bg-deep/90"><Video className="size-4" aria-hidden="true" /> Send us a video</button>
+                </div>
               </div>
               <div className={`grid transition-all duration-300 ${callbackOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                 <div className="overflow-hidden">
@@ -253,6 +261,40 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                       </div>
                       <button type="submit" className="solid-button solid-button-coral mt-4 !px-5 !py-2.5 !text-sm"><Phone className="size-4" aria-hidden="true" /> Call me back</button>
                       <p className="mt-2 text-xs text-deep/55">Mon–Fri, 09:00–18:00 CET — we'll call you back within one working day.</p>
+                    </form>
+                  )}
+                </div>
+              </div>
+              <div className={`grid transition-all duration-300 ${videoOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                <div className="overflow-hidden">
+                  {videoSent ? (
+                    <p className="mt-4 rounded-xl bg-sunlit/70 p-4 text-sm font-semibold text-deep">Action! 🎬 We'll be in touch within one working day with a link to send your video — then our property specialist will watch it and call you with a tailored recommendation.</p>
+                  ) : (
+                    <form
+                      className="mt-4 rounded-xl bg-sunlit/70 p-4"
+                      onSubmit={(event) => {
+                        event.preventDefault();
+                        const details = [
+                          `Name: ${videoName.trim()}`,
+                          `Email or WhatsApp number: ${videoContact.trim()}`,
+                          "They would like to send a short video of their property — please reply with the best way to send it.",
+                        ].join("\n");
+                        window.location.href = `mailto:info@solidmaint.com?subject=${encodeURIComponent("Video walkthrough — help me choose")}&body=${encodeURIComponent(details)}`;
+                        setVideoSent(true);
+                      }}
+                    >
+                      <p className="text-sm font-semibold">Feel like a movie star? 🎬 Film a quick tour of your home and garden — show us what needs care, and we'll recommend the perfect plan.</p>
+                      <p className="mt-1.5 text-xs leading-relaxed text-deep/55">Just tell us where to reach you — we'll send you a link to share your video (about a minute is plenty).</p>
+                      <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                        <label className="block text-xs font-semibold text-deep/70">Name
+                          <input required maxLength={80} value={videoName} onChange={(event) => setVideoName(event.target.value)} placeholder="Your name" className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" />
+                        </label>
+                        <label className="block text-xs font-semibold text-deep/70">Email or WhatsApp number
+                          <input required maxLength={80} value={videoContact} onChange={(event) => setVideoContact(event.target.value)} placeholder="you@email.com or +34 ..." className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" />
+                        </label>
+                      </div>
+                      <button type="submit" className="solid-button solid-button-coral mt-4 !px-5 !py-2.5 !text-sm"><Video className="size-4" aria-hidden="true" /> Lights, camera… send!</button>
+                      <p className="mt-2 text-xs text-deep/55">No lights or script needed — a simple phone video walking around your property is perfect.</p>
                     </form>
                   )}
                 </div>
