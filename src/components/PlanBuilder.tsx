@@ -63,7 +63,7 @@ const poolSizes = [
 ];
 
 const terms = [
-  { key: "trial", label: "Monthly try-out", discount: 0, note: "Rolling monthly, no commitment, cancel at any time" },
+  { key: "trial", label: "Monthly try-out", discount: 0, note: "Rolling monthly, no commitment — cancel at any time if you wish" },
   { key: "3", label: "3 months", discount: 0.05, note: "5% off your monthly plan" },
   { key: "6", label: "6 months", discount: 0.08, note: "8% off your monthly plan" },
   { key: "12", label: "12 months", discount: 0.1, note: "10% off your monthly plan" },
