@@ -89,8 +89,8 @@ export const journalPosts: JournalPost[] = [
     excerpt:
       "Our arrival-ready routine for overseas owners — AC, plumbing, electrics and everything in between.",
     image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
-    alt: "A bright modern villa exterior ready for its owners",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&q=80",
+    alt: "A whitewashed Costa del Sol villa with a sparkling pool, ready for its owners",
     body: [
       "There's a moment every overseas owner knows well: the key turns, the door opens, and you find out what your home has been doing while you were away. Sometimes it's wonderful. Sometimes it's a musty smell, a tripped fuse box, and a garden that looks mildly offended.",
       "Our arrival-ready routine exists to make sure it's always the first kind of moment. When we know you're coming, we don't just tidy — we wake the house up properly, the way you'd want to walk into it.",
