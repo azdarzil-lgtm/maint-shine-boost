@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
+import proofNotPromisesAd from "@/assets/proof-not-promises-ad.jpg.asset.json";
+
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -27,6 +29,14 @@ export const Route = createFileRoute("/journal")({
 });
 
 const posts = [
+  {
+    date: "October 2026",
+    title: "Proof, not promises: check on your home from your kitchen in London",
+    excerpt:
+      "The biggest worry we hear from overseas owners? Paying someone local and never quite knowing if the job was done. Here's how every SolidMaint visit ends with fresh photos and a full check log in your Property Vault — no ghosting, no guessing.",
+    image: proofNotPromisesAd.url,
+    alt: "Checking a sunlit Costa del Sol villa on a phone from a cosy autumn café in London",
+  },
   {
     date: "September 2026",
     title: "Autumn on the coast: resetting your home after summer",
