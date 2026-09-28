@@ -196,11 +196,11 @@ function PartnersPage() {
               </a>
             </div>
           </div>
-          <figure className="flex min-h-[22rem] flex-col items-center justify-end overflow-hidden rounded-[1.75rem] border border-deep/10 bg-olive/10 px-3 pt-4 sm:min-h-[25rem] sm:px-6 lg:h-[27rem] lg:min-h-0 lg:self-end lg:px-0 lg:pt-0">
+          <figure className="flex min-h-[22rem] flex-col items-center justify-end overflow-hidden rounded-[1.75rem] border border-deep/10 bg-olive/10 px-3 pt-4 sm:min-h-[25rem] sm:px-6 lg:h-[31rem] lg:min-h-0 lg:self-end lg:px-0 lg:pt-0">
             <img
               src={partnersPeopleAsset.url}
               alt="Janita and Tuukka, the SolidMaint sales team"
-              className="h-auto w-full max-w-none origin-bottom scale-[1.04] object-contain object-bottom lg:w-[120%]"
+              className="h-auto w-full max-w-none origin-bottom object-contain object-bottom lg:w-[112%]"
               width={1139}
               height={768}
             />
