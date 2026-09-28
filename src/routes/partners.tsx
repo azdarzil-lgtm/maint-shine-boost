@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, BadgeCheck, Building2, CalendarClock, HandHeart, KeyRound, LineChart, Percent, Phone, Users } from "lucide-react";
 
-import partnersPeople from "@/assets/partners-people-cutout.png";
+import partnersPeopleAsset from "@/assets/partners-people.png.asset.json";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -198,10 +198,10 @@ function PartnersPage() {
           </div>
           <figure className="flex min-h-[22rem] flex-col items-center justify-end overflow-hidden rounded-[1.75rem] border border-deep/10 bg-olive/10 px-3 pt-4 sm:min-h-[25rem] sm:px-6 lg:h-[27rem] lg:min-h-0 lg:self-end lg:px-0 lg:pt-0">
             <img
-              src={partnersPeople}
+              src={partnersPeopleAsset.url}
               alt="Janita and Tuukka, the SolidMaint sales team"
               className="h-auto w-full max-w-none origin-bottom scale-[1.04] object-contain object-bottom lg:w-[120%]"
-              width={1376}
+              width={1139}
               height={768}
             />
             <figcaption className="w-full py-2.5 pl-2 pr-2 text-center text-[0.66rem] font-semibold leading-snug text-deep sm:px-6 sm:text-sm lg:px-10 lg:pb-5 lg:text-sm lg:whitespace-nowrap">
