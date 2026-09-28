@@ -3,7 +3,9 @@ import { ArrowRight } from "lucide-react";
 
 import team3 from "@/assets/team-3.jpg";
 import team4 from "@/assets/team-4.jpg";
-import antonio from "@/assets/antonio.jpg";
+import antonioAsset from "@/assets/antonio.jpg.asset.json";
+
+const antonio = antonioAsset.url;
 import pekka from "@/assets/pekka.jpg";
 import mikko from "@/assets/mikko.jpg";
 import jonas from "@/assets/jonas.jpg";
