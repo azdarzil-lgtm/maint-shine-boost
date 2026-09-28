@@ -123,7 +123,7 @@ function JournalPage() {
             ))}
           </div>
 
-          <div className="mt-14 grid overflow-hidden border border-deep/15 bg-olive/10 md:grid-cols-[minmax(0,1fr)_22rem] md:items-end">
+          <div className="mt-14 grid overflow-hidden border border-deep/15 bg-olive/10 md:grid-cols-[minmax(0,1fr)_29rem] md:items-end">
             <div className="p-8 md:py-12 md:pl-12 md:pr-6">
               <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
                 Wondering what your home needs this season?
@@ -135,11 +135,11 @@ function JournalPage() {
                 Talk to us <ArrowRight aria-hidden="true" />
               </a>
             </div>
-            <div className="flex h-[21.5rem] items-end justify-center px-4 sm:h-96 md:h-full md:min-h-96 md:px-0 md:pr-5">
+            <div className="flex h-[26rem] items-end justify-center px-4 sm:h-[29rem] md:h-full md:min-h-96 md:px-0 md:pr-2">
               <img
                 src={wonderingMan}
                 alt="A man wondering which seasonal care his home needs"
-                className="max-h-full w-full max-w-md object-contain object-bottom"
+                className="max-h-full w-full max-w-lg object-contain object-bottom"
               />
             </div>
           </div>
