@@ -375,7 +375,7 @@ function Index() {
           <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
               <p className="section-label text-coral">01 — The benefits</p>
-              <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Care-free ownership, built on Nordic precision.</h2>
+              <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">You enjoy the home. We handle the rest.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
               Our team has deep Nordic roots — precision is simply how we work. Every plan includes regular garden
@@ -393,7 +393,7 @@ function Index() {
               },
               {
                 icon: Sun,
-                title: "Care-free ownership",
+                title: "You enjoy the home. We handle the rest.",
                 body: "You enjoy the Costa del Sol; we handle the rest. No chasing trades, no surprise calls — just a home that's always ready when you arrive.",
               },
               {
