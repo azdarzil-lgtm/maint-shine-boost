@@ -35,7 +35,6 @@ import samuliAsset from "@/assets/samuli.jpg.asset.json";
 const antonio = antonioAsset.url;
 const samuli = samuliAsset.url;
 import jonas from "@/assets/jonas.jpg";
-import pekka from "@/assets/pekka.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
