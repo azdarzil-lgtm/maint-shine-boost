@@ -1,12 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
-import proofNotPromisesAd from "@/assets/proof-not-promises-ad.jpg.asset.json";
 import wonderingMan from "@/assets/wondering-man-cutout.png";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { journalPosts as posts } from "@/lib/journal-posts";
 
 export const Route = createFileRoute("/journal")({
   head: () => ({
