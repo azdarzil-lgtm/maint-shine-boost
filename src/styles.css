@@ -218,6 +218,12 @@
   &:hover { background-color: var(--sunlit); color: var(--deep); }
 }
 
+@utility solid-button-white {
+  background-color: var(--sunlit);
+  color: var(--deep);
+  &:hover { background-color: color-mix(in oklab, var(--sunlit) 88%, white); }
+}
+
 @utility package-card {
   display: flex;
   min-height: 31rem;
