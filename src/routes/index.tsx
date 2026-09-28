@@ -28,9 +28,12 @@ import appProcessVideo from "@/assets/solidmaint-app-process.mp4.asset.json";
 import enquiryBg from "@/assets/enquiry-bg-2.jpg";
 import familyVillaPoster from "@/assets/family-villa-footer-poster.jpg.asset.json";
 import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
-import antonio from "@/assets/antonio.jpg";
+import antonioAsset from "@/assets/antonio.jpg.asset.json";
 import joseAntonio from "@/assets/jose-antonio.jpg";
-import samuli from "@/assets/samuli.jpg";
+import samuliAsset from "@/assets/samuli.jpg.asset.json";
+
+const antonio = antonioAsset.url;
+const samuli = samuliAsset.url;
 import jonas from "@/assets/jonas.jpg";
 import pekka from "@/assets/pekka.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
