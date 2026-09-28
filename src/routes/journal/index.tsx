@@ -81,12 +81,12 @@ function JournalPage() {
             ))}
           </div>
 
-          <div className="mt-14 grid overflow-hidden rounded-[1.75rem] border border-deep/15 bg-olive/10 md:grid-cols-[minmax(0,1fr)_29rem] md:items-end">
-            <div className="p-8 md:py-12 md:pl-12 md:pr-6">
+          <div className="mt-14 grid overflow-hidden rounded-[1.75rem] border border-deep/15 bg-olive/10 md:grid-cols-[minmax(0,1fr)_27rem] md:items-end">
+            <div className="p-8 md:py-12 md:pl-10 md:pr-4">
               <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
                 Wondering what your home needs this season?
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-deep/65 md:whitespace-nowrap">
+              <p className="mt-4 text-[15px] leading-relaxed text-deep/65 xl:text-base">
                 Tell us where your home is and what needs care — we&apos;ll suggest a plan that fits it.
               </p>
               <a href="/#contact" className="solid-button solid-button-coral mt-8">
