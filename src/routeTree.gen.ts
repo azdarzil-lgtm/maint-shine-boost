@@ -11,9 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FaqsRouteImport } from './routes/faqs'
-import { Route as JournalRouteImport } from './routes/journal'
 import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as TeamRouteImport } from './routes/team'
+import { Route as JournalIndexRouteImport } from './routes/journal/index'
 import { Route as JournalSlugRouteImport } from './routes/journal/$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -26,11 +26,6 @@ const FaqsRoute = FaqsRouteImport.update({
   path: '/faqs',
   getParentRoute: () => rootRouteImport,
 } as any)
-const JournalRoute = JournalRouteImport.update({
-  id: '/journal',
-  path: '/journal',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PartnersRoute = PartnersRouteImport.update({
   id: '/partners',
   path: '/partners',
@@ -39,6 +34,11 @@ const PartnersRoute = PartnersRouteImport.update({
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalIndexRoute = JournalIndexRouteImport.update({
+  id: '/journal/',
+  path: '/journal/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JournalSlugRoute = JournalSlugRouteImport.update({
@@ -50,50 +50,50 @@ const JournalSlugRoute = JournalSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/faqs': typeof FaqsRoute
-  '/journal': typeof JournalRouteWithChildren
   '/partners': typeof PartnersRoute
   '/team': typeof TeamRoute
   '/journal/$slug': typeof JournalSlugRoute
+  '/journal/': typeof JournalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/faqs': typeof FaqsRoute
-  '/journal': typeof JournalRouteWithChildren
   '/partners': typeof PartnersRoute
   '/team': typeof TeamRoute
   '/journal/$slug': typeof JournalSlugRoute
+  '/journal': typeof JournalIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/faqs': typeof FaqsRoute
-  '/journal': typeof JournalRouteWithChildren
   '/partners': typeof PartnersRoute
   '/team': typeof TeamRoute
   '/journal/$slug': typeof JournalSlugRoute
+  '/journal/': typeof JournalIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/faqs' | '/journal' | '/partners' | '/team' | '/journal/$slug'
+    '/' | '/faqs' | '/partners' | '/team' | '/journal/$slug' | '/journal/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/faqs' | '/journal' | '/partners' | '/team' | '/journal/$slug'
+  to: '/' | '/faqs' | '/partners' | '/team' | '/journal/$slug' | '/journal'
   id:
     | '__root__'
     | '/'
     | '/faqs'
-    | '/journal'
     | '/partners'
     | '/team'
     | '/journal/$slug'
+    | '/journal/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FaqsRoute: typeof FaqsRoute
-  JournalRoute: typeof JournalRouteWithChildren
   PartnersRoute: typeof PartnersRoute
   TeamRoute: typeof TeamRoute
+  JournalIndexRoute: typeof JournalIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -112,13 +112,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/journal': {
-      id: '/journal'
-      path: '/journal'
-      fullPath: '/journal'
-      preLoaderRoute: typeof JournalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/partners': {
       id: '/partners'
       path: '/partners'
@@ -133,6 +126,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journal/': {
+      id: '/journal/'
+      path: '/journal'
+      fullPath: '/journal/'
+      preLoaderRoute: typeof JournalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/journal/$slug': {
       id: '/journal/$slug'
       path: '/$slug'
@@ -143,23 +143,12 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface JournalRouteChildren {
-  JournalSlugRoute: typeof JournalSlugRoute
-}
-
-const JournalRouteChildren: JournalRouteChildren = {
-  JournalSlugRoute: JournalSlugRoute,
-}
-
-const JournalRouteWithChildren =
-  JournalRoute._addFileChildren(JournalRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FaqsRoute: FaqsRoute,
-  JournalRoute: JournalRouteWithChildren,
   PartnersRoute: PartnersRoute,
   TeamRoute: TeamRoute,
+  JournalIndexRoute: JournalIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
