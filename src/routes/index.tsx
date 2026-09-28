@@ -29,11 +29,10 @@ import enquiryBg from "@/assets/enquiry-bg-2.jpg";
 import familyVillaPoster from "@/assets/family-villa-footer-poster.jpg.asset.json";
 import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
 import antonio from "@/assets/antonio.jpg";
-import mikko from "@/assets/mikko.jpg";
+import joseAntonio from "@/assets/jose-antonio.jpg";
+import samuli from "@/assets/samuli.jpg";
 import jonas from "@/assets/jonas.jpg";
 import pekka from "@/assets/pekka.jpg";
-import team3 from "@/assets/team-3.jpg";
-import team4 from "@/assets/team-4.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -140,7 +139,7 @@ const services = [
     icon: Leaf,
     detail:
       "Lawns mown and edged, borders tidied and beds weeded — then a soil-moisture check so nothing quietly dries out. You come home to a garden that simply looks after itself.",
-    lead: { name: "Antonio Reyes", role: "Garden & pool care lead", photo: antonio },
+    lead: { name: "Jose Antonio", role: "Garden care lead", photo: joseAntonio },
   },
   {
     title: "Pool Maintenance",
@@ -148,7 +147,7 @@ const services = [
     icon: Waves,
     detail:
       "Skimming, brushing and basket-emptying on a schedule, with the water tested and balanced on every visit. Swim-ready, whenever you are.",
-    lead: { name: "Daniel Torres", role: "Pool care lead", photo: team3 },
+    lead: { name: "Antonio Reyes", role: "Pool care lead", photo: antonio },
   },
   {
     title: "AC Services",
@@ -164,7 +163,7 @@ const services = [
     icon: Wrench,
     detail:
       "That list of little jobs — a sticky door, a shelf, a blind — done properly in one tidy visit. No job too small, and no chasing anyone.",
-    lead: { name: "Mikko Aaltonen", role: "Handyman lead", photo: mikko },
+    lead: { name: "Samuli", role: "Handyman lead", photo: samuli },
   },
   {
     title: "Electrical Services",
@@ -180,7 +179,7 @@ const services = [
     icon: Droplets,
     detail:
       "Drips, drains, taps and bathrooms sorted before small problems grow. Quiet, tidy work that keeps the water exactly where it belongs.",
-    lead: { name: "Carmen Vidal", role: "Plumbing lead", photo: team4 },
+    lead: { name: "Samuli", role: "Plumbing lead", photo: samuli },
   },
 ];
 
