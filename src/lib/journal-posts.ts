@@ -14,7 +14,7 @@ export const journalPosts: JournalPost[] = [
   {
     slug: "proof-not-promises",
     date: "October 2026",
-    title: "Proof, not promises: check on your home from your kitchen abroad",
+    title: "Proof, not promises: check on your home from any place abroad",
     excerpt:
       "The biggest worry we hear from overseas owners? Paying someone local and never quite knowing if the job was done. Here's how every SolidMaint visit ends with fresh photos and a full check log in your Property Vault — no ghosting, no guessing.",
     image: proofNotPromisesAd.url,
