@@ -28,34 +28,40 @@ export const Route = createFileRoute("/journal")({
 
 const posts = [
   {
+    date: "September 2026",
+    title: "Autumn on the coast: resetting your home after summer",
+    excerpt:
+      "After months of heat, dust and full pools, September is when we deep-check gardens, irrigation and AC — and get every home ready for the gentler season ahead.",
+    image:
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80",
+    alt: "Golden evening light over a Mediterranean garden path",
+  },
+  {
     date: "August 2026",
     title: "Preparing your garden for the September heat",
     excerpt:
       "What we adjust in watering, pruning and shade across the Costa del Sol when the summer peaks.",
+    image:
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=80",
+    alt: "Lush green garden plants in bright sunlight",
   },
   {
     date: "July 2026",
     title: "The quiet checks that keep a pool perfect",
     excerpt:
       "Beyond cleaning: the water balance and equipment habits that stop small problems becoming big ones.",
+    image:
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=900&q=80",
+    alt: "A crystal-clear swimming pool at a villa",
   },
   {
     date: "June 2026",
     title: "Getting an empty home ready for your arrival",
     excerpt:
       "Our arrival-ready routine for overseas owners — AC, plumbing, electrics and everything in between.",
-  },
-  {
-    date: "May 2026",
-    title: "Why your AC needs attention before the first heatwave",
-    excerpt:
-      "The pre-season service that keeps the cool air flowing — and the small faults it catches before they become breakdowns.",
-  },
-  {
-    date: "April 2026",
-    title: "Spring on the coast: the garden jobs that matter most",
-    excerpt:
-      "Feeding, trimming and irrigation checks — the work we prioritise in spring so homes look their best by summer.",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+    alt: "A bright modern villa exterior ready for its owners",
   },
 ];
 
@@ -83,11 +89,17 @@ function JournalPage() {
               <a
                 key={post.title}
                 href="#journal"
-                className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-5 transition-colors hover:text-coral sm:grid-cols-[7rem_minmax(0,1fr)_auto] sm:py-6"
+                className="group grid grid-cols-[5.5rem_minmax(0,1fr)_auto] items-center gap-4 py-5 transition-colors hover:text-coral sm:grid-cols-[7rem_9rem_minmax(0,1fr)_auto] sm:py-6"
               >
                 <span className="hidden w-28 shrink-0 text-xs font-bold uppercase text-coral sm:block">
                   {post.date}
                 </span>
+                <img
+                  src={post.image}
+                  alt={post.alt}
+                  loading="lazy"
+                  className="h-20 w-24 shrink-0 rounded-xl object-cover sm:h-24 sm:w-36"
+                />
                 <span>
                   <strong className="font-display text-xl font-semibold md:text-2xl">{post.title}</strong>
                   <span className="mt-1 block text-sm text-deep/60">{post.excerpt}</span>
