@@ -137,7 +137,7 @@ function FaqsPage() {
               <img
                 src={wonderingWoman}
                 alt="A woman wondering about the right care for her home"
-                className="max-h-full w-full max-w-lg object-contain object-bottom"
+                className="max-h-full w-full max-w-lg object-contain object-bottom md:max-h-96"
               />
             </div>
           </div>
