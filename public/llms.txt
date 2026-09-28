@@ -1,0 +1,13 @@
+# SolidMaint
+
+> Property maintenance on the Costa del Sol, Spain. Garden, pool, jacuzzi, AC, handyman, plumbing and electrical care for homes in Marbella, Estepona, Benalmádena, Fuengirola, Mijas, Benahavís and Sotogrande. A Nordic-rooted team; every visit documented with photos and reports in a free Property Vault.
+
+- Care plans: Essential Care, Home Ready (3 maintenance hours/month) and Signature Care (6 hours/month); unused hours roll over. Prices include IVA and cover services only; materials are quoted separately.
+- Contact: info@solidmaint.com · +34 951 798 899 · Mon–Fri 09:00–18:00 CET
+
+## Pages
+- [Home](https://maint-shine-boost.lovable.app/): care plans, one-off services and coverage
+- [FAQs](https://maint-shine-boost.lovable.app/faqs): care plans, visit reports, pricing, Property Vault, areas covered
+- [Our Team](https://maint-shine-boost.lovable.app/team)
+- [Partners](https://maint-shine-boost.lovable.app/partners): programme for estate agencies, rental managers and developers
+- [Journal](https://maint-shine-boost.lovable.app/journal): seasonal home-care advice for the Costa del Sol

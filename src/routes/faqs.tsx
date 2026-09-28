@@ -8,9 +8,10 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const Route = createFileRoute("/faqs")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "FAQs | SolidMaint — Clear answers before we begin" },
+      { title: "Property Maintenance FAQs — Costa del Sol | SolidMaint" },
       {
         name: "description",
         content:
@@ -21,8 +22,24 @@ export const Route = createFileRoute("/faqs")({
         property: "og:description",
         content: "Clear answers on care plans, visits, pricing and Property Vault — before we begin.",
       },
+      { property: "og:url", content: "https://maint-shine-boost.lovable.app/faqs" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://maint-shine-boost.lovable.app/faqs" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.question,
+            acceptedAnswer: { "@type": "Answer", text: f.answer },
+          })),
+        }),
+      },
     ],
   }),
   component: FaqsPage,
@@ -62,7 +79,7 @@ const faqs = [
   {
     question: "Which areas do you cover?",
     answer:
-      "SolidMaint serves homes along the Costa del Sol, from Benalmádena to Sotogrande. Not there yet? Leave your details and we will let you know when we reach your area.",
+      "SolidMaint serves homes along the Costa del Sol, from Benalmádena through Marbella and Estepona to Sotogrande. Not there yet? Leave your details and we will let you know when we reach your area.",
   },
   {
     question: "We are a real estate company — do you work with businesses?",

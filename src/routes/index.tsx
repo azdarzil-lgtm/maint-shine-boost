@@ -45,21 +45,43 @@ import { PlanBuilder, type PlanKey } from "@/components/PlanBuilder";
 import { SmartEnquiry } from "@/components/SmartEnquiry";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Property Maintenance Costa del Sol | SolidMaint" },
+      { title: "Property Maintenance Costa del Sol — Marbella & Estepona | SolidMaint" },
       {
         name: "description",
         content:
-          "Reliable garden, pool and home maintenance from Benalmádena to Sotogrande, with every visit documented in your Property Vault.",
+          "Property maintenance on the Costa del Sol — garden, pool, AC and home care in Marbella, Estepona and from Benalmádena to Sotogrande, every visit documented.",
       },
       { property: "og:title", content: "SolidMaint | Costa del Sol Property Care" },
       {
         property: "og:description",
         content: "Your Costa del Sol home cared for, checked and documented while you are away.",
       },
+      { property: "og:url", content: "https://maint-shine-boost.lovable.app/" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://maint-shine-boost.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HomeAndConstructionBusiness",
+          name: "SolidMaint",
+          url: "https://maint-shine-boost.lovable.app/",
+          telephone: "+34 951 798 899",
+          email: "info@solidmaint.com",
+          description:
+            "Property maintenance on the Costa del Sol: garden, pool, AC, handyman, plumbing and electrical care for homes in Marbella, Estepona, Benalmádena and Sotogrande, with every visit documented in a free Property Vault.",
+          address: { "@type": "PostalAddress", addressLocality: "Marbella", addressRegion: "Málaga", addressCountry: "ES" },
+          areaServed: ["Costa del Sol", "Marbella", "Estepona", "Benalmádena", "Fuengirola", "Mijas", "Benahavís", "Casares", "Manilva", "Sotogrande"].map((name) => ({ "@type": "Place", name })),
+          openingHours: "Mo-Fr 09:00-18:00",
+          sameAs: ["https://www.facebook.com/solidmaint", "https://instagram.com/solidmaint", "https://www.linkedin.com/company/solidmaint"],
+        }),
+      },
     ],
   }),
   component: Index,

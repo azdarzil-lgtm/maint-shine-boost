@@ -9,6 +9,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { journalPosts as posts } from "@/lib/journal-posts";
 
 export const Route = createFileRoute("/journal/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Journal | SolidMaint — Notes from the homes we look after" },
@@ -22,9 +23,11 @@ export const Route = createFileRoute("/journal/")({
         property: "og:description",
         content: "Seasonal advice and small observations from our visits along the Costa del Sol.",
       },
+      { property: "og:url", content: "https://maint-shine-boost.lovable.app/journal" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://maint-shine-boost.lovable.app/journal" }],
   }),
   component: JournalPage,
 });

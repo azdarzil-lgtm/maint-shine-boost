@@ -8,3 +8,4 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+- Sitemap is router-derived: every route sets staticData.sitemap; /sitemap.xml adds journal posts from src/lib/journal-posts.ts — keeps the sitemap in sync with routes automatically.

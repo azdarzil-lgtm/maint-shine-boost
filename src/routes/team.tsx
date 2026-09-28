@@ -15,6 +15,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const Route = createFileRoute("/team")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Our Team | SolidMaint — The people behind every visit" },
@@ -28,9 +29,11 @@ export const Route = createFileRoute("/team")({
         property: "og:description",
         content: "Nordic precision, delivered with genuine Costa warmth — meet the people behind every visit.",
       },
+      { property: "og:url", content: "https://maint-shine-boost.lovable.app/team" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://maint-shine-boost.lovable.app/team" }],
   }),
   component: TeamPage,
 });
