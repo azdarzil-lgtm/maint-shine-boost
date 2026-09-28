@@ -88,7 +88,7 @@ function JournalPostPage() {
             <h2 className="font-display text-2xl font-semibold leading-tight">
               Wondering what your home needs this season?
             </h2>
-            <p className="mt-3 text-base leading-relaxed text-deep/65">
+            <p className="mt-3 text-base leading-relaxed text-deep/65 md:whitespace-nowrap">
               Tell us where your home is and what needs care — we&apos;ll suggest a plan that fits it.
             </p>
             <a href="/#contact" className="solid-button solid-button-coral mt-6">
