@@ -26,15 +26,15 @@ export const planBase: Record<PlanKey, { name: string; base: number; blurb: stri
     name: "Home Ready",
     base: 289,
     blurb: "Maintenance time built in.",
-    includedHours: 2,
-    includes: ["Everything in Essential Care", "2 maintenance hours monthly", "Monthly photo report"],
+    includedHours: 3,
+    includes: ["Everything in Essential Care", "3 maintenance hours monthly", "Monthly photo report"],
   },
   complete: {
     name: "Signature Care",
     base: 459,
     blurb: "Your whole property, proactively cared for.",
-    includedHours: 4,
-    includes: ["Everything in Home Ready", "AC, plumbing & electrics checks", "4 maintenance hours monthly"],
+    includedHours: 6,
+    includes: ["Everything in Home Ready", "AC, plumbing & electrics checks", "6 maintenance hours monthly"],
   },
 };
 
@@ -221,7 +221,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
             <div className={`grid transition-all duration-300 ${showHours ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
               <div className="overflow-hidden">
                 <div className="mt-4 rounded-2xl border border-deep/10 bg-sunlit/60 p-5">
-                  <p className="text-sm leading-relaxed text-deep/70">Your included hours can be spent on any of these services — the longer your plan, the less each extra hour costs.</p>
+                  <p className="text-sm leading-relaxed text-deep/70">Your included hours can be spent on any of these services — the longer your plan, the less each extra hour costs. Unused hours roll over to the following month, so nothing is ever lost.</p>
                   <ul className="mt-4 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
                     {hourServices.map((service) => <li key={service} className="flex items-start gap-2.5 text-sm leading-snug"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{service}</span></li>)}
                   </ul>
