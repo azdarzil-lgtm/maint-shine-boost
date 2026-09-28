@@ -43,8 +43,8 @@ const posts = [
     excerpt:
       "After months of heat, dust and full pools, September is when we deep-check gardens, irrigation and AC — and get every home ready for the gentler season ahead.",
     image:
-      "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=900&q=80",
-    alt: "Whitewashed coastal homes above the sea on the Costa del Sol",
+      "https://images.unsplash.com/photo-1625528193934-4cb230e7267d?auto=format&fit=crop&w=900&q=80",
+    alt: "Yachts and whitewashed buildings at Puerto Banús marina in Marbella, with La Concha mountain behind",
   },
   {
     date: "August 2026",
