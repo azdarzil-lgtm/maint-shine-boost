@@ -45,7 +45,7 @@ import { PlanBuilder, type PlanKey } from "@/components/PlanBuilder";
 import { SmartEnquiry } from "@/components/SmartEnquiry";
 
 export const Route = createFileRoute("/")({
-  staticData: { sitemap: True },
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Property Maintenance Costa del Sol — Marbella & Estepona | SolidMaint" },

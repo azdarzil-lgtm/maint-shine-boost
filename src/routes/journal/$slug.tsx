@@ -7,7 +7,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { journalPosts } from "@/lib/journal-posts";
 
 export const Route = createFileRoute("/journal/$slug")({
-  staticData: { sitemap: True },
+  staticData: { sitemap: true },
   loader: ({ params }) => {
     const post = journalPosts.find((p) => p.slug === params.slug);
     if (!post) throw notFound();

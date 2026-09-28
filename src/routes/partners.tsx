@@ -8,7 +8,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const Route = createFileRoute("/partners")({
-  staticData: { sitemap: True },
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Partner Programme | SolidMaint — Join the family" },

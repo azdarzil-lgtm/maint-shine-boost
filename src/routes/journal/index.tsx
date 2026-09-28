@@ -9,7 +9,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { journalPosts as posts } from "@/lib/journal-posts";
 
 export const Route = createFileRoute("/journal/")({
-  staticData: { sitemap: True },
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Journal | SolidMaint — Notes from the homes we look after" },
