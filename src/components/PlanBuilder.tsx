@@ -298,7 +298,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                       }}
                     >
                       <p className="text-sm font-semibold">Feeling resourceful? 🎬 Film a quick tour of your yard, pool or garden — show us what needs care, and we'll recommend the perfect plan.</p>
-                      <p className="mt-1.5 text-xs leading-relaxed text-deep/55">Completely optional — only if you fancy it. A call works just as well.</p>
+                      <p className="mt-1.5 text-xs leading-relaxed text-deep/55">Completely optional — only if you fancy it (a call works just as well). Just tell us where to reach you and we'll send a link to share your video.</p>
                       <div className="mt-3 grid gap-3 sm:grid-cols-2">
                         <label className="block text-xs font-semibold text-deep/70">Name
                           <input required maxLength={80} value={videoName} onChange={(event) => setVideoName(event.target.value)} placeholder="Your name" className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" />
