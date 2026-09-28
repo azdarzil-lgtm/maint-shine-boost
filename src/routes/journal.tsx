@@ -74,7 +74,7 @@ function JournalPage() {
                   className="ml-auto size-5 shrink-0 transition-transform group-hover:translate-x-1"
                   aria-hidden="true"
                 />
-              </a>
+              </Link>
             ))}
           </div>
 
