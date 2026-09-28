@@ -42,9 +42,9 @@ const JournalIndexRoute = JournalIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const JournalSlugRoute = JournalSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => JournalRoute,
+  id: '/journal/$slug',
+  path: '/journal/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -93,6 +93,7 @@ export interface RootRouteChildren {
   FaqsRoute: typeof FaqsRoute
   PartnersRoute: typeof PartnersRoute
   TeamRoute: typeof TeamRoute
+  JournalSlugRoute: typeof JournalSlugRoute
   JournalIndexRoute: typeof JournalIndexRoute
 }
 
@@ -135,10 +136,10 @@ declare module '@tanstack/react-router' {
     }
     '/journal/$slug': {
       id: '/journal/$slug'
-      path: '/$slug'
+      path: '/journal/$slug'
       fullPath: '/journal/$slug'
       preLoaderRoute: typeof JournalSlugRouteImport
-      parentRoute: typeof JournalRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -148,6 +149,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqsRoute: FaqsRoute,
   PartnersRoute: PartnersRoute,
   TeamRoute: TeamRoute,
+  JournalSlugRoute: JournalSlugRoute,
   JournalIndexRoute: JournalIndexRoute,
 }
 export const routeTree = rootRouteImport
