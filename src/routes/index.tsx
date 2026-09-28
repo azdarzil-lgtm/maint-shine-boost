@@ -319,6 +319,11 @@ function TypewriterHeading({ text }: { text: string }) {
     return () => window.clearTimeout(timeout);
   }, [displayedText, hasStarted, text]);
 
+  const highlight = "care plan";
+  const hlStart = text.indexOf(highlight);
+  const hlEnd = hlStart + highlight.length;
+  const typed = displayedText.length;
+
   return (
     <h1
       ref={headingRef}
@@ -326,7 +331,9 @@ function TypewriterHeading({ text }: { text: string }) {
       className="mx-auto mt-6 min-h-[3.1em] max-w-[15ch] font-display text-[2.45rem] font-semibold leading-[1.05] text-sunlit sm:text-6xl md:text-8xl"
     >
       <span aria-hidden="true">
-        {displayedText}
+        {displayedText.slice(0, Math.min(typed, hlStart))}
+        <span className="text-coral">{displayedText.slice(Math.min(typed, hlStart), Math.min(typed, hlEnd))}</span>
+        {typed > hlEnd && displayedText.slice(hlEnd)}
         <span className="typewriter-cursor">|</span>
       </span>
     </h1>
