@@ -31,7 +31,6 @@ import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
 import antonio from "@/assets/antonio.jpg";
 import joseAntonio from "@/assets/jose-antonio.jpg";
 import samuli from "@/assets/samuli.jpg";
-import mikko from "@/assets/mikko.jpg";
 import jonas from "@/assets/jonas.jpg";
 import pekka from "@/assets/pekka.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
