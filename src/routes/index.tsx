@@ -379,11 +379,11 @@ function Index() {
               <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">You enjoy the home. We handle the rest.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
-              Our team has deep Nordic roots — precision is simply how we work. Every plan includes regular garden
-              and pool care, AC servicing and hands-on maintenance hours, tailored to your property.{" "}
-              <strong className="font-bold text-deep">Your free Property Vault is always included</strong> — so you
-              can keep on top of every visit, follow the work live from wherever you are, and find every photo,
-              report and document in one place.
+              Our care for your property is built on Nordic precision. Garden and pool care, AC servicing and
+              hands-on maintenance hours — every plan tailored to your property.{" "}
+              <strong className="font-bold text-deep">Your plan covers only what your property actually needs</strong>,
+              and your free Property Vault keeps it all in view — every visit, every photo, every report, wherever
+              you are.
             </p>
           </div>
 
