@@ -235,7 +235,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                 <p className="text-base leading-relaxed text-deep/70">Not sure which package suits your home best?<br /><a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" className="font-bold text-coral underline decoration-coral/40 underline-offset-4 transition-colors hover:decoration-coral">Simply reach out — our property specialist is here to help.</a></p>
                 <div className="ml-0 flex shrink-0 flex-col gap-2 self-start sm:ml-auto sm:self-center">
                   <button type="button" onClick={() => setCallbackOpen((open) => !open)} aria-expanded={callbackOpen} className="solid-button solid-button-coral !px-5 !py-2.5 !text-sm"><Phone className="size-4" aria-hidden="true" /> Request a callback</button>
-                  <button type="button" onClick={() => setVideoOpen((open) => !open)} aria-expanded={videoOpen} className="solid-button !bg-deep !px-5 !py-2.5 !text-sm !text-sunlit hover:!bg-deep/90"><Video className="size-4" aria-hidden="true" /> Send us a video</button>
+                  <button type="button" onClick={() => setVideoOpen((open) => !open)} aria-expanded={videoOpen} className="solid-button !border !border-deep/25 !bg-transparent !px-5 !py-2.5 !text-sm !text-deep/80 transition-colors hover:!border-coral hover:!text-coral"><Video className="size-4" aria-hidden="true" /> Or send us a video, if you wish</button>
                 </div>
               </div>
               <div className={`grid transition-all duration-300 ${callbackOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
@@ -297,8 +297,8 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                         setVideoSent(true);
                       }}
                     >
-                      <p className="text-sm font-semibold">Feel like a movie star? 🎬 Film a quick tour of your yard, pool or garden — show us what needs care, and we'll recommend the perfect plan.</p>
-                      <p className="mt-1.5 text-xs leading-relaxed text-deep/55">Just tell us where to reach you — we'll send you a link to share your video (about a minute is plenty).</p>
+                      <p className="text-sm font-semibold">Feeling resourceful? 🎬 Film a quick tour of your yard, pool or garden — show us what needs care, and we'll recommend the perfect plan.</p>
+                      <p className="mt-1.5 text-xs leading-relaxed text-deep/55">Completely optional — only if you fancy it (a call works just as well). Just tell us where to reach you and we'll send a link to share your video.</p>
                       <div className="mt-3 grid gap-3 sm:grid-cols-2">
                         <label className="block text-xs font-semibold text-deep/70">Name
                           <input required maxLength={80} value={videoName} onChange={(event) => setVideoName(event.target.value)} placeholder="Your name" className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" />
