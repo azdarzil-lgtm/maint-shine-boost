@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, BadgeCheck, Building2, CalendarClock, HandHeart, KeyRound, LineChart, Percent, Phone, Users } from "lucide-react";
 
-import partnersPeople from "@/assets/partners-people-cutout.png";
+import partnersPeopleAsset from "@/assets/partners-people.png.asset.json";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
