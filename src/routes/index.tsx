@@ -158,7 +158,7 @@ const services = [
     icon: Wind,
     detail:
       "Filters cleaned, systems checked and the cooling tuned before the heat arrives. Air conditioning that is ready long before you need it.",
-    lead: { name: "Pekka Lindqvist", role: "AC specialist", photo: pekka },
+    lead: { name: "Antonio Reyes", role: "AC specialist lead", photo: antonio },
   },
   {
     title: "Handyman & Repairs",
