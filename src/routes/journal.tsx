@@ -1,12 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
-import proofNotPromisesAd from "@/assets/proof-not-promises-ad.jpg.asset.json";
 import wonderingMan from "@/assets/wondering-man-cutout.png";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { journalPosts as posts } from "@/lib/journal-posts";
 
 export const Route = createFileRoute("/journal")({
   head: () => ({
@@ -29,52 +29,6 @@ export const Route = createFileRoute("/journal")({
   component: JournalPage,
 });
 
-const posts = [
-  {
-    date: "October 2026",
-    title: "Proof, not promises: check on your home from your kitchen in London",
-    excerpt:
-      "The biggest worry we hear from overseas owners? Paying someone local and never quite knowing if the job was done. Here's how every SolidMaint visit ends with fresh photos and a full check log in your Property Vault — no ghosting, no guessing.",
-    image: proofNotPromisesAd.url,
-    alt: "Checking a sunlit Costa del Sol villa on a phone from a cosy autumn café in London",
-  },
-  {
-    date: "September 2026",
-    title: "Autumn on the coast: resetting your home after summer",
-    excerpt:
-      "After months of heat, dust and full pools, September is when we deep-check gardens, irrigation and AC — and get every home ready for the gentler season ahead.",
-    image:
-      "https://images.unsplash.com/photo-1625528193934-4cb230e7267d?auto=format&fit=crop&w=900&q=80",
-    alt: "Yachts and whitewashed buildings at Puerto Banús marina in Marbella, with La Concha mountain behind",
-  },
-  {
-    date: "August 2026",
-    title: "Preparing your garden for the September heat",
-    excerpt:
-      "What we adjust in watering, pruning and shade across the Costa del Sol when the summer peaks.",
-    image:
-      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=80",
-    alt: "Lush green garden plants in bright sunlight",
-  },
-  {
-    date: "July 2026",
-    title: "The quiet checks that keep a pool perfect",
-    excerpt:
-      "Beyond cleaning: the water balance and equipment habits that stop small problems becoming big ones.",
-    image:
-      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=900&q=80",
-    alt: "A crystal-clear swimming pool at a villa",
-  },
-  {
-    date: "June 2026",
-    title: "Getting an empty home ready for your arrival",
-    excerpt:
-      "Our arrival-ready routine for overseas owners — AC, plumbing, electrics and everything in between.",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
-    alt: "A bright modern villa exterior ready for its owners",
-  },
-];
 
 function JournalPage() {
   return (
@@ -97,9 +51,10 @@ function JournalPage() {
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="divide-y divide-deep/15 border-y border-deep/15">
             {posts.map((post) => (
-              <a
-                key={post.title}
-                href="#journal"
+              <Link
+                key={post.slug}
+                to="/journal/$slug"
+                params={{ slug: post.slug }}
                 className="group grid grid-cols-[5.5rem_minmax(0,1fr)_auto] items-center gap-4 py-5 transition-colors hover:text-coral sm:grid-cols-[7rem_9rem_minmax(0,1fr)_auto] sm:py-6"
               >
                 <span className="hidden w-28 shrink-0 text-xs font-bold uppercase text-coral sm:block">
@@ -119,7 +74,7 @@ function JournalPage() {
                   className="ml-auto size-5 shrink-0 transition-transform group-hover:translate-x-1"
                   aria-hidden="true"
                 />
-              </a>
+              </Link>
             ))}
           </div>
 
