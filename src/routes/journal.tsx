@@ -135,11 +135,11 @@ function JournalPage() {
                 Talk to us <ArrowRight aria-hidden="true" />
               </a>
             </div>
-            <div className="flex h-72 items-end justify-center px-4 sm:h-80 md:h-full md:min-h-80 md:px-0 md:pr-5">
+            <div className="flex h-[21.5rem] items-end justify-center px-4 sm:h-96 md:h-full md:min-h-96 md:px-0 md:pr-5">
               <img
                 src={wonderingMan}
                 alt="A man wondering which seasonal care his home needs"
-                className="max-h-full w-full max-w-sm object-contain object-bottom"
+                className="max-h-full w-full max-w-md object-contain object-bottom"
               />
             </div>
           </div>
