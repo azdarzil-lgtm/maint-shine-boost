@@ -8,6 +8,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const Route = createFileRoute("/partners")({
+  staticData: { sitemap: True },
   head: () => ({
     meta: [
       { title: "Partner Programme | SolidMaint — Join the family" },
@@ -22,9 +23,11 @@ export const Route = createFileRoute("/partners")({
         content:
           "Estate agents, rental managers and developers: one dependable maintenance team behind every home you look after.",
       },
+      { property: "og:url", content: "https://maint-shine-boost.lovable.app/partners" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://maint-shine-boost.lovable.app/partners" }],
   }),
   component: PartnersPage,
 });

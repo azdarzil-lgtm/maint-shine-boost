@@ -7,6 +7,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { journalPosts } from "@/lib/journal-posts";
 
 export const Route = createFileRoute("/journal/$slug")({
+  staticData: { sitemap: True },
   loader: ({ params }) => {
     const post = journalPosts.find((p) => p.slug === params.slug);
     if (!post) throw notFound();
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/journal/$slug")({
       { name: "description", content: loaderData?.excerpt ?? "" },
       { property: "og:title", content: loaderData?.title ?? "" },
       { property: "og:description", content: loaderData?.excerpt ?? "" },
+      { property: "og:url", content: `https://maint-shine-boost.lovable.app/journal/${loaderData?.slug}` },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
       ...(loaderData?.image.startsWith("https")
@@ -26,6 +28,20 @@ export const Route = createFileRoute("/journal/$slug")({
             { name: "twitter:image", content: loaderData.image },
           ]
         : []),
+    ],
+    links: [{ rel: "canonical", href: `https://maint-shine-boost.lovable.app/journal/${loaderData?.slug}` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: loaderData?.title,
+          description: loaderData?.excerpt,
+          author: { "@type": "Organization", name: "SolidMaint" },
+          publisher: { "@type": "Organization", name: "SolidMaint" },
+        }),
+      },
     ],
   }),
   component: JournalPostPage,
