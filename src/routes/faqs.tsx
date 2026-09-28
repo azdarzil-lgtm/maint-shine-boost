@@ -127,7 +127,10 @@ function FaqsPage() {
               </h2>
               <p className="mt-4 max-w-xl text-base leading-relaxed text-deep/65">
                 Tell us about your home and what matters to you — we will come back with the right care plan, in plain
-                English.
+                English. Wondering about a one-off job instead — a repair, a garden tidy-up or an AC service? Curious
+                how the Property Vault works, what your plan would cost, or whether we cover your street? Ask away.
+                There is no such thing as a silly question — and no pressure either. Just an honest chat about what
+                your home needs.
               </p>
               <a href="/#contact" className="solid-button solid-button-coral mt-8">
                 Talk to us <ArrowRight aria-hidden="true" />
