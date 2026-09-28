@@ -324,7 +324,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
             </div>
             <p className="mt-4 text-xs leading-relaxed text-deep/55">Indicative pricing, IVA included. We confirm the final plan after a quick look at your property — no surprises, ever.</p>
             <p className="mt-2 text-xs leading-relaxed text-deep/55">* A quick note: our package prices cover services only — any materials needed are quoted separately before we begin.</p>
-            <a href={`mailto:info@solidmaint.com?subject=Bespoke%20care%20plan%20request&body=${enquiryBody}`} className="solid-button solid-button-coral mt-5 w-full">Request my bespoke plan <ArrowRight aria-hidden="true" /></a>
+            <a href={`mailto:info@solidmaint.com?subject=Bespoke%20care%20plan%20request&body=${enquiryBody}`} className="solid-button solid-button-coral mt-5 w-full">Yes, looks good. Sign me up! <ArrowRight aria-hidden="true" /></a>
           </div>}
         </div>
 
