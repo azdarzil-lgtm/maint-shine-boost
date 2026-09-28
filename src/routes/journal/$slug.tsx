@@ -84,7 +84,7 @@ function JournalPostPage() {
             ))}
           </div>
 
-          <div className="mt-14 rounded-2xl border border-deep/15 bg-olive/10 p-8 md:p-10">
+          <div className="mt-14 rounded-2xl border border-deep/15 bg-olive/10 p-8 md:-mx-8 md:p-10">
             <h2 className="font-display text-2xl font-semibold leading-tight">
               Wondering what your home needs this season?
             </h2>

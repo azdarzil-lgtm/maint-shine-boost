@@ -81,19 +81,19 @@ function JournalPage() {
             ))}
           </div>
 
-          <div className="mt-14 grid overflow-hidden rounded-[1.75rem] border border-deep/15 bg-olive/10 md:grid-cols-[minmax(0,1fr)_29rem] md:items-end">
-            <div className="p-8 md:py-12 md:pl-12 md:pr-6">
+          <div className="mt-14 grid overflow-hidden rounded-[1.75rem] border border-deep/15 bg-olive/10 lg:grid-cols-[minmax(0,1fr)_27rem] lg:items-end">
+            <div className="p-8 lg:py-12 lg:pl-10 lg:pr-4">
               <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
                 Wondering what your home needs this season?
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-deep/65 lg:whitespace-nowrap">
+              <p className="mt-4 text-[15px] leading-relaxed text-deep/65 xl:text-base">
                 Tell us where your home is and what needs care — we&apos;ll suggest a plan that fits it.
               </p>
               <a href="/#contact" className="solid-button solid-button-coral mt-8">
                 Talk to us <ArrowRight aria-hidden="true" />
               </a>
             </div>
-            <div className="flex h-[26rem] items-end justify-center px-4 sm:h-[29rem] md:h-full md:min-h-96 md:px-0 md:pr-2">
+            <div className="flex h-[26rem] items-end justify-center px-4 sm:h-[29rem] lg:h-full lg:min-h-96 lg:px-0 lg:pr-2">
               <img
                 src={wonderingMan}
                 alt="A man wondering which seasonal care his home needs"
