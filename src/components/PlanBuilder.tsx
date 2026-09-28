@@ -126,6 +126,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   const [propertyIndex, setPropertyIndex] = useState(1);
   const [outdoor, setOutdoor] = useState(1);
   const [pool, setPool] = useState(0);
+  const [jacuzzi, setJacuzzi] = useState(false);
   const [careIndex, setCareIndex] = useState(initialPlanIndex);
   const [termIndex, setTermIndex] = useState(1);
   const [showHours, setShowHours] = useState(false);
@@ -154,11 +155,12 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
   const poolChoice = poolSizes[pool] ?? poolSizes[0];
   const term = terms[termIndex] ?? terms[0];
 
+  const jacuzziAdd = jacuzzi ? 80 : 0;
   const pricing = useMemo(() => {
-    const beforeDiscount = selectedPlan.base + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0);
+    const beforeDiscount = selectedPlan.base + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0) + jacuzziAdd;
     const saving = beforeDiscount * term.discount;
     return { beforeDiscount, saving, total: beforeDiscount - saving };
-  }, [selectedPlan, property, outdoorChoice, poolChoice, term]);
+  }, [selectedPlan, property, outdoorChoice, poolChoice, jacuzziAdd, term]);
 
   const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "Care level", "Plan length & quote"];
   const enquiryBody = encodeURIComponent([
@@ -166,6 +168,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
     `Property: ${property?.label ?? "Not selected"}`,
     `Garden / yard: ${outdoorChoice?.label ?? "Not selected"}`,
     `Pool: ${poolChoice?.label ?? "Not selected"}`,
+    `Jacuzzi / spa care: ${jacuzzi ? "Yes (+€80.00 per month)" : "No"}`,
     `Included maintenance: ${selectedPlan.includedHours} h/month`,
     `Plan length: ${term.label} (${Math.round(term.discount * 100)}% discount)`,
     `Indicative total: ${euro(pricing.total)} per month`, "", "My name:", "Property address:", "Best number to reach me:",
@@ -194,7 +197,18 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
           </div>}
 
           {step === 2 && <div><Slider label="Does your home have a garden or yard?" options={outdoorSizes} value={outdoor} onChange={setOutdoor} /><p className="mt-6 leading-relaxed text-deep/65">Choose “No garden / yard” for a flat without outdoor space. Otherwise, pick the closest size and we’ll tailor the regular care accordingly.</p></div>}
-          {step === 3 && <div><Slider label="Would you like regular pool care?" options={poolSizes} value={pool} onChange={setPool} /><p className="mt-6 leading-relaxed text-deep/65">No pool? No problem. Pool care is optional on every plan and only affects your price when you include it.</p></div>}
+          {step === 3 && <div><Slider label="Would you like regular pool care?" options={poolSizes} value={pool} onChange={setPool} />
+            <button type="button" onClick={() => setJacuzzi((on) => !on)} aria-pressed={jacuzzi} className={`mt-6 flex w-full items-center justify-between gap-4 rounded-2xl border p-4 text-left transition-colors ${jacuzzi ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}>
+              <span>
+                <span className="block font-display text-lg font-semibold text-deep">Add jacuzzi / spa care</span>
+                <span className="mt-1 block text-sm leading-snug text-deep/60">Water quality, filters and sanitising for your jacuzzi or spa — cared for alongside your pool.</span>
+              </span>
+              <span className="shrink-0 text-right">
+                <span className="block font-display text-lg font-bold text-coral">+ €80.00</span>
+                <span className="block text-xs text-deep/55">per month</span>
+              </span>
+            </button>
+            <p className="mt-6 leading-relaxed text-deep/65">No pool? No problem. Pool care is optional on every plan and only affects your price when you include it.</p></div>}
 
 
           {step === 4 && <div>
@@ -306,7 +320,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
             <p className="section-label text-coral">Choose your plan length</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Stay flexible, or save by staying longer.</h3>
             <div className="mt-5 grid gap-3 sm:grid-cols-2">{terms.map((option, index) => <button key={option.key} type="button" onClick={() => setTermIndex(index)} className={`flex items-center justify-between gap-4 rounded-2xl border p-4 text-left transition-colors ${termIndex === index ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}><span><span className="block font-display text-xl font-semibold">{option.label}</span><span className="block text-sm text-deep/60">{option.note}</span></span><span className="font-display text-lg font-semibold text-coral">{option.discount ? `−${Math.round(option.discount * 100)}%` : "Flexible"}</span></button>)}</div>
             <div className="mt-7 rounded-2xl bg-deep p-5 text-sunlit md:p-6"><div className="flex flex-wrap items-end justify-between gap-4"><div><p className="section-label text-coral">Your indicative bespoke plan</p><p className="mt-2 font-display text-4xl font-semibold md:text-5xl">{euro(pricing.total)}<span className="ml-2 text-base text-sunlit/60">/ month</span></p></div>{pricing.saving > 0 && <p className="text-sm font-bold text-coral">You save {euro(pricing.saving)} each month</p>}</div>
-              <ul className="mt-5 space-y-2 border-t border-sunlit/15 pt-4 text-sm text-sunlit/75"><li className="flex justify-between gap-4"><span>{selectedPlan.name} · {property?.label}</span><span>{euro(selectedPlan.base + (property?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{outdoorChoice?.label} · {poolChoice?.label}</span><span>{euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{selectedPlan.includedHours === 0 ? "No maintenance hours at the moment" : `${selectedPlan.includedHours} maintenance hours included`}</span><span className="font-bold text-coral">{selectedPlan.includedHours === 0 ? "—" : "Included"}</span></li><li className="flex justify-between gap-4"><span>Property Vault</span><span className="font-bold text-coral">Free</span></li></ul>
+              <ul className="mt-5 space-y-2 border-t border-sunlit/15 pt-4 text-sm text-sunlit/75"><li className="flex justify-between gap-4"><span>{selectedPlan.name} · {property?.label}</span><span>{euro(selectedPlan.base + (property?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{outdoorChoice?.label} · {poolChoice?.label}</span><span>{euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0))}</span></li>{jacuzzi && <li className="flex justify-between gap-4"><span>Jacuzzi / spa care</span><span>{euro(80)}</span></li>}<li className="flex justify-between gap-4"><span>{selectedPlan.includedHours === 0 ? "No maintenance hours at the moment" : `${selectedPlan.includedHours} maintenance hours included`}</span><span className="font-bold text-coral">{selectedPlan.includedHours === 0 ? "—" : "Included"}</span></li><li className="flex justify-between gap-4"><span>Property Vault</span><span className="font-bold text-coral">Free</span></li></ul>
             </div>
             <p className="mt-4 text-xs leading-relaxed text-deep/55">Indicative pricing, IVA included. We confirm the final plan after a quick look at your property — no surprises, ever.</p>
             <p className="mt-2 text-xs leading-relaxed text-deep/55">* A quick note: our package prices cover services only — any materials needed are quoted separately before we begin.</p>
