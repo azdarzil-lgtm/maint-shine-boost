@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 import proofNotPromisesAd from "@/assets/proof-not-promises-ad.jpg.asset.json";
+import wonderingMan from "@/assets/wondering-man-cutout.png";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -122,16 +123,25 @@ function JournalPage() {
             ))}
           </div>
 
-          <div className="mt-14 border border-deep/15 bg-olive/10 p-8 md:p-12">
-            <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
-              Wondering what your home needs this season?
-            </h2>
-            <p className="mt-4 text-base leading-relaxed md:whitespace-nowrap text-deep/65">
-              Tell us where your home is and what needs care — we&apos;ll suggest a plan that fits it.
-            </p>
-            <a href="/#contact" className="solid-button solid-button-coral mt-8">
-              Talk to us <ArrowRight aria-hidden="true" />
-            </a>
+          <div className="mt-14 grid overflow-hidden border border-deep/15 bg-olive/10 md:grid-cols-[minmax(0,1fr)_22rem] md:items-end">
+            <div className="p-8 md:py-12 md:pl-12 md:pr-6">
+              <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
+                Wondering what your home needs this season?
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-deep/65 lg:whitespace-nowrap">
+                Tell us where your home is and what needs care — we&apos;ll suggest a plan that fits it.
+              </p>
+              <a href="/#contact" className="solid-button solid-button-coral mt-8">
+                Talk to us <ArrowRight aria-hidden="true" />
+              </a>
+            </div>
+            <div className="flex h-72 items-end justify-center px-4 sm:h-80 md:h-full md:min-h-80 md:px-0 md:pr-5">
+              <img
+                src={wonderingMan}
+                alt="A man wondering which seasonal care his home needs"
+                className="max-h-full w-full max-w-sm object-contain object-bottom"
+              />
+            </div>
           </div>
         </div>
       </section>
