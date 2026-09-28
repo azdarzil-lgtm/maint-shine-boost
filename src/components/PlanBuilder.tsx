@@ -235,7 +235,7 @@ export function PlanBuilder({ plan, onClose }: { plan: PlanKey; onClose: () => v
                 <p className="text-base leading-relaxed text-deep/70">Not sure which package suits your home best?<br /><a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20a%20care%20plan" className="font-bold text-coral underline decoration-coral/40 underline-offset-4 transition-colors hover:decoration-coral">Simply reach out — our property specialist is here to help.</a></p>
                 <div className="ml-0 flex shrink-0 flex-col gap-2 self-start sm:ml-auto sm:self-center">
                   <button type="button" onClick={() => setCallbackOpen((open) => !open)} aria-expanded={callbackOpen} className="solid-button solid-button-coral !px-5 !py-2.5 !text-sm"><Phone className="size-4" aria-hidden="true" /> Request a callback</button>
-                  <button type="button" onClick={() => setVideoOpen((open) => !open)} aria-expanded={videoOpen} className="solid-button !border !border-deep/25 !bg-transparent !px-5 !py-2.5 !text-sm !text-deep/80 transition-colors hover:!border-coral hover:!text-coral"><Video className="size-4" aria-hidden="true" /> Or send us a video, if you wish</button>
+                  <button type="button" onClick={() => setVideoOpen((open) => !open)} aria-expanded={videoOpen} className="solid-button !border !border-deep/25 !bg-transparent !px-5 !py-2.5 !text-sm !text-deep/80 transition-colors hover:!border-coral hover:!text-coral"><Video className="size-4" aria-hidden="true" /> Want to explain more to us? Send us a video</button>
                 </div>
               </div>
               <div className={`grid transition-all duration-300 ${callbackOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
