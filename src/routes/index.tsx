@@ -364,7 +364,7 @@ function Index() {
             One dependable Maintenance Team for your garden, pool, air conditioning and home — with a clear record of every visit.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="#packages" className="solid-button solid-button-coral">Find your care plan <ArrowDownRight aria-hidden="true" /></a>
+            <a href="#packages" className="solid-button solid-button-coral">Find your home care plan <ArrowDownRight aria-hidden="true" /></a>
             <a href="#services" className="solid-button solid-button-white">Need just one thing? <ArrowDownRight aria-hidden="true" /></a>
           </div>
         </div>
