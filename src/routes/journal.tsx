@@ -89,11 +89,17 @@ function JournalPage() {
               <a
                 key={post.title}
                 href="#journal"
-                className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-5 transition-colors hover:text-coral sm:grid-cols-[7rem_minmax(0,1fr)_auto] sm:py-6"
+                className="group grid grid-cols-[5.5rem_minmax(0,1fr)_auto] items-center gap-4 py-5 transition-colors hover:text-coral sm:grid-cols-[7rem_9rem_minmax(0,1fr)_auto] sm:py-6"
               >
                 <span className="hidden w-28 shrink-0 text-xs font-bold uppercase text-coral sm:block">
                   {post.date}
                 </span>
+                <img
+                  src={post.image}
+                  alt={post.alt}
+                  loading="lazy"
+                  className="h-20 w-24 shrink-0 rounded-xl object-cover sm:h-24 sm:w-36"
+                />
                 <span>
                   <strong className="font-display text-xl font-semibold md:text-2xl">{post.title}</strong>
                   <span className="mt-1 block text-sm text-deep/60">{post.excerpt}</span>
