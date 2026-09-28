@@ -149,7 +149,7 @@ const services = [
     icon: Waves,
     detail:
       "Skimming, brushing and basket-emptying on a schedule, with the water tested and balanced on every visit. Swim-ready, whenever you are.",
-    lead: { name: "Antonio Reyes", role: "Pool care lead", photo: antonio },
+    lead: { name: "Antonio", role: "Pool care lead", photo: antonio },
   },
   {
     title: "AC Services",
@@ -157,7 +157,7 @@ const services = [
     icon: Wind,
     detail:
       "Filters cleaned, systems checked and the cooling tuned before the heat arrives. Air conditioning that is ready long before you need it.",
-    lead: { name: "Antonio Reyes", role: "AC specialist lead", photo: antonio },
+    lead: { name: "Antonio", role: "AC specialist lead", photo: antonio },
   },
   {
     title: "Handyman & Repairs",
