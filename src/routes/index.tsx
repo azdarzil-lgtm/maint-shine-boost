@@ -109,8 +109,8 @@ const packages: {
         body: "Optional cleaning, water chemistry and equipment checks for homes with a pool.",
       },
       {
-        title: "2 maintenance hours",
-        body: "Two hours of general maintenance every month are already included in your plan.",
+        title: "3 maintenance hours",
+        body: "Three hours of general maintenance every month are already included in your plan — and unused hours roll over.",
         perk: true,
         perkTag: "Included",
       },
@@ -128,7 +128,7 @@ const packages: {
     items: [
       { title: "Whole-property checks", body: "We proactively check AC, plumbing, electrics, fixtures and the general condition of your home." },
       { title: "Garden and pool care", body: "Add the exact level each part of your property needs." },
-      { title: "4 maintenance hours", body: "Four hours of general maintenance every month are already included in your plan.", perk: true, perkTag: "Included" },
+      { title: "6 maintenance hours", body: "Six hours of general maintenance every month are already included in your plan — and unused hours roll over.", perk: true, perkTag: "Included" },
       { title: "Priority coordination", body: "One dependable team to spot, organise and document what needs attention." },
     ],
   },
@@ -538,7 +538,7 @@ function Index() {
             <article className="how-step">
               <span className="section-label text-coral">Step 03</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Add maintenance time</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Home Ready includes 2 hours and Signature Care includes 4. Add more in clear 2–6 hour monthly blocks whenever your property needs them.</p>
+              <p className="mt-4 leading-relaxed text-deep/65">Home Ready includes 3 hours and Signature Care includes 6 — unused hours simply roll over. Add more in clear 2–6 hour monthly blocks whenever your property needs them.</p>
               <div className="mt-8 border-t border-deep/15 pt-6 lg:mt-auto">
                 <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Extra hours per time slot</p>
                 <div className="mt-4 grid grid-cols-5 gap-2" aria-hidden="true">
