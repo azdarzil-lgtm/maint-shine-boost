@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
+import wonderingWoman from "@/assets/wondering-woman-cutout.png";
+
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -101,17 +103,26 @@ function FaqsPage() {
             ))}
           </div>
 
-          <div className="mt-16 max-w-3xl rounded-[1.75rem] border border-deep/15 bg-olive/10 p-8 md:p-12">
-            <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
-              Still wondering about something?
-            </h2>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-deep/65">
-              Tell us about your home and what matters to you — we will come back with the right care plan, in plain
-              English.
-            </p>
-            <a href="/#contact" className="solid-button solid-button-coral mt-8">
-              Talk to us <ArrowRight aria-hidden="true" />
-            </a>
+          <div className="mt-16 grid overflow-hidden rounded-[1.75rem] border border-deep/15 bg-olive/10 md:grid-cols-[minmax(0,1fr)_22rem] md:items-end">
+            <div className="p-8 md:py-12 md:pl-12 md:pr-6">
+              <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
+                Still wondering about something?
+              </h2>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-deep/65">
+                Tell us about your home and what matters to you — we will come back with the right care plan, in plain
+                English.
+              </p>
+              <a href="/#contact" className="solid-button solid-button-coral mt-8">
+                Talk to us <ArrowRight aria-hidden="true" />
+              </a>
+            </div>
+            <div className="flex h-[22rem] items-end justify-center px-4 sm:h-[26rem] md:h-full md:min-h-96 md:px-0 md:pr-2">
+              <img
+                src={wonderingWoman}
+                alt="A woman wondering about the right care for her home"
+                className="max-h-full w-full max-w-md object-contain object-bottom"
+              />
+            </div>
           </div>
         </div>
       </section>

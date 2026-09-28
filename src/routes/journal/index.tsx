@@ -78,7 +78,7 @@ function JournalPage() {
             ))}
           </div>
 
-          <div className="mt-14 grid overflow-hidden border border-deep/15 bg-olive/10 md:grid-cols-[minmax(0,1fr)_29rem] md:items-end">
+          <div className="mt-14 grid overflow-hidden rounded-[1.75rem] border border-deep/15 bg-olive/10 md:grid-cols-[minmax(0,1fr)_29rem] md:items-end">
             <div className="p-8 md:py-12 md:pl-12 md:pr-6">
               <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
                 Wondering what your home needs this season?
