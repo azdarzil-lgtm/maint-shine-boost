@@ -364,7 +364,7 @@ function Index() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-x-10 gap-y-5 border-b border-deep/10 pb-10 md:grid-cols-3">
+          <div className="mt-8 grid gap-x-10 gap-y-5 border-b border-deep/10 pb-10 md:grid-cols-3">
             {[
               {
                 icon: Compass,
@@ -395,7 +395,7 @@ function Index() {
             })}
           </div>
 
-          <div id="builder" className="mt-10 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
+          <div id="builder" className="mt-8 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
             <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:p-14">
               <div className="order-2">
                 <p className="section-label text-coral">Bespoke plans</p>
@@ -447,7 +447,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-12 grid overflow-hidden rounded-[2rem] border border-deep/15 bg-sunlit md:grid-cols-[minmax(0,1fr)_20rem] lg:grid-cols-[minmax(0,1fr)_23rem]">
+          <div className="mt-8 grid overflow-hidden rounded-[2rem] border border-deep/15 bg-sunlit md:grid-cols-[minmax(0,1fr)_20rem] lg:grid-cols-[minmax(0,1fr)_23rem]">
             <div className="p-8 md:p-10">
               <p className="section-label text-coral">Included free with every plan</p>
               <h3 className="mt-2 max-w-[28ch] font-display text-2xl font-semibold leading-tight md:text-3xl">Your Property Vault — a lifetime history of your home, saved forever.</h3>
