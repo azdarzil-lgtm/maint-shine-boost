@@ -41,7 +41,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { InstagramFeed } from "@/components/InstagramFeed";
 import { MarenaBanner } from "@/components/MarenaBanner";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { PlanBuilder, type PlanKey } from "@/components/PlanBuilder";
+import { PlanBuilder } from "@/components/PlanBuilder";
 import { SmartEnquiry } from "@/components/SmartEnquiry";
 
 export const Route = createFileRoute("/")({
@@ -86,75 +86,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const packages: {
-  number: string;
-  key: PlanKey;
-  name: string;
-  lead: string;
-  price: number;
-  detail: string;
-  items: { title: string; body: string; perk?: boolean; perkTag?: string }[];
-  featured?: boolean;
-}[] = [
-  {
-    number: "01",
-    key: "outdoor",
-    name: "Essential Care",
-    lead: "The dependable essentials",
-    price: 189,
-    detail: "A flexible starting point for flats, townhouses and smaller homes. Choose only the regular care your property needs.",
-    items: [
-      {
-        title: "Garden or yard care",
-        body: "Optional care shaped around your outdoor space — from a small townhouse patio to generous finca grounds.",
-      },
-      { title: "Pool care", body: "Add regular pool care only if your home needs it." },
-      { title: "Maintenance hours", body: "Add hours whenever you need help with a repair or practical job." },
-      { title: "Visit photos", body: "Photos from every visit saved to your free Property Vault.", perk: true },
-    ],
-  },
-  {
-    number: "02",
-    key: "home-ready",
-    name: "Home Ready",
-    lead: "More support, already built in",
-    price: 289,
-    detail: "Our most popular level for owners who want regular care plus practical time set aside for the little things.",
-    items: [
-      {
-        title: "Garden or yard care",
-        body: "Choose the right level for your outdoor space, or leave it out completely.",
-      },
-      {
-        title: "Pool care",
-        body: "Optional cleaning, water chemistry and equipment checks for homes with a pool.",
-      },
-      {
-        title: "3 maintenance hours",
-        body: "Three hours of general maintenance every month are already included in your plan — and unused hours roll over.",
-        perk: true,
-        perkTag: "Included",
-      },
-      { title: "Property report", body: "A photo-documented view of your home’s condition, stored in your Property Vault." },
-    ],
-    featured: true,
-  },
-  {
-    number: "03",
-    key: "complete",
-    name: "Signature Care",
-    lead: "Full-property peace of mind",
-    price: 459,
-    detail: "Proactive, hands-on oversight for villas, fincas and any home whose owner wants everything checked and ready.",
-    items: [
-      { title: "Whole-property checks", body: "We proactively check AC, plumbing, electrics, fixtures and the general condition of your home." },
-      { title: "Garden and pool care", body: "Add the exact level each part of your property needs." },
-      { title: "6 maintenance hours", body: "Six hours of general maintenance every month are already included in your plan — and unused hours roll over.", perk: true, perkTag: "Included" },
-      { title: "Priority coordination", body: "One dependable team to spot, organise and document what needs attention." },
-    ],
-  },
-];
 
 const services = [
   {
@@ -358,11 +289,11 @@ function TypewriterHeading({ text }: { text: string }) {
 
 
 function Index() {
-  const [builderPlan, setBuilderPlan] = useState<PlanKey | null>(null);
+  const [builderOpen, setBuilderOpen] = useState(false);
 
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
-      {builderPlan && <PlanBuilder plan={builderPlan} onClose={() => setBuilderPlan(null)} />}
+      {builderOpen && <PlanBuilder onClose={() => setBuilderOpen(false)} />}
       <SiteHeader />
 
       <section className="relative isolate overflow-hidden bg-deep text-sunlit">
@@ -387,7 +318,7 @@ function Index() {
             One dependable Maintenance Team for your garden, pool, air conditioning and home — with a clear record of every visit.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="#packages" className="solid-button solid-button-coral">Find your home care plan <ArrowDownRight aria-hidden="true" /></a>
+            <a href="#packages" className="solid-button solid-button-coral">Build my plan <ArrowDownRight aria-hidden="true" /></a>
             <a href="#services" className="solid-button solid-button-white">Need just one thing? <ArrowDownRight aria-hidden="true" /></a>
           </div>
         </div>
