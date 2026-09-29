@@ -397,7 +397,7 @@ function Index() {
 
           <div id="builder" className="mt-10 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
             <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:p-14">
-              <div className="order-2 lg:order-1 rounded-[1.5rem] bg-sunlit p-6 text-ink md:p-8">
+              <div className="order-2">
                 <p className="section-label text-coral">Bespoke plans</p>
                 <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your home. Your plan.</h3>
                 <p className="mt-5 max-w-xl text-lg leading-relaxed text-sunlit/80">
@@ -421,7 +421,7 @@ function Index() {
                 </button>
                 <p className="mt-4 text-xs text-sunlit/60">Free Property Vault with every plan · Indicative pricing until we’ve viewed your property</p>
               </div>
-              <div className="rounded-[1.5rem] bg-sunlit p-6 text-ink md:p-8">
+              <div className="order-1 rounded-[1.5rem] bg-sunlit p-6 text-ink md:p-8">
                 <p className="section-label text-coral">For example — a villa plan</p>
                 <ul className="mt-4 divide-y divide-deep/10 text-sm">
                   {[
