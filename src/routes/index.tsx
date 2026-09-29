@@ -319,7 +319,7 @@ function Index() {
             One dependable Maintenance Team for your garden, pool, air conditioning and home — with a clear record of every visit.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="#packages" className="solid-button solid-button-coral">Build my plan <ArrowDownRight aria-hidden="true" /></a>
+            <a href="#packages" className="solid-button solid-button-coral">Build my home care plan now <ArrowDownRight aria-hidden="true" /></a>
             <a href="#services" className="solid-button solid-button-white">Need just one thing? <ArrowDownRight aria-hidden="true" /></a>
           </div>
         </div>
@@ -394,7 +394,7 @@ function Index() {
                   ))}
                 </ul>
                 <button type="button" onClick={() => setBuilderOpen(true)} className="solid-button solid-button-coral mt-9">
-                  Build my plan <ArrowRight aria-hidden="true" />
+                  Build my home care plan now <ArrowRight aria-hidden="true" />
                 </button>
                 <p className="mt-4 text-xs text-sunlit/60">Free Property Vault with every plan · Indicative pricing until we’ve viewed your property</p>
               </div>
