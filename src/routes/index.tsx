@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+  type LucideIcon,
   ArrowDownRight,
   ArrowRight,
   Check,
@@ -88,7 +89,14 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const services = [
+const services: {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  detail: string;
+  lead: { name: string; role: string; photo: string };
+  secondLead?: { name: string; role: string; photo: string };
+}[] = [
   {
     title: "Garden Maintenance",
     description: "Scheduled care for lawns, borders and terraces, all year.",
@@ -128,6 +136,7 @@ const services = [
     detail:
       "Safe fault-finding, new fittings and lighting installed with care. If something is not quite right, we find it and put it right.",
     lead: { name: "Jonas Berg", role: "Electrical lead", photo: jonas },
+    secondLead: { name: "Samuli", role: "Electrical lead", photo: samuli },
   },
   {
     title: "Plumbing Services",
@@ -187,17 +196,31 @@ function ServiceAccordion() {
                 <div className="grid gap-5 px-0 pt-1 pb-7 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-4">
                   <span className="hidden sm:block" aria-hidden="true" />
                   <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-                    <img
-                      src={service.lead.photo}
-                      alt={service.lead.name}
-                      loading="lazy"
-                      width={96}
-                      height={96}
-                      className="size-16 shrink-0 rounded-full object-cover sm:size-20"
-                    />
+                    <div className="flex shrink-0 -space-x-3">
+                      <img
+                        src={service.lead.photo}
+                        alt={service.lead.name}
+                        loading="lazy"
+                        width={96}
+                        height={96}
+                        className="size-16 rounded-full object-cover ring-2 ring-sunlit sm:size-20"
+                      />
+                      {service.secondLead ? (
+                        <img
+                          src={service.secondLead.photo}
+                          alt={service.secondLead.name}
+                          loading="lazy"
+                          width={96}
+                          height={96}
+                          className="size-16 rounded-full object-cover ring-2 ring-sunlit sm:size-20"
+                        />
+                      ) : null}
+                    </div>
                     <div>
                       <p className="text-[0.7rem] font-bold uppercase tracking-widest text-coral">
-                        {service.lead.name} · {service.lead.role}
+                        {service.secondLead
+                          ? `${service.lead.name} & ${service.secondLead.name} · ${service.lead.role}s`
+                          : `${service.lead.name} · ${service.lead.role}`}
                       </p>
                       <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink/70">{service.detail}</p>
                       <a href="#contact" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-coral hover:underline">
