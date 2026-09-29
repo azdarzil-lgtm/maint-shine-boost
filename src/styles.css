@@ -277,15 +277,6 @@
   color: var(--sunlit);
 }
 
-@utility editorial-package-prestige {
-  position: relative;
-  overflow: hidden;
-  border-color: color-mix(in oklab, var(--coral) 35%, transparent);
-  background-color: var(--deep);
-  color: var(--sunlit);
-  box-shadow: 0 30px 60px -30px color-mix(in oklab, var(--deep) 55%, transparent);
-}
-
 @utility service-row {
   display: grid;
   grid-template-columns: 2.75rem minmax(0, 1fr) auto;
