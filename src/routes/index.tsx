@@ -319,7 +319,7 @@ function Index() {
             One dependable Maintenance Team for your garden, pool, air conditioning and home — with a clear record of every visit.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="#packages" className="solid-button solid-button-coral">Build my home care plan now <ArrowDownRight aria-hidden="true" /></a>
+            <a href="#builder" className="solid-button solid-button-coral">Build my home care plan now <ArrowDownRight aria-hidden="true" /></a>
             <a href="#services" className="solid-button solid-button-white">Need just one thing? <ArrowDownRight aria-hidden="true" /></a>
           </div>
         </div>
@@ -372,7 +372,7 @@ function Index() {
             })}
           </div>
 
-          <div className="mt-10 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
+          <div id="builder" className="mt-10 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
             <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:p-14">
               <div>
                 <p className="section-label text-coral">Bespoke plans</p>
