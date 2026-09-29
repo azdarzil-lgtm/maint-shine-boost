@@ -10,5 +10,5 @@
 - [x] Move plan length to the final quote step with 5%, 8% and 10% discounts.
 - [x] Verify the new package journey on desktop and mobile.
 - [x] Replace the three package cards with one bespoke builder section ("Your home. Your plan.").
-- [ ] Rebuild the calculator as a single bundle builder: property, outdoors, pool, ticked extra services, 0–12h hours slider at €35/h, plan length & quote.
-- [ ] Verify the new builder flow on desktop and mobile (incl. no-garden/no-pool paths).
+- [x] Rebuild the calculator as a single bundle builder: property, outdoors, pool, ticked extra services, 0–12h hours slider at €35/h, plan length & quote.
+- [x] Verify the new builder flow on desktop and mobile (incl. no-garden/no-pool paths).
