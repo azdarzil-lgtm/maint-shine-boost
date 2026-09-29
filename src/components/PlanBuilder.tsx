@@ -153,7 +153,7 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
 
         <div className="flex-1 overflow-y-auto px-5 py-7 md:px-8 md:py-9">
           {step === 0 && <div>
-            <h3 className="max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">One home. One plan. Built entirely around it.</h3>
+            <h3 className="max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">One home. One care plan. Built entirely around it.</h3>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-deep/70">No fixed bundles — we assemble your plan from what your property actually needs. Tell us about the home, tick the care it needs and any extra services. Your indicative price grows with every choice, and nothing you don’t need ever makes it onto the plan.</p>
             <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4"><p className="flex flex-wrap items-center gap-2 font-bold"><Smartphone className="size-5 text-coral" aria-hidden="true" />Your free Property Vault<span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Always included</span></p><p className="mt-1.5 text-sm leading-relaxed text-deep/70">A photo-documented history of every visit, check, service and repair — whatever your plan includes.</p></div>
           </div>}
