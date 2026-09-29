@@ -212,7 +212,7 @@ function ServiceAccordion() {
                           loading="lazy"
                           width={96}
                           height={96}
-                          className="size-16 rounded-full object-cover ring-2 ring-sunlit sm:size-20"
+                          className="size-16 rounded-full object-cover ring-2 ring-white sm:size-20"
                         />
                       ) : null}
                     </div>
