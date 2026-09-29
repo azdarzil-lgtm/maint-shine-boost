@@ -97,7 +97,9 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
   const [outdoor, setOutdoor] = useState(1);
   const [pool, setPool] = useState(0);
   const [jacuzzi, setJacuzzi] = useState(false);
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [serviceHours, setServiceHours] = useState<Record<string, number>>({});
+  const toggleService = (label: string, suggested: number) => setServiceHours((current) => { const next = { ...current }; if (next[label]) delete next[label]; else next[label] = suggested; return next; });
+  const adjustService = (label: string, delta: number) => setServiceHours((current) => ({ ...current, [label]: Math.min(24, Math.max(1, (current[label] ?? 1) + delta)) }));
   const [hours, setHours] = useState(3);
   const [callbackOpen, setCallbackOpen] = useState(false);
   const [callbackName, setCallbackName] = useState("");
@@ -119,8 +121,9 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
   const property = propertyTypes[propertyIndex] ?? propertyTypes[0];
   const outdoorChoice = outdoorSizes[outdoor] ?? outdoorSizes[0];
   const poolChoice = poolSizes[pool] ?? poolSizes[0];
-  const chosenServices = extraServices.filter((service) => selectedServices.includes(service.label));
+  const chosenServices = extraServices.filter((service) => serviceHours[service.label]).map((service) => { const h = serviceHours[service.label] ?? 1; return { label: service.label, hours: h, add: h * HOURLY_RATE }; });
   const servicesAdd = chosenServices.reduce((sum, service) => sum + service.add, 0);
+  const hrs = (h: number) => `${h} ${h === 1 ? "hour" : "hours"}`;
   const hoursAdd = hours * HOURLY_RATE;
   const jacuzziAdd = jacuzzi ? 80 : 0;
 
@@ -136,7 +139,7 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
     `Garden / yard: ${outdoorChoice?.label ?? "Not selected"}`,
     `Pool: ${poolChoice?.label ?? "Not selected"}`,
     `Jacuzzi / spa care: ${jacuzzi ? "Yes (+€80.00 per month)" : "No"}`,
-    `Extra services: ${chosenServices.length ? chosenServices.map((service) => service.label).join(", ") : "None"}`,
+    `Extra services: ${chosenServices.length ? chosenServices.map((service) => `${service.label} (${hrs(service.hours)}, ${euro(service.add)})`).join(", ") : "None"}`,
     `Maintenance hours: ${hours} h/month (${euro(HOURLY_RATE)} per hour, unused hours roll over)`,
     `Payment: No upfront payment — you're billed after each service (rolling monthly, cancel at any time if you wish)`,
     `Indicative total: ${euro(pricing.total)} per month`, "", "My name:", "Property address:", "Best number to reach me:",
@@ -181,19 +184,30 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
           {step === 4 && <div>
             <p className="section-label text-coral">The extras</p>
             <h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Which extra services should your plan include?</h3>
-            <p className="mt-3 leading-relaxed text-deep/65">Tick anything your home needs — each adds its own indicative amount to your monthly plan. Leave them all unticked and your plan stays lean.</p>
+            <p className="mt-3 leading-relaxed text-deep/65">Tick anything your home needs, then set how many hours each job should get — every hour is {euro(HOURLY_RATE)}. We've suggested a starting point for each; leave them all unticked and your plan stays lean.</p>
             <div className="mt-6 grid gap-2.5 sm:grid-cols-2">
               {extraServices.map((service) => {
-                const active = selectedServices.includes(service.label);
+                const h = serviceHours[service.label];
+                const active = Boolean(h);
                 return (
-                  <button key={service.label} type="button" aria-pressed={active} onClick={() => setSelectedServices((current) => current.includes(service.label) ? current.filter((item) => item !== service.label) : [...current, service.label])} className={`flex items-center justify-between gap-3 rounded-2xl border p-3.5 text-left transition-colors ${active ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}>
-                    <span className="flex items-start gap-2.5 text-sm leading-snug"><span className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-md border ${active ? "border-coral bg-coral text-sunlit" : "border-deep/25"}`}>{active && <Check className="size-3.5" aria-hidden="true" />}</span>{service.label}</span>
-                    <span className="shrink-0 text-xs font-bold text-coral">+ {euro(service.add)}</span>
-                  </button>
+                  <div key={service.label} className={`rounded-2xl border p-3.5 transition-colors ${active ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}>
+                    <button type="button" aria-pressed={active} onClick={() => toggleService(service.label, service.suggestedHours)} className="flex w-full items-start justify-between gap-3 text-left">
+                      <span className="flex items-start gap-2.5 text-sm leading-snug"><span className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-md border ${active ? "border-coral bg-coral text-sunlit" : "border-deep/25"}`}>{active && <Check className="size-3.5" aria-hidden="true" />}</span>{service.label}</span>
+                      {!active && <span className="shrink-0 text-xs font-semibold text-deep/50">~{hrs(service.suggestedHours)}</span>}
+                    </button>
+                    {active && h && <div className="mt-3 flex items-center justify-between gap-3 border-t border-coral/20 pt-3">
+                      <div className="flex items-center gap-2">
+                        <button type="button" onClick={() => adjustService(service.label, -1)} disabled={h <= 1} aria-label={`Fewer hours for ${service.label}`} className="grid size-8 place-items-center rounded-full border border-deep/20 font-bold disabled:opacity-40 hover:border-coral">−</button>
+                        <span className="min-w-16 text-center text-sm font-semibold">{hrs(h)}</span>
+                        <button type="button" onClick={() => adjustService(service.label, 1)} aria-label={`More hours for ${service.label}`} className="grid size-8 place-items-center rounded-full border border-deep/20 font-bold hover:border-coral">+</button>
+                      </div>
+                      <span className="text-sm font-bold text-coral">+ {euro(h * HOURLY_RATE)}</span>
+                    </div>}
+                  </div>
                 );
               })}
             </div>
-            <p className="mt-4 text-xs leading-relaxed text-deep/55">Indicative monthly amounts, IVA included — we confirm every figure after a quick look at your property.</p>
+            <p className="mt-4 text-xs leading-relaxed text-deep/55">Indicative amounts at {euro(HOURLY_RATE)} per hour, IVA included — we confirm every figure after a quick look at your property.</p>
           </div>}
 
           {step === 5 && <div>
@@ -309,7 +323,7 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
                 <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{outdoorChoice?.add ? `Regular garden and outdoor care — ${outdoorChoice?.label.toLowerCase()}.` : "No regular garden or yard care — yours stays lean."}</span></li>
                 <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{poolChoice?.add ? `Regular pool care — ${poolChoice?.label.toLowerCase()}.` : "No pool care included — easy to add later if your home changes."}</span></li>
                 {jacuzzi && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Jacuzzi / spa care — water quality, filters and sanitising, alongside your pool.</span></li>}
-                {chosenServices.length > 0 && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Extra services: {chosenServices.map((service) => service.label.toLowerCase()).join(", ")}.</span></li>}
+                {chosenServices.length > 0 && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Extra services: {chosenServices.map((service) => `${service.label.toLowerCase()} (${hrs(service.hours)})`).join(", ")}.</span></li>}
                 {chosenServices.length === 0 && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>No extra services for now — you can tick more on at any time.</span></li>}
                 <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{hours === 0 ? "No hands-on maintenance hours for now." : `${hours} hands-on maintenance ${hours === 1 ? "hour" : "hours"} every month at ${euro(HOURLY_RATE)} per hour — unused hours roll over.`}</span></li>
                 <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>No upfront payment — we bill you after each service. Rolling monthly, no commitment, cancel at any time if you wish.</span></li>
@@ -317,7 +331,7 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
               </ul>
             </div>
             <div className="mt-5 rounded-2xl bg-deep p-5 text-sunlit md:p-6"><div className="flex flex-wrap items-end justify-between gap-4"><div><p className="section-label text-coral">Your indicative bespoke plan</p><p className="mt-2 font-display text-4xl font-semibold md:text-5xl">{euro(pricing.total)}<span className="ml-2 text-base text-sunlit/60">/ month</span></p></div><p className="text-sm font-bold text-coral">Billed after the service</p></div>
-              <ul className="mt-5 space-y-2 border-t border-sunlit/15 pt-4 text-sm text-sunlit/75"><li className="flex justify-between gap-4"><span>Care plan base · {property?.label}</span><span>{euro(PLAN_BASE + (property?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{outdoorChoice?.label} · {poolChoice?.label}</span><span>{euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0))}</span></li>{jacuzzi && <li className="flex justify-between gap-4"><span>Jacuzzi / spa care</span><span>{euro(80)}</span></li>}{chosenServices.map((service) => <li key={service.label} className="flex justify-between gap-4"><span>{service.label}</span><span>{euro(service.add)}</span></li>)}<li className="flex justify-between gap-4"><span>{hours === 0 ? "No maintenance hours" : `${hours} maintenance ${hours === 1 ? "hour" : "hours"} · ${euro(HOURLY_RATE)}/hour`}</span><span className="font-bold text-coral">{hours === 0 ? "—" : euro(hoursAdd)}</span></li><li className="flex justify-between gap-4"><span>Property Vault</span><span className="font-bold text-coral">Free</span></li></ul>
+              <ul className="mt-5 space-y-2 border-t border-sunlit/15 pt-4 text-sm text-sunlit/75"><li className="flex justify-between gap-4"><span>Care plan base · {property?.label}</span><span>{euro(PLAN_BASE + (property?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{outdoorChoice?.label} · {poolChoice?.label}</span><span>{euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0))}</span></li>{jacuzzi && <li className="flex justify-between gap-4"><span>Jacuzzi / spa care</span><span>{euro(80)}</span></li>}{chosenServices.map((service) => <li key={service.label} className="flex justify-between gap-4"><span>{service.label} · {hrs(service.hours)}</span><span>{euro(service.add)}</span></li>)}<li className="flex justify-between gap-4"><span>{hours === 0 ? "No maintenance hours" : `${hours} maintenance ${hours === 1 ? "hour" : "hours"} · ${euro(HOURLY_RATE)}/hour`}</span><span className="font-bold text-coral">{hours === 0 ? "—" : euro(hoursAdd)}</span></li><li className="flex justify-between gap-4"><span>Property Vault</span><span className="font-bold text-coral">Free</span></li></ul>
             </div>
             <p className="mt-5 text-sm leading-snug text-deep/60">Indicative pricing, IVA included. We confirm the final plan after a quick look at your property — no surprises, ever.</p>
             <p className="text-sm leading-snug text-deep/60">* A quick note: our package prices cover services only — any materials needed are quoted separately before we begin.</p>
