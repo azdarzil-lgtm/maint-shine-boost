@@ -394,7 +394,38 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-8 grid overflow-hidden rounded-[2rem] border border-deep/15 bg-sunlit md:grid-cols-[minmax(0,1fr)_20rem] lg:grid-cols-[minmax(0,1fr)_23rem]">
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            {[
+              {
+                icon: Compass,
+                title: "Nordic precision",
+                body: "Our crew has deep Nordic roots. Measured, scheduled and finished properly — the same exacting standard on every single visit.",
+              },
+              {
+                icon: Sun,
+                title: "You enjoy the home. We handle the rest.",
+                body: "You enjoy the Costa del Sol; we handle the rest. No chasing trades, no surprise calls — just a home that's always ready when you arrive.",
+              },
+              {
+                icon: TrendingUp,
+                title: "Value that stays up",
+                body: "A documented home is worth more. Your Property Vault holds the full history of services, repairs and renovations — solid proof of care when it's time to sell.",
+              },
+            ].map((pillar) => {
+              const Icon = pillar.icon;
+              return (
+                <div key={pillar.title} className="rounded-[1.5rem] border border-deep/15 bg-sunlit p-7">
+                  <span className="grid size-11 place-items-center rounded-full bg-coral/15">
+                    <Icon className="size-5 text-coral" aria-hidden="true" />
+                  </span>
+                  <h3 className="mt-5 font-display text-xl font-semibold md:text-2xl">{pillar.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-deep/65">{pillar.body}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-12 grid overflow-hidden rounded-[2rem] border border-deep/15 bg-sunlit md:grid-cols-[minmax(0,1fr)_20rem] lg:grid-cols-[minmax(0,1fr)_23rem]">
             <div className="p-8 md:p-10">
               <p className="section-label text-coral">Included free with every plan</p>
               <h3 className="mt-2 max-w-[28ch] font-display text-2xl font-semibold leading-tight md:text-3xl">Your Property Vault — a lifetime history of your home, saved forever.</h3>
