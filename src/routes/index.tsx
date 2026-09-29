@@ -395,12 +395,12 @@ function Index() {
             })}
           </div>
 
-          <div id="builder" className="mt-8 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
+          <div id="builder" className="mt-8 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-sunlit text-deep">
             <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:p-14">
               <div className="order-2">
                 <p className="section-label text-coral">Bespoke plans</p>
                 <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your home. Your plan.</h3>
-                <p className="mt-5 max-w-xl text-lg leading-relaxed text-sunlit/80">
+                <p className="mt-5 max-w-xl text-lg leading-relaxed text-deep/70">
                   No fixed bundles — and no paying for what your home doesn’t need. In about a minute we build one plan
                   around your actual home: the outdoor care, the extra services and the hands-on hours you choose. Nothing else.
                 </p>
@@ -412,16 +412,16 @@ function Index() {
                   ].map((point) => (
                     <li key={point} className="flex items-start gap-3">
                       <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
-                      <span className="text-sunlit/85">{point}</span>
+                      <span className="text-deep/80">{point}</span>
                     </li>
                   ))}
                 </ul>
                 <button type="button" onClick={() => setBuilderOpen(true)} className="solid-button solid-button-coral mt-9">
                   Build my home plan now <ArrowRight aria-hidden="true" />
                 </button>
-                <p className="mt-4 text-xs text-sunlit/60">Free Property Vault with every plan · Indicative pricing until we’ve viewed your property</p>
+                <p className="mt-4 text-xs text-deep/55">Free Property Vault with every plan · Indicative pricing until we’ve viewed your property</p>
               </div>
-              <div className="order-1 rounded-[1.5rem] bg-sunlit p-6 text-deep md:p-8">
+              <div className="order-1 rounded-[1.5rem] border border-deep/10 bg-white p-6 text-deep shadow-[0_24px_50px_-32px_rgba(0,0,0,0.25)] md:p-8">
                 <p className="section-label text-coral">For example — a villa plan</p>
                 <ul className="mt-4 divide-y divide-deep/10 text-sm">
                   {[
