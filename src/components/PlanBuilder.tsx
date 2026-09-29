@@ -100,7 +100,6 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
   const [serviceHours, setServiceHours] = useState<Record<string, number>>({});
   const toggleService = (label: string, suggested: number) => setServiceHours((current) => { const next = { ...current }; if (next[label]) delete next[label]; else next[label] = suggested; return next; });
   const adjustService = (label: string, delta: number) => setServiceHours((current) => ({ ...current, [label]: Math.min(24, Math.max(1, (current[label] ?? 1) + delta)) }));
-  const [hours, setHours] = useState(3);
   const [callbackOpen, setCallbackOpen] = useState(false);
   const [callbackName, setCallbackName] = useState("");
   const [callbackPhone, setCallbackPhone] = useState("");
@@ -124,15 +123,14 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
   const chosenServices = extraServices.filter((service) => serviceHours[service.label]).map((service) => { const h = serviceHours[service.label] ?? 1; return { label: service.label, hours: h, add: h * HOURLY_RATE }; });
   const servicesAdd = chosenServices.reduce((sum, service) => sum + service.add, 0);
   const hrs = (h: number) => `${h} ${h === 1 ? "hour" : "hours"}`;
-  const hoursAdd = hours * HOURLY_RATE;
   const jacuzziAdd = jacuzzi ? 80 : 0;
 
   const pricing = useMemo(() => {
-    const total = PLAN_BASE + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0) + jacuzziAdd + servicesAdd + hoursAdd;
+    const total = PLAN_BASE + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0) + jacuzziAdd + servicesAdd;
     return { total };
-  }, [property, outdoorChoice, poolChoice, jacuzziAdd, servicesAdd, hoursAdd]);
+  }, [property, outdoorChoice, poolChoice, jacuzziAdd, servicesAdd]);
 
-  const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "The extras", "Your hours", "Your plan & quote"];
+  const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "The extras", "Your plan & quote"];
   const enquiryBody = encodeURIComponent([
     `Plan: Bespoke care plan — built with the plan builder`,
     `Property: ${property?.label ?? "Not selected"}`,
@@ -140,7 +138,6 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
     `Pool: ${poolChoice?.label ?? "Not selected"}`,
     `Jacuzzi / spa care: ${jacuzzi ? "Yes (+€80.00 per month)" : "No"}`,
     `Extra services: ${chosenServices.length ? chosenServices.map((service) => `${service.label} (${hrs(service.hours)}, ${euro(service.add)})`).join(", ") : "None"}`,
-    `Maintenance hours: ${hours} h/month (${euro(HOURLY_RATE)} per hour, unused hours roll over)`,
     `Payment: No upfront payment — you're billed after each service (rolling monthly, cancel at any time if you wish)`,
     `Indicative total: ${euro(pricing.total)} per month`, "", "My name:", "Property address:", "Best number to reach me:",
   ].join("\n"));
@@ -157,7 +154,7 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
         <div className="flex-1 overflow-y-auto px-5 py-7 md:px-8 md:py-9">
           {step === 0 && <div>
             <h3 className="max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">One home. One plan. Built entirely around it.</h3>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-deep/70">No fixed bundles — we assemble your plan from what your property actually needs. Tell us about the home, tick the care it needs and choose your monthly maintenance hours. Your indicative price grows with every choice, and nothing you don’t need ever makes it onto the plan.</p>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-deep/70">No fixed bundles — we assemble your plan from what your property actually needs. Tell us about the home, tick the care it needs and any extra services. Your indicative price grows with every choice, and nothing you don’t need ever makes it onto the plan.</p>
             <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4"><p className="flex flex-wrap items-center gap-2 font-bold"><Smartphone className="size-5 text-coral" aria-hidden="true" />Your free Property Vault<span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Always included</span></p><p className="mt-1.5 text-sm leading-relaxed text-deep/70">A photo-documented history of every visit, check, service and repair — whatever your plan includes.</p></div>
           </div>}
 
@@ -211,17 +208,27 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
           </div>}
 
           {step === 5 && <div>
-            <p className="section-label text-coral">Hands-on maintenance</p>
-            <h3 className="mt-3 font-display text-3xl font-semibold leading-tight">How many hours should we set aside for your home each month?</h3>
-            <div className="mt-6 rounded-2xl border border-deep/15 p-5">
-              <div className="flex flex-wrap items-baseline justify-between gap-3">
-                <p className="font-display text-3xl font-semibold">{hours === 0 ? "No hours for now" : `${hours} ${hours === 1 ? "hour" : "hours"} / month`}</p>
-                <p className="font-display text-2xl font-semibold text-coral">{hours === 0 ? "—" : `${euro(hoursAdd)} / month`}</p>
-              </div>
-              <input type="range" min={0} max={12} step={1} value={hours} onChange={(event) => setHours(Number(event.target.value))} aria-label="Maintenance hours per month" className="mt-5 w-full accent-[var(--coral)]" />
-              <div className="mt-2 flex justify-between text-[0.65rem] font-bold uppercase tracking-wide text-deep/45"><span>0 h</span><span>12 h</span></div>
-              <p className="mt-4 text-sm leading-relaxed text-deep/65">One clear rate of {euro(HOURLY_RATE)} per hour — spend them on repairs, odd jobs and practical help, and unused hours simply roll over to the next month. Most homes start with around 3 hours.</p>
+            <p className="section-label text-coral">Ready when you are</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Sign up for your services — or simply try us out.</h3>
+            <div className="mt-5 rounded-2xl bg-deep p-5 text-sunlit md:p-6"><div className="flex flex-wrap items-end justify-between gap-4"><div><p className="section-label text-coral">Your indicative bespoke plan</p><p className="mt-2 font-display text-4xl font-semibold md:text-5xl">{euro(pricing.total)}<span className="ml-2 text-base text-sunlit/60">/ month</span></p></div><p className="text-sm font-bold text-coral">Billed after the service</p></div>
+              <ul className="mt-5 space-y-2 border-t border-sunlit/15 pt-4 text-sm text-sunlit/75"><li className="flex justify-between gap-4"><span>Care plan base · {property?.label}</span><span>{euro(PLAN_BASE + (property?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{outdoorChoice?.label} · {poolChoice?.label}</span><span>{euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0))}</span></li>{jacuzzi && <li className="flex justify-between gap-4"><span>Jacuzzi / spa care</span><span>{euro(80)}</span></li>}{chosenServices.map((service) => <li key={service.label} className="flex justify-between gap-4"><span>{service.label} · {hrs(service.hours)}</span><span>{euro(service.add)}</span></li>)}<li className="flex justify-between gap-4"><span>Property Vault</span><span className="font-bold text-coral">Free</span></li></ul>
             </div>
+            <div className="mt-5 rounded-2xl border border-deep/15 bg-white/70 p-5 md:p-6">
+              <p className="section-label text-coral">Your plan at a glance</p>
+              <h4 className="mt-2 font-display text-xl font-semibold leading-snug md:text-2xl">Here's exactly what you're buying:</h4>
+              <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-deep/80">
+                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Care for your <strong className="font-semibold">{property?.label.toLowerCase()}</strong> — our team from Finland and Sweden, with a dedicated plan manager and regular property visits.</span></li>
+                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{outdoorChoice?.add ? `Regular garden and outdoor care — ${outdoorChoice?.label.toLowerCase()}.` : "No regular garden or yard care — yours stays lean."}</span></li>
+                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{poolChoice?.add ? `Regular pool care — ${poolChoice?.label.toLowerCase()}.` : "No pool care included — easy to add later if your home changes."}</span></li>
+                {jacuzzi && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Jacuzzi / spa care — water quality, filters and sanitising, alongside your pool.</span></li>}
+                {chosenServices.length > 0 && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Extra services: {chosenServices.map((service) => `${service.label.toLowerCase()} (${hrs(service.hours)})`).join(", ")}.</span></li>}
+                {chosenServices.length === 0 && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>No extra services for now — you can tick more on at any time.</span></li>}
+                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>No upfront payment — we bill you after each service. Rolling monthly, no commitment, cancel at any time if you wish.</span></li>
+                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Your free <strong className="font-semibold">Property Vault</strong> — every visit, photo, report and document in one place, from anywhere.</span></li>
+              </ul>
+            </div>
+            <p className="mt-5 text-sm leading-snug text-deep/60">Indicative pricing, IVA included. We confirm the final plan after a quick look at your property — no surprises, ever.</p>
+            <p className="text-sm leading-snug text-deep/60">* A quick note: our package prices cover services only — any materials needed are quoted separately before we begin.</p>
+            <p className="text-sm leading-snug text-deep/60">This is only an estimate based on the information you've given us — how accurate it is depends on the condition of your property.</p>
             <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4 sm:p-5">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20my%20care%20plan" aria-label="Email our property specialist" className="shrink-0 self-start transition-transform hover:scale-110 sm:self-center"><svg viewBox="0 0 64 46" className="size-12 text-coral" aria-hidden="true"><g className="phone-ring"><circle cx="11" cy="17" r="4.5" fill="currentColor" /><circle cx="47" cy="17" r="4.5" fill="currentColor" /><path d="M11 16 Q29 5 47 16" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" /><path d="M15 40 L19 24 Q29 20 39 24 L43 40 Z" fill="currentColor" /><circle cx="29" cy="32" r="4.5" fill="var(--sunlit)" /></g><path className="phone-wave" d="M53 10 a8 8 0 0 1 0 11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /><path className="phone-wave-2" d="M58 7 a13 13 0 0 1 0 17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /></svg></a>
@@ -307,31 +314,6 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
                 </div>
               </div>
             </div>
-          </div>}
-
-          {step === 6 && <div>
-            <p className="section-label text-coral">Ready when you are</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Sign up for your services — or simply try us out.</h3>
-            <div className="mt-5 rounded-2xl bg-deep p-5 text-sunlit md:p-6"><div className="flex flex-wrap items-end justify-between gap-4"><div><p className="section-label text-coral">Your indicative bespoke plan</p><p className="mt-2 font-display text-4xl font-semibold md:text-5xl">{euro(pricing.total)}<span className="ml-2 text-base text-sunlit/60">/ month</span></p></div><p className="text-sm font-bold text-coral">Billed after the service</p></div>
-              <ul className="mt-5 space-y-2 border-t border-sunlit/15 pt-4 text-sm text-sunlit/75"><li className="flex justify-between gap-4"><span>Care plan base · {property?.label}</span><span>{euro(PLAN_BASE + (property?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{outdoorChoice?.label} · {poolChoice?.label}</span><span>{euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0))}</span></li>{jacuzzi && <li className="flex justify-between gap-4"><span>Jacuzzi / spa care</span><span>{euro(80)}</span></li>}{chosenServices.map((service) => <li key={service.label} className="flex justify-between gap-4"><span>{service.label} · {hrs(service.hours)}</span><span>{euro(service.add)}</span></li>)}<li className="flex justify-between gap-4"><span>{hours === 0 ? "No maintenance hours" : `${hours} maintenance ${hours === 1 ? "hour" : "hours"} · ${euro(HOURLY_RATE)}/hour`}</span><span className="font-bold text-coral">{hours === 0 ? "—" : euro(hoursAdd)}</span></li><li className="flex justify-between gap-4"><span>Property Vault</span><span className="font-bold text-coral">Free</span></li></ul>
-            </div>
-            <div className="mt-5 rounded-2xl border border-deep/15 bg-white/70 p-5 md:p-6">
-              <p className="section-label text-coral">Your plan at a glance</p>
-              <h4 className="mt-2 font-display text-xl font-semibold leading-snug md:text-2xl">Here's exactly what you're buying:</h4>
-              <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-deep/80">
-                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Care for your <strong className="font-semibold">{property?.label.toLowerCase()}</strong> — our team from Finland and Sweden, with a dedicated plan manager and regular property visits.</span></li>
-                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{outdoorChoice?.add ? `Regular garden and outdoor care — ${outdoorChoice?.label.toLowerCase()}.` : "No regular garden or yard care — yours stays lean."}</span></li>
-                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{poolChoice?.add ? `Regular pool care — ${poolChoice?.label.toLowerCase()}.` : "No pool care included — easy to add later if your home changes."}</span></li>
-                {jacuzzi && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Jacuzzi / spa care — water quality, filters and sanitising, alongside your pool.</span></li>}
-                {chosenServices.length > 0 && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Extra services: {chosenServices.map((service) => `${service.label.toLowerCase()} (${hrs(service.hours)})`).join(", ")}.</span></li>}
-                {chosenServices.length === 0 && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>No extra services for now — you can tick more on at any time.</span></li>}
-                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{hours === 0 ? "No hands-on maintenance hours for now." : `${hours} hands-on maintenance ${hours === 1 ? "hour" : "hours"} every month at ${euro(HOURLY_RATE)} per hour — unused hours roll over.`}</span></li>
-                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>No upfront payment — we bill you after each service. Rolling monthly, no commitment, cancel at any time if you wish.</span></li>
-                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Your free <strong className="font-semibold">Property Vault</strong> — every visit, photo, report and document in one place, from anywhere.</span></li>
-              </ul>
-            </div>
-            <p className="mt-5 text-sm leading-snug text-deep/60">Indicative pricing, IVA included. We confirm the final plan after a quick look at your property — no surprises, ever.</p>
-            <p className="text-sm leading-snug text-deep/60">* A quick note: our package prices cover services only — any materials needed are quoted separately before we begin.</p>
-            <p className="text-sm leading-snug text-deep/60">This is only an estimate based on the information you've given us — how accurate it is depends on the condition of your property.</p>
             <a href={`mailto:info@solidmaint.com?subject=Bespoke%20care%20plan%20request&body=${enquiryBody}`} className="solid-button solid-button-coral mt-5 w-full">Yes, looks good. Let's meet up! <ArrowRight aria-hidden="true" /></a>
           </div>}
         </div>
