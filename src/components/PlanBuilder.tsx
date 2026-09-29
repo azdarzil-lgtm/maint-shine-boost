@@ -100,7 +100,6 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
   const [serviceHours, setServiceHours] = useState<Record<string, number>>({});
   const toggleService = (label: string, suggested: number) => setServiceHours((current) => { const next = { ...current }; if (next[label]) delete next[label]; else next[label] = suggested; return next; });
   const adjustService = (label: string, delta: number) => setServiceHours((current) => ({ ...current, [label]: Math.min(24, Math.max(1, (current[label] ?? 1) + delta)) }));
-  const [hours, setHours] = useState(3);
   const [callbackOpen, setCallbackOpen] = useState(false);
   const [callbackName, setCallbackName] = useState("");
   const [callbackPhone, setCallbackPhone] = useState("");
@@ -124,15 +123,14 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
   const chosenServices = extraServices.filter((service) => serviceHours[service.label]).map((service) => { const h = serviceHours[service.label] ?? 1; return { label: service.label, hours: h, add: h * HOURLY_RATE }; });
   const servicesAdd = chosenServices.reduce((sum, service) => sum + service.add, 0);
   const hrs = (h: number) => `${h} ${h === 1 ? "hour" : "hours"}`;
-  const hoursAdd = hours * HOURLY_RATE;
   const jacuzziAdd = jacuzzi ? 80 : 0;
 
   const pricing = useMemo(() => {
-    const total = PLAN_BASE + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0) + jacuzziAdd + servicesAdd + hoursAdd;
+    const total = PLAN_BASE + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0) + jacuzziAdd + servicesAdd;
     return { total };
-  }, [property, outdoorChoice, poolChoice, jacuzziAdd, servicesAdd, hoursAdd]);
+  }, [property, outdoorChoice, poolChoice, jacuzziAdd, servicesAdd]);
 
-  const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "The extras", "Your hours", "Your plan & quote"];
+  const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "The extras", "Your plan & quote"];
   const enquiryBody = encodeURIComponent([
     `Plan: Bespoke care plan — built with the plan builder`,
     `Property: ${property?.label ?? "Not selected"}`,
@@ -140,7 +138,6 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
     `Pool: ${poolChoice?.label ?? "Not selected"}`,
     `Jacuzzi / spa care: ${jacuzzi ? "Yes (+€80.00 per month)" : "No"}`,
     `Extra services: ${chosenServices.length ? chosenServices.map((service) => `${service.label} (${hrs(service.hours)}, ${euro(service.add)})`).join(", ") : "None"}`,
-    `Maintenance hours: ${hours} h/month (${euro(HOURLY_RATE)} per hour, unused hours roll over)`,
     `Payment: No upfront payment — you're billed after each service (rolling monthly, cancel at any time if you wish)`,
     `Indicative total: ${euro(pricing.total)} per month`, "", "My name:", "Property address:", "Best number to reach me:",
   ].join("\n"));
@@ -157,7 +154,7 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
         <div className="flex-1 overflow-y-auto px-5 py-7 md:px-8 md:py-9">
           {step === 0 && <div>
             <h3 className="max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">One home. One plan. Built entirely around it.</h3>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-deep/70">No fixed bundles — we assemble your plan from what your property actually needs. Tell us about the home, tick the care it needs and choose your monthly maintenance hours. Your indicative price grows with every choice, and nothing you don’t need ever makes it onto the plan.</p>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-deep/70">No fixed bundles — we assemble your plan from what your property actually needs. Tell us about the home, tick the care it needs and any extra services. Your indicative price grows with every choice, and nothing you don’t need ever makes it onto the plan.</p>
             <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4"><p className="flex flex-wrap items-center gap-2 font-bold"><Smartphone className="size-5 text-coral" aria-hidden="true" />Your free Property Vault<span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Always included</span></p><p className="mt-1.5 text-sm leading-relaxed text-deep/70">A photo-documented history of every visit, check, service and repair — whatever your plan includes.</p></div>
           </div>}
 
