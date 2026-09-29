@@ -12,7 +12,7 @@ import { useEffect, useMemo, useState } from "react";
 
 type PropertyKey = "flat" | "townhouse" | "villa" | "finca";
 
-export const HOURLY_RATE = 35;
+export const HOURLY_RATE = 45;
 export const PLAN_BASE = 89;
 
 const propertyTypes: { key: PropertyKey; label: string; note: string; add: number }[] = [
