@@ -444,7 +444,7 @@ function Index() {
             {packages.map((item) => {
               const prestige = item.key === "complete";
               return (
-                <article key={item.name} className={prestige ? "editorial-package editorial-package-prestige" : item.featured ? "editorial-package editorial-package-featured" : "editorial-package"}>
+                <article key={item.name} className={prestige ? "editorial-package relative overflow-hidden border-coral/35 bg-deep text-sunlit" : item.featured ? "editorial-package editorial-package-featured" : "editorial-package"}>
                   {prestige && <div className="pointer-events-none absolute -top-24 -right-24 size-48 rounded-full bg-coral opacity-10 blur-3xl" aria-hidden="true" />}
                   <div>
                     <div className="flex items-center justify-between gap-3">
