@@ -348,7 +348,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="packages" className="scroll-mt-28 pt-10 pb-20 md:py-28">
+      <section id="packages" className="scroll-mt-28 pt-10 pb-14 md:py-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
@@ -480,7 +480,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="how-we-work" className="scroll-mt-28 bg-olive/10 py-20 md:py-28">
+      <section id="how-we-work" className="scroll-mt-28 bg-olive/10 py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
@@ -562,7 +562,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="services" className="scroll-mt-28 bg-background py-20 md:py-28">
+      <section id="services" className="scroll-mt-28 bg-background py-14 md:py-20">
         <div className="mx-auto grid max-w-7xl items-start gap-14 px-5 md:px-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="lg:sticky lg:top-12">
             <p className="section-label text-coral">03 — Book one service</p>
@@ -650,7 +650,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="smart-enquiry" className="relative overflow-hidden bg-deep py-20 text-sunlit md:py-28">
+      <section id="smart-enquiry" className="relative overflow-hidden bg-deep py-14 text-sunlit md:py-20">
         <img
           src={enquiryBg}
           alt=""
@@ -670,7 +670,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="vault" className="scroll-mt-28 py-20 md:py-28">
+      <section id="vault" className="scroll-mt-28 py-14 md:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 md:px-10 lg:grid-cols-12">
           <figure className="relative lg:col-span-7">
             <video
@@ -714,7 +714,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="proof" className="bg-deep py-20 text-sunlit md:py-28">
+      <section id="proof" className="bg-deep py-14 text-sunlit md:py-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <p className="section-label text-coral">07 — In their words</p>
           <div className="mt-8 grid gap-12 lg:grid-cols-[1.25fr_0.75fr]">
@@ -731,7 +731,7 @@ function Index() {
       </section>
 
 
-      <section id="coverage" className="py-20 md:py-28">
+      <section id="coverage" className="py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
