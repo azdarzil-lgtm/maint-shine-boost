@@ -96,9 +96,8 @@
   --ring: oklch(0.689 0.159 29.2);
   /* Deep green: #3b6160. Revert value: oklch(0.31 0.052 174) */
   --deep: oklch(0.464 0.0433 193.6);
-  /* Dark grey body text (experiment — headings stay deep green). */
-  --ink: oklch(0.38 0.005 260);
   --olive: oklch(0.61 0.06 137);
+
   /* Accent: #ed6f5f. Revert values: original coral oklch(0.66 0.15 37); terracotta rose oklch(0.65 0.16 25); ochre oklch(0.651 0.118 62.9) */
   --coral: oklch(0.689 0.159 29.2);
   --sunlit: oklch(0.96 0.018 86);
