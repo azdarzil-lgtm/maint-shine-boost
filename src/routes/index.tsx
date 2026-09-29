@@ -429,13 +429,13 @@ function Index() {
                 <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your home. Your plan.</h3>
                 <p className="mt-5 max-w-xl text-lg leading-relaxed text-sunlit/70">
                   No fixed bundles — and no paying for what your home doesn’t need. In about a minute we build one plan
-                  around your actual home: the outdoor care, the extra services and the hands-on hours you choose. Nothing else.
+                  around your actual home: the outdoor care and the extra services you choose. Nothing else.
                 </p>
                 <ul className="mt-7 space-y-3 text-sm">
                   {[
                     "Garden, pool and home care — only what your property actually needs",
                     "Tick the extra services you want, from AC servicing to solar panel cleaning",
-                    "Choose your monthly maintenance hours — unused hours simply roll over",
+                    "Set the hours for each extra service — one clear rate of €45 per hour",
                   ].map((point) => (
                     <li key={point} className="flex items-start gap-3">
                       <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
@@ -457,7 +457,6 @@ function Index() {
                     ["Family garden", "+ €80.00"],
                     ["Standard pool", "+ €60.00"],
                     ["AC seasonal service · 1 hour", "€45.00"],
-                    ["3 maintenance hours · €45/hour", "€135.00"],
                   ].map(([label, price]) => (
                     <li key={label} className="flex items-center justify-between gap-4 py-2.5">
                       <span>{label}</span>
@@ -466,7 +465,7 @@ function Index() {
                   ))}
                 </ul>
                 <div className="mt-4 flex items-end justify-between gap-4 border-t border-deep/15 pt-4">
-                  <span className="font-display text-2xl font-semibold">€479.00<span className="ml-1 text-sm font-normal text-deep/55">/ month</span></span>
+                  <span className="font-display text-2xl font-semibold">€344.00<span className="ml-1 text-sm font-normal text-deep/55">/ month</span></span>
                   <span className="rounded-full bg-coral px-3 py-1 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Indicative</span>
                 </div>
                 <p className="mt-3 text-xs leading-relaxed text-deep/55">Every plan is different — yours is built in the builder, around your home.</p>
@@ -547,12 +546,12 @@ function Index() {
 
             <article className="how-step">
               <span className="section-label text-coral">Step 03</span>
-              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Add maintenance time</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Choose exactly how many hands-on hours your home needs each month — from 0 to 12 at one clear rate of €45 per hour. Unused hours simply roll over to the next month.</p>
+              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Set the hours each job needs</h3>
+              <p className="mt-4 leading-relaxed text-deep/65">Tick the extra services your home needs and give each job its own hours — every hour at one clear rate of €45. Nothing you don't need, ever.</p>
               <div className="mt-8 border-t border-deep/15 pt-6 lg:mt-auto">
-                <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Monthly maintenance hours</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Hours per extra service</p>
                 <div className="mt-4 grid grid-cols-5 gap-2" aria-hidden="true">
-                  {[{ h: 1, p: "15%" }, { h: 3, p: "35%" }, { h: 6, p: "55%" }, { h: 9, p: "78%" }, { h: 12, p: "100%", max: true }].map(({ h, p, max }) => (
+                  {[{ h: 1, p: "15%" }, { h: 6, p: "40%" }, { h: 12, p: "62%" }, { h: 18, p: "82%" }, { h: 24, p: "100%", max: true }].map(({ h, p, max }) => (
                     <div key={h} className="text-center">
                       <div className="relative h-24 w-full">
                         <div className={`absolute bottom-0 w-full rounded-t-full ${max ? "bg-coral" : "bg-olive/40"}`} style={{ height: p }} />
@@ -563,7 +562,7 @@ function Index() {
                 </div>
                 <p className="mt-2 flex items-baseline justify-between text-[0.65rem] font-bold uppercase tracking-wide">
                   <span className="text-deep/45">From 1h</span>
-                   <span className="text-coral">Up to 12 hours</span>
+                   <span className="text-coral">Up to 24 hours</span>
                 </p>
               </div>
             </article>
