@@ -40,8 +40,8 @@ const poolSizes = [
 ];
 
 
-const extraServices: { label: string; add: number }[] = [
-  { label: "AC seasonal service", add: 25 },
+const extraServices: { label: string; suggestedHours: number }[] = [
+  { label: "AC seasonal service", suggestedHours: 1 },
   { label: "Deep cleaning", add: 45 },
   { label: "Ventilation duct and vent cleaning", add: 20 },
   { label: "Range hood filter cleaning or replacement", add: 10 },
