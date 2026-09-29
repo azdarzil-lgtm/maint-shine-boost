@@ -315,7 +315,34 @@ function TypewriterHeading({ text }: { text: string }) {
 function Index() {
   const [builderOpen, setBuilderOpen] = useState(false);
 
+  useEffect(() => {
+    const steps = Array.from(document.querySelectorAll<HTMLElement>(".how-step"));
+    if (!steps.length) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      steps.forEach((step) => step.classList.add("how-step-visible"));
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("how-step-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.25 },
+    );
+    steps.forEach((step, index) => {
+      step.style.transitionDelay = `${index * 160}ms`;
+      observer.observe(step);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
+
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
       {builderOpen && <PlanBuilder onClose={() => setBuilderOpen(false)} />}
       <SiteHeader />
