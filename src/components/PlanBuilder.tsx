@@ -3,12 +3,15 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
+  Download,
+  Home,
   Phone,
   Smartphone,
   Video,
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { downloadQuotePdf } from "@/lib/quote-pdf";
 
 type PropertyKey = "flat" | "townhouse" | "villa" | "finca";
 
@@ -109,6 +112,15 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
   const [videoName, setVideoName] = useState("");
   const [videoContact, setVideoContact] = useState("");
   const [videoSent, setVideoSent] = useState(false);
+  const [pdfBusy, setPdfBusy] = useState(false);
+  const [nextMode, setNextMode] = useState<"visit" | "call">("visit");
+  const [nextName, setNextName] = useState("");
+  const [nextPhone, setNextPhone] = useState("");
+  const [nextEmail, setNextEmail] = useState("");
+  const [nextTown, setNextTown] = useState("");
+  const [nextTime, setNextTime] = useState("Any time, 09:00–18:00");
+  const [nextNote, setNextNote] = useState("");
+  const [nextSent, setNextSent] = useState(false);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => event.key === "Escape" && onClose();
@@ -141,6 +153,33 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
     `Payment: No upfront payment — you're billed after each service (rolling monthly, cancel at any time if you wish)`,
     `Indicative total: ${euro(pricing.total)} per month`, "", "My name:", "Property address:", "Best number to reach me:",
   ].join("\n"));
+
+  const handlePdf = async () => {
+    setPdfBusy(true);
+    try {
+      await downloadQuotePdf({
+        total: euro(pricing.total),
+        lines: [
+          { label: `Care plan base · ${property?.label}`, amount: euro(PLAN_BASE + (property?.add ?? 0)) },
+          { label: `${outdoorChoice?.label} · ${poolChoice?.label}`, amount: euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0)) },
+          ...(jacuzzi ? [{ label: "Jacuzzi / spa care", amount: euro(80) }] : []),
+          ...chosenServices.map((s) => ({ label: `${s.label} · ${hrs(s.hours)}`, amount: euro(s.add) })),
+          { label: "Property Vault", amount: "Free" },
+        ],
+        summary: [
+          `Care for your ${property?.label.toLowerCase()} — our team from Finland and Sweden, with a dedicated plan manager and regular property visits.`,
+          outdoorChoice?.add ? `Regular garden and outdoor care — ${outdoorChoice?.label.toLowerCase()}.` : "No regular garden or yard care.",
+          poolChoice?.add ? `Regular pool care — ${poolChoice?.label.toLowerCase()}.` : "No pool care included.",
+          ...(jacuzzi ? ["Jacuzzi / spa care — water quality, filters and sanitising."] : []),
+          chosenServices.length ? `Extra services: ${chosenServices.map((s) => `${s.label.toLowerCase()} (${hrs(s.hours)})`).join(", ")}.` : "No extra services for now.",
+          "No upfront payment — billed after each service. Rolling monthly, cancel at any time.",
+          "Your free Property Vault — every visit, photo, report and document in one place.",
+        ],
+      });
+    } finally {
+      setPdfBusy(false);
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-[70] flex items-end justify-center bg-deep/70 p-0 backdrop-blur-sm sm:items-center sm:p-6">
@@ -314,7 +353,50 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
                 </div>
               </div>
             </div>
-            <a href={`mailto:info@solidmaint.com?subject=Bespoke%20care%20plan%20request&body=${enquiryBody}`} className="solid-button solid-button-coral mt-5 w-full">Yes, looks good. Let's connect! <ArrowRight aria-hidden="true" /></a>
+            <div className="mt-6 rounded-2xl border border-deep/15 bg-white/70 p-5 md:p-6">
+              <p className="section-label text-coral">Keep your quote</p>
+              <h4 className="mt-2 font-display text-xl font-semibold leading-snug md:text-2xl">Download your plan as a PDF.</h4>
+              <p className="mt-2 text-sm leading-relaxed text-deep/65">Your full breakdown on SolidMaint paper — handy to share or keep for later.</p>
+              <button type="button" onClick={handlePdf} disabled={pdfBusy} className="solid-button solid-button-coral mt-4 !px-5 !py-2.5 !text-sm disabled:opacity-60"><Download className="size-4" aria-hidden="true" /> {pdfBusy ? "Preparing your quote…" : "Download my quote (PDF)"}</button>
+            </div>
+            <div className="mt-5 rounded-2xl border border-coral/40 bg-coral/10 p-5 md:p-6">
+              <p className="section-label text-coral">Yes, looks good. Let's connect!</p>
+              <h4 className="mt-2 font-display text-xl font-semibold leading-snug md:text-2xl">How would you like to take the next step?</h4>
+              {nextSent ? (
+                <p className="mt-4 flex items-start gap-2 text-sm font-semibold text-deep"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />Thank you, {nextName.split(" ")[0]}! Your email app has opened with everything filled in — press send and we'll be in touch within one working day. Your written estimate will go to {nextEmail}.</p>
+              ) : (
+                <form className="mt-4" onSubmit={(event) => {
+                  event.preventDefault();
+                  const details = [
+                    `Request: ${nextMode === "visit" ? "Please send a SolidMaint specialist to visit my property" : "Please call me back"}`,
+                    `Name: ${nextName.trim()}`, `Phone: ${nextPhone.trim()}`, `Email for my estimate: ${nextEmail.trim()}`,
+                    `Property location: ${nextTown.trim() || "—"}`, `Best time: ${nextTime}`, `Anything else: ${nextNote.trim() || "—"}`, "",
+                    "— My plan —", decodeURIComponent(enquiryBody),
+                  ].join("\n");
+                  window.location.href = `mailto:info@solidmaint.com?subject=${encodeURIComponent(nextMode === "visit" ? "Care plan — specialist visit request" : "Care plan — callback request")}&body=${encodeURIComponent(details)}`;
+                  setNextSent(true);
+                }}>
+                  <div className="grid gap-2.5 sm:grid-cols-2" role="radiogroup" aria-label="Choose visit or callback">
+                    {([["visit", "A specialist comes over", "We visit your property and confirm the plan in person.", Home], ["call", "Call me back", "A quick chat on the phone at a time that suits you.", Phone]] as const).map(([key, title, note, Icon]) => (
+                      <button key={key} type="button" role="radio" aria-checked={nextMode === key} onClick={() => setNextMode(key)} className={`rounded-2xl border p-4 text-left transition-colors ${nextMode === key ? "border-coral bg-white" : "border-deep/15 bg-white/60 hover:border-coral/60"}`}>
+                        <span className="flex items-center gap-2 font-display text-base font-semibold"><Icon className="size-4 text-coral" aria-hidden="true" />{title}</span>
+                        <span className="mt-1 block text-xs leading-snug text-deep/60">{note}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                    <label className="block text-xs font-semibold text-deep/70">Your name<input required maxLength={80} value={nextName} onChange={(e) => setNextName(e.target.value)} className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep focus:border-coral focus:outline-none" /></label>
+                    <label className="block text-xs font-semibold text-deep/70">Phone number<input required type="tel" maxLength={30} value={nextPhone} onChange={(e) => setNextPhone(e.target.value)} placeholder="+34 ..." className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" /></label>
+                    <label className="block text-xs font-semibold text-deep/70">Email for your estimate<input required type="email" maxLength={255} value={nextEmail} onChange={(e) => setNextEmail(e.target.value)} placeholder="you@email.com" className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" /></label>
+                    <label className="block text-xs font-semibold text-deep/70">Where is the property?<input maxLength={120} value={nextTown} onChange={(e) => setNextTown(e.target.value)} placeholder="e.g. Marbella, Estepona" className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" /></label>
+                    <label className="block text-xs font-semibold text-deep/70 sm:col-span-2">Best time for us<select value={nextTime} onChange={(e) => setNextTime(e.target.value)} className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep focus:border-coral focus:outline-none"><option>Any time, 09:00–18:00</option><option>Morning, 09:00–12:00</option><option>Midday, 12:00–15:00</option><option>Afternoon, 15:00–18:00</option></select></label>
+                    <label className="block text-xs font-semibold text-deep/70 sm:col-span-2">Anything else we should know? (optional)<textarea maxLength={1000} rows={3} value={nextNote} onChange={(e) => setNextNote(e.target.value)} className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep focus:border-coral focus:outline-none" /></label>
+                  </div>
+                  <button type="submit" className="solid-button solid-button-coral mt-5 w-full">{nextMode === "visit" ? "Book my specialist visit" : "Request my callback"} <ArrowRight aria-hidden="true" /></button>
+                  <p className="mt-2 text-xs text-deep/55">We'll send your written estimate to the email above. No upfront payment, no pressure.</p>
+                </form>
+              )}
+            </div>
           </div>}
         </div>
 
