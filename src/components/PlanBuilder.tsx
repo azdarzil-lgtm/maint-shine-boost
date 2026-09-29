@@ -128,7 +128,7 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
   const poolChoice = poolSizes[pool] ?? poolSizes[0];
   const term = terms[termIndex] ?? terms[0];
   const chosenServices = extraServices.filter((service) => selectedServices.includes(service.label));
-  const servicesAdd = chosenServices.reduce((sum, service) => sum + service.add, 0)
+  const servicesAdd = chosenServices.reduce((sum, service) => sum + service.add, 0);
   const hoursAdd = hours * HOURLY_RATE;
   const jacuzziAdd = jacuzzi ? 80 : 0;
 

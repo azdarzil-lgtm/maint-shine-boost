@@ -498,7 +498,7 @@ function Index() {
               <div className="mt-8 border-t border-deep/15 pt-6 lg:mt-auto">
                 <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Monthly maintenance hours</p>
                 <div className="mt-4 grid grid-cols-5 gap-2" aria-hidden="true">
-                  [{ h: 1, p: "15%" }, { h: 3, p: "35%" }, { h: 6, p: "55%" }, { h: 9, p: "78%" }, { h: 12, p: "100%", max: true }].map(({ h, p, max }) => (
+                  {[{ h: 1, p: "15%" }, { h: 3, p: "35%" }, { h: 6, p: "55%" }, { h: 9, p: "78%" }, { h: 12, p: "100%", max: true }].map(({ h, p, max }) => (
                     <div key={h} className="text-center">
                       <div className="relative h-24 w-full">
                         <div className={`absolute bottom-0 w-full rounded-t-full ${max ? "bg-coral" : "bg-olive/40"}`} style={{ height: p }} />
