@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { ArrowRight, Facebook, Heart, Instagram, Linkedin, Sparkles } from "lucide-react";
 
 import { Brand } from "@/components/SiteHeader";
+import { EnquiryFormModal, generalAudience } from "@/components/SmartEnquiry";
 
 const socials = [
   { href: "https://www.facebook.com/solidmaint", label: "SolidMaint on Facebook", icon: Facebook },
@@ -9,6 +11,8 @@ const socials = [
 ];
 
 export function SiteFooter() {
+  const [enquiryOpen, setEnquiryOpen] = useState(false);
+
   return (
     <footer id="contact" className="relative overflow-hidden bg-deep text-sunlit">
       <div className="relative mx-auto max-w-4xl px-5 py-20 text-center md:px-10 md:py-28">
@@ -20,9 +24,14 @@ export function SiteFooter() {
           Tell us where your home is and what needs care. Our team will reply within one working day.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <a href="mailto:info@solidmaint.com" className="solid-button solid-button-coral">
+          <button
+            type="button"
+            onClick={() => setEnquiryOpen(true)}
+            aria-haspopup="dialog"
+            className="solid-button solid-button-coral"
+          >
             Start your enquiry <ArrowRight aria-hidden="true" />
-          </a>
+          </button>
           <a href="tel:+34951798899" className="solid-button solid-button-outline">
             Call +34 951 798 899
           </a>
@@ -61,6 +70,7 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
+      {enquiryOpen && <EnquiryFormModal audience={generalAudience} onClose={() => setEnquiryOpen(false)} />}
     </footer>
   );
 }
