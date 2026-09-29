@@ -311,11 +311,7 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
 
           {step === 6 && <div>
             <p className="section-label text-coral">Ready when you are</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Sign up for your services — or simply try us out.</h3>
-            <div className="mt-5 rounded-2xl border border-coral/40 bg-coral/10 p-5">
-              <p className="font-display text-lg font-semibold">Start with a monthly try-out — no upfront payment.</p>
-              <p className="mt-2 text-sm leading-relaxed text-deep/75">We do the work first and bill you afterwards. Your plan rolls month to month with no commitment, so you can pause or cancel at any time if you wish. Happy after the first visit? Then it simply becomes your ongoing care plan.</p>
-            </div>
-            <div className="mt-7 rounded-2xl border border-deep/15 bg-white/70 p-5 md:p-6">
+            <div className="mt-5 rounded-2xl border border-deep/15 bg-white/70 p-5 md:p-6">
               <p className="section-label text-coral">Your plan at a glance</p>
               <h4 className="mt-2 font-display text-xl font-semibold leading-snug md:text-2xl">Here's exactly what you're buying:</h4>
               <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-deep/80">
