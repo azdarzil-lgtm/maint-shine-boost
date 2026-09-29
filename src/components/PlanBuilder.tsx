@@ -214,7 +214,7 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
             </div>
             <div className="mt-5 rounded-2xl border border-deep/15 bg-white/70 p-5 md:p-6">
               <p className="section-label text-coral">Your plan at a glance</p>
-              <h4 className="mt-2 font-display text-xl font-semibold leading-snug md:text-2xl">Here's exactly what you're buying:</h4>
+              <h4 className="mt-2 font-display text-xl font-semibold leading-snug md:text-2xl">Here's exactly what you're getting:</h4>
               <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-deep/80">
                 <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Care for your <strong className="font-semibold">{property?.label.toLowerCase()}</strong> — our team from Finland and Sweden, with a dedicated plan manager and regular property visits.</span></li>
                 <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{outdoorChoice?.add ? `Regular garden and outdoor care — ${outdoorChoice?.label.toLowerCase()}.` : "No regular garden or yard care — yours stays lean."}</span></li>
