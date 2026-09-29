@@ -39,12 +39,6 @@ const poolSizes = [
   { label: "XL / infinity pool", note: "60 m² +", add: 160 },
 ];
 
-const terms = [
-  { key: "trial", label: "Monthly try-out", discount: 0, note: "Rolling monthly, no commitment — cancel at any time if you wish" },
-  { key: "3", label: "3 months", discount: 0.05, note: "5% off your monthly plan" },
-  { key: "6", label: "6 months", discount: 0.08, note: "8% off your monthly plan" },
-  { key: "12", label: "12 months", discount: 0.1, note: "10% off your monthly plan" },
-] as const;
 
 const extraServices: { label: string; add: number }[] = [
   { label: "AC seasonal service", add: 25 },
@@ -105,7 +99,6 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
   const [jacuzzi, setJacuzzi] = useState(false);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [hours, setHours] = useState(3);
-  const [termIndex, setTermIndex] = useState(1);
   const [callbackOpen, setCallbackOpen] = useState(false);
   const [callbackName, setCallbackName] = useState("");
   const [callbackPhone, setCallbackPhone] = useState("");
@@ -126,19 +119,17 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
   const property = propertyTypes[propertyIndex] ?? propertyTypes[0];
   const outdoorChoice = outdoorSizes[outdoor] ?? outdoorSizes[0];
   const poolChoice = poolSizes[pool] ?? poolSizes[0];
-  const term = terms[termIndex] ?? terms[0];
   const chosenServices = extraServices.filter((service) => selectedServices.includes(service.label));
   const servicesAdd = chosenServices.reduce((sum, service) => sum + service.add, 0);
   const hoursAdd = hours * HOURLY_RATE;
   const jacuzziAdd = jacuzzi ? 80 : 0;
 
   const pricing = useMemo(() => {
-    const beforeDiscount = PLAN_BASE + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0) + jacuzziAdd + servicesAdd + hoursAdd;
-    const saving = beforeDiscount * term.discount;
-    return { beforeDiscount, saving, total: beforeDiscount - saving };
-  }, [property, outdoorChoice, poolChoice, jacuzziAdd, servicesAdd, hoursAdd, term]);
+    const total = PLAN_BASE + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0) + jacuzziAdd + servicesAdd + hoursAdd;
+    return { total };
+  }, [property, outdoorChoice, poolChoice, jacuzziAdd, servicesAdd, hoursAdd]);
 
-  const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "The extras", "Your hours", "Plan length & quote"];
+  const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "The extras", "Your hours", "Your plan & quote"];
   const enquiryBody = encodeURIComponent([
     `Plan: Bespoke care plan — built with the plan builder`,
     `Property: ${property?.label ?? "Not selected"}`,
@@ -147,7 +138,7 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
     `Jacuzzi / spa care: ${jacuzzi ? "Yes (+€80.00 per month)" : "No"}`,
     `Extra services: ${chosenServices.length ? chosenServices.map((service) => service.label).join(", ") : "None"}`,
     `Maintenance hours: ${hours} h/month (${euro(HOURLY_RATE)} per hour, unused hours roll over)`,
-    `Plan length: ${term.label} (${Math.round(term.discount * 100)}% discount)`,
+    `Payment: No upfront payment — you're billed after each service (rolling monthly, cancel at any time if you wish)`,
     `Indicative total: ${euro(pricing.total)} per month`, "", "My name:", "Property address:", "Best number to reach me:",
   ].join("\n"));
 
