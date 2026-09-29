@@ -406,7 +406,7 @@ function Index() {
                     ["Family garden", "+ €80.00"],
                     ["Standard pool", "+ €60.00"],
                     ["AC seasonal service", "+ €25.00"],
-                    ["3 maintenance hours · €35/hour", "€105.00"],
+                    ["3 maintenance hours · €45/hour", "€135.00"],
                   ].map(([label, price]) => (
                     <li key={label} className="flex items-center justify-between gap-4 py-2.5">
                       <span>{label}</span>
@@ -494,7 +494,7 @@ function Index() {
             <article className="how-step">
               <span className="section-label text-coral">Step 03</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Add maintenance time</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Choose exactly how many hands-on hours your home needs each month — from 0 to 12 at one clear rate of €35 per hour. Unused hours simply roll over to the next month.</p>
+              <p className="mt-4 leading-relaxed text-deep/65">Choose exactly how many hands-on hours your home needs each month — from 0 to 12 at one clear rate of €45 per hour. Unused hours simply roll over to the next month.</p>
               <div className="mt-8 border-t border-deep/15 pt-6 lg:mt-auto">
                 <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Monthly maintenance hours</p>
                 <div className="mt-4 grid grid-cols-5 gap-2" aria-hidden="true">
