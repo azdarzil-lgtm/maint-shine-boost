@@ -348,7 +348,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="packages" className="scroll-mt-28 pt-10 pb-20 md:py-28">
+      <section id="packages" className="scroll-mt-28 pt-10 pb-14 md:py-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
@@ -364,7 +364,7 @@ function Index() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-x-10 gap-y-5 border-b border-deep/10 pb-10 md:grid-cols-3">
+          <div className="mt-8 grid gap-x-10 gap-y-5 border-b border-deep/10 pb-10 md:grid-cols-3">
             {[
               {
                 icon: Compass,
@@ -395,9 +395,9 @@ function Index() {
             })}
           </div>
 
-          <div id="builder" className="mt-10 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
-            <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:p-14">
-              <div>
+          <div id="builder" className="mt-8 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
+            <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:p-14">
+              <div className="order-2">
                 <p className="section-label text-coral">Bespoke plans</p>
                 <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your home. Your plan.</h3>
                 <p className="mt-5 max-w-xl text-lg leading-relaxed text-sunlit/80">
@@ -421,7 +421,7 @@ function Index() {
                 </button>
                 <p className="mt-4 text-xs text-sunlit/60">Free Property Vault with every plan · Indicative pricing until we’ve viewed your property</p>
               </div>
-              <div className="rounded-[1.5rem] bg-sunlit p-6 text-ink md:p-8">
+              <div className="order-1 rounded-[1.5rem] bg-sunlit p-6 text-ink md:p-8">
                 <p className="section-label text-coral">For example — a villa plan</p>
                 <ul className="mt-4 divide-y divide-deep/10 text-sm">
                   {[
@@ -447,7 +447,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-12 grid overflow-hidden rounded-[2rem] border border-deep/15 bg-sunlit md:grid-cols-[minmax(0,1fr)_20rem] lg:grid-cols-[minmax(0,1fr)_23rem]">
+          <div className="mt-8 grid overflow-hidden rounded-[2rem] border border-deep/15 bg-sunlit md:grid-cols-[minmax(0,1fr)_20rem] lg:grid-cols-[minmax(0,1fr)_23rem]">
             <div className="p-8 md:p-10">
               <p className="section-label text-coral">Included free with every plan</p>
               <h3 className="mt-2 max-w-[28ch] font-display text-2xl font-semibold leading-tight md:text-3xl">Your Property Vault — a lifetime history of your home, saved forever.</h3>
@@ -480,7 +480,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="how-we-work" className="scroll-mt-28 bg-olive/10 py-20 md:py-28">
+      <section id="how-we-work" className="scroll-mt-28 bg-olive/10 py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid items-end gap-8 border-b border-deep/15 pb-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
@@ -562,7 +562,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="services" className="scroll-mt-28 bg-background py-20 md:py-28">
+      <section id="services" className="scroll-mt-28 bg-background py-14 md:py-20">
         <div className="mx-auto grid max-w-7xl items-start gap-14 px-5 md:px-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="lg:sticky lg:top-12">
             <p className="section-label text-coral">03 — Book one service</p>
@@ -650,7 +650,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="smart-enquiry" className="relative overflow-hidden bg-deep py-20 text-sunlit md:py-28">
+      <section id="smart-enquiry" className="relative overflow-hidden bg-deep py-14 text-sunlit md:py-20">
         <img
           src={enquiryBg}
           alt=""
@@ -670,7 +670,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="vault" className="scroll-mt-28 py-20 md:py-28">
+      <section id="vault" className="scroll-mt-28 py-14 md:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 md:px-10 lg:grid-cols-12">
           <figure className="relative lg:col-span-7">
             <video
@@ -714,7 +714,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="proof" className="bg-deep py-20 text-sunlit md:py-28">
+      <section id="proof" className="bg-deep py-14 text-sunlit md:py-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <p className="section-label text-coral">07 — In their words</p>
           <div className="mt-8 grid gap-12 lg:grid-cols-[1.25fr_0.75fr]">
@@ -731,7 +731,7 @@ function Index() {
       </section>
 
 
-      <section id="coverage" className="py-20 md:py-28">
+      <section id="coverage" className="py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
