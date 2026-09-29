@@ -376,7 +376,7 @@ function Index() {
                     ["Villa", "+ €70.00"],
                     ["Family garden", "+ €80.00"],
                     ["Standard pool", "+ €60.00"],
-                    ["AC seasonal service", "+ €25.00"],
+                    ["AC seasonal service · 1 hour", "€45.00"],
                     ["3 maintenance hours · €45/hour", "€135.00"],
                   ].map(([label, price]) => (
                     <li key={label} className="flex items-center justify-between gap-4 py-2.5">
@@ -386,7 +386,7 @@ function Index() {
                   ))}
                 </ul>
                 <div className="mt-4 flex items-end justify-between gap-4 border-t border-deep/15 pt-4">
-                  <span className="font-display text-2xl font-semibold">€429.00<span className="ml-1 text-sm font-normal text-deep/55">/ month</span></span>
+                  <span className="font-display text-2xl font-semibold">€479.00<span className="ml-1 text-sm font-normal text-deep/55">/ month</span></span>
                   <span className="rounded-full bg-coral px-3 py-1 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Indicative</span>
                 </div>
                 <p className="mt-3 text-xs leading-relaxed text-deep/55">Every plan is different — yours is built in the builder, around your home.</p>
