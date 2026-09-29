@@ -396,8 +396,8 @@ function Index() {
           </div>
 
           <div id="builder" className="mt-10 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
-            <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:p-14">
-              <div>
+            <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:p-14">
+              <div className="order-2 lg:order-1 rounded-[1.5rem] bg-sunlit p-6 text-ink md:p-8">
                 <p className="section-label text-coral">Bespoke plans</p>
                 <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your home. Your plan.</h3>
                 <p className="mt-5 max-w-xl text-lg leading-relaxed text-sunlit/80">
