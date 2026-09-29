@@ -314,7 +314,7 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
                 </div>
               </div>
             </div>
-            <a href={`mailto:info@solidmaint.com?subject=Bespoke%20care%20plan%20request&body=${enquiryBody}`} className="solid-button solid-button-coral mt-5 w-full">Yes, looks good. Let's meet up! <ArrowRight aria-hidden="true" /></a>
+            <a href={`mailto:info@solidmaint.com?subject=Bespoke%20care%20plan%20request&body=${enquiryBody}`} className="solid-button solid-button-coral mt-5 w-full">Yes, looks good. Let's connect! <ArrowRight aria-hidden="true" /></a>
           </div>}
         </div>
 
