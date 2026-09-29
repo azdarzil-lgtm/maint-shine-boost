@@ -441,55 +441,64 @@ function Index() {
           </div>
 
           <div className="mt-5 grid gap-5 lg:grid-cols-3">
-            {packages.map((item) => (
-              <article key={item.name} className={item.featured ? "editorial-package editorial-package-featured" : "editorial-package"}>
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span className="section-label opacity-60">{item.number}</span>
-                    {item.featured && <span className="featured-tag">Most popular</span>}
-                  </div>
-                  <h3 className="mt-10 font-display text-3xl font-semibold">{item.name}</h3>
-                  <p className="mt-2 text-base font-semibold text-coral">{item.lead}</p>
-                  <p className="mt-6 flex items-baseline gap-2">
-                    <span className="text-xs font-bold uppercase tracking-wide opacity-55">From</span>
-                    <span className="font-display text-4xl font-semibold">€{item.price}.00</span>
-                    <span className="text-sm opacity-55">/ month</span>
-                  </p>
-                  <p className="mt-4 leading-relaxed opacity-65">{item.detail}</p>
-                  <ul className="mt-8 space-y-4 text-sm">
-                    {item.items.map((point) =>
-                      point.perk ? (
-                        <li key={point.title} className="flex gap-3 rounded-2xl bg-coral/12 p-4">
-                          <Smartphone className="mt-0.5 size-5 shrink-0 text-coral" aria-hidden="true" />
-                          <span>
-                            <span className="flex flex-wrap items-center gap-2">
-                              <span className="font-bold">{point.title}</span>
-                              <span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">{point.perkTag ?? "Free"}</span>
-                            </span>
-                            <span className="mt-1 block leading-relaxed opacity-75">{point.body}</span>
-                          </span>
-                        </li>
+            {packages.map((item) => {
+              const prestige = item.key === "complete";
+              return (
+                <article key={item.name} className={prestige ? "editorial-package editorial-package-prestige" : item.featured ? "editorial-package editorial-package-featured" : "editorial-package"}>
+                  {prestige && <div className="pointer-events-none absolute -top-24 -right-24 size-48 rounded-full bg-coral opacity-10 blur-3xl" aria-hidden="true" />}
+                  <div>
+                    <div className="flex items-center justify-between gap-3">
+                      {prestige ? (
+                        <span className="text-xs font-medium uppercase tracking-[0.3em] opacity-60">{item.number}</span>
                       ) : (
-                        <li key={point.title} className="flex gap-3 border-t border-current/10 pt-4">
-                          <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
-                          <span>
-                            <span className="font-bold">{point.title}</span>
-                            <span className="opacity-70"> — {point.body}</span>
-                          </span>
-                        </li>
-                      ),
-                    )}
-                  </ul>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setBuilderPlan(item.key)}
-                  className={item.featured ? "solid-button solid-button-coral mt-10" : "solid-button solid-button-dark mt-10"}
-                >
-                  Build my bespoke plan <ArrowRight aria-hidden="true" />
-                </button>
-              </article>
-            ))}
+                        <span className="section-label opacity-60">{item.number}</span>
+                      )}
+                      {item.featured && <span className="featured-tag">Most popular</span>}
+                      {prestige && <span className="rounded-full bg-coral px-3 py-1 text-[0.6rem] font-bold uppercase tracking-wider text-sunlit shadow-sm">Premium tier</span>}
+                    </div>
+                    <h3 className={`mt-10 font-display text-3xl font-semibold ${prestige ? "tracking-tight" : ""}`}>{item.name}</h3>
+                    <p className={`text-coral ${prestige ? "mt-2 text-sm font-medium italic" : "mt-2 text-base font-semibold"}`}>{item.lead}</p>
+                    <p className={`mt-6 flex items-baseline gap-2 ${prestige ? "border-b border-sunlit/10 pb-6" : ""}`}>
+                      <span className="text-xs font-bold uppercase tracking-wide opacity-55">From</span>
+                      <span className="font-display text-4xl font-semibold">€{item.price}.00</span>
+                      <span className="text-sm opacity-55">/ month</span>
+                    </p>
+                    <p className="mt-4 leading-relaxed opacity-65">{item.detail}</p>
+                    <ul className="mt-8 space-y-4 text-sm">
+                      {item.items.map((point) =>
+                        point.perk ? (
+                          <li key={point.title} className={`flex gap-3 rounded-2xl p-4 ${prestige ? "border border-white/10 bg-white/5" : "bg-coral/12"}`}>
+                            <Smartphone className="mt-0.5 size-5 shrink-0 text-coral" aria-hidden="true" />
+                            <span>
+                              <span className="flex flex-wrap items-center gap-2">
+                                <span className="font-bold">{point.title}</span>
+                                <span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">{point.perkTag ?? "Free"}</span>
+                              </span>
+                              <span className="mt-1 block leading-relaxed opacity-75">{point.body}</span>
+                            </span>
+                          </li>
+                        ) : (
+                          <li key={point.title} className="flex gap-3 border-t border-current/10 pt-4">
+                            <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
+                            <span>
+                              <span className="font-bold">{point.title}</span>
+                              <span className="opacity-70"> — {point.body}</span>
+                            </span>
+                          </li>
+                        ),
+                      )}
+                    </ul>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setBuilderPlan(item.key)}
+                    className={prestige || item.featured ? "solid-button solid-button-coral mt-10" : "solid-button solid-button-dark mt-10"}
+                  >
+                    Build my bespoke plan <ArrowRight aria-hidden="true" />
+                  </button>
+                </article>
+              );
+            })}
           </div>
 
           <div className="mt-8 flex flex-col items-start gap-6 rounded-[2rem] bg-deep p-8 text-sunlit md:flex-row md:items-center md:p-10">
