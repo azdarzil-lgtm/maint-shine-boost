@@ -36,7 +36,6 @@ import vaultWoman from "@/assets/vault-woman-phone.jpg";
 
 const antonio = antonioAsset.url;
 const samuli = samuliAsset.url;
-import jonas from "@/assets/jonas.jpg";
 import testimonialStill from "@/assets/testimonial-still.jpg";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
