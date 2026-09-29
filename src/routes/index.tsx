@@ -181,7 +181,7 @@ function ServiceAccordion() {
               <span className="grid size-11 shrink-0 place-items-center rounded-full bg-olive/15 sm:size-12"><Icon className="size-5" aria-hidden="true" /></span>
               <span>
                 <strong className="font-display text-xl font-semibold md:text-2xl">{service.title}</strong>
-                <span className="mt-1 block text-sm text-ink/60">{service.description}</span>
+                <span className="mt-1 block text-sm text-deep/60">{service.description}</span>
               </span>
               <ChevronDown
                 className={`ml-auto size-5 shrink-0 text-coral transition-transform duration-300 group-hover:translate-y-0.5 ${isOpen ? "rotate-180" : ""}`}
@@ -222,7 +222,7 @@ function ServiceAccordion() {
                           ? `${service.lead.name} & ${service.secondLead.name} · ${service.lead.role}s`
                           : `${service.lead.name} · ${service.lead.role}`}
                       </p>
-                      <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink/70">{service.detail}</p>
+                      <p className="mt-2 max-w-xl text-sm leading-relaxed text-deep/70">{service.detail}</p>
                       <a href="#contact" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-coral hover:underline">
                         Book this service <ArrowRight className="size-4" aria-hidden="true" />
                       </a>
@@ -315,7 +315,34 @@ function TypewriterHeading({ text }: { text: string }) {
 function Index() {
   const [builderOpen, setBuilderOpen] = useState(false);
 
+  useEffect(() => {
+    const steps = Array.from(document.querySelectorAll<HTMLElement>(".how-step"));
+    if (!steps.length) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      steps.forEach((step) => step.classList.add("how-step-visible"));
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("how-step-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.25 },
+    );
+    steps.forEach((step, index) => {
+      step.style.transitionDelay = `${index * 160}ms`;
+      observer.observe(step);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
+
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
       {builderOpen && <PlanBuilder onClose={() => setBuilderOpen(false)} />}
       <SiteHeader />
@@ -355,10 +382,10 @@ function Index() {
               <p className="section-label text-coral">01 — The benefits</p>
               <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">You enjoy the home. We handle the rest.</h2>
             </div>
-            <p className="max-w-xl text-lg leading-relaxed text-ink/65 lg:pb-2">
+            <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
               Our care for your property is built on Nordic precision. Garden and pool care, AC servicing and
               hands-on maintenance hours — every plan tailored to your property.{" "}
-              <strong className="font-bold text-ink">Your plan covers only what your property actually needs</strong>,
+              <strong className="font-bold text-deep">Your plan covers only what your property actually needs</strong>,
               and your free Property Vault keeps it all in view — every visit, every photo, every report, wherever
               you are.
             </p>
@@ -388,19 +415,19 @@ function Index() {
                   <Icon className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
                   <div>
                     <h3 className="text-sm font-semibold text-deep">{pillar.title}</h3>
-                    <p className="mt-1 text-[0.8rem] leading-relaxed text-ink/60">{pillar.body}</p>
+                    <p className="mt-1 text-[0.8rem] leading-relaxed text-deep/60">{pillar.body}</p>
                   </div>
                 </div>
               );
             })}
           </div>
 
-          <div id="builder" className="mt-8 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
+          <div id="builder" className="mt-8 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-sunlit text-deep">
             <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:p-14">
               <div className="order-2">
                 <p className="section-label text-coral">Bespoke plans</p>
                 <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your home. Your plan.</h3>
-                <p className="mt-5 max-w-xl text-lg leading-relaxed text-sunlit/80">
+                <p className="mt-5 max-w-xl text-lg leading-relaxed text-deep/70">
                   No fixed bundles — and no paying for what your home doesn’t need. In about a minute we build one plan
                   around your actual home: the outdoor care, the extra services and the hands-on hours you choose. Nothing else.
                 </p>
@@ -412,16 +439,16 @@ function Index() {
                   ].map((point) => (
                     <li key={point} className="flex items-start gap-3">
                       <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
-                      <span className="text-sunlit/85">{point}</span>
+                      <span className="text-deep/80">{point}</span>
                     </li>
                   ))}
                 </ul>
                 <button type="button" onClick={() => setBuilderOpen(true)} className="solid-button solid-button-coral mt-9">
                   Build my home plan now <ArrowRight aria-hidden="true" />
                 </button>
-                <p className="mt-4 text-xs text-sunlit/60">Free Property Vault with every plan · Indicative pricing until we’ve viewed your property</p>
+                <p className="mt-4 text-xs text-deep/55">Free Property Vault with every plan · Indicative pricing until we’ve viewed your property</p>
               </div>
-              <div className="order-1 rounded-[1.5rem] bg-sunlit p-6 text-ink md:p-8">
+              <div className="order-1 rounded-[1.5rem] border border-deep/10 bg-white p-6 text-deep shadow-[0_24px_50px_-32px_rgba(0,0,0,0.25)] md:p-8">
                 <p className="section-label text-coral">For example — a villa plan</p>
                 <ul className="mt-4 divide-y divide-deep/10 text-sm">
                   {[
@@ -439,10 +466,10 @@ function Index() {
                   ))}
                 </ul>
                 <div className="mt-4 flex items-end justify-between gap-4 border-t border-deep/15 pt-4">
-                  <span className="font-display text-2xl font-semibold">€479.00<span className="ml-1 text-sm font-normal text-ink/55">/ month</span></span>
+                  <span className="font-display text-2xl font-semibold">€479.00<span className="ml-1 text-sm font-normal text-deep/55">/ month</span></span>
                   <span className="rounded-full bg-coral px-3 py-1 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Indicative</span>
                 </div>
-                <p className="mt-3 text-xs leading-relaxed text-ink/55">Every plan is different — yours is built in the builder, around your home.</p>
+                <p className="mt-3 text-xs leading-relaxed text-deep/55">Every plan is different — yours is built in the builder, around your home.</p>
               </div>
             </div>
           </div>
@@ -451,7 +478,7 @@ function Index() {
             <div className="p-8 md:p-10">
               <p className="section-label text-coral">Included free with every plan</p>
               <h3 className="mt-2 max-w-[28ch] font-display text-2xl font-semibold leading-tight md:text-3xl">Your Property Vault — a lifetime history of your home, saved forever.</h3>
-              <p className="mt-3 max-w-xl leading-relaxed text-ink/70">Every service, repair and renovation, time-stamped and photographed. It's proof of care you can hand straight to a future buyer — history that protects your home's value.</p>
+              <p className="mt-3 max-w-xl leading-relaxed text-deep/70">Every service, repair and renovation, time-stamped and photographed. It's proof of care you can hand straight to a future buyer — history that protects your home's value.</p>
               <a href="#vault" className="solid-button solid-button-coral mt-7">See it in action <ArrowRight aria-hidden="true" /></a>
             </div>
             <div className="relative min-h-[15rem] md:min-h-full">
@@ -469,12 +496,12 @@ function Index() {
             </div>
           </div>
 
-          <p className="mt-6 text-sm text-ink/60">
+          <p className="mt-6 text-sm text-deep/60">
             Every plan is bespoke. Your indicative price reflects your property type, outdoor space, pool, extra
             services and maintenance hours — and there&apos;s no upfront payment: sign up for your services, or simply try
             us out and we&apos;ll bill you after the service. Not sure where you land?
           </p>
-          <p className="mt-2 text-sm text-ink/60">
+          <p className="mt-2 text-sm text-deep/60">
             <a href="#contact" className="font-bold text-coral underline-offset-4 hover:underline">Talk to us and we&apos;ll work it out with you.</a>
           </p>
         </div>
@@ -487,7 +514,7 @@ function Index() {
               <p className="section-label text-coral">02 — How we work</p>
               <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">A care plan in four simple steps.</h2>
             </div>
-            <p className="max-w-xl text-lg leading-relaxed text-ink/65 lg:pb-2">
+            <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
               Tell us about your property, choose the care it needs and we’ll build a bespoke monthly plan around it — then document every task on your phone.
             </p>
           </div>
@@ -496,7 +523,7 @@ function Index() {
             <article className="how-step">
               <span className="section-label text-coral">Step 01</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Tell us about your home</h3>
-              <p className="mt-4 leading-relaxed text-ink/65">Flat, townhouse, villa, finca or estate — with a small yard, a large garden, a pool or neither. We begin with the home you actually own.</p>
+              <p className="mt-4 leading-relaxed text-deep/65">Flat, townhouse, villa, finca or estate — with a small yard, a large garden, a pool or neither. We begin with the home you actually own.</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {["Flat", "Townhouse", "Villa", "Finca / Estate"].map((name) => (
                   <a key={name} href="#packages" className="rounded-full border border-deep/20 px-3.5 py-1.5 text-xs font-bold transition-colors hover:border-coral hover:text-coral">{name}</a>
@@ -512,7 +539,7 @@ function Index() {
             <article className="how-step">
               <span className="section-label text-coral">Step 02</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Choose the care you need</h3>
-              <p className="mt-4 leading-relaxed text-ink/65">Garden and pool care are both optional — add either, both or neither, then tick the extra services your home needs.</p>
+              <p className="mt-4 leading-relaxed text-deep/65">Garden and pool care are both optional — add either, both or neither, then tick the extra services your home needs.</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {services.map((service) => {
                   const Icon = service.icon;
@@ -529,9 +556,9 @@ function Index() {
             <article className="how-step">
               <span className="section-label text-coral">Step 03</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Add maintenance time</h3>
-              <p className="mt-4 leading-relaxed text-ink/65">Choose exactly how many hands-on hours your home needs each month — from 0 to 12 at one clear rate of €45 per hour. Unused hours simply roll over to the next month.</p>
+              <p className="mt-4 leading-relaxed text-deep/65">Choose exactly how many hands-on hours your home needs each month — from 0 to 12 at one clear rate of €45 per hour. Unused hours simply roll over to the next month.</p>
               <div className="mt-8 border-t border-deep/15 pt-6 lg:mt-auto">
-                <p className="text-xs font-bold uppercase tracking-wide text-ink/50">Monthly maintenance hours</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Monthly maintenance hours</p>
                 <div className="mt-4 grid grid-cols-5 gap-2" aria-hidden="true">
                   {[{ h: 1, p: "15%" }, { h: 3, p: "35%" }, { h: 6, p: "55%" }, { h: 9, p: "78%" }, { h: 12, p: "100%", max: true }].map(({ h, p, max }) => (
                     <div key={h} className="text-center">
@@ -543,7 +570,7 @@ function Index() {
                   ))}
                 </div>
                 <p className="mt-2 flex items-baseline justify-between text-[0.65rem] font-bold uppercase tracking-wide">
-                  <span className="text-ink/45">From 1h</span>
+                  <span className="text-deep/45">From 1h</span>
                    <span className="text-coral">Up to 12 hours</span>
                 </p>
               </div>
@@ -552,7 +579,7 @@ function Index() {
             <article className="how-step how-step-app">
               <span className="section-label text-coral">Step 04</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Follow it all from your phone — Simple!</h3>
-              <p className="mt-4 leading-relaxed text-ink/65">Download the app and watch the progress of every task, for the lifetime of your home — each visit documented, right in your pocket.</p>
+              <p className="mt-4 leading-relaxed text-deep/65">Download the app and watch the progress of every task, for the lifetime of your home — each visit documented, right in your pocket.</p>
               <div className="mt-6 flex items-center gap-3 lg:mt-auto">
                 <Smartphone className="size-10 shrink-0 text-olive" aria-hidden="true" />
                 <a href="#vault" className="solid-button solid-button-coral text-xs">Download the app</a>
@@ -567,7 +594,7 @@ function Index() {
           <div className="lg:sticky lg:top-12">
             <p className="section-label text-coral">03 — Book one service</p>
             <h2 className="mt-5 max-w-[11ch] font-display text-4xl font-semibold leading-tight md:text-6xl">Need just one thing? We do that too.</h2>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/65">Every service can stand alone or become part of your care plan.</p>
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-deep/65">Every service can stand alone or become part of your care plan.</p>
             <a href="#contact" className="mt-9 inline-flex items-center gap-2 font-bold text-coral">Discuss what you need <ArrowRight className="size-4" aria-hidden="true" /></a>
           </div>
           <ServiceAccordion />
@@ -594,14 +621,14 @@ function Index() {
                   <p className="text-[0.7rem] font-bold uppercase text-coral">Garden &amp; pool care</p>
                 </div>
               </div>
-              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-ink/70">“Antonio was on time, polite and very helpful — and the pool has never looked better.”</blockquote>
+              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-deep/70">“Antonio was on time, polite and very helpful — and the pool has never looked better.”</blockquote>
               <div className="mt-4 flex items-center justify-between gap-3">
                 <span className="flex items-center gap-0.5" aria-label="Rated 5 out of 5 stars">
                   {[0, 1, 2, 3, 4].map((star) => (
                     <Star key={star} className="size-3 fill-coral text-coral" aria-hidden="true" />
                   ))}
                 </span>
-                <p className="text-xs font-bold text-ink/70">Paul W. · Marbella</p>
+                <p className="text-xs font-bold text-deep/70">Paul W. · Marbella</p>
               </div>
             </figure>
             {[
@@ -635,14 +662,14 @@ function Index() {
                     <p className="text-[0.7rem] font-bold uppercase text-coral">{role}</p>
                   </div>
                 </div>
-                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-ink/70">“{quote}”</blockquote>
+                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-deep/70">“{quote}”</blockquote>
                 <div className="mt-4 flex items-center justify-between gap-3">
                   <span className="flex items-center gap-0.5" aria-label="Rated 5 out of 5 stars">
                     {[0, 1, 2, 3, 4].map((star) => (
                       <Star key={star} className="size-3 fill-coral text-coral" aria-hidden="true" />
                     ))}
                   </span>
-                  <p className="text-xs font-bold text-ink/70">{author}</p>
+                  <p className="text-xs font-bold text-deep/70">{author}</p>
                 </div>
               </figure>
             ))}
@@ -695,7 +722,7 @@ function Index() {
               <Check className="size-3.5" aria-hidden="true" /> Free with every care plan
             </span>
             <h2 className="mt-5 font-display text-4xl font-semibold leading-tight md:text-6xl">Every visit, clearly documented.</h2>
-            <p className="mt-6 text-lg leading-relaxed text-ink/65">Yours free, on every plan. Follow the care of your home from anywhere — each visit is verified, photographed and filed with its report and invoice.</p>
+            <p className="mt-6 text-lg leading-relaxed text-deep/65">Yours free, on every plan. Follow the care of your home from anywhere — each visit is verified, photographed and filed with its report and invoice.</p>
             <div className="mt-9 space-y-5">
               {[
                 { icon: Clock3, label: "Verified time on site" },
@@ -705,7 +732,7 @@ function Index() {
                 <div key={label} className="flex items-center gap-4 border-b border-deep/15 pb-5">
                   <Icon className="size-5 text-coral" aria-hidden="true" />
                   <span className="font-bold">{label}</span>
-                  <span className="ml-auto text-xs text-ink/40">0{index + 1}</span>
+                  <span className="ml-auto text-xs text-deep/40">0{index + 1}</span>
                 </div>
               ))}
             </div>
@@ -737,7 +764,7 @@ function Index() {
             <div>
               <p className="section-label text-coral">08 — Local coverage</p>
               <h2 className="mt-5 max-w-[12ch] font-display text-4xl font-semibold leading-tight md:text-6xl">From Benalmádena to Sotogrande.</h2>
-              <p className="mt-5 max-w-md text-lg font-semibold leading-relaxed text-ink/65">Currently serving the Costa del Sol, from Benalmádena to Sotogrande.</p>
+              <p className="mt-5 max-w-md text-lg font-semibold leading-relaxed text-deep/65">Currently serving the Costa del Sol, from Benalmádena to Sotogrande.</p>
             </div>
             <div className="grid grid-cols-2 gap-px bg-deep/15">
               {["Mijas", "Benalmádena", "Marbella", "Benahavís", "Estepona", "Sotogrande"].map((place) => (
@@ -751,7 +778,7 @@ function Index() {
               <div>
                 <p className="section-label text-coral">Coming to you soon</p>
                 <h3 className="mt-4 max-w-[18ch] font-display text-3xl font-semibold leading-tight md:text-4xl">Not in our coverage area yet?</h3>
-                <p className="mt-4 max-w-md text-base leading-relaxed text-ink/70">
+                <p className="mt-4 max-w-md text-base leading-relaxed text-deep/70">
                   We are expanding along the coast town by town. Leave your details and you will be the first to know when SolidMaint reaches your area — and we will hold a place for your home in the queue.
                 </p>
               </div>
@@ -801,7 +828,7 @@ function Index() {
                     required
                     maxLength={100}
                     placeholder="e.g. Fuengirola, La Cala…"
-                    className="rounded-md border border-deep/20 bg-sunlit px-4 py-3 text-base font-normal placeholder:text-ink/40"
+                    className="rounded-md border border-deep/20 bg-sunlit px-4 py-3 text-base font-normal placeholder:text-deep/40"
                   />
                 </label>
                 <div className="sm:col-span-2">
