@@ -496,14 +496,6 @@ function Index() {
             </div>
           </div>
 
-          <p className="mt-6 text-sm text-deep/60">
-            Every plan is bespoke. Your indicative price reflects your property type, outdoor space, pool, extra
-            services and maintenance hours — and there&apos;s no upfront payment: sign up for your services, or simply try
-            us out and we&apos;ll bill you after the service. Not sure where you land?
-          </p>
-          <p className="mt-2 text-sm text-deep/60">
-            <a href="#contact" className="font-bold text-coral underline-offset-4 hover:underline">Talk to us and we&apos;ll work it out with you.</a>
-          </p>
         </div>
       </section>
 
