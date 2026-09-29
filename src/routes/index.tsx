@@ -41,7 +41,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { InstagramFeed } from "@/components/InstagramFeed";
 import { MarenaBanner } from "@/components/MarenaBanner";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { PlanBuilder, type PlanKey } from "@/components/PlanBuilder";
+import { PlanBuilder } from "@/components/PlanBuilder";
 import { SmartEnquiry } from "@/components/SmartEnquiry";
 
 export const Route = createFileRoute("/")({
@@ -86,75 +86,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const packages: {
-  number: string;
-  key: PlanKey;
-  name: string;
-  lead: string;
-  price: number;
-  detail: string;
-  items: { title: string; body: string; perk?: boolean; perkTag?: string }[];
-  featured?: boolean;
-}[] = [
-  {
-    number: "01",
-    key: "outdoor",
-    name: "Essential Care",
-    lead: "The dependable essentials",
-    price: 189,
-    detail: "A flexible starting point for flats, townhouses and smaller homes. Choose only the regular care your property needs.",
-    items: [
-      {
-        title: "Garden or yard care",
-        body: "Optional care shaped around your outdoor space — from a small townhouse patio to generous finca grounds.",
-      },
-      { title: "Pool care", body: "Add regular pool care only if your home needs it." },
-      { title: "Maintenance hours", body: "Add hours whenever you need help with a repair or practical job." },
-      { title: "Visit photos", body: "Photos from every visit saved to your free Property Vault.", perk: true },
-    ],
-  },
-  {
-    number: "02",
-    key: "home-ready",
-    name: "Home Ready",
-    lead: "More support, already built in",
-    price: 289,
-    detail: "Our most popular level for owners who want regular care plus practical time set aside for the little things.",
-    items: [
-      {
-        title: "Garden or yard care",
-        body: "Choose the right level for your outdoor space, or leave it out completely.",
-      },
-      {
-        title: "Pool care",
-        body: "Optional cleaning, water chemistry and equipment checks for homes with a pool.",
-      },
-      {
-        title: "3 maintenance hours",
-        body: "Three hours of general maintenance every month are already included in your plan — and unused hours roll over.",
-        perk: true,
-        perkTag: "Included",
-      },
-      { title: "Property report", body: "A photo-documented view of your home’s condition, stored in your Property Vault." },
-    ],
-    featured: true,
-  },
-  {
-    number: "03",
-    key: "complete",
-    name: "Signature Care",
-    lead: "Full-property peace of mind",
-    price: 459,
-    detail: "Proactive, hands-on oversight for villas, fincas and any home whose owner wants everything checked and ready.",
-    items: [
-      { title: "Whole-property checks", body: "We proactively check AC, plumbing, electrics, fixtures and the general condition of your home." },
-      { title: "Garden and pool care", body: "Add the exact level each part of your property needs." },
-      { title: "6 maintenance hours", body: "Six hours of general maintenance every month are already included in your plan — and unused hours roll over.", perk: true, perkTag: "Included" },
-      { title: "Priority coordination", body: "One dependable team to spot, organise and document what needs attention." },
-    ],
-  },
-];
 
 const services = [
   {
@@ -358,11 +289,11 @@ function TypewriterHeading({ text }: { text: string }) {
 
 
 function Index() {
-  const [builderPlan, setBuilderPlan] = useState<PlanKey | null>(null);
+  const [builderOpen, setBuilderOpen] = useState(false);
 
   return (
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
-      {builderPlan && <PlanBuilder plan={builderPlan} onClose={() => setBuilderPlan(null)} />}
+      {builderOpen && <PlanBuilder onClose={() => setBuilderOpen(false)} />}
       <SiteHeader />
 
       <section className="relative isolate overflow-hidden bg-deep text-sunlit">
@@ -387,7 +318,7 @@ function Index() {
             One dependable Maintenance Team for your garden, pool, air conditioning and home — with a clear record of every visit.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="#packages" className="solid-button solid-button-coral">Find your home care plan <ArrowDownRight aria-hidden="true" /></a>
+            <a href="#packages" className="solid-button solid-button-coral">Build my plan <ArrowDownRight aria-hidden="true" /></a>
             <a href="#services" className="solid-button solid-button-white">Need just one thing? <ArrowDownRight aria-hidden="true" /></a>
           </div>
         </div>
@@ -440,65 +371,56 @@ function Index() {
             })}
           </div>
 
-          <div className="mt-5 grid gap-5 lg:grid-cols-3">
-            {packages.map((item) => {
-              const prestige = item.key === "complete";
-              return (
-                <article key={item.name} className={prestige ? "editorial-package relative overflow-hidden border-coral/35 bg-deep text-sunlit" : item.featured ? "editorial-package editorial-package-featured" : "editorial-package"}>
-                  {prestige && <div className="pointer-events-none absolute -top-24 -right-24 size-48 rounded-full bg-coral opacity-10 blur-3xl" aria-hidden="true" />}
-                  <div>
-                    <div className="flex items-center justify-between gap-3">
-                      {prestige ? (
-                        <span className="text-xs font-medium uppercase tracking-[0.3em] opacity-60">{item.number}</span>
-                      ) : (
-                        <span className="section-label opacity-60">{item.number}</span>
-                      )}
-                      {item.featured && <span className="featured-tag">Most popular</span>}
-                      {prestige && <span className="rounded-full bg-coral px-3 py-1 text-[0.6rem] font-bold uppercase tracking-wider text-sunlit shadow-sm">Premium tier</span>}
-                    </div>
-                    <h3 className={`mt-10 font-display text-3xl font-semibold ${prestige ? "tracking-tight" : ""}`}>{item.name}</h3>
-                    <p className={`text-coral ${prestige ? "mt-2 text-sm font-medium italic" : "mt-2 text-base font-semibold"}`}>{item.lead}</p>
-                    <p className={`mt-6 flex items-baseline gap-2 ${prestige ? "border-b border-sunlit/10 pb-6" : ""}`}>
-                      <span className="text-xs font-bold uppercase tracking-wide opacity-55">From</span>
-                      <span className="font-display text-4xl font-semibold">€{item.price}.00</span>
-                      <span className="text-sm opacity-55">/ month</span>
-                    </p>
-                    <p className="mt-4 leading-relaxed opacity-65">{item.detail}</p>
-                    <ul className="mt-8 space-y-4 text-sm">
-                      {item.items.map((point) =>
-                        point.perk ? (
-                          <li key={point.title} className={`flex gap-3 rounded-2xl p-4 ${prestige ? "border border-white/10 bg-white/5" : "bg-coral/12"}`}>
-                            <Smartphone className="mt-0.5 size-5 shrink-0 text-coral" aria-hidden="true" />
-                            <span>
-                              <span className="flex flex-wrap items-center gap-2">
-                                <span className="font-bold">{point.title}</span>
-                                <span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">{point.perkTag ?? "Free"}</span>
-                              </span>
-                              <span className="mt-1 block leading-relaxed opacity-75">{point.body}</span>
-                            </span>
-                          </li>
-                        ) : (
-                          <li key={point.title} className="flex gap-3 border-t border-current/10 pt-4">
-                            <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
-                            <span>
-                              <span className="font-bold">{point.title}</span>
-                              <span className="opacity-70"> — {point.body}</span>
-                            </span>
-                          </li>
-                        ),
-                      )}
-                    </ul>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setBuilderPlan(item.key)}
-                    className={prestige || item.featured ? "solid-button solid-button-coral mt-10" : "solid-button solid-button-dark mt-10"}
-                  >
-                    Build my bespoke plan <ArrowRight aria-hidden="true" />
-                  </button>
-                </article>
-              );
-            })}
+          <div className="mt-12 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
+            <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:p-14">
+              <div>
+                <p className="section-label text-coral">Bespoke plans</p>
+                <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your home. Your plan.</h3>
+                <p className="mt-5 max-w-xl text-lg leading-relaxed text-sunlit/80">
+                  No fixed bundles — and no paying for what your home doesn’t need. In about a minute we build one plan
+                  around your actual home: the outdoor care, the extra services and the hands-on hours you choose. Nothing else.
+                </p>
+                <ul className="mt-7 space-y-3 text-sm">
+                  {[
+                    "Garden, pool and home care — only what your property actually needs",
+                    "Tick the extra services you want, from AC servicing to solar panel cleaning",
+                    "Choose your monthly maintenance hours — unused hours simply roll over",
+                  ].map((point) => (
+                    <li key={point} className="flex items-start gap-3">
+                      <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
+                      <span className="text-sunlit/85">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button type="button" onClick={() => setBuilderOpen(true)} className="solid-button solid-button-coral mt-9">
+                  Build my plan <ArrowRight aria-hidden="true" />
+                </button>
+                <p className="mt-4 text-xs text-sunlit/60">Free Property Vault with every plan · Indicative pricing until we’ve viewed your property</p>
+              </div>
+              <div className="rounded-[1.5rem] bg-sunlit p-6 text-deep md:p-8">
+                <p className="section-label text-coral">For example — a villa plan</p>
+                <ul className="mt-4 divide-y divide-deep/10 text-sm">
+                  {[
+                    ["Care plan base", "€89.00"],
+                    ["Villa", "+ €70.00"],
+                    ["Family garden", "+ €80.00"],
+                    ["Standard pool", "+ €60.00"],
+                    ["AC seasonal service", "+ €25.00"],
+                    ["3 maintenance hours · €35/hour", "€105.00"],
+                  ].map(([label, price]) => (
+                    <li key={label} className="flex items-center justify-between gap-4 py-2.5">
+                      <span>{label}</span>
+                      <span className="font-semibold">{price}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 flex items-end justify-between gap-4 border-t border-deep/15 pt-4">
+                  <span className="font-display text-2xl font-semibold">€429.00<span className="ml-1 text-sm font-normal text-deep/55">/ month</span></span>
+                  <span className="rounded-full bg-coral px-3 py-1 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Indicative</span>
+                </div>
+                <p className="mt-3 text-xs leading-relaxed text-deep/55">Every plan is different — yours is built in the builder, around your home.</p>
+              </div>
+            </div>
           </div>
 
           <div className="mt-8 flex flex-col items-start gap-6 rounded-[2rem] bg-deep p-8 text-sunlit md:flex-row md:items-center md:p-10">
@@ -514,7 +436,8 @@ function Index() {
           </div>
 
           <p className="mt-6 text-sm text-deep/60">
-            Every plan is bespoke. Your indicative price reflects your property type, outdoor space, pool, maintenance hours and plan length. Not sure where you land?
+            Every plan is bespoke. Your indicative price reflects your property type, outdoor space, pool, extra
+            services, maintenance hours and plan length. Not sure where you land?
           </p>
           <p className="mt-2 text-sm text-deep/60">
             <a href="#contact" className="font-bold text-coral underline-offset-4 hover:underline">Talk to us and we&apos;ll work it out with you.</a>
@@ -554,7 +477,7 @@ function Index() {
             <article className="how-step">
               <span className="section-label text-coral">Step 02</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Choose the care you need</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Garden and pool care are both optional. Add either, both or neither, then choose the care level that feels right.</p>
+              <p className="mt-4 leading-relaxed text-deep/65">Garden and pool care are both optional — add either, both or neither, then tick the extra services your home needs.</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {services.map((service) => {
                   const Icon = service.icon;
@@ -571,11 +494,11 @@ function Index() {
             <article className="how-step">
               <span className="section-label text-coral">Step 03</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Add maintenance time</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Home Ready includes 3 hours and Signature Care includes 6 — unused hours simply roll over. Add more in clear 2–6 hour monthly blocks whenever your property needs them.</p>
+              <p className="mt-4 leading-relaxed text-deep/65">Choose exactly how many hands-on hours your home needs each month — from 0 to 12 at one clear rate of €35 per hour. Unused hours simply roll over to the next month.</p>
               <div className="mt-8 border-t border-deep/15 pt-6 lg:mt-auto">
-                <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Extra hours per time slot</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Monthly maintenance hours</p>
                 <div className="mt-4 grid grid-cols-5 gap-2" aria-hidden="true">
-                  {[{ h: 2, p: "38%" }, { h: 3, p: "52%" }, { h: 4, p: "66%" }, { h: 5, p: "82%" }, { h: 6, p: "100%", max: true }].map(({ h, p, max }) => (
+                  {[{ h: 1, p: "15%" }, { h: 3, p: "35%" }, { h: 6, p: "55%" }, { h: 9, p: "78%" }, { h: 12, p: "100%", max: true }].map(({ h, p, max }) => (
                     <div key={h} className="text-center">
                       <div className="relative h-24 w-full">
                         <div className={`absolute bottom-0 w-full rounded-t-full ${max ? "bg-coral" : "bg-olive/40"}`} style={{ height: p }} />
@@ -585,8 +508,8 @@ function Index() {
                   ))}
                 </div>
                 <p className="mt-2 flex items-baseline justify-between text-[0.65rem] font-bold uppercase tracking-wide">
-                  <span className="text-deep/45">Min 2h</span>
-                   <span className="text-coral">Up to 6 extra hours</span>
+                  <span className="text-deep/45">From 1h</span>
+                   <span className="text-coral">Up to 12 hours</span>
                 </p>
               </div>
             </article>
