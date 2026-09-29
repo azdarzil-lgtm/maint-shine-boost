@@ -341,8 +341,38 @@ function Index() {
             </p>
           </div>
 
+          <div className="mt-10 grid gap-x-10 gap-y-5 border-b border-deep/10 pb-10 md:grid-cols-3">
+            {[
+              {
+                icon: Compass,
+                title: "Nordic precision",
+                body: "Measured, scheduled and finished properly — the same exacting standard on every single visit.",
+              },
+              {
+                icon: Sun,
+                title: "You enjoy the home",
+                body: "No chasing trades, no surprise calls — just a home that's always ready when you arrive.",
+              },
+              {
+                icon: TrendingUp,
+                title: "Value that stays up",
+                body: "Every service documented in your Property Vault — proof of care that protects your home's value.",
+              },
+            ].map((pillar) => {
+              const Icon = pillar.icon;
+              return (
+                <div key={pillar.title} className="flex items-start gap-3">
+                  <Icon className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
+                  <div>
+                    <h3 className="text-sm font-semibold text-deep">{pillar.title}</h3>
+                    <p className="mt-1 text-[0.8rem] leading-relaxed text-deep/60">{pillar.body}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
-          <div className="mt-12 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
+          <div className="mt-10 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
             <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:p-14">
               <div>
                 <p className="section-label text-coral">Bespoke plans</p>
