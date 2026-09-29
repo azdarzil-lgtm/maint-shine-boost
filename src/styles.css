@@ -252,12 +252,35 @@
   &:hover { transform: translateY(-5px); box-shadow: 0 24px 50px -28px color-mix(in oklab, var(--deep) 45%, transparent); }
 }
 
+/* Steps reveal: pop in one by one as the section scrolls into view. */
+.how-step {
+  opacity: 0;
+  transform: translateY(28px) scale(0.96);
+  transition:
+    opacity 600ms ease,
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms ease;
+  will-change: opacity, transform;
+}
+.how-step.how-step-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.how-step.how-step-visible:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 50px -28px color-mix(in oklab, var(--deep) 45%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .how-step { opacity: 1; transform: none; transition: none; }
+}
+
 @utility how-step-app {
   border-color: transparent;
   background-color: var(--deep);
   color: var(--sunlit);
   p { color: color-mix(in oklab, var(--sunlit) 78%, transparent); }
 }
+
 
 @utility editorial-package {
   display: flex;
