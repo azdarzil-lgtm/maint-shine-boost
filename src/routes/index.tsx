@@ -398,7 +398,7 @@ function Index() {
                 </button>
                 <p className="mt-4 text-xs text-sunlit/60">Free Property Vault with every plan · Indicative pricing until we’ve viewed your property</p>
               </div>
-              <div className="rounded-[1.5rem] bg-sunlit p-6 text-deep md:p-8">
+              <div className="rounded-[1.5rem] bg-sunlit p-6 text-ink md:p-8">
                 <p className="section-label text-coral">For example — a villa plan</p>
                 <ul className="mt-4 divide-y divide-deep/10 text-sm">
                   {[
