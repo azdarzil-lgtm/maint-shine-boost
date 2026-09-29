@@ -31,6 +31,7 @@ import familyVillaVideo from "@/assets/family-villa-footer.mp4.asset.json";
 import antonioAsset from "@/assets/antonio.jpg.asset.json";
 import joseAntonio from "@/assets/jose-antonio.jpg";
 import samuliAsset from "@/assets/samuli.jpg.asset.json";
+import vaultWoman from "@/assets/vault-woman-phone.jpg";
 
 const antonio = antonioAsset.url;
 const samuli = samuliAsset.url;
@@ -423,16 +424,26 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col items-start gap-6 rounded-[2rem] bg-deep p-8 text-sunlit md:flex-row md:items-center md:p-10">
-            <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-coral" aria-hidden="true">
-              <Smartphone className="size-7 text-sunlit" />
-            </span>
-            <div>
+          <div className="mt-8 grid overflow-hidden rounded-[2rem] border border-deep/15 bg-sunlit md:grid-cols-[minmax(0,1fr)_20rem] lg:grid-cols-[minmax(0,1fr)_23rem]">
+            <div className="p-8 md:p-10">
               <p className="section-label text-coral">Included free with every plan</p>
               <h3 className="mt-2 max-w-[28ch] font-display text-2xl font-semibold leading-tight md:text-3xl">Your Property Vault — a lifetime history of your home, saved forever.</h3>
-              <p className="mt-2 max-w-xl leading-relaxed text-sunlit/70">Every service, repair and renovation, time-stamped and photographed. It's proof of care you can hand straight to a future buyer — history that protects your home's value.</p>
+              <p className="mt-3 max-w-xl leading-relaxed text-deep/70">Every service, repair and renovation, time-stamped and photographed. It's proof of care you can hand straight to a future buyer — history that protects your home's value.</p>
+              <a href="#vault" className="solid-button solid-button-coral mt-7">See it in action <ArrowRight aria-hidden="true" /></a>
             </div>
-            <a href="#vault" className="solid-button solid-button-coral shrink-0 md:ml-auto">See it in action <ArrowRight aria-hidden="true" /></a>
+            <div className="relative min-h-[15rem] md:min-h-full">
+              <img
+                src={vaultWoman}
+                alt="A happy homeowner on her terrace, following every visit in the SolidMaint Property Vault on her phone"
+                loading="lazy"
+                width={1024}
+                height={1280}
+                className="absolute inset-0 size-full object-cover object-top"
+              />
+              <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-sunlit/95 px-4 py-2 text-xs font-bold text-deep shadow-sm">
+                <Smartphone className="size-4 text-coral" aria-hidden="true" /> Your home, live on your phone
+              </span>
+            </div>
           </div>
 
           <p className="mt-6 text-sm text-deep/60">
