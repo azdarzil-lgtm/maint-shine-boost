@@ -135,8 +135,7 @@ const services: {
     icon: Zap,
     detail:
       "Safe fault-finding, new fittings and lighting installed with care. If something is not quite right, we find it and put it right.",
-    lead: { name: "Jonas Berg", role: "Electrical lead", photo: jonas },
-    secondLead: { name: "Samuli", role: "Electrical lead", photo: samuli },
+    lead: { name: "Samuli", role: "Electrical lead", photo: samuli },
   },
   {
     title: "Plumbing Services",
