@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowRight, Facebook, Heart, Instagram, Linkedin, MessageCircle, Sparkles } from "lucide-react";
 
 import { Brand } from "@/components/SiteHeader";
