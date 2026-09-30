@@ -14,4 +14,4 @@
 - [x] Verify the new builder flow on desktop and mobile (incl. no-garden/no-pool paths).
 - [x] Replace the bespoke builder with the three-package model from the 29 September pricing note.
 - [x] Update homepage package messaging, examples, quote PDF and enquiry details to match the new model.
-- [ ] Verify package, AC, garden, pool, cleaning and final-quote paths on desktop and mobile.
+- [x] Verify package, AC, garden, pool, cleaning and final-quote paths on desktop and mobile.
