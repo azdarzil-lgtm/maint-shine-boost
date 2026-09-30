@@ -241,10 +241,17 @@ function StoreButtons() {
   return (
     <div className="flex flex-wrap gap-3">
       {[
-        { small: "Download on the", name: "App Store" },
-        { small: "Get it on", name: "Google Play" },
+        { small: "Download on the", name: "App Store", href: "https://apps.apple.com/us/app/solidmaint/id6772147834" },
+        { small: "Get it on", name: "Google Play", href: "#" },
       ].map((store) => (
-        <a key={store.name} href="#" className="store-button" aria-label={`${store.small} ${store.name}`}>
+        <a
+          key={store.name}
+          href={store.href}
+          target={store.href.startsWith("http") ? "_blank" : undefined}
+          rel={store.href.startsWith("http") ? "noopener noreferrer" : undefined}
+          className="store-button"
+          aria-label={`${store.small} ${store.name}`}
+        >
           <span className="grid size-8 place-items-center rounded-full bg-sunlit/10 text-lg">↓</span>
           <span className="leading-none">
             <span className="block text-[9px] uppercase text-sunlit/60">{store.small}</span>
