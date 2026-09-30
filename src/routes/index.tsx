@@ -319,6 +319,7 @@ function TypewriterHeading({ text }: { text: string }) {
 
 function Index() {
   const [builderOpen, setBuilderOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<"basic" | "middle" | "best">("middle");
 
   useEffect(() => {
     const steps = Array.from(document.querySelectorAll<HTMLElement>(".how-step"));
@@ -349,7 +350,7 @@ function Index() {
   return (
 
     <main id="top" className="overflow-hidden bg-sunlit text-deep">
-      {builderOpen && <PlanBuilder onClose={() => setBuilderOpen(false)} />}
+      {builderOpen && <PlanBuilder initialPackage={selectedPackage} onClose={() => setBuilderOpen(false)} />}
       <SiteHeader />
 
       <section className="relative isolate overflow-hidden bg-deep text-sunlit">
@@ -511,7 +512,7 @@ function Index() {
                     </ul>
                     <button
                       type="button"
-                      onClick={() => setBuilderOpen(true)}
+                      onClick={() => { setSelectedPackage(plan.name.toLowerCase() as "basic" | "middle" | "best"); setBuilderOpen(true); }}
                       className={`solid-button mt-7 w-full text-sm uppercase tracking-wider ${plan.popular ? "solid-button-coral" : "solid-button-white"}`}
                     >
                       Choose {plan.name}
