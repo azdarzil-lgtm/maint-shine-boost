@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   type LucideIcon,
   ArrowDownRight,
@@ -44,7 +44,6 @@ import { InstagramFeed } from "@/components/InstagramFeed";
 import { MarenaBanner } from "@/components/MarenaBanner";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PlanBuilder } from "@/components/PlanBuilder";
-import { SmartEnquiry } from "@/components/SmartEnquiry";
 
 export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
