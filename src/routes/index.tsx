@@ -14,6 +14,7 @@ import {
   MessageCircle,
   ShieldCheck,
   Smartphone,
+  Sparkles,
   Star,
   Sun,
   TrendingUp,
@@ -93,7 +94,7 @@ const services: {
   description: string;
   icon: LucideIcon;
   detail: string;
-  lead: { name: string; role: string; photo: string };
+  lead?: { name: string; role: string; photo: string };
   secondLead?: { name: string; role: string; photo: string };
 }[] = [
   {
