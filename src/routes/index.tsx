@@ -76,7 +76,7 @@ export const Route = createFileRoute("/")({
           telephone: "+34 951 798 899",
           email: "info@solidmaint.com",
           description:
-            "Property maintenance on the Costa del Sol: garden, pool, AC, handyman, plumbing and electrical care for homes in Marbella, Estepona, Benalmádena and Sotogrande, with every visit documented in a free Property Vault.",
+            "Property maintenance on the Costa del Sol: garden, pool, AC, handyman, plumbing and electrical care for homes in Marbella, Estepona, Benalmádena and Sotogrande, with every visit documented in the included Property Vault.",
           address: { "@type": "PostalAddress", addressLocality: "Marbella", addressRegion: "Málaga", addressCountry: "ES" },
           areaServed: ["Costa del Sol", "Marbella", "Estepona", "Benalmádena", "Fuengirola", "Mijas", "Benahavís", "Casares", "Manilva", "Sotogrande"].map((name) => ({ "@type": "Place", name })),
           openingHours: "Mo-Fr 09:00-18:00",
