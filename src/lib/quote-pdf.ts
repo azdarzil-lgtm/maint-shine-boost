@@ -47,6 +47,8 @@ export async function downloadQuotePdf({ lines, total, summary }: { lines: Quote
   doc.text("info@solidmaint.com · +34 951 798 899", right, 37, { align: "right" });
   doc.text("Costa del Sol, Spain", right, 42, { align: "right" });
 
+  y = Math.max(y, 52);
+
   doc.setFont("helvetica", "bold").setFontSize(18).setTextColor(...green).text("Your indicative home care plan", left, y);
   y += 10;
 
