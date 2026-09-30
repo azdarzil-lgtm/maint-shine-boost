@@ -49,42 +49,57 @@ const faqs = [
   {
     question: "What is included in a SolidMaint care plan?",
     answer:
-      "Plans are tailored around your property and can combine recurring garden, pool and air-conditioning care. Every visit is documented in your Property Vault.",
+      "Every care plan combines hands-on service hours with a dedicated team and a plan manager who knows your home. You choose where the hours go each month — garden care, pool maintenance, air-conditioning services, handyman work, cleaning checklists or anything else your property needs. Each visit is documented with photos, time and a task report in your Property Vault, and you receive a monthly summary so nothing happens at your home that you cannot see.\n\nWe offer three packages: Essential Care (2 service hours a month), Home Ready (4 hours) and Signature Care (6 hours). Property Vault is included with every package, and extras such as orchard and fruit tree care, jacuzzi and spa treatment or additional service hours can be bolted on to any of them.",
   },
   {
     question: "How do I know what happened during a visit?",
     answer:
-      "Technicians check in on arrival. Time on site, task photos, reports and invoices are stored against your property in your Property Vault — so you always have a documented history of your home.",
+      "Nothing at your home happens quietly. Your technicians check in on arrival through the app, log their time on site and photograph the work before and after. A task report is written for every visit and stored against your property.\n\nYou can follow each task live from your phone, and at the end of the month you receive a report summarising the visits, the time spent and what was done — all kept in your Property Vault. Invoices appear there too, so you always have a full, documented history of how your home has been cared for. It is the kind of paperwork most owners only wish they had when it comes to selling, insuring or renting out a property.",
   },
   {
     question: "What is the Property Vault?",
     answer:
-      "Your Property Vault is included free with every care plan. It keeps photos and reports from every visit, plus the full history of services, repairs and renovations — proof of care that keeps your property's value up.",
+      "Your Property Vault is the digital memory of your home, included with every care plan. It keeps the photos, reports and time logs from every visit alongside the full history of services, repairs and renovations carried out at the property.\n\nWhy does that matter? Because a well-documented home is a valuable home. When you come to sell, remortgage, insure or hand the keys to a holiday guest, everything is there: proof that the pool has been maintained weekly, the AC serviced, the garden kept in shape. No more hunting through old emails or relying on a contractor's word — the evidence lives in your vault, and you can pull it up from your phone in seconds.",
   },
   {
     question: "Can I add extra hours or repairs when something comes up?",
     answer:
-      "Yes. On 3, 6 and 12-month plans you can add extra hours from our service portfolio — handyman, electrical, plumbing and more. The longer the plan, the lower the hourly rate.",
+      "Of course — life in a home does not follow a schedule. Beyond your monthly hours you can book additional time from our full service portfolio at €45 per hour, including IVA: handyman work, electrical, plumbing, repairs, garden projects, deep cleans and more.\n\nJust message us or add it in the app and we will slot it in around your regular visits. Extra hours are billed with your next monthly invoice — always after the work is done, never before.",
   },
   {
     question: "How does pricing work?",
     answer:
-      "Each plan has a starting price, and the final price depends on your garden and pool size plus the length of your plan. Our one-minute quote builder walks you through it — or just talk to us and we will put it together with you.",
+      "We keep it simple. Each package has a fixed monthly starting price — Essential Care at €89, Home Ready at €149 and Signature Care at €199 — and the final figure depends on your property type and the size of your garden and pool. Extras such as orchard care, jacuzzi treatment or additional AC units are added on top, each with its own clear price.\n\nThe quickest way to see your number is our one-minute quote builder: answer a few questions about your home and you get an indicative monthly price there and then. After a quick look at the property we confirm the final plan — and it stays within 10% of the estimate or you can walk away. If you would rather talk it through with a human first, we are always up for a chat.",
+  },
+  {
+    question: "Am I locked into a contract?",
+    answer:
+      "No. There is no minimum term and no upfront payment — you are billed after each month's service, not before. If a month comes when you do not need us, or you are away for the summer, you can pause or cancel from one month to the next.\n\nWe would rather earn your next month with good work than hold you to a contract. Most of our owners stay for years, but because they want to — not because they have to.",
+  },
+  {
+    question: "Do you take on one-off jobs, or only care plans?",
+    answer:
+      "Both. Plenty of our customers start with a single job — a leaking tap, an AC service before the summer, a garden that got away from them — and stay for the care plan once they see how we work. Others just need us now and then, and that is absolutely fine.\n\nOne-off work spans our whole portfolio: handyman and repairs, electrical, plumbing, garden makeovers, pool recovery, deep cleaning and end-of-tenancy sparkle jobs. Tell us what needs doing and we will quote it plainly, with no obligation either way.",
   },
   {
     question: "Can I follow the work from my phone?",
     answer:
-      "Absolutely. Download the SolidMaint app and follow the progress of every task from your phone — check-ins, photos, reports and invoices, all in one place.",
+      "Yes — that is rather the point of us. Download the SolidMaint app from the App Store or Google Play and your home's entire care story lives in your pocket: live task updates as technicians check in, before-and-after photos, time logs, reports and invoices.\n\nYou will always know who was at your home, when, what they did and how long it took — whether you are on the next street or on another continent. It is the closest thing to being there without being there.",
   },
   {
     question: "Which areas do you cover?",
     answer:
-      "SolidMaint serves homes along the Costa del Sol, from Benalmádena through Marbella and Estepona to Sotogrande. Not there yet? Leave your details and we will let you know when we reach your area.",
+      "We look after homes along the western Costa del Sol — from Benalmádena and Fuengirola through Mijas, Marbella and San Pedro Alcántara to Estepona and down to Sotogrande. That is where our crews are based and where we can guarantee the response times we promise.\n\nIf your home sits just outside that stretch, leave your details anyway — we are growing along the coast and we will happily let you know the moment we reach your area.",
+  },
+  {
+    question: "What happens after I get in touch?",
+    answer:
+      "A real conversation, not a sales script. We start by asking about your home — where it is, what needs care, and how you use it. A resident owner and an overseas owner need very different things, and we shape our questions around you rather than the other way round.\n\nFrom there we put together a suggested care plan with a clear price. If it looks right, we arrange a quick visit to see the property and confirm the details — the final price stays within 10% of your estimate or you can walk away with no hard feelings. If it is not right, we adjust it until it is.",
   },
   {
     question: "We are a real estate company — do you work with businesses?",
     answer:
-      "Yes. Our partner programme is built for estate agencies, rental and holiday managers, developers and communities. Partners become part of the family, with care plans across whole portfolios.",
+      "Yes, and it is some of the work we are proudest of. Our partner programme is built for estate agencies, rental and holiday-let managers, developers and residential communities — anyone whose reputation depends on the state of the properties they look after.\n\nPartners become part of the family: care plans rolled out across whole portfolios, one point of contact, documented service history for every property (which makes handovers and sales far smoother) and priority scheduling in the busy season. If you look after homes for a living, let us look after the homes with you.",
   },
 ];
 
@@ -115,7 +130,11 @@ function FaqsPage() {
                   {faq.question}
                   <ChevronDown className="size-5 shrink-0 text-coral transition-transform group-open:rotate-180" aria-hidden="true" />
                 </summary>
-                <p className="max-w-2xl pb-6 leading-relaxed text-deep/65">{faq.answer}</p>
+                <div className="max-w-2xl space-y-4 pb-6 leading-relaxed text-deep/65">
+                  {faq.answer.split("\n\n").map((paragraph) => (
+                    <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+                  ))}
+                </div>
               </details>
             ))}
           </div>
