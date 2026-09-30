@@ -38,10 +38,10 @@ export const Route = createFileRoute("/team")({
 
 const management = [
   { name: "Jani Hämäläinen", role: "CEO", initials: "JH" },
-  { name: "Marena Christenses", role: "Head of Customer Relations", photo: marenaAsset.url },
-  { name: "Samuli Isoherranen", role: "Business Manager", photo: samuliAsset.url },
-  { name: "Anita Victoria Zdarzil", role: "Head of Marketing", initials: "AZ" },
   { name: "Tero Keski-Valkama", role: "CTO", initials: "TK" },
+  { name: "Marena Christenses", role: "Head of Customer Relations", photo: marenaAsset.url },
+  { name: "Anita Victoria Zdarzil", role: "Head of Marketing", initials: "AZ" },
+  { name: "Samuli Isoherranen", role: "Business Manager", photo: samuliAsset.url },
 ];
 
 const team = [
