@@ -178,7 +178,7 @@ function TeamPage() {
               <h2 className="font-display text-2xl font-semibold leading-tight md:text-3xl lg:whitespace-nowrap xl:text-4xl">
                 Would you like us to look after Your Home?
               </h2>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-deep/65">
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-deep/65">
                 Put your feet up and simply relax — we&apos;ve got it from here. While you enjoy the Costa life, our
                 crew keeps your home cared for, checked and running smoothly. You relax; we handle the rest.
               </p>
