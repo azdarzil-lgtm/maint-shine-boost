@@ -242,7 +242,7 @@ function StoreButtons() {
     <div className="flex flex-wrap gap-3">
       {[
         { small: "Download on the", name: "App Store", href: "https://apps.apple.com/us/app/solidmaint/id6772147834" },
-        { small: "Get it on", name: "Google Play", href: "#" },
+        { small: "Get it on", name: "Google Play", href: "https://play.google.com/store/apps/details?id=com.solidmaint.customer" },
       ].map((store) => (
         <a
           key={store.name}
