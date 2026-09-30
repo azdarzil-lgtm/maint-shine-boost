@@ -139,7 +139,7 @@ function TeamPage() {
 
       <section className="pb-14 md:pb-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Management</h2>
+          <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our Team</h2>
           <div className="mx-auto mt-10 grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {management.map((member) => (
               <MemberCard key={member.name} {...member} imageClass="max-w-[240px] md:max-w-[260px]" />
@@ -150,12 +150,15 @@ function TeamPage() {
 
       <section className="pb-20 md:pb-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our people</h2>
-          <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
-            {team.map((member) => (
-              <MemberCard key={member.name} {...member} imageClass="max-w-[200px] md:max-w-[220px]" />
-            ))}
-          </div>
+            {/* Crew hidden for now — coming back to this later */}
+            {/*
+            <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our people</h2>
+            <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
+              {team.map((member) => (
+                <MemberCard key={member.name} {...member} imageClass="max-w-[200px] md:max-w-[220px]" />
+              ))}
+            </div>
+            */}
 
           <div className="mt-16 rounded-[1.75rem] border border-deep/15 bg-olive/10 p-8 md:p-12">
             <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
