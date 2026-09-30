@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight, Facebook, Heart, Instagram, Linkedin, MessageCircle, Sparkles } from "lucide-react";
 
 import { Brand } from "@/components/SiteHeader";
@@ -62,7 +63,10 @@ export function SiteFooter() {
         </div>
         <div className="mt-10 flex flex-col items-center gap-5 border-t border-sunlit/15 pt-7 text-sm text-sunlit/55 sm:flex-row sm:justify-between">
           <Brand light />
-          <p>© 2026 SolidMaint</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-end">
+            <Link to="/privacy" className="transition-colors hover:text-coral">Privacy Policy</Link>
+            <p>© 2026 SolidMaint</p>
+          </div>
         </div>
         <div className="mt-8 space-y-3 text-center">
           <p className="text-xs text-sunlit/55 sm:text-sm">Marbella, Benalmádena · Mon–Fri, 09:00–18:00 CET</p>
