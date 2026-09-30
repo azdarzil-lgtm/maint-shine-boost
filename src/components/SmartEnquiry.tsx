@@ -168,12 +168,11 @@ export function EnquiryForm({ audience }: { audience: Audience }) {
   );
 }
 
-// The /assessment experience: pick who you are, then the form opens right on the page.
+// The /assessment experience: the home enquiry form is the landing view,
+// with the tailored audience paths available just beneath it.
 export function AssessmentEnquiry() {
   const [active, setActive] = useState<Audience | null>(null);
   const formRef = useRef<HTMLDivElement>(null);
-
-  const shown = [...audiences, generalAudience];
 
   const choose = (audience: Audience) => {
     setActive(audience);
@@ -184,18 +183,26 @@ export function AssessmentEnquiry() {
 
   if (!active) {
     return (
-      <div className="mt-12 flex flex-wrap justify-center gap-4">
-        {shown.map((audience) => (
-          <button
-            key={audience.id}
-            type="button"
-            onClick={() => choose(audience)}
-            className="audience-pill px-6 py-3.5 text-base md:text-lg"
-          >
-            {audience.label}
-            <ArrowRight className="size-5" aria-hidden="true" />
-          </button>
-        ))}
+      <div ref={formRef}>
+        <EnquiryForm audience={generalAudience} />
+        <div className="mt-12 text-center">
+          <p className="text-xs font-extrabold uppercase tracking-wider text-sunlit/60">
+            Not quite your situation? Pick your starting point
+          </p>
+          <div className="mt-5 flex flex-wrap justify-center gap-4">
+            {audiences.map((audience) => (
+              <button
+                key={audience.id}
+                type="button"
+                onClick={() => choose(audience)}
+                className="audience-pill px-6 py-3.5 text-base md:text-lg"
+              >
+                {audience.label}
+                <ArrowRight className="size-5" aria-hidden="true" />
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
@@ -207,9 +214,10 @@ export function AssessmentEnquiry() {
         onClick={() => setActive(null)}
         className="mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-sunlit/60 transition hover:text-coral"
       >
-        <ArrowLeft className="size-4" aria-hidden="true" /> Choose a different starting point
+        <ArrowLeft className="size-4" aria-hidden="true" /> Back to the home enquiry
       </button>
       <EnquiryForm audience={active} />
+village
     </div>
   );
 }
