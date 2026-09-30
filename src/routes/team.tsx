@@ -178,7 +178,7 @@ function TeamPage() {
               <h2 className="font-display text-2xl font-semibold leading-tight md:text-3xl lg:whitespace-nowrap xl:text-4xl">
                 Would you like us to look after Your Home?
               </h2>
-              <p className="mt-4 max-w-md text-base leading-relaxed text-deep/65">
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-deep/65">
                 Put your feet up and simply relax — we&apos;ve got it from here. While you enjoy the Costa life, our
                 crew keeps your home cared for, checked and running smoothly. You relax; we handle the rest.
               </p>
@@ -186,7 +186,7 @@ function TeamPage() {
                 Talk to us <ArrowRight aria-hidden="true" />
               </a>
             </div>
-            <div className="flex h-[15rem] items-end justify-center px-4 sm:h-[17rem] lg:h-full lg:min-h-[20rem] lg:px-0 lg:pr-2">
+            <div className="flex h-[15rem] items-end justify-center px-4 sm:h-[17rem] lg:h-full lg:min-h-[20rem] lg:justify-start lg:pl-10 lg:pr-2">
               <img
                 src={manMeditating}
                 alt="A homeowner relaxing while SolidMaint takes care of his home"
