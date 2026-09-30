@@ -76,7 +76,7 @@ export const Route = createFileRoute("/")({
           telephone: "+34 951 798 899",
           email: "info@solidmaint.com",
           description:
-            "Property maintenance on the Costa del Sol: garden, pool, AC, handyman, plumbing and electrical care for homes in Marbella, Estepona, Benalmádena and Sotogrande, with every visit documented in a free Property Vault.",
+            "Property maintenance on the Costa del Sol: garden, pool, AC, handyman, plumbing and electrical care for homes in Marbella, Estepona, Benalmádena and Sotogrande, with every visit documented in the included Property Vault.",
           address: { "@type": "PostalAddress", addressLocality: "Marbella", addressRegion: "Málaga", addressCountry: "ES" },
           areaServed: ["Costa del Sol", "Marbella", "Estepona", "Benalmádena", "Fuengirola", "Mijas", "Benahavís", "Casares", "Manilva", "Sotogrande"].map((name) => ({ "@type": "Place", name })),
           openingHours: "Mo-Fr 09:00-18:00",
@@ -392,7 +392,7 @@ function Index() {
               Our care for your property is built on Nordic precision. Garden and pool care, AC servicing and
               hands-on maintenance hours — every plan tailored to your property.{" "}
               <strong className="font-bold text-deep">Your plan covers only what your property actually needs</strong>,
-              and your free Property Vault keeps it all in view — every visit, every photo, every report, wherever
+              and your included Property Vault keeps it all in view — every visit, every photo, every report, wherever
               you are.
             </p>
           </div>
@@ -449,9 +449,9 @@ function Index() {
                     hours: "2 hours · every month",
                     tagline: "A watchful eye for lock-up-and-leave homes.",
                     features: [
-                      "2 hands-on hours — spent on whatever your home needs",
-                      "General repairs, checks and small fixes, done properly",
-                      "Free Property Vault — every visit photographed and logged",
+                      "2 hands-on hours included — spent on whatever your home needs",
+                      "General repairs, checks and small fixes included",
+                      "Property Vault included — every visit photographed and logged",
                       { text: "AC servicing not scheduled on this plan", muted: true },
                     ],
                   },
@@ -463,10 +463,10 @@ function Index() {
                     tagline: "The sweet spot for homes that live in all season.",
                     popular: true,
                     features: [
-                      "4 hands-on hours for repairs, upkeep and odds and ends",
+                      "4 hands-on hours included for repairs, upkeep and odds and ends",
                       "Annual AC service included — scheduled around you",
-                      "Unused hours roll over for a month, never wasted",
-                      "Free Property Vault — every visit photographed and logged",
+                      "One-month rollover included, so hours are never wasted",
+                      "Property Vault included — every visit photographed and logged",
                     ],
                   },
                   {
@@ -476,10 +476,10 @@ function Index() {
                     hours: "6 hours · every month",
                     tagline: "Complete cover for busy homes and rentals.",
                     features: [
-                      "6 hands-on hours — our most complete level of care",
-                      "AC serviced twice a year, spring and autumn",
-                      "Priority booking when something simply can't wait",
-                      "Free Property Vault — every visit photographed and logged",
+                      "6 hands-on hours included — our most complete level of care",
+                      "Two AC services included, in spring and autumn",
+                      "Priority booking included when something simply can't wait",
+                      "Property Vault included — every visit photographed and logged",
                     ],
                   },
                 ].map((plan) => (
