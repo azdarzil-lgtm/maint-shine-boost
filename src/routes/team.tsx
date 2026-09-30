@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
-import team4 from "@/assets/team-4.jpg";
 import antonioAsset from "@/assets/antonio.jpg.asset.json";
 import joseAntonio from "@/assets/jose-antonio.jpg";
 import samuliAsset from "@/assets/samuli.jpg.asset.json";
