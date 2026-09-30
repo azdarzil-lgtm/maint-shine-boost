@@ -701,10 +701,11 @@ function Index() {
             </figure>
             {[
               {
-                initials: "MI",
-                name: "Mikko",
-                role: "Handyman & repairs",
-                quote: "Mikko talked us through everything in plain English, fixed it the same week and left the place spotless.",
+                initials: "SI",
+                photo: samuli,
+                name: "Samuli",
+                role: "Handyman lead",
+                quote: "Samuli talked us through everything in plain English, fixed it the same week and left the place spotless.",
                 author: "Emma R. · Sotogrande",
               },
               {
