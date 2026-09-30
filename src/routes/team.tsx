@@ -162,7 +162,7 @@ function TeamPage() {
 
           <div className="mt-16 rounded-[1.75rem] border border-deep/15 bg-olive/10 p-8 md:p-12">
             <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
-              Want these faces looking after your home?
+              Would you like us to look after Your Home?
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-deep/65">
               Tell us about your property and we will match it with the right care plan — and the right people.
