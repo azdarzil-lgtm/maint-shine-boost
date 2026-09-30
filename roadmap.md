@@ -15,3 +15,4 @@
 - [x] Replace the bespoke builder with the three-package model from the 29 September pricing note.
 - [x] Update homepage package messaging, examples, quote PDF and enquiry details to match the new model.
 - [x] Verify package, AC, garden, pool, cleaning and final-quote paths on desktop and mobile.
+- [x] Recreate the Privacy Policy page and restore its site-wide footer link.

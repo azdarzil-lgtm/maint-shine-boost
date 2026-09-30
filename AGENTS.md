@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 - Sitemap is router-derived: every route sets staticData.sitemap; /sitemap.xml adds journal posts from src/lib/journal-posts.ts — keeps the sitemap in sync with routes automatically.
 - Care-plan pricing uses three fixed packages (Basic 2h/€89, Middle 4h/€149, Best 6h/€199) plus separately priced fixed services — this keeps every customer-facing total aligned with the September 2026 pricing model.
+- Legal policies live on dedicated, indexable routes linked from the site-wide footer — this keeps disclosures easy to find and share.
