@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Check, Download, Home, Phone, Video, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ChevronDown, Download, Home, Phone, Video, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { downloadQuotePdf } from "@/lib/quote-pdf";
 
@@ -54,6 +54,52 @@ const hourIdeas = [
 
 const euro = (value: number) => `€${Math.ceil(value)}`;
 const exactEuro = (value: number) => `€${value.toFixed(2)}`;
+
+type DetailKey = "garden" | "pool" | "cleaning";
+
+const serviceDetails: Record<DetailKey, { tagline: string; groups: { title: string; items: string[] }[] }> = {
+  garden: {
+    tagline: "A garden that looks cared for every time you arrive.",
+    groups: [
+      { title: "Garden maintenance", items: ["Lawns mown, edged and kept healthy", "Plants and shrubs looked after, season by season", "Pruning and shaping that keeps the garden in form", "Beds and borders kept free of weeds", "Irrigation checked, so nothing quietly dries out", "Garden tidied and green waste taken away", "Seasonal care whenever the garden needs it"] },
+      { title: "Orchard and fruit trees", items: ["Watering and tree health checked", "Dead and damaged branches removed", "Trees pruned and shaped for strong growth", "Weeds cleared from around the trees", "Ongoing care for trees and plants", "Green waste taken away"] },
+    ],
+  },
+  pool: {
+    tagline: "Clear, balanced water, ready whenever you want to swim.",
+    groups: [{ title: "Pool maintenance", items: ["Pool surfaces and floor cleaned", "Skimmers and baskets emptied and cleaned", "Water quality tested on every visit", "Chemicals adjusted to keep the water balanced", "Filters and pool equipment checked", "Pool area left clean and tidy"] }],
+  },
+  cleaning: {
+    tagline: "Come home to a clean, fresh house, every week.",
+    groups: [{ title: "Weekly home cleaning", items: ["Dusting throughout the home", "Floors vacuumed and mopped", "Kitchen surfaces cleaned", "Bathrooms and toilets cleaned", "Mirrors left streak-free", "Bins emptied", "Every room tidied and surfaces wiped", "Bed linen changed, if agreed"] }],
+  },
+};
+
+function IncludedDisclosure({ detail, onDark = false }: { detail: DetailKey; onDark?: boolean }) {
+  const [open, setOpen] = useState(false);
+  const info = serviceDetails[detail];
+  return (
+    <div className={onDark ? "mt-1 border-t border-sunlit/10" : "border-t border-deep/10"}>
+      <button type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} className="mt-2 flex w-full items-center justify-between gap-3 text-left text-[0.7rem] font-extrabold uppercase tracking-wide text-coral">
+        <span>{open ? "Hide what’s included" : "What’s included"}</span>
+        <ChevronDown className={`size-4 shrink-0 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true" />
+      </button>
+      {open && (
+        <div className="mt-3">
+          <p className={`font-display text-lg font-semibold ${onDark ? "text-sunlit" : "text-deep"}`}>{info.tagline}</p>
+          {info.groups.map((group) => (
+            <div key={group.title} className="mt-3 first:mt-2">
+              <p className={`text-xs font-bold uppercase tracking-wide ${onDark ? "text-sunlit/60" : "text-deep/50"}`}>{group.title}</p>
+              <ul className={`mt-2 grid gap-1.5 text-sm sm:grid-cols-2 ${onDark ? "text-sunlit/80" : "text-deep/75"}`}>
+                {group.items.map((item) => <li key={item} className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-coral" />{item}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function PropertyDrawing({ type }: { type: PropertyKey }) {
   if (type === "flat") return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M24 56V9h48v47M18 56h60M35 19h8v8h-8zm18 0h8v8h-8zM35 35h8v8h-8zm18 0h8v8h-8zM45 56V45h8v11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" /></svg>;
@@ -114,13 +160,13 @@ export function PlanBuilder({ onClose, initialPackage = "middle" }: { onClose: (
   const total = selectedPackage.price + outdoorChoice.add + poolChoice.add + (jacuzzi ? 80 : 0) + palmAdd + cleaningAdd + acAdd;
   const displayedTotal = Math.ceil(total);
 
-  const lines = useMemo<{ label: string; frequency: string; amount: number }[]>(() => [
+  const lines = useMemo<{ label: string; frequency: string; amount: number; detail?: DetailKey }[]>(() => [
     { label: `${selectedPackage.name} package · ${selectedPackage.hours} hours per month · Property Vault included`, frequency: "As needed", amount: selectedPackage.price },
-    ...(outdoorChoice.add ? [{ label: `Garden care · ${outdoorChoice.label}`, frequency: `${gardenVisits}× per week`, amount: outdoorChoice.add }] : []),
+    ...(outdoorChoice.add ? [{ label: `Garden care · ${outdoorChoice.label}`, frequency: `${gardenVisits}× per week`, amount: outdoorChoice.add, detail: "garden" as const }] : []),
     ...(palms ? [{ label: `Palm trimming · ${palms} ${palms === 1 ? "palm" : "palms"}`, frequency: "Once a year", amount: palmAdd }] : []),
-    ...(poolChoice.add ? [{ label: `Pool care · ${poolChoice.label}`, frequency: "At least once per week · chemical treatments included", amount: poolChoice.add }] : []),
+    ...(poolChoice.add ? [{ label: `Pool care · ${poolChoice.label}`, frequency: "At least once per week · chemical treatments included", amount: poolChoice.add, detail: "pool" as const }] : []),
     ...(jacuzzi ? [{ label: "Jacuzzi / spa care", frequency: "Alongside pool care", amount: 80 }] : []),
-    ...(cleaning && cleaningChoice ? [{ label: `Home cleaning · ${cleaningChoice.label}`, frequency: `${cleaningVisits}× per week`, amount: cleaningAdd }] : []),
+    ...(cleaning && cleaningChoice ? [{ label: `Home cleaning · ${cleaningChoice.label}`, frequency: `${cleaningVisits}× per week`, amount: cleaningAdd, detail: "cleaning" as const }] : []),
     ...(acAdd ? [{ label: `AC service · ${acUnits} ${acUnits === 1 ? "unit" : "units"}`, frequency: `${selectedPackage.acVisits}× per year`, amount: acAdd }] : []),
   ], [selectedPackage, outdoorChoice, gardenVisits, palms, palmAdd, poolChoice, jacuzzi, cleaning, cleaningChoice, cleaningVisits, cleaningAdd, acUnits, acAdd]);
 
