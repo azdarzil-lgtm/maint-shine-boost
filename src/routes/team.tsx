@@ -7,6 +7,8 @@ import jani from "@/assets/jani.jpg";
 import joseAntonio from "@/assets/jose-antonio.jpg";
 import tero from "@/assets/tero.jpg";
 import tuukka from "@/assets/tuukka.jpg";
+import janita from "@/assets/janita.jpg";
+import jussi from "@/assets/jussi.jpg";
 import samuliAsset from "@/assets/samuli.jpg.asset.json";
 
 const antonio = antonioAsset.url;
