@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Facebook, Heart, Instagram, Linkedin, Sparkles } from "lucide-react";
+import { ArrowRight, Facebook, Heart, Instagram, Linkedin, MessageCircle, Sparkles } from "lucide-react";
 
 import { Brand } from "@/components/SiteHeader";
 import { EnquiryFormModal, generalAudience } from "@/components/SmartEnquiry";
