@@ -6,6 +6,7 @@ import antonioAsset from "@/assets/antonio.jpg.asset.json";
 import jani from "@/assets/jani.jpg";
 import joseAntonio from "@/assets/jose-antonio.jpg";
 import tero from "@/assets/tero.jpg";
+import tuukka from "@/assets/tuukka.jpg";
 import samuliAsset from "@/assets/samuli.jpg.asset.json";
 
 const antonio = antonioAsset.url;
@@ -45,6 +46,7 @@ const management = [
   { name: "Marena Christenses", role: "Head of Customer Relations", photo: marenaAsset.url },
   { name: "Anita Victoria Zdarzil", role: "Head of Marketing", photo: anita },
   { name: "Samuli Isoherranen", role: "Business Manager", photo: samuliAsset.url },
+  { name: "Tuukka Sariola", role: "Business Development & Partnerships Manager", photo: tuukka },
 ];
 
 const team = [
