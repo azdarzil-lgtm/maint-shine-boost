@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, CalendarCheck, ClipboardCheck, MessageCircle, Sp
 import enquiryBg from "@/assets/enquiry-bg-2.jpg";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { SmartEnquiry } from "@/components/SmartEnquiry";
+import { AssessmentEnquiry } from "@/components/SmartEnquiry";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const Route = createFileRoute("/assessment")({
@@ -76,7 +76,7 @@ function AssessmentPage() {
               Our guided chat shapes the questions around your property and priorities, so your first recommendation is
               useful—not generic.
             </p>
-            <SmartEnquiry includeGeneral />
+            <AssessmentEnquiry />
           </div>
         </section>
 

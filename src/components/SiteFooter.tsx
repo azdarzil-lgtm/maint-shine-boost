@@ -1,9 +1,6 @@
-import { useState } from "react";
-import { Link } from "@tanstack/react-router";
 import { ArrowRight, Facebook, Heart, Instagram, Linkedin, MessageCircle, Sparkles } from "lucide-react";
 
 import { Brand } from "@/components/SiteHeader";
-import { EnquiryFormModal, generalAudience } from "@/components/SmartEnquiry";
 
 const socials = [
   { href: "https://www.facebook.com/solidmaint", label: "SolidMaint on Facebook", icon: Facebook },
