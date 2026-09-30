@@ -91,7 +91,7 @@ export async function downloadQuotePdf({ lines, total, summary }: { lines: Quote
   doc.setFillColor(...coral);
   const barY = noteY + 5;
   doc.roundedRect(left + 5, barY, 1.4, noteH - 10, 0.7, 0.7, "F");
-  doc.setFont("helvetica", "bold").setFontSize(9).setTextColor(...green).text("Good to know", left + 10, noteY + 7);
+  doc.setFont("helvetica", "bold").setFontSize(9).setTextColor(...green).text("Good to know", 105, noteY + 7, { align: "center" });
   doc.setFont("helvetica", "normal").setFontSize(8).setTextColor(90);
   noteLines.forEach((ln, i) => {
     doc.text(ln, 105, noteY + 13 + i * 4.4, { align: "center" });
