@@ -64,6 +64,9 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="mt-8 space-y-3 text-center">
+          <p className="text-xs text-sunlit/55 sm:text-sm">
+            SolidMaint S.L. · NIF B27612159 · Avda. Bulevar Príncipe Alfonso de Hohenlohe 2, 29602 Marbella · The Pool Co-working, floor 3 of El Corte Inglés · Customer visits by appointment
+          </p>
           <p className="text-xs text-sunlit/55 sm:text-sm">Marbella, Benalmádena · Mon–Fri, 09:00–18:00 CET</p>
           <div className="flex justify-center">
             <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border border-sunlit/20 px-5 py-2.5 text-xs text-sunlit/70 sm:text-sm">

@@ -41,9 +41,13 @@ export async function downloadQuotePdf({ lines, total, summary }: { lines: Quote
 
   const date = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
   doc.setFont("helvetica", "normal").setFontSize(9).setTextColor(110);
-  doc.text(`Quote date: ${date}`, right, 24, { align: "right" });
-  doc.text("info@solidmaint.com · +34 951 798 899", right, 29, { align: "right" });
-  doc.text("Costa del Sol, Spain", right, 34, { align: "right" });
+  doc.text(`Quote date: ${date}`, right, 22, { align: "right" });
+  doc.text("SolidMaint S.L. · NIF B27612159", right, 27, { align: "right" });
+  doc.text("Avda. Bulevar Príncipe Alfonso de Hohenlohe 2, 29602 Marbella", right, 32, { align: "right" });
+  doc.text("info@solidmaint.com · +34 951 798 899", right, 37, { align: "right" });
+  doc.text("Costa del Sol, Spain", right, 42, { align: "right" });
+
+  y = Math.max(y, 52);
 
   doc.setFont("helvetica", "bold").setFontSize(18).setTextColor(...green).text("Your indicative home care plan", left, y);
   y += 10;
@@ -51,7 +55,7 @@ export async function downloadQuotePdf({ lines, total, summary }: { lines: Quote
   doc.setFillColor(...green).roundedRect(left, y, right - left, 20, 3, 3, "F");
   doc.setFontSize(10).setTextColor(245, 241, 228).setFont("helvetica", "normal").text("Indicative monthly total (IVA included)", left + 6, y + 8);
   doc.setFontSize(18).setFont("helvetica", "bold").text(`${total} / month`, left + 6, y + 16);
-  doc.setFontSize(9).setTextColor(...coral).text("Billed monthly in advance", right - 6, y + 16, { align: "right" });
+  doc.setFontSize(9).setTextColor(...coral).text("No upfront payment — billed after service", right - 6, y + 16, { align: "right" });
   y += 30;
 
   doc.setFont("helvetica", "bold").setFontSize(12).setTextColor(...green).text("Price breakdown", left, y);
@@ -80,7 +84,7 @@ export async function downloadQuotePdf({ lines, total, summary }: { lines: Quote
   y = Math.max(y + 8, 255);
   if (y > 275) { doc.addPage(); y = 20; }
   doc.setFontSize(8).setTextColor(120);
-  doc.text(doc.splitTextToSize("This is an indicative estimate based on the information you've given us. Prices cover services only — any materials are quoted separately before we begin. We confirm the final plan after a quick look at your property. Fixed monthly fee, billed monthly in advance. No minimum term. The final price stays within ±10% of this estimate after the free property visit, or you can cancel free of charge.", right - left), left, y);
+  doc.text(doc.splitTextToSize("This is an indicative estimate based on the information you've given us. Prices cover services only — any materials are quoted separately before we begin. We confirm the final plan after a quick look at your property. Fixed monthly fee, no upfront payment — billed after service. No minimum term. The final price stays within ±10% of this estimate after the free property visit, or you can cancel free of charge.", right - left), left, y);
 
   doc.save("SolidMaint-care-plan-quote.pdf");
 }

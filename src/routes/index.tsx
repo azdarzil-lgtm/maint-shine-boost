@@ -539,7 +539,7 @@ function Index() {
 
               <div className="mt-12 text-center">
                 <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-sunlit/70 md:text-sm">
-                  <span className="flex items-center gap-2"><Check className="size-4 shrink-0 text-coral" aria-hidden="true" />Billed monthly in advance</span>
+                  <span className="flex items-center gap-2"><Check className="size-4 shrink-0 text-coral" aria-hidden="true" />No upfront payment — billed after service</span>
                   <span className="flex items-center gap-2"><Check className="size-4 shrink-0 text-coral" aria-hidden="true" />No minimum term</span>
                   <span className="flex items-center gap-2"><Check className="size-4 shrink-0 text-coral" aria-hidden="true" />Away mode for long absences</span>
                   <span className="flex items-center gap-2"><Check className="size-4 shrink-0 text-coral" aria-hidden="true" />Extra hours €45 · IVA included</span>
