@@ -38,12 +38,6 @@ export function SiteFooter() {
             <MessageCircle aria-hidden="true" /> WhatsApp +34 951 798 899
           </a>
         </div>
-        <p className="mt-6 text-sm text-sunlit/60">
-          Prefer a guided start?{" "}
-          <Link to="/assessment" className="font-bold text-sunlit/85 underline decoration-coral decoration-2 underline-offset-4 transition hover:text-coral">
-            Try the free property assessment
-          </Link>
-        </p>
       </div>
       <div className="relative mx-auto max-w-4xl px-5 pb-16 pt-4 text-center md:px-10 md:pb-20">
         <div className="flex items-center justify-center gap-4">
@@ -82,7 +76,6 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      {enquiryOpen && <EnquiryFormModal audience={generalAudience} onClose={() => setEnquiryOpen(false)} />}
     </footer>
   );
 }
