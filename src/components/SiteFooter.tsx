@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Facebook, Heart, Instagram, Linkedin, Sparkles } from "lucide-react";
+import { ArrowRight, Facebook, Heart, Instagram, Linkedin, MessageCircle, Sparkles } from "lucide-react";
 
 import { Brand } from "@/components/SiteHeader";
 import { EnquiryFormModal, generalAudience } from "@/components/SmartEnquiry";
@@ -34,6 +34,14 @@ export function SiteFooter() {
           </button>
           <a href="tel:+34951798899" className="solid-button solid-button-outline">
             Call +34 951 798 899
+          </a>
+          <a
+            href="https://wa.me/34951798899"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="solid-button solid-button-outline"
+          >
+            <MessageCircle aria-hidden="true" /> WhatsApp +34 951 798 899
           </a>
         </div>
       </div>
