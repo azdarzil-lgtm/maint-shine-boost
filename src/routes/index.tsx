@@ -37,7 +37,6 @@ import vaultWoman from "@/assets/vault-woman-phone.jpg";
 
 const antonio = antonioAsset.url;
 const samuli = samuliAsset.url;
-import greenLogo from "@/assets/solidmaint-logo-green-transparent.png.asset.json";
 import testimonialStill from "@/assets/testimonial-still.jpg";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -719,7 +718,7 @@ function Index() {
               },
               {
                 initials: "SM",
-                photo: greenLogo.url,
+                photo: "/favicon.png",
                 name: "The whole crew",
                 role: "Complete care plans",
                 quote: "One team, one plan, no chasing anyone. It was the easiest decision we have made about our home.",
