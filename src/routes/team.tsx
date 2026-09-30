@@ -3,7 +3,9 @@ import { ArrowRight } from "lucide-react";
 
 import anita from "@/assets/anita.jpg";
 import antonioAsset from "@/assets/antonio.jpg.asset.json";
+import jani from "@/assets/jani.jpg";
 import joseAntonio from "@/assets/jose-antonio.jpg";
+import tero from "@/assets/tero.jpg";
 import samuliAsset from "@/assets/samuli.jpg.asset.json";
 
 const antonio = antonioAsset.url;
@@ -38,8 +40,8 @@ export const Route = createFileRoute("/team")({
 });
 
 const management = [
-  { name: "Jani Hämäläinen", role: "CEO", initials: "JH" },
-  { name: "Tero Keski-Valkama", role: "CTO", initials: "TK" },
+  { name: "Jani Hämäläinen", role: "CEO", photo: jani },
+  { name: "Tero Keski-Valkama", role: "CTO", photo: tero },
   { name: "Marena Christenses", role: "Head of Customer Relations", photo: marenaAsset.url },
   { name: "Anita Victoria Zdarzil", role: "Head of Marketing", photo: anita },
   { name: "Samuli Isoherranen", role: "Business Manager", photo: samuliAsset.url },
