@@ -79,7 +79,7 @@ function IncludedDisclosure({ detail, onDark = false }: { detail: DetailKey; onD
   const info = serviceDetails[detail];
   return (
     <div className={onDark ? "mt-1 border-t border-sunlit/10" : "border-t border-deep/10"}>
-      <p className={`mt-3 font-display font-semibold ${onDark ? "text-sm text-sunlit" : "text-lg text-deep"}`}>Look! what is included in your Home Care Package!</p>
+      <p className={`mt-3 font-display font-semibold ${onDark ? "text-sm text-sunlit" : "text-lg text-deep"}`}>Look! this is included in your home care package:</p>
       <div className="mt-2">
         <p className={`text-sm leading-relaxed ${onDark ? "text-sunlit/70" : "text-deep/70"}`}>{info.tagline}</p>
         {info.groups.map((group) => (
@@ -115,7 +115,7 @@ export function PlanBuilder({ onClose, initialPackage = "middle" }: { onClose: (
   const [outdoor, setOutdoor] = useState(1);
   const [gardenVisits, setGardenVisits] = useState<1 | 2 | 3>(2);
   const [palms, setPalms] = useState(0);
-  const [pool, setPool] = useState(0);
+  const [pool, setPool] = useState(2);
   const [jacuzzi, setJacuzzi] = useState(false);
   const [cleaning, setCleaning] = useState(false);
   const [cleaningSize, setCleaningSize] = useState<CleaningSize>("up100");
