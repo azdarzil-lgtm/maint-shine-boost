@@ -719,6 +719,7 @@ function Index() {
               },
               {
                 initials: "SM",
+                photo: greenLogo.url,
                 name: "The whole crew",
                 role: "Complete care plans",
                 quote: "One team, one plan, no chasing anyone. It was the easiest decision we have made about our home.",
