@@ -519,7 +519,7 @@ function Index() {
             <article className="how-step">
               <span className="section-label text-coral">Step 02</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Choose the care you need</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Garden and pool care are both optional — add either, both or neither, then tick the extra services your home needs.</p>
+              <p className="mt-4 leading-relaxed text-deep/65">Pick Basic, Middle or Best for 2, 4 or 6 flexible service hours every month — with a dedicated team and plan manager.</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {services.map((service) => {
                   const Icon = service.icon;
@@ -535,8 +535,8 @@ function Index() {
 
             <article className="how-step">
               <span className="section-label text-coral">Step 03</span>
-              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Set the hours each job needs</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Tick the extra services your home needs and give each job its own hours — every hour at one clear rate of €45. Nothing you don't need, ever.</p>
+              <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Add regular care</h3>
+              <p className="mt-4 leading-relaxed text-deep/65">Add garden, pool, cleaning and scheduled AC care where needed. Each selected service has one clear monthly price.</p>
               <div className="mt-8 border-t border-deep/15 pt-6 lg:mt-auto">
                 <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Service hours in your package</p>
                 <div className="mt-4 grid grid-cols-5 gap-2" aria-hidden="true">

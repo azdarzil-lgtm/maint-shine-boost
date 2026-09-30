@@ -108,13 +108,13 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
   if (!selectedPackage || !property || !outdoorChoice || !poolChoice) return null;
 
   const cleaningChoice = cleaningPrices[cleaningSize];
-  const cleaningAdd = cleaning && cleaningChoice ? cleaningChoice.prices[cleaningVisits - 1] : 0;
+  const cleaningAdd: number = cleaning && cleaningChoice ? (cleaningChoice.prices[cleaningVisits - 1] ?? 0) : 0;
   const palmAdd = palms * 8.75;
   const acAdd = acUnits > 0 && selectedPackage.acVisits > 0 ? ((acAnnualPrices[acUnits] ?? 0) * selectedPackage.acVisits) / 12 : 0;
   const total = selectedPackage.price + outdoorChoice.add + poolChoice.add + (jacuzzi ? 80 : 0) + palmAdd + cleaningAdd + acAdd;
   const displayedTotal = Math.ceil(total);
 
-  const lines = useMemo(() => [
+  const lines = useMemo<{ label: string; frequency: string; amount: number }[]>(() => [
     { label: `${selectedPackage.name} package · ${selectedPackage.hours} hours per month`, frequency: "As needed", amount: selectedPackage.price },
     ...(outdoorChoice.add ? [{ label: `Garden care · ${outdoorChoice.label}`, frequency: "Schedule confirmed after visit", amount: outdoorChoice.add }] : []),
     ...(palms ? [{ label: `Palm trimming · ${palms} ${palms === 1 ? "palm" : "palms"}`, frequency: "Once a year", amount: palmAdd }] : []),
