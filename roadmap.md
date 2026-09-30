@@ -12,3 +12,6 @@
 - [x] Replace the three package cards with one bespoke builder section ("Your home. Your plan.").
 - [x] Rebuild the calculator as a single bundle builder: property, outdoors, pool, ticked extra services, 0–12h hours slider at €35/h, plan length & quote.
 - [x] Verify the new builder flow on desktop and mobile (incl. no-garden/no-pool paths).
+- [ ] Replace the bespoke builder with the three-package model from the 29 September pricing note.
+- [ ] Update homepage package messaging, examples, quote PDF and enquiry details to match the new model.
+- [ ] Verify package, AC, garden, pool, cleaning and final-quote paths on desktop and mobile.
