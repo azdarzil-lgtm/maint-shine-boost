@@ -173,7 +173,7 @@ function TeamPage() {
           </div>
 
 
-          <div className="mt-16 grid overflow-hidden rounded-[1.75rem] border border-deep/15 bg-olive/10 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end">
+          <div className="mt-16 grid overflow-hidden rounded-[1.75rem] border border-deep/15 bg-olive/10 lg:grid-cols-[minmax(0,1fr)_19rem] lg:items-end xl:grid-cols-[minmax(0,1fr)_24rem]">
             <div className="p-8 lg:py-12 lg:pl-10 lg:pr-4">
               <h2 className="font-display text-2xl font-semibold leading-tight md:text-3xl lg:whitespace-nowrap xl:text-4xl">
                 Would you like us to look after Your Home?
