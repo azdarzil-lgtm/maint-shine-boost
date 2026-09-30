@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AssessmentRouteImport } from './routes/assessment'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as PartnersRouteImport } from './routes/partners'
@@ -22,6 +23,11 @@ import { Route as JournalSlugRouteImport } from './routes/journal/$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssessmentRoute = AssessmentRouteImport.update({
+  id: '/assessment',
+  path: '/assessment',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CookiePolicyRoute = CookiePolicyRouteImport.update({
@@ -67,6 +73,7 @@ const JournalSlugRoute = JournalSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/assessment': typeof AssessmentRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/faqs': typeof FaqsRoute
   '/partners': typeof PartnersRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/assessment': typeof AssessmentRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/faqs': typeof FaqsRoute
   '/partners': typeof PartnersRoute
@@ -90,6 +98,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/assessment': typeof AssessmentRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/faqs': typeof FaqsRoute
   '/partners': typeof PartnersRoute
@@ -103,6 +112,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/assessment'
     | '/cookie-policy'
     | '/faqs'
     | '/partners'
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/assessment'
     | '/cookie-policy'
     | '/faqs'
     | '/partners'
@@ -125,6 +136,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/assessment'
     | '/cookie-policy'
     | '/faqs'
     | '/partners'
@@ -137,6 +149,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AssessmentRoute: typeof AssessmentRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   FaqsRoute: typeof FaqsRoute
   PartnersRoute: typeof PartnersRoute
@@ -154,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assessment': {
+      id: '/assessment'
+      path: '/assessment'
+      fullPath: '/assessment'
+      preLoaderRoute: typeof AssessmentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cookie-policy': {
@@ -217,6 +237,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AssessmentRoute: AssessmentRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   FaqsRoute: FaqsRoute,
   PartnersRoute: PartnersRoute,

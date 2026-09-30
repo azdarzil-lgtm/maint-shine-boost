@@ -201,16 +201,17 @@ export function EnquiryFormModal({ audience, onClose }: { audience: Audience; on
   );
 }
 
-export function SmartEnquiry() {
+export function SmartEnquiry({ includeGeneral = false }: { includeGeneral?: boolean }) {
   const [active, setActive] = useState<Audience | null>(null);
 
+  const shown = includeGeneral ? [...audiences, generalAudience] : audiences;
   const choose = (audience: Audience) => setActive(audience);
   const close = () => setActive(null);
 
   return (
     <div>
       <div className="mt-12 flex flex-wrap justify-center gap-4">
-        {audiences.map((audience) => (
+        {shown.map((audience) => (
           <button
             key={audience.id}
             type="button"
