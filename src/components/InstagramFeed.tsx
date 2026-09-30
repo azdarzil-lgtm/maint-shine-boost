@@ -34,24 +34,18 @@ export function InstagramFeed() {
             <p className="text-lg leading-relaxed text-deep/65">
               Real visits, real homes along the Costa del Sol.
             </p>
-            <a
-              href={PROFILE}
-              target="_blank"
-              rel="noreferrer noopener"
+            <span
               className="solid-button solid-button-dark mt-6 inline-flex"
             >
               <Instagram className="size-4" aria-hidden="true" /> Follow @{HANDLE}
-            </a>
+            </span>
           </div>
         </div>
 
         <div className="mt-12 grid grid-cols-3 gap-3 md:grid-cols-6 md:gap-4">
           {posts.map((post) => (
-            <a
+            <div
               key={post.caption}
-              href={PROFILE}
-              target="_blank"
-              rel="noreferrer noopener"
               className="group relative block overflow-hidden rounded-[1rem]"
             >
               <img
