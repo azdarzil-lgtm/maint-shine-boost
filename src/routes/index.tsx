@@ -708,11 +708,11 @@ function Index() {
                 author: "Emma R. · Sotogrande",
               },
               {
-                initials: "JO",
-                name: "Jonas",
+                initials: "IC",
+                name: "Antonio",
                 role: "Electrical services",
-                quote: "Jonas found and sorted an electrical fault two other companies missed. Proper craftsmanship.",
-                author: "David & Helen · Estepona",
+                quote: "No more exercising in the darkness, thank you Antonio & SolidMaint.",
+                author: "Ilkka-Cristian N. · Mijas",
               },
               {
                 initials: "SM",
