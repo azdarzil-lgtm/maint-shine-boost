@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
+import aldis from "@/assets/aldis.jpg";
 import anita from "@/assets/anita.jpg";
+import leevi from "@/assets/leevi.jpg";
 import antonioAsset from "@/assets/antonio.jpg.asset.json";
 import carlos from "@/assets/carlos.jpg";
 import jani from "@/assets/jani.jpg";
@@ -56,10 +58,10 @@ const management = [
 ];
 
 const team = [
-  { name: "Aldis", role: "Plumbing & Construction", initials: "A" },
+  { name: "Aldis", role: "Plumbing & Construction", photo: aldis },
   { name: "Antonio", role: "AC, Electricity & Plumbing", photo: antonio },
   { name: "José Antonio", role: "Garden & Pool", photo: joseAntonio },
-  { name: "Leevi", role: "Garden & Pool", initials: "L" },
+  { name: "Leevi", role: "Garden & Pool", photo: leevi },
 ];
 
 function MemberCard({
