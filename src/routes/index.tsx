@@ -14,6 +14,7 @@ import {
   MessageCircle,
   ShieldCheck,
   Smartphone,
+  Sparkles,
   Star,
   Sun,
   TrendingUp,
@@ -93,7 +94,7 @@ const services: {
   description: string;
   icon: LucideIcon;
   detail: string;
-  lead: { name: string; role: string; photo: string };
+  lead?: { name: string; role: string; photo: string };
   secondLead?: { name: string; role: string; photo: string };
 }[] = [
   {
@@ -143,6 +144,13 @@ const services: {
     detail:
       "Drips, drains, taps and bathrooms sorted before small problems grow. Quiet, tidy work that keeps the water exactly where it belongs.",
     lead: { name: "Samuli", role: "Plumbing lead", photo: samuli },
+  },
+  {
+    title: "Cleaning Services",
+    description: "Sparkling homes, holiday-ready, one deep clean at a time.",
+    icon: Sparkles,
+    detail:
+      "Deep cleans, end-of-tenancy sparkle jobs and pre-arrival refreshes that make your home feel brand new. Eco-friendly products, flawless attention to detail and a finish you can smell the moment you walk in — spotless homes, every single time.",
   },
 ];
 
@@ -194,32 +202,38 @@ function ServiceAccordion() {
                 <div className="grid gap-5 px-0 pt-1 pb-7 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-4">
                   <span className="hidden sm:block" aria-hidden="true" />
                   <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-                    <div className="flex shrink-0 -space-x-3">
-                      <img
-                        src={service.lead.photo}
-                        alt={service.lead.name}
-                        loading="lazy"
-                        width={96}
-                        height={96}
-                          className="size-16 rounded-full object-cover ring-2 ring-white sm:size-20"
-                      />
-                      {service.secondLead ? (
+                    {service.lead ? (
+                      <div className="flex shrink-0 -space-x-3">
                         <img
-                          src={service.secondLead.photo}
-                          alt={service.secondLead.name}
+                          src={service.lead.photo}
+                          alt={service.lead.name}
                           loading="lazy"
                           width={96}
                           height={96}
                           className="size-16 rounded-full object-cover ring-2 ring-white sm:size-20"
                         />
-                      ) : null}
-                    </div>
+                        {service.secondLead ? (
+                          <img
+                            src={service.secondLead.photo}
+                            alt={service.secondLead.name}
+                            loading="lazy"
+                            width={96}
+                            height={96}
+                            className="size-16 rounded-full object-cover ring-2 ring-white sm:size-20"
+                          />
+                        ) : null}
+                      </div>
+                    ) : null}
                     <div>
-                      <p className="text-[0.7rem] font-bold uppercase tracking-widest text-coral">
-                        {service.secondLead
-                          ? `${service.lead.name} & ${service.secondLead.name} · ${service.lead.role}s`
-                          : `${service.lead.name} · ${service.lead.role}`}
-                      </p>
+                      {service.lead ? (
+                        <p className="text-[0.7rem] font-bold uppercase tracking-widest text-coral">
+                          {service.secondLead
+                            ? `${service.lead.name} & ${service.secondLead.name} · ${service.lead.role}s`
+                            : `${service.lead.name} · ${service.lead.role}`}
+                        </p>
+                      ) : (
+                        <p className="text-[0.7rem] font-bold uppercase tracking-widest text-coral">Book early — our cleaning crew is being hand-picked right now</p>
+                      )}
                       <p className="mt-2 max-w-xl text-sm leading-relaxed text-deep/70">{service.detail}</p>
                       <a href="#contact" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-coral hover:underline">
                         Book this service <ArrowRight className="size-4" aria-hidden="true" />
