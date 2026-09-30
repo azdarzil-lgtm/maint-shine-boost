@@ -99,7 +99,7 @@ function TeamPage() {
           </h1>
           <div className="mt-6 grid gap-6 text-lg leading-relaxed text-deep/65 lg:grid-cols-2 lg:gap-10">
             <p>
-              A small, experienced crew based along the Costa del Sol. Our team has deep Nordic roots — precision,
+              A small, experienced team based along the Costa del Sol. Our people have deep Nordic roots — precision,
               delivered with genuine Costa warmth. We know the homes, the climate and the details that keep a
               property running smoothly.
             </p>
