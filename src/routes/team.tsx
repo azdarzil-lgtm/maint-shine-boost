@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import aldis from "@/assets/aldis.jpg";
 import anita from "@/assets/anita.jpg";
 import leevi from "@/assets/leevi.jpg";
-import antonioAsset from "@/assets/antonio.jpg.asset.json";
+import antonio from "@/assets/antonio.jpg";
 import carlos from "@/assets/carlos.jpg";
 import jani from "@/assets/jani.jpg";
 import joseAntonio from "@/assets/jose-antonio.jpg";
@@ -14,7 +14,6 @@ import janita from "@/assets/janita.jpg";
 import jussi from "@/assets/jussi.jpg";
 import samuliAsset from "@/assets/samuli.jpg.asset.json";
 
-const antonio = antonioAsset.url;
 const samuli = samuliAsset.url;
 import marenaAsset from "@/assets/marena.webp.asset.json";
 import { SiteFooter } from "@/components/SiteFooter";
