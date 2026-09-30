@@ -42,17 +42,14 @@ export function SiteFooter() {
       </div>
       <div className="relative mx-auto max-w-4xl px-5 pb-16 pt-4 text-center md:px-10 md:pb-20">
         <div className="flex items-center justify-center gap-4">
-          {socials.map(({ href, label, icon: Icon }) => (
-            <a
+          {socials.map(({ label, icon: Icon }) => (
+            <span
               key={label}
-              href={href}
-              target="_blank"
-              rel="noreferrer noopener"
               aria-label={label}
-              className="grid size-11 place-items-center rounded-full border border-sunlit/25 text-sunlit transition-colors hover:border-coral hover:bg-coral hover:text-sunlit"
+              className="grid size-11 place-items-center rounded-full border border-sunlit/25 text-sunlit"
             >
               <Icon className="size-5" aria-hidden="true" />
-            </a>
+            </span>
           ))}
         </div>
         <div className="mt-10 flex flex-col items-center gap-5 border-t border-sunlit/15 pt-7 text-sm text-sunlit/55 sm:flex-row sm:justify-between">
