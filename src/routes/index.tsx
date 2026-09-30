@@ -710,6 +710,7 @@ function Index() {
               },
               {
                 initials: "IC",
+                photo: antonio,
                 name: "Antonio",
                 role: "Electrical services",
                 quote: "No more exercising in the darkness, thank you Antonio & SolidMaint.",
@@ -717,6 +718,7 @@ function Index() {
               },
               {
                 initials: "SM",
+                photo: "/favicon.png",
                 name: "The whole crew",
                 role: "Complete care plans",
                 quote: "One team, one plan, no chasing anyone. It was the easiest decision we have made about our home.",
