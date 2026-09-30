@@ -179,8 +179,8 @@ function TeamPage() {
                 Would you like us to look after Your Home?
               </h2>
               <p className="mt-4 max-w-xl text-base leading-relaxed text-deep/65">
-                Put your feet up — we&apos;ve got it from here. While you enjoy the Costa life, our crew keeps your home
-                cared for, checked and running smoothly. You relax; we handle the rest.
+                Put your feet up and simply relax — we&apos;ve got it from here. While you enjoy the Costa life, our
+                crew keeps your home cared for, checked and running smoothly. You relax; we handle the rest.
               </p>
               <a href="/#contact" className="solid-button solid-button-coral mt-8">
                 Talk to us <ArrowRight aria-hidden="true" />
