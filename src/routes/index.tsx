@@ -443,7 +443,8 @@ function Index() {
               <div className="mt-12 grid gap-6 md:grid-cols-3">
                 {[
                   {
-                    name: "Basic",
+                    key: "basic",
+                    name: "Essential Care",
                     price: "€89",
                     hours: "2 hours · every month",
                     tagline: "A watchful eye for lock-up-and-leave homes.",
@@ -455,7 +456,8 @@ function Index() {
                     ],
                   },
                   {
-                    name: "Middle",
+                    key: "middle",
+                    name: "Home Ready",
                     price: "€149",
                     hours: "4 hours · every month",
                     tagline: "The sweet spot for homes that live in all season.",
@@ -468,7 +470,8 @@ function Index() {
                     ],
                   },
                   {
-                    name: "Best",
+                    key: "best",
+                    name: "Signature Care",
                     price: "€199",
                     hours: "6 hours · every month",
                     tagline: "Complete cover for busy homes and rentals.",
@@ -512,7 +515,7 @@ function Index() {
                     </ul>
                     <button
                       type="button"
-                      onClick={() => { setSelectedPackage(plan.name.toLowerCase() as "basic" | "middle" | "best"); setBuilderOpen(true); }}
+                      onClick={() => { setSelectedPackage(plan.key as "basic" | "middle" | "best"); setBuilderOpen(true); }}
                       className={`solid-button mt-7 w-full text-sm uppercase tracking-wider ${plan.popular ? "solid-button-coral" : "solid-button-white"}`}
                     >
                       Choose {plan.name}
@@ -591,7 +594,7 @@ function Index() {
             <article className="how-step">
               <span className="section-label text-coral">Step 02</span>
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Choose the care you need</h3>
-              <p className="mt-4 leading-relaxed text-deep/65">Pick Basic, Middle or Best for 2, 4 or 6 flexible service hours every month — with a dedicated team and plan manager.</p>
+              <p className="mt-4 leading-relaxed text-deep/65">Pick Essential Care, Home Ready or Signature Care for 2, 4 or 6 flexible service hours every month — with a dedicated team and plan manager.</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {services.map((service) => {
                   const Icon = service.icon;
@@ -622,8 +625,8 @@ function Index() {
                   ))}
                 </div>
                 <p className="mt-2 flex items-baseline justify-between text-[0.65rem] font-bold uppercase tracking-wide">
-                  <span className="text-deep/45">Basic · 2h</span>
-                   <span className="text-coral">Best · 6h</span>
+                  <span className="text-deep/45">Essential · 2h</span>
+                   <span className="text-coral">Signature · 6h</span>
                 </p>
               </div>
             </article>
