@@ -227,8 +227,8 @@ function ServiceAccordion() {
                         <div>
                           <p className="text-[0.7rem] font-bold uppercase tracking-widest text-coral">
                             {service.secondLead
-                              ? `${service.lead.name} & ${service.secondLead.name}`
-                              : `${service.lead.name}`}
+                              ? `${service.lead.name} & ${service.secondLead.name} · ${service.lead.role}s`
+                              : `${service.lead.name} · ${service.lead.role}`}
                           </p>
                         </div>
                       </>
