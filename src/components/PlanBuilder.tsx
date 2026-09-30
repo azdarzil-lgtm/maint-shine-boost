@@ -1,28 +1,24 @@
-import {
-  ArrowLeft,
-  ArrowRight,
-  Check,
-  ChevronDown,
-  Download,
-  Home,
-  Phone,
-  Smartphone,
-  Video,
-  X,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Download, Home, Phone, Smartphone, Video, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { downloadQuotePdf } from "@/lib/quote-pdf";
 
 type PropertyKey = "flat" | "townhouse" | "villa" | "finca";
+type PackageKey = "basic" | "middle" | "best";
+type CleaningSize = "up100" | "100to200" | "200to300" | "300to500";
 
 export const HOURLY_RATE = 45;
-export const PLAN_BASE = 89;
 
-const propertyTypes: { key: PropertyKey; label: string; note: string; add: number }[] = [
-  { key: "flat", label: "Flat", note: "Apartment or penthouse", add: 0 },
-  { key: "townhouse", label: "Townhouse", note: "Shared or private outdoor space", add: 25 },
-  { key: "villa", label: "Villa", note: "Detached home and grounds", add: 70 },
-  { key: "finca", label: "Finca / Estate", note: "Larger rural property or estate", add: 130 },
+const packages: { key: PackageKey; name: string; hours: number; price: number; strapline: string; acVisits: number; featured?: boolean }[] = [
+  { key: "basic", name: "Basic", hours: 2, price: 89, strapline: "Regular check + small fixes", acVisits: 0 },
+  { key: "middle", name: "Middle", hours: 4, price: 149, strapline: "More time for everyday home care", acVisits: 1, featured: true },
+  { key: "best", name: "Best", hours: 6, price: 199, strapline: "Our most complete monthly care", acVisits: 2 },
+];
+
+const propertyTypes: { key: PropertyKey; label: string; note: string }[] = [
+  { key: "flat", label: "Flat", note: "Apartment or penthouse" },
+  { key: "townhouse", label: "Townhouse", note: "Shared or private outdoor space" },
+  { key: "villa", label: "Villa", note: "Detached home and grounds" },
+  { key: "finca", label: "Finca / Estate", note: "Larger rural property or estate" },
 ];
 
 const outdoorSizes = [
@@ -42,76 +38,49 @@ const poolSizes = [
   { label: "XL / infinity pool", note: "60 m² +", add: 160 },
 ];
 
+const cleaningPrices: Record<CleaningSize, { label: string; hours: number; prices: [number, number, number] }> = {
+  up100: { label: "Up to 100 m²", hours: 3, prices: [419, 849, 1269] },
+  "100to200": { label: "100–200 m²", hours: 4, prices: [569, 1129, 1699] },
+  "200to300": { label: "200–300 m²", hours: 5, prices: [709, 1419, 2119] },
+  "300to500": { label: "300–500 m²", hours: 6, prices: [849, 1699, 2549] },
+};
 
-const extraServices: { label: string; suggestedHours: number }[] = [
-  { label: "AC seasonal service", suggestedHours: 1 },
-  { label: "Deep cleaning", suggestedHours: 2 },
-  { label: "Ventilation duct and vent cleaning", suggestedHours: 1 },
-  { label: "Range hood filter cleaning or replacement", suggestedHours: 1 },
-  { label: "Pool filter sand or glass replacement", suggestedHours: 1 },
-  { label: "Irrigation system inspection, repair and timer adjustment", suggestedHours: 1 },
-  { label: "Solar panel cleaning", suggestedHours: 1 },
-  { label: "Drain and trap cleaning (indoor, terrace, roof)", suggestedHours: 1 },
-  { label: "EV charging point installation", suggestedHours: 2 },
-  { label: "Bathroom silicone and grout renewal", suggestedHours: 1 },
-  { label: "Roof cleaning", suggestedHours: 2 },
-  { label: "Roof coating and moss removal", suggestedHours: 2 },
-  { label: "Facade cleaning", suggestedHours: 1 },
-  { label: "Terrace and walkway pressure washing", suggestedHours: 1 },
-  { label: "Exterior window cleaning", suggestedHours: 1 },
-  { label: "Hydrophobic terrace coating", suggestedHours: 2 },
-  { label: "Palm tree pruning", suggestedHours: 1 },
-  { label: "Tree pruning", suggestedHours: 1 },
-  { label: "Pest control", suggestedHours: 1 },
+const acAnnualPrices: Record<number, number> = { 1: 99, 2: 178, 3: 261, 4: 335, 5: 395, 8: 555.04, 10: 625 };
+const hourIdeas = [
+  "Small repairs and handyman jobs", "Small plumbing and electrical fixes", "Ventilation and vent cleaning",
+  "Range hood filter care", "Pool filter media replacement", "Irrigation inspection and adjustment",
+  "Solar panel cleaning", "Drain and trap cleaning", "Bathroom silicone and grout renewal",
+  "Terrace pressure washing", "Exterior window cleaning", "Tree pruning and pest control",
 ];
 
-const euro = (value: number) => `€${value.toFixed(2)}`;
+const euro = (value: number) => `€${Math.ceil(value)}`;
+const exactEuro = (value: number) => `€${value.toFixed(2)}`;
 
 function PropertyDrawing({ type }: { type: PropertyKey }) {
-  if (type === "flat") {
-    return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M24 56V9h48v47M18 56h60M35 19h8v8h-8zm18 0h8v8h-8zM35 35h8v8h-8zm18 0h8v8h-8zM45 56V45h8v11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" /></svg>;
-  }
-  if (type === "townhouse") {
-    return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M12 56V26l18-14 18 14v30m0 0V26l18-14 18 14v30M7 56h82M21 34h9v9h-9zm36 0h9v9h-9zM35 56V39h8v17m28 0V39h8v17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" /></svg>;
-  }
-  if (type === "villa") {
-    return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M10 56h76M18 56V29L48 10l30 19v27M10 31l38-24 38 24M29 35h11v10H29zm27 0h11v10H56zM44 56V39h9v17M76 22V10h7v17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" /></svg>;
-  }
+  if (type === "flat") return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M24 56V9h48v47M18 56h60M35 19h8v8h-8zm18 0h8v8h-8zM35 35h8v8h-8zm18 0h8v8h-8zM45 56V45h8v11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" /></svg>;
+  if (type === "townhouse") return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M12 56V26l18-14 18 14v30m0 0V26l18-14 18 14v30M7 56h82M21 34h9v9h-9zm36 0h9v9h-9zM35 56V39h8v17m28 0V39h8v17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" /></svg>;
+  if (type === "villa") return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M10 56h76M18 56V29L48 10l30 19v27M10 31l38-24 38 24M29 35h11v10H29zm27 0h11v10H56zM44 56V39h9v17M76 22V10h7v17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" /></svg>;
   return <svg viewBox="0 0 96 64" className="h-16 w-full" aria-hidden="true"><path d="M7 56h82M18 56V31L48 13l30 18v25M12 34l36-24 36 24M29 37h11v9H29zm27 0h11v9H56zM44 56V40h9v16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 }
-
 
 function Slider({ label, options, value, onChange }: { label: string; options: { label: string; note: string; add: number }[]; value: number; onChange: (value: number) => void }) {
   const selected = options[value] ?? options[0];
   if (!selected) return null;
-  return (
-    <div>
-      <div className="flex items-baseline justify-between gap-4"><p className="section-label text-coral">{label}</p><p className="text-sm font-semibold text-deep/60">{selected.note}</p></div>
-      <p className="mt-2 font-display text-2xl font-semibold md:text-3xl">{selected.label}</p>
-      <input type="range" min={0} max={options.length - 1} step={1} value={value} onChange={(event) => onChange(Number(event.target.value))} aria-label={label} className="mt-5 w-full accent-[var(--coral)]" />
-      <div className="mt-2 flex justify-between text-[0.65rem] font-bold uppercase tracking-wide text-deep/45"><span>None / smallest</span><span>Largest</span></div>
-    </div>
-  );
+  return <div><div className="flex items-baseline justify-between gap-4"><p className="section-label text-coral">{label}</p><p className="text-sm font-semibold text-deep/60">{selected.note}</p></div><p className="mt-2 font-display text-2xl font-semibold md:text-3xl">{selected.label}</p><input type="range" min={0} max={options.length - 1} step={1} value={value} onChange={(event) => onChange(Number(event.target.value))} aria-label={label} className="mt-5 w-full accent-[var(--coral)]" /><div className="mt-2 flex justify-between text-[0.65rem] font-bold uppercase tracking-wide text-deep/45"><span>None / smallest</span><span>Largest</span></div></div>;
 }
 
 export function PlanBuilder({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState(0);
+  const [packageIndex, setPackageIndex] = useState(1);
   const [propertyIndex, setPropertyIndex] = useState(1);
   const [outdoor, setOutdoor] = useState(1);
+  const [palms, setPalms] = useState(0);
   const [pool, setPool] = useState(0);
   const [jacuzzi, setJacuzzi] = useState(false);
-  const [serviceHours, setServiceHours] = useState<Record<string, number>>({});
-  const toggleService = (label: string, suggested: number) => setServiceHours((current) => { const next = { ...current }; if (next[label]) delete next[label]; else next[label] = suggested; return next; });
-  const adjustService = (label: string, delta: number) => setServiceHours((current) => ({ ...current, [label]: Math.min(24, Math.max(1, (current[label] ?? 1) + delta)) }));
-  const [callbackOpen, setCallbackOpen] = useState(false);
-  const [callbackName, setCallbackName] = useState("");
-  const [callbackPhone, setCallbackPhone] = useState("");
-  const [callbackTime, setCallbackTime] = useState("Any time, 09:00–18:00");
-  const [callbackSent, setCallbackSent] = useState(false);
-  const [videoOpen, setVideoOpen] = useState(false);
-  const [videoName, setVideoName] = useState("");
-  const [videoContact, setVideoContact] = useState("");
-  const [videoSent, setVideoSent] = useState(false);
+  const [cleaning, setCleaning] = useState(false);
+  const [cleaningSize, setCleaningSize] = useState<CleaningSize>("up100");
+  const [cleaningVisits, setCleaningVisits] = useState<1 | 2 | 3>(1);
+  const [acUnits, setAcUnits] = useState(0);
   const [pdfBusy, setPdfBusy] = useState(false);
   const [nextMode, setNextMode] = useState<"visit" | "call">("visit");
   const [nextName, setNextName] = useState("");
@@ -121,6 +90,9 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
   const [nextTime, setNextTime] = useState("Any time, 09:00–18:00");
   const [nextNote, setNextNote] = useState("");
   const [nextSent, setNextSent] = useState(false);
+  const [videoOpen, setVideoOpen] = useState(false);
+  const [videoName, setVideoName] = useState("");
+  const [videoContact, setVideoContact] = useState("");
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => event.key === "Escape" && onClose();
@@ -129,282 +101,82 @@ export function PlanBuilder({ onClose }: { onClose: () => void }) {
     return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
   }, [onClose]);
 
-  const property = propertyTypes[propertyIndex] ?? propertyTypes[0];
+  const selectedPackage = packages[packageIndex] ?? packages[1];
+  const property = propertyTypes[propertyIndex] ?? propertyTypes[1];
   const outdoorChoice = outdoorSizes[outdoor] ?? outdoorSizes[0];
   const poolChoice = poolSizes[pool] ?? poolSizes[0];
-  const chosenServices = extraServices.filter((service) => serviceHours[service.label]).map((service) => { const h = serviceHours[service.label] ?? 1; return { label: service.label, hours: h, add: h * HOURLY_RATE }; });
-  const servicesAdd = chosenServices.reduce((sum, service) => sum + service.add, 0);
-  const hrs = (h: number) => `${h} ${h === 1 ? "hour" : "hours"}`;
-  const jacuzziAdd = jacuzzi ? 80 : 0;
+  if (!selectedPackage || !property || !outdoorChoice || !poolChoice) return null;
 
-  const pricing = useMemo(() => {
-    const total = PLAN_BASE + (property?.add ?? 0) + (outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0) + jacuzziAdd + servicesAdd;
-    return { total };
-  }, [property, outdoorChoice, poolChoice, jacuzziAdd, servicesAdd]);
+  const cleaningChoice = cleaningPrices[cleaningSize];
+  const cleaningAdd = cleaning && cleaningChoice ? cleaningChoice.prices[cleaningVisits - 1] : 0;
+  const palmAdd = palms * 8.75;
+  const acAdd = acUnits > 0 && selectedPackage.acVisits > 0 ? ((acAnnualPrices[acUnits] ?? 0) * selectedPackage.acVisits) / 12 : 0;
+  const total = selectedPackage.price + outdoorChoice.add + poolChoice.add + (jacuzzi ? 80 : 0) + palmAdd + cleaningAdd + acAdd;
+  const displayedTotal = Math.ceil(total);
 
-  const steps = ["Welcome", "Your property", "Outdoor space", "Pool care", "The extras", "Your plan & quote"];
-  const enquiryBody = encodeURIComponent([
-    `Plan: Bespoke care plan — built with the plan builder`,
-    `Property: ${property?.label ?? "Not selected"}`,
-    `Garden / yard: ${outdoorChoice?.label ?? "Not selected"}`,
-    `Pool: ${poolChoice?.label ?? "Not selected"}`,
-    `Jacuzzi / spa care: ${jacuzzi ? "Yes (+€80.00 per month)" : "No"}`,
-    `Extra services: ${chosenServices.length ? chosenServices.map((service) => `${service.label} (${hrs(service.hours)}, ${euro(service.add)})`).join(", ") : "None"}`,
-    `Payment: No upfront payment — you're billed after each service (rolling monthly, cancel at any time if you wish)`,
-    `Indicative total: ${euro(pricing.total)} per month`, "", "My name:", "Property address:", "Best number to reach me:",
-  ].join("\n"));
+  const lines = useMemo(() => [
+    { label: `${selectedPackage.name} package · ${selectedPackage.hours} hours per month`, frequency: "As needed", amount: selectedPackage.price },
+    ...(outdoorChoice.add ? [{ label: `Garden care · ${outdoorChoice.label}`, frequency: "Schedule confirmed after visit", amount: outdoorChoice.add }] : []),
+    ...(palms ? [{ label: `Palm trimming · ${palms} ${palms === 1 ? "palm" : "palms"}`, frequency: "Once a year", amount: palmAdd }] : []),
+    ...(poolChoice.add ? [{ label: `Pool care · ${poolChoice.label}`, frequency: "Schedule confirmed after visit", amount: poolChoice.add }] : []),
+    ...(jacuzzi ? [{ label: "Jacuzzi / spa care", frequency: "Alongside pool care", amount: 80 }] : []),
+    ...(cleaning && cleaningChoice ? [{ label: `Home cleaning · ${cleaningChoice.label}`, frequency: `${cleaningVisits}× per week`, amount: cleaningAdd }] : []),
+    ...(acAdd ? [{ label: `AC service · ${acUnits} ${acUnits === 1 ? "unit" : "units"}`, frequency: `${selectedPackage.acVisits}× per year`, amount: acAdd }] : []),
+  ], [selectedPackage, outdoorChoice, palms, palmAdd, poolChoice, jacuzzi, cleaning, cleaningChoice, cleaningVisits, cleaningAdd, acUnits, acAdd]);
+
+  const steps = ["Welcome", "Choose package", "Your property", "Garden", "Pool", "Cleaning", "AC service", "Your hours", "Your plan & quote"];
+  const enquiryBody = [
+    `Package: ${selectedPackage.name} — ${selectedPackage.hours} hours per month (${euro(selectedPackage.price)})`,
+    `Property: ${property.label}`,
+    ...lines.slice(1).map((line) => `${line.label}: ${line.frequency} — ${euro(line.amount)}/month`),
+    `Indicative total: ${euro(displayedTotal)} per month incl. IVA`,
+    "Billing: Fixed monthly fee, billed monthly in advance",
+  ].join("\n");
 
   const handlePdf = async () => {
     setPdfBusy(true);
     try {
       await downloadQuotePdf({
-        total: euro(pricing.total),
-        lines: [
-          { label: `Care plan base · ${property?.label}`, amount: euro(PLAN_BASE + (property?.add ?? 0)) },
-          { label: `${outdoorChoice?.label} · ${poolChoice?.label}`, amount: euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0)) },
-          ...(jacuzzi ? [{ label: "Jacuzzi / spa care", amount: euro(80) }] : []),
-          ...chosenServices.map((s) => ({ label: `${s.label} · ${hrs(s.hours)}`, amount: euro(s.add) })),
-          { label: "Property Vault", amount: "Free" },
-        ],
+        total: euro(displayedTotal),
+        lines: [...lines.map((line) => ({ label: `${line.label} · ${line.frequency}`, amount: euro(line.amount) })), { label: "Property Vault", amount: "Free" }],
         summary: [
-          `Care for your ${property?.label.toLowerCase()} — our team from Finland and Sweden, with a dedicated plan manager and regular property visits.`,
-          outdoorChoice?.add ? `Regular garden and outdoor care — ${outdoorChoice?.label.toLowerCase()}.` : "No regular garden or yard care.",
-          poolChoice?.add ? `Regular pool care — ${poolChoice?.label.toLowerCase()}.` : "No pool care included.",
-          ...(jacuzzi ? ["Jacuzzi / spa care — water quality, filters and sanitising."] : []),
-          chosenServices.length ? `Extra services: ${chosenServices.map((s) => `${s.label.toLowerCase()} (${hrs(s.hours)})`).join(", ")}.` : "No extra services for now.",
-          "No upfront payment — billed after each service. Rolling monthly, cancel at any time.",
-          "Your free Property Vault — every visit, photo, report and document in one place.",
+          `${selectedPackage.name} gives you ${selectedPackage.hours} hours of our team's time every month, counted in 15-minute steps with travel time never counted.`,
+          `Property: ${property.label}.`,
+          "Use your hours for the work your home needs; unused hours roll over for one month.",
+          "One dedicated team and plan manager, with every visit documented in your free Property Vault.",
+          "Fixed monthly fee, billed monthly in advance. No minimum term.",
         ],
       });
-    } finally {
-      setPdfBusy(false);
-    }
+    } finally { setPdfBusy(false); }
   };
 
-  return (
-    <div className="fixed inset-0 z-[70] flex items-end justify-center bg-deep/70 p-0 backdrop-blur-sm sm:items-center sm:p-6">
-      <div className="relative flex max-h-[94vh] w-full max-w-4xl flex-col overflow-hidden rounded-t-3xl bg-sunlit text-deep shadow-2xl sm:rounded-3xl">
-        <div className="flex items-center justify-between gap-4 border-b border-deep/10 px-5 py-4 md:px-8">
-          <div><p className="section-label text-coral">Your home. Your plan.</p><p className="text-sm text-deep/60">Step {step + 1} of {steps.length} · {steps[step]}</p></div>
-          <button type="button" onClick={onClose} aria-label="Close plan builder" className="grid size-10 place-items-center rounded-full border border-deep/20 transition-colors hover:border-coral hover:text-coral"><X className="size-5" aria-hidden="true" /></button>
-        </div>
-        <div className="h-1 w-full bg-deep/10"><div className="h-full bg-coral transition-all duration-300" style={{ width: `${((step + 1) / steps.length) * 100}%` }} /></div>
+  return <div className="fixed inset-0 z-[70] flex items-end justify-center bg-deep/70 p-0 backdrop-blur-sm sm:items-center sm:p-6">
+    <div className="relative flex max-h-[94vh] w-full max-w-5xl flex-col overflow-hidden rounded-t-3xl bg-sunlit text-deep shadow-2xl sm:rounded-3xl">
+      <div className="flex items-center justify-between gap-4 border-b border-deep/10 px-5 py-4 md:px-8"><div><p className="section-label text-coral">Build your home care plan</p><p className="text-sm text-deep/60">Step {step + 1} of {steps.length} · {steps[step]}</p></div><button type="button" onClick={onClose} aria-label="Close plan builder" className="grid size-10 place-items-center rounded-full border border-deep/20 transition-colors hover:border-coral hover:text-coral"><X className="size-5" aria-hidden="true" /></button></div>
+      <div className="h-1 w-full bg-deep/10"><div className="h-full bg-coral transition-all duration-300" style={{ width: `${((step + 1) / steps.length) * 100}%` }} /></div>
+      <div className="flex-1 overflow-y-auto px-5 py-7 md:px-8 md:py-9">
+        {step === 0 && <div><p className="section-label text-coral">Care made simple</p><h3 className="mt-3 max-w-2xl font-display text-3xl font-semibold leading-tight md:text-5xl">Choose your hours. Add the care your home needs.</h3><p className="mt-4 max-w-2xl text-lg leading-relaxed text-deep/70">Start with 2, 4 or 6 hours of dependable help each month. Then add garden, pool, cleaning and scheduled AC care to create one clear monthly plan.</p><div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4"><p className="flex flex-wrap items-center gap-2 font-bold"><Smartphone className="size-5 text-coral" aria-hidden="true" />Your free Property Vault<span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Every package</span></p><p className="mt-1.5 text-sm leading-relaxed text-deep/70">Photos, reports and a clear record of how your hours were used each month.</p></div></div>}
 
-        <div className="flex-1 overflow-y-auto px-5 py-7 md:px-8 md:py-9">
-          {step === 0 && <div>
-            <h3 className="max-w-2xl font-display text-3xl font-semibold leading-tight md:text-4xl">One home. One care plan. Built entirely around it.</h3>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-deep/70">No fixed bundles — we assemble your plan from what your property actually needs. Tell us about the home, tick the care it needs and any extra services. Your indicative price grows with every choice, and nothing you don’t need ever makes it onto the plan.</p>
-            <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4"><p className="flex flex-wrap items-center gap-2 font-bold"><Smartphone className="size-5 text-coral" aria-hidden="true" />Your free Property Vault<span className="rounded-full bg-coral px-2.5 py-0.5 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Always included</span></p><p className="mt-1.5 text-sm leading-relaxed text-deep/70">A photo-documented history of every visit, check, service and repair — whatever your plan includes.</p></div>
-          </div>}
+        {step === 1 && <div><p className="section-label text-coral">Choose your package</p><h3 className="mt-3 font-display text-3xl font-semibold">How much help would feel right each month?</h3><div className="mt-6 grid gap-3 md:grid-cols-3">{packages.map((plan, index) => <button key={plan.key} type="button" onClick={() => setPackageIndex(index)} aria-pressed={packageIndex === index} className={`relative rounded-2xl border p-5 text-left transition-colors ${packageIndex === index ? "border-coral bg-coral/10" : "border-deep/15 bg-white/50 hover:border-coral/60"}`}>{plan.featured && <span className="absolute right-4 top-4 rounded-full bg-coral px-2.5 py-1 text-[0.6rem] font-extrabold uppercase tracking-wide text-sunlit">Popular</span>}<span className="section-label text-coral">{plan.name}</span><span className="mt-3 block font-display text-4xl font-semibold">{euro(plan.price)}<span className="text-sm font-normal text-deep/55"> / month</span></span><span className="mt-2 block font-bold">{plan.hours} service hours</span><span className="mt-1 block text-sm text-deep/60">{plan.strapline}</span><span className="mt-5 flex items-center gap-2 border-t border-deep/10 pt-4 text-xs font-semibold text-deep/65"><Check className="size-4 text-coral" />{plan.acVisits ? `AC scheduled ${plan.acVisits === 1 ? "once" : "twice"} yearly*` : "AC not scheduled"}</span></button>)}</div><p className="mt-4 text-xs leading-relaxed text-deep/55">All prices include IVA. *AC servicing is priced separately by the number of units.</p></div>}
 
-          {step === 1 && <div>
-            <p className="section-label text-coral">What kind of property is it?</p>
-            <h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Choose the closest match.</h3>
-            <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">{propertyTypes.map((option, index) => <button key={option.key} type="button" onClick={() => setPropertyIndex(index)} className={`rounded-2xl border p-4 text-left transition-colors ${propertyIndex === index ? "border-coral bg-coral/10 text-coral" : "border-deep/15 hover:border-coral/60"}`}><PropertyDrawing type={option.key} /><span className="mt-3 block font-display text-lg font-semibold text-deep">{option.label}</span><span className="mt-1 block text-xs leading-snug text-deep/60">{option.note}</span></button>)}</div>
-          </div>}
+        {step === 2 && <div><p className="section-label text-coral">What kind of property is it?</p><h3 className="mt-3 font-display text-3xl font-semibold">Tell us about the home we’ll care for.</h3><p className="mt-2 text-sm text-deep/60">This helps our team prepare — it does not change your package price.</p><div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">{propertyTypes.map((option, index) => <button key={option.key} type="button" onClick={() => setPropertyIndex(index)} className={`rounded-2xl border p-4 text-left transition-colors ${propertyIndex === index ? "border-coral bg-coral/10 text-coral" : "border-deep/15 hover:border-coral/60"}`}><PropertyDrawing type={option.key} /><span className="mt-3 block font-display text-lg font-semibold text-deep">{option.label}</span><span className="mt-1 block text-xs leading-snug text-deep/60">{option.note}</span></button>)}</div></div>}
 
-          {step === 2 && <div><Slider label="Does your home have a garden or yard?" options={outdoorSizes} value={outdoor} onChange={setOutdoor} /><p className="mt-6 leading-relaxed text-deep/65">Choose “No garden / yard” for a flat without outdoor space. Otherwise, pick the closest size and we’ll tailor the regular care accordingly.</p></div>}
-          {step === 3 && <div><Slider label="Would you like regular pool care?" options={poolSizes} value={pool} onChange={setPool} />
-            <button type="button" onClick={() => setJacuzzi((on) => !on)} aria-pressed={jacuzzi} className={`mt-6 flex w-full items-center justify-between gap-4 rounded-2xl border p-4 text-left transition-colors ${jacuzzi ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}>
-              <span>
-                <span className="block font-display text-lg font-semibold text-deep">Add jacuzzi / spa care</span>
-                <span className="mt-1 block text-sm leading-snug text-deep/60">Water quality, filters and sanitising for your jacuzzi or spa — cared for alongside your pool.</span>
-              </span>
-              <span className="shrink-0 text-right">
-                <span className="block font-display text-lg font-bold text-coral">+ €80.00</span>
-                <span className="block text-xs text-deep/55">per month</span>
-              </span>
-            </button>
-            <p className="mt-6 leading-relaxed text-deep/65">No pool? No problem. Pool care is optional on every plan and only affects your price when you include it.</p></div>}
+        {step === 3 && <div><Slider label="Does your home have a garden or yard?" options={outdoorSizes} value={outdoor} onChange={(value) => { setOutdoor(value); if (value === 0) setPalms(0); }} />{outdoor > 0 && <div className="mt-7 rounded-2xl border border-deep/15 bg-white/60 p-5"><div className="flex flex-wrap items-center justify-between gap-4"><div><p className="font-display text-xl font-semibold">Do your palm trees need trimming?</p><p className="mt-1 text-sm text-deep/60">Once yearly, including green-waste removal · {exactEuro(8.75)} per palm each month</p></div><div className="flex items-center gap-3"><button type="button" onClick={() => setPalms(Math.max(0, palms - 1))} disabled={palms === 0} aria-label="Fewer palm trees" className="grid size-9 place-items-center rounded-full border border-deep/20 font-bold disabled:opacity-40">−</button><span className="min-w-8 text-center font-bold">{palms}</span><button type="button" onClick={() => setPalms(Math.min(30, palms + 1))} aria-label="More palm trees" className="grid size-9 place-items-center rounded-full border border-deep/20 font-bold">+</button></div></div></div>}<p className="mt-5 text-sm text-deep/60">Garden visit frequency is confirmed after our free look at your property.</p></div>}
 
-          {step === 4 && <div>
-            <p className="section-label text-coral">The extras</p>
-            <h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Which extra services should your plan include?</h3>
-            <p className="mt-3 leading-relaxed text-deep/65">Tick anything your home needs, then set how many hours each job should get — every hour is {euro(HOURLY_RATE)}. We've suggested a starting point for each; leave them all unticked and your plan stays lean.</p>
-            <div className="mt-6 grid gap-2.5 sm:grid-cols-2">
-              {extraServices.map((service) => {
-                const h = serviceHours[service.label];
-                const active = Boolean(h);
-                return (
-                  <div key={service.label} className={`rounded-2xl border p-3.5 transition-colors ${active ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}>
-                    <button type="button" aria-pressed={active} onClick={() => toggleService(service.label, service.suggestedHours)} className="flex w-full items-start justify-between gap-3 text-left">
-                      <span className="flex items-start gap-2.5 text-sm leading-snug"><span className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-md border ${active ? "border-coral bg-coral text-sunlit" : "border-deep/25"}`}>{active && <Check className="size-3.5" aria-hidden="true" />}</span>{service.label}</span>
-                      {!active && <span className="shrink-0 text-xs font-semibold text-deep/50">~{hrs(service.suggestedHours)}</span>}
-                    </button>
-                    {active && h && <div className="mt-3 flex items-center justify-between gap-3 border-t border-coral/20 pt-3">
-                      <div className="flex items-center gap-2">
-                        <button type="button" onClick={() => adjustService(service.label, -1)} disabled={h <= 1} aria-label={`Fewer hours for ${service.label}`} className="grid size-8 place-items-center rounded-full border border-deep/20 font-bold disabled:opacity-40 hover:border-coral">−</button>
-                        <span className="min-w-16 text-center text-sm font-semibold">{hrs(h)}</span>
-                        <button type="button" onClick={() => adjustService(service.label, 1)} aria-label={`More hours for ${service.label}`} className="grid size-8 place-items-center rounded-full border border-deep/20 font-bold hover:border-coral">+</button>
-                      </div>
-                      <span className="text-sm font-bold text-coral">+ {euro(h * HOURLY_RATE)}</span>
-                    </div>}
-                  </div>
-                );
-              })}
-            </div>
-            <p className="mt-4 text-xs leading-relaxed text-deep/55">Indicative amounts at {euro(HOURLY_RATE)} per hour, IVA included — we confirm every figure after a quick look at your property.</p>
-          </div>}
+        {step === 4 && <div><Slider label="Would you like regular pool care?" options={poolSizes} value={pool} onChange={setPool} /><button type="button" onClick={() => setJacuzzi((on) => !on)} aria-pressed={jacuzzi} className={`mt-6 flex w-full items-center justify-between gap-4 rounded-2xl border p-4 text-left transition-colors ${jacuzzi ? "border-coral bg-coral/10" : "border-deep/15 hover:border-coral/60"}`}><span><span className="block font-display text-lg font-semibold">Add jacuzzi / spa care</span><span className="mt-1 block text-sm text-deep/60">Water quality, filters and sanitising.</span></span><span className="font-display text-lg font-bold text-coral">+ €80 / month</span></button><p className="mt-5 text-sm text-deep/60">Pool visit frequency is confirmed after our free look at your property.</p></div>}
 
-          {step === 5 && <div>
-            <p className="section-label text-coral">Ready when you are</p><h3 className="mt-3 font-display text-3xl font-semibold leading-tight">Sign up for your services — or simply try us out.</h3>
-            <div className="mt-5 rounded-2xl bg-deep p-5 text-sunlit md:p-6"><div className="flex flex-wrap items-end justify-between gap-4"><div><p className="section-label text-coral">Your indicative bespoke plan</p><p className="mt-2 font-display text-4xl font-semibold md:text-5xl">{euro(pricing.total)}<span className="ml-2 text-base text-sunlit/60">/ month</span></p></div><p className="text-sm font-bold text-coral">Billed after the service</p></div>
-              <ul className="mt-5 space-y-2 border-t border-sunlit/15 pt-4 text-sm text-sunlit/75"><li className="flex justify-between gap-4"><span>Care plan base · {property?.label}</span><span>{euro(PLAN_BASE + (property?.add ?? 0))}</span></li><li className="flex justify-between gap-4"><span>{outdoorChoice?.label} · {poolChoice?.label}</span><span>{euro((outdoorChoice?.add ?? 0) + (poolChoice?.add ?? 0))}</span></li>{jacuzzi && <li className="flex justify-between gap-4"><span>Jacuzzi / spa care</span><span>{euro(80)}</span></li>}{chosenServices.map((service) => <li key={service.label} className="flex justify-between gap-4"><span>{service.label} · {hrs(service.hours)}</span><span>{euro(service.add)}</span></li>)}<li className="flex justify-between gap-4"><span>Property Vault</span><span className="font-bold text-coral">Free</span></li></ul>
-            </div>
-            <div className="mt-5 rounded-2xl border border-deep/15 bg-white/70 p-5 md:p-6">
-              <p className="section-label text-coral">Your plan at a glance</p>
-              <h4 className="mt-2 font-display text-xl font-semibold leading-snug md:text-2xl">Here's exactly what you're getting:</h4>
-              <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-deep/80">
-                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Care for your <strong className="font-semibold">{property?.label.toLowerCase()}</strong> — our team from Finland and Sweden, with a dedicated plan manager and regular property visits.</span></li>
-                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{outdoorChoice?.add ? `Regular garden and outdoor care — ${outdoorChoice?.label.toLowerCase()}.` : "No regular garden or yard care — yours stays lean."}</span></li>
-                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>{poolChoice?.add ? `Regular pool care — ${poolChoice?.label.toLowerCase()}.` : "No pool care included — easy to add later if your home changes."}</span></li>
-                {jacuzzi && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Jacuzzi / spa care — water quality, filters and sanitising, alongside your pool.</span></li>}
-                {chosenServices.length > 0 && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Extra services: {chosenServices.map((service) => `${service.label.toLowerCase()} (${hrs(service.hours)})`).join(", ")}.</span></li>}
-                {chosenServices.length === 0 && <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>No extra services for now — you can tick more on at any time.</span></li>}
-                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>No upfront payment — we bill you after each service. Rolling monthly, no commitment, cancel at any time if you wish.</span></li>
-                <li className="flex gap-2.5"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" /><span>Your free <strong className="font-semibold">Property Vault</strong> — every visit, photo, report and document in one place, from anywhere.</span></li>
-              </ul>
-            </div>
-            <p className="mt-5 text-sm leading-snug text-deep/60">Indicative pricing, IVA included. We confirm the final plan after a quick look at your property — no surprises, ever.</p>
-            <p className="text-sm leading-snug text-deep/60">* A quick note: our package prices cover services only — any materials needed are quoted separately before we begin.</p>
-            <p className="text-sm leading-snug text-deep/60">This is only an estimate based on the information you've given us — how accurate it is depends on the condition of your property.</p>
-            <div className="mt-6 rounded-2xl border border-coral/40 bg-coral/10 p-4 sm:p-5">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                <a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20my%20care%20plan" aria-label="Email our property specialist" className="shrink-0 self-start transition-transform hover:scale-110 sm:self-center"><svg viewBox="0 0 64 46" className="size-12 text-coral" aria-hidden="true"><g className="phone-ring"><circle cx="11" cy="17" r="4.5" fill="currentColor" /><circle cx="47" cy="17" r="4.5" fill="currentColor" /><path d="M11 16 Q29 5 47 16" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" /><path d="M15 40 L19 24 Q29 20 39 24 L43 40 Z" fill="currentColor" /><circle cx="29" cy="32" r="4.5" fill="var(--sunlit)" /></g><path className="phone-wave" d="M53 10 a8 8 0 0 1 0 11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /><path className="phone-wave-2" d="M58 7 a13 13 0 0 1 0 17" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" /></svg></a>
-                <p className="text-base leading-relaxed text-deep/70">Not sure how much time and care your home needs?<br /><a href="mailto:info@solidmaint.com?subject=Help%20me%20choose%20my%20care%20plan" className="font-bold text-coral underline decoration-coral/40 underline-offset-4 transition-colors hover:decoration-coral">Simply reach out — our property specialist is here to help.</a></p>
-                <div className="ml-0 flex shrink-0 flex-col gap-2 self-start sm:ml-auto sm:self-center">
-                  <button type="button" onClick={() => setCallbackOpen((open) => !open)} aria-expanded={callbackOpen} className="solid-button solid-button-coral !px-5 !py-2.5 !text-sm"><Phone className="size-4" aria-hidden="true" /> Request a callback</button>
-                  <button type="button" onClick={() => setVideoOpen((open) => !open)} aria-expanded={videoOpen} className="solid-button !border !border-deep/25 !bg-transparent !px-5 !py-2.5 !text-sm !text-deep/80 transition-colors hover:!border-coral hover:!text-coral"><Video className="size-4" aria-hidden="true" /> Want to explain more to us? Send us a video</button>
-                </div>
-              </div>
-              <div className={`grid transition-all duration-300 ${callbackOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-                <div className="overflow-hidden">
-                  {callbackSent ? (
-                    <p className="mt-4 rounded-xl bg-sunlit/70 p-4 text-sm font-semibold text-deep">Thank you! Our property specialist will call you back within one working day.</p>
-                  ) : (
-                    <form
-                      className="mt-4 rounded-xl bg-sunlit/70 p-4"
-                      onSubmit={(event) => {
-                        event.preventDefault();
-                        const details = [
-                          `Name: ${callbackName.trim()}`,
-                          `Phone number: ${callbackPhone.trim()}`,
-                          `Preferred callback time: ${callbackTime}`,
-                        ].join("\n");
-                        window.location.href = `mailto:info@solidmaint.com?subject=${encodeURIComponent("Callback request — care plan")}&body=${encodeURIComponent(details)}`;
-                        setCallbackSent(true);
-                      }}
-                    >
-                      <p className="text-sm font-semibold">Prefer a call? Share your details and we'll ring you.</p>
-                      <div className="mt-3 grid gap-3 sm:grid-cols-3">
-                        <label className="block text-xs font-semibold text-deep/70">Name
-                          <input required maxLength={80} value={callbackName} onChange={(event) => setCallbackName(event.target.value)} placeholder="Your name" className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" />
-                        </label>
-                        <label className="block text-xs font-semibold text-deep/70">Phone number
-                          <input required type="tel" maxLength={30} value={callbackPhone} onChange={(event) => setCallbackPhone(event.target.value)} placeholder="+34 ..." className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" />
-                        </label>
-                        <label className="block text-xs font-semibold text-deep/70">Preferred callback time
-                          <select value={callbackTime} onChange={(event) => setCallbackTime(event.target.value)} className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep focus:border-coral focus:outline-none">
-                            <option>Any time, 09:00–18:00</option>
-                            <option>Morning, 09:00–12:00</option>
-                            <option>Midday, 12:00–14:00</option>
-                            <option>Afternoon, 14:00–18:00</option>
-                          </select>
-                        </label>
-                      </div>
-                      <button type="submit" className="solid-button solid-button-coral mt-4 !px-5 !py-2.5 !text-sm"><Phone className="size-4" aria-hidden="true" /> Call me back</button>
-                      <p className="mt-2 text-xs text-deep/55">Mon–Fri, 09:00–18:00 CET — we'll call you back within one working day.</p>
-                    </form>
-                  )}
-                </div>
-              </div>
-              <div className={`grid transition-all duration-300 ${videoOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-                <div className="overflow-hidden">
-                  {videoSent ? (
-                    <p className="mt-4 rounded-xl bg-sunlit/70 p-4 text-sm font-semibold text-deep">Action! 🎬 We'll be in touch within one working day with a link to send your video — then our property specialist will watch it and call you with a tailored recommendation.</p>
-                  ) : (
-                    <form
-                      className="mt-4 rounded-xl bg-sunlit/70 p-4"
-                      onSubmit={(event) => {
-                        event.preventDefault();
-                        const details = [
-                          `Name: ${videoName.trim()}`,
-                          `Email or WhatsApp number: ${videoContact.trim()}`,
-                          "They would like to send a short video of their property — please reply with the best way to send it.",
-                        ].join("\n");
-                        window.location.href = `mailto:info@solidmaint.com?subject=${encodeURIComponent("Video walkthrough — help me choose")}&body=${encodeURIComponent(details)}`;
-                        setVideoSent(true);
-                      }}
-                    >
-                      <p className="text-sm font-semibold">Feeling resourceful? 🎬 Film a quick tour of your yard, pool or garden — show us what needs care, and we'll recommend the perfect plan.</p>
-                      <p className="mt-1.5 text-xs leading-relaxed text-deep/55">Completely optional — only if you fancy it (a call works just as well). Just tell us where to reach you and we'll send a link to share your video.</p>
-                      <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                        <label className="block text-xs font-semibold text-deep/70">Name
-                          <input required maxLength={80} value={videoName} onChange={(event) => setVideoName(event.target.value)} placeholder="Your name" className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" />
-                        </label>
-                        <label className="block text-xs font-semibold text-deep/70">Email or WhatsApp number
-                          <input required maxLength={80} value={videoContact} onChange={(event) => setVideoContact(event.target.value)} placeholder="you@email.com or +34 ..." className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" />
-                        </label>
-                      </div>
-                      <button type="submit" className="solid-button solid-button-coral mt-4 !px-5 !py-2.5 !text-sm"><Video className="size-4" aria-hidden="true" /> Lights, camera… send!</button>
-                      <p className="mt-2 text-xs text-deep/55">No lights or script needed — a simple phone video walking around your property is perfect.</p>
-                    </form>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="mt-6 rounded-2xl border border-deep/15 bg-white/70 p-5 md:p-6">
-              <p className="section-label text-coral">Keep your quote</p>
-              <h4 className="mt-2 font-display text-xl font-semibold leading-snug md:text-2xl">Download your plan as a PDF.</h4>
-              <p className="mt-2 text-sm leading-relaxed text-deep/65">Your full breakdown on SolidMaint paper — handy to share or keep for later.</p>
-              <button type="button" onClick={handlePdf} disabled={pdfBusy} className="solid-button solid-button-coral mt-4 !px-5 !py-2.5 !text-sm disabled:opacity-60"><Download className="size-4" aria-hidden="true" /> {pdfBusy ? "Preparing your quote…" : "Download my quote (PDF)"}</button>
-            </div>
-            <div className="mt-5 rounded-2xl border border-coral/40 bg-coral/10 p-5 md:p-6">
-              <p className="section-label text-coral">Yes, looks good. Let's connect!</p>
-              <h4 className="mt-2 font-display text-xl font-semibold leading-snug md:text-2xl">How would you like to take the next step?</h4>
-              {nextSent ? (
-                <p className="mt-4 flex items-start gap-2 text-sm font-semibold text-deep"><Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />Thank you, {nextName.split(" ")[0]}! Your email app has opened with everything filled in — press send and we'll be in touch within one working day. Your written estimate will go to {nextEmail}.</p>
-              ) : (
-                <form className="mt-4" onSubmit={(event) => {
-                  event.preventDefault();
-                  const details = [
-                    `Request: ${nextMode === "visit" ? "Please send a SolidMaint specialist to visit my property" : "Please call me back"}`,
-                    `Name: ${nextName.trim()}`, `Phone: ${nextPhone.trim()}`, `Email for my estimate: ${nextEmail.trim()}`,
-                    `Property location: ${nextTown.trim() || "—"}`, `Best time: ${nextTime}`, `Anything else: ${nextNote.trim() || "—"}`, "",
-                    "— My plan —", decodeURIComponent(enquiryBody),
-                  ].join("\n");
-                  window.location.href = `mailto:info@solidmaint.com?subject=${encodeURIComponent(nextMode === "visit" ? "Care plan — specialist visit request" : "Care plan — callback request")}&body=${encodeURIComponent(details)}`;
-                  setNextSent(true);
-                }}>
-                  <div className="grid gap-2.5 sm:grid-cols-2" role="radiogroup" aria-label="Choose visit or callback">
-                    {([["visit", "A specialist comes over", "We visit your property and confirm the plan in person.", Home], ["call", "Call me back", "A quick chat on the phone at a time that suits you.", Phone]] as const).map(([key, title, note, Icon]) => (
-                      <button key={key} type="button" role="radio" aria-checked={nextMode === key} onClick={() => setNextMode(key)} className={`rounded-2xl border p-4 text-left transition-colors ${nextMode === key ? "border-coral bg-white" : "border-deep/15 bg-white/60 hover:border-coral/60"}`}>
-                        <span className="flex items-center gap-2 font-display text-base font-semibold"><Icon className="size-4 text-coral" aria-hidden="true" />{title}</span>
-                        <span className="mt-1 block text-xs leading-snug text-deep/60">{note}</span>
-                      </button>
-                    ))}
-                  </div>
-                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    <label className="block text-xs font-semibold text-deep/70">Your name<input required maxLength={80} value={nextName} onChange={(e) => setNextName(e.target.value)} className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep focus:border-coral focus:outline-none" /></label>
-                    <label className="block text-xs font-semibold text-deep/70">Phone number<input required type="tel" maxLength={30} value={nextPhone} onChange={(e) => setNextPhone(e.target.value)} placeholder="+34 ..." className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" /></label>
-                    <label className="block text-xs font-semibold text-deep/70">Email for your estimate<input required type="email" maxLength={255} value={nextEmail} onChange={(e) => setNextEmail(e.target.value)} placeholder="you@email.com" className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" /></label>
-                    <label className="block text-xs font-semibold text-deep/70">Where is the property?<input maxLength={120} value={nextTown} onChange={(e) => setNextTown(e.target.value)} placeholder="e.g. Marbella, Estepona" className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep placeholder:text-deep/40 focus:border-coral focus:outline-none" /></label>
-                    <label className="block text-xs font-semibold text-deep/70 sm:col-span-2">Best time for us<select value={nextTime} onChange={(e) => setNextTime(e.target.value)} className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep focus:border-coral focus:outline-none"><option>Any time, 09:00–18:00</option><option>Morning, 09:00–12:00</option><option>Midday, 12:00–15:00</option><option>Afternoon, 15:00–18:00</option></select></label>
-                    <label className="block text-xs font-semibold text-deep/70 sm:col-span-2">Anything else we should know? (optional)<textarea maxLength={1000} rows={3} value={nextNote} onChange={(e) => setNextNote(e.target.value)} className="mt-1 w-full rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm font-normal text-deep focus:border-coral focus:outline-none" /></label>
-                  </div>
-                  <button type="submit" className="solid-button solid-button-coral mt-5 w-full">{nextMode === "visit" ? "Book my specialist visit" : "Request my callback"} <ArrowRight aria-hidden="true" /></button>
-                  <p className="mt-2 text-xs text-deep/55">We'll send your written estimate to the email above. No upfront payment, no pressure.</p>
-                </form>
-              )}
-            </div>
-          </div>}
-        </div>
+        {step === 5 && <div><p className="section-label text-coral">Home cleaning</p><h3 className="mt-3 font-display text-3xl font-semibold">Would you like us to keep the inside cared for too?</h3><div className="mt-6 grid grid-cols-2 gap-3">{([false, true] as const).map((choice) => <button key={String(choice)} type="button" onClick={() => setCleaning(choice)} className={`rounded-2xl border p-4 text-left font-semibold ${cleaning === choice ? "border-coral bg-coral/10" : "border-deep/15"}`}>{choice ? "Yes, add home cleaning" : "No, I don’t need cleaning"}</button>)}</div>{cleaning && <div className="mt-6 grid gap-5 rounded-2xl border border-deep/15 bg-white/60 p-5 sm:grid-cols-2"><label className="text-sm font-semibold">Size of home<select value={cleaningSize} onChange={(event) => setCleaningSize(event.target.value as CleaningSize)} className="mt-2 w-full rounded-xl border border-deep/15 bg-white px-3 py-3 font-normal"><option value="up100">Up to 100 m²</option><option value="100to200">100–200 m²</option><option value="200to300">200–300 m²</option><option value="300to500">300–500 m²</option></select></label><label className="text-sm font-semibold">Cleaning visits<select value={cleaningVisits} onChange={(event) => setCleaningVisits(Number(event.target.value) as 1 | 2 | 3)} className="mt-2 w-full rounded-xl border border-deep/15 bg-white px-3 py-3 font-normal"><option value={1}>Once a week</option><option value={2}>Twice a week</option><option value={3}>Three times a week</option></select></label><p className="sm:col-span-2 text-sm text-deep/65">Includes surfaces, floors, kitchen, bathrooms, bins and making beds. Indicative price: <strong className="text-coral">{euro(cleaningAdd)} / month</strong>.</p></div>}<p className="mt-5 text-xs leading-relaxed text-deep/55">Homes over 500 m² are priced after a free home visit.</p></div>}
 
-        <div className="flex items-center justify-between gap-3 border-t border-deep/10 px-5 py-4 md:px-8">
-          <button type="button" onClick={() => (step === 0 ? onClose() : setStep((current) => current - 1))} className="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-deep/60 transition-colors hover:text-coral"><ArrowLeft className="size-4" aria-hidden="true" /> {step === 0 ? "Not now" : "Back"}</button>
-          {step < steps.length - 1 ? <>{step >= 1 && <p className="text-sm text-deep/60"><span className="hidden sm:inline">Indicative price · </span><span className="font-display text-lg font-bold text-deep">{euro(pricing.total)}</span><span className="text-deep/60">/ month</span></p>}<button type="button" onClick={() => setStep((current) => current + 1)} className="solid-button solid-button-coral">{step === 0 ? "Let’s begin" : "Continue"} <ArrowRight aria-hidden="true" /></button></> : <p className="hidden font-display text-lg font-semibold sm:block">{euro(pricing.total)} / month</p>}
-        </div>
+        {step === 6 && <div><p className="section-label text-coral">Air conditioning</p><h3 className="mt-3 font-display text-3xl font-semibold">Keep every unit running cleanly.</h3>{selectedPackage.acVisits === 0 ? <div className="mt-6 rounded-2xl border border-deep/15 bg-white/60 p-5"><p className="font-semibold">AC service is not scheduled with Basic.</p><p className="mt-2 text-sm text-deep/60">Choose Middle for one scheduled service yearly or Best for two. You can still ask us for a separate AC quote.</p></div> : <><p className="mt-3 text-deep/65">Your {selectedPackage.name} package schedules AC service {selectedPackage.acVisits === 1 ? "once" : "twice"} a year. The service is added to your monthly fee according to the number of units.</p><div className="mt-6 grid grid-cols-4 gap-2 sm:grid-cols-8">{[0, 1, 2, 3, 4, 5, 8, 10].map((count) => <button key={count} type="button" onClick={() => setAcUnits(count)} className={`rounded-xl border px-2 py-3 text-sm font-bold ${acUnits === count ? "border-coral bg-coral/10 text-coral" : "border-deep/15"}`}>{count === 0 ? "None" : count}</button>)}</div>{acUnits > 0 && <p className="mt-5 font-semibold">{acUnits} {acUnits === 1 ? "unit" : "units"} · {selectedPackage.acVisits}× yearly · <span className="text-coral">{euro(acAdd)} / month</span></p>}<p className="mt-4 text-xs text-deep/55">Have 6, 7, 9 or more than 10 units? We’ll confirm the exact price at your free home visit.</p></>}</div>}
+
+        {step === 7 && <div><p className="section-label text-coral">Your hours, your choice</p><h3 className="mt-3 font-display text-3xl font-semibold">{selectedPackage.hours} hours for whatever your home needs.</h3><p className="mt-3 max-w-3xl leading-relaxed text-deep/65">These are simply ideas — you decide how your hours are used. Extra time beyond your package is {euro(HOURLY_RATE)} per hour, including IVA.</p><div className="mt-6 grid gap-2 sm:grid-cols-2">{hourIdeas.map((idea) => <p key={idea} className="flex gap-2 rounded-xl border border-deep/10 bg-white/55 p-3 text-sm"><Check className="mt-0.5 size-4 shrink-0 text-coral" />{idea}</p>)}</div><div className="mt-6 rounded-2xl border border-coral/35 bg-coral/10 p-4 text-sm leading-relaxed"><strong>Simple hour rules:</strong> time on site is counted in 15-minute steps, travel is never counted, visits are at least one hour, and unused hours roll over for one month. Away mode lets hours accumulate for up to three months.</div></div>}
+
+        {step === 8 && <div><p className="section-label text-coral">Your home plan is ready</p><h3 className="mt-3 font-display text-3xl font-semibold">Everything in one clear monthly plan.</h3><div className="mt-5 overflow-hidden rounded-2xl bg-deep text-sunlit"><div className="flex flex-wrap items-end justify-between gap-4 p-5 md:p-6"><div><p className="section-label text-coral">Indicative monthly total · IVA included</p><p className="mt-2 font-display text-4xl font-semibold md:text-5xl">{euro(displayedTotal)}<span className="ml-2 text-base text-sunlit/60">/ month</span></p></div><p className="text-sm font-bold text-coral">Billed monthly in advance</p></div><div className="border-t border-sunlit/15 px-5 py-2 md:px-6">{lines.map((line) => <div key={line.label} className="grid grid-cols-[1fr_auto] gap-x-4 border-b border-sunlit/10 py-3 text-sm last:border-0"><span>{line.label}</span><span className="font-semibold">{euro(line.amount)}</span><span className="text-xs text-sunlit/55">{line.frequency}</span></div>)}<div className="flex justify-between py-3 text-sm"><span>Property Vault</span><span className="font-bold text-coral">Free</span></div></div></div><div className="mt-5 rounded-2xl border border-deep/15 bg-white/70 p-5"><p className="font-display text-xl font-semibold">What’s always included</p><ul className="mt-3 space-y-2 text-sm text-deep/75">{[`${selectedPackage.hours} service hours each month — yours to use where the home needs them`, "One dedicated team and plan manager", "A monthly report with tasks, time and photos in your Property Vault", "No minimum term — cancel any month"].map((item) => <li key={item} className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-coral" />{item}</li>)}</ul></div><p className="mt-4 text-xs leading-relaxed text-deep/55">Indicative price, confirmed after a free look at your property. The confirmed price stays within ±10%, or you can cancel free of charge. Materials up to €50 per job are approved automatically; larger amounts need your approval first. If a yearly service has already taken place when you cancel, its unpaid balance becomes due.</p>
+          <div className="mt-5 grid gap-4 md:grid-cols-2"><div className="rounded-2xl border border-deep/15 bg-white/70 p-5"><p className="section-label text-coral">Keep your quote</p><h4 className="mt-2 font-display text-xl font-semibold">Download your plan as a PDF.</h4><button type="button" onClick={handlePdf} disabled={pdfBusy} className="solid-button solid-button-coral mt-4 !px-5 !py-2.5 !text-sm disabled:opacity-60"><Download className="size-4" />{pdfBusy ? "Preparing…" : "Download my quote (PDF)"}</button></div><div className="rounded-2xl border border-deep/15 bg-white/70 p-5"><p className="section-label text-coral">Need to show us more?</p><p className="mt-2 text-sm text-deep/65">Send a quick video of the garden, pool or anything that needs care.</p><button type="button" onClick={() => setVideoOpen((open) => !open)} className="solid-button mt-4 !border !border-deep/20 !bg-transparent !px-5 !py-2.5 !text-sm !text-deep"><Video className="size-4" />Send us a video</button>{videoOpen && <form className="mt-4 grid gap-3" onSubmit={(event) => { event.preventDefault(); const body = `Name: ${videoName}\nEmail or WhatsApp: ${videoContact}\nPlease send me a link to share a property video.`; window.location.href = `mailto:info@solidmaint.com?subject=Property video for my care plan&body=${encodeURIComponent(body)}`; }}><input required value={videoName} onChange={(event) => setVideoName(event.target.value)} placeholder="Your name" className="rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm" /><input required value={videoContact} onChange={(event) => setVideoContact(event.target.value)} placeholder="Email or WhatsApp" className="rounded-xl border border-deep/15 bg-white px-3 py-2 text-sm" /><button className="solid-button solid-button-coral !py-2.5 !text-sm" type="submit">Request my upload link</button></form>}</div></div>
+          <div className="mt-5 rounded-2xl border border-coral/40 bg-coral/10 p-5 md:p-6"><p className="section-label text-coral">Let’s connect</p><h4 className="mt-2 font-display text-xl font-semibold">Would you like a free home visit or a callback?</h4>{nextSent ? <p className="mt-4 flex gap-2 text-sm font-semibold"><Check className="size-4 text-coral" />Your email app has opened with everything filled in. Press send and we’ll be in touch.</p> : <form className="mt-4" onSubmit={(event) => { event.preventDefault(); const details = [`Request: ${nextMode === "visit" ? "Free specialist home visit" : "Callback"}`, `Name: ${nextName}`, `Phone: ${nextPhone}`, `Email for estimate: ${nextEmail}`, `Property location: ${nextTown || "—"}`, `Best time: ${nextTime}`, `Notes: ${nextNote || "—"}`, "", "— My plan —", enquiryBody].join("\n"); window.location.href = `mailto:info@solidmaint.com?subject=${encodeURIComponent(nextMode === "visit" ? "Care plan — home visit request" : "Care plan — callback request")}&body=${encodeURIComponent(details)}`; setNextSent(true); }}><div className="grid gap-2 sm:grid-cols-2">{([ ["visit", "A specialist comes over", Home], ["call", "Call me back", Phone] ] as const).map(([key, label, Icon]) => <button key={key} type="button" onClick={() => setNextMode(key)} className={`rounded-xl border p-3 text-left font-semibold ${nextMode === key ? "border-coral bg-white" : "border-deep/15"}`}><Icon className="mr-2 inline size-4 text-coral" />{label}</button>)}</div><div className="mt-4 grid gap-3 sm:grid-cols-2"><input required value={nextName} onChange={(e) => setNextName(e.target.value)} placeholder="Your name" className="rounded-xl border border-deep/15 bg-white px-3 py-2.5 text-sm" /><input required type="tel" value={nextPhone} onChange={(e) => setNextPhone(e.target.value)} placeholder="Phone number" className="rounded-xl border border-deep/15 bg-white px-3 py-2.5 text-sm" /><input required type="email" value={nextEmail} onChange={(e) => setNextEmail(e.target.value)} placeholder="Email for your estimate" className="rounded-xl border border-deep/15 bg-white px-3 py-2.5 text-sm" /><input value={nextTown} onChange={(e) => setNextTown(e.target.value)} placeholder="Property location" className="rounded-xl border border-deep/15 bg-white px-3 py-2.5 text-sm" /><select value={nextTime} onChange={(e) => setNextTime(e.target.value)} className="rounded-xl border border-deep/15 bg-white px-3 py-2.5 text-sm sm:col-span-2"><option>Any time, 09:00–18:00</option><option>Morning, 09:00–12:00</option><option>Midday, 12:00–15:00</option><option>Afternoon, 15:00–18:00</option></select><textarea value={nextNote} onChange={(e) => setNextNote(e.target.value)} placeholder="Anything else we should know? (optional)" rows={3} className="rounded-xl border border-deep/15 bg-white px-3 py-2.5 text-sm sm:col-span-2" /></div><button type="submit" className="solid-button solid-button-coral mt-4 w-full">{nextMode === "visit" ? "Book my free home visit" : "Request my callback"}<ArrowRight /></button></form>}</div>
+        </div>}
       </div>
+      <div className="flex items-center justify-between gap-3 border-t border-deep/10 px-5 py-4 md:px-8"><button type="button" onClick={() => (step === 0 ? onClose() : setStep((current) => current - 1))} className="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-deep/60 hover:text-coral"><ArrowLeft className="size-4" />{step === 0 ? "Not now" : "Back"}</button>{step < steps.length - 1 ? <><p className="hidden text-sm text-deep/60 sm:block"><span className="font-display text-lg font-bold text-deep">{euro(displayedTotal)}</span> / month</p><button type="button" onClick={() => setStep((current) => current + 1)} className="solid-button solid-button-coral">{step === 0 ? "Let’s begin" : "Continue"}<ArrowRight /></button></> : <p className="font-display text-lg font-semibold">{euro(displayedTotal)} / month</p>}</div>
     </div>
-  );
+  </div>;
 }
