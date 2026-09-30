@@ -81,10 +81,21 @@ export async function downloadQuotePdf({ lines, total, summary }: { lines: Quote
     y += wrapped.length * 5 + 2;
   }
 
-  y = Math.max(y + 8, 255);
-  if (y > 275) { doc.addPage(); y = 20; }
-  doc.setFontSize(8).setTextColor(120);
-  doc.text(doc.splitTextToSize("This is an indicative estimate based on the information you've given us. Prices cover services only — any materials are quoted separately before we begin. We confirm the final plan after a quick look at your property. Fixed monthly fee, no upfront payment — billed after service. No minimum term. The final price stays within ±10% of this estimate after the free property visit, or you can cancel free of charge.", right - left), left, y);
+  // Disclaimer as a centred card
+  const note = "This is an indicative estimate based on the information you've given us. Prices cover services only — any materials are quoted separately before we begin. We confirm the final plan after a quick look at your property. Fixed monthly fee, no upfront payment — billed after service. No minimum term. The final price stays within ±10% of this estimate after the free property visit, or you can cancel free of charge.";
+  const noteLines = doc.splitTextToSize(note, right - left - 16) as string[];
+  const noteH = noteLines.length * 4.4 + 14;
+  const noteY = 292 - noteH - 6;
+  if (noteY < y + 6) { doc.addPage(); }
+  doc.setFillColor(245, 241, 228).roundedRect(left, noteY, right - left, noteH, 3, 3, "F");
+  doc.setFillColor(...coral);
+  const barY = noteY + 5;
+  doc.roundedRect(left + 5, barY, 1.4, noteH - 10, 0.7, 0.7, "F");
+  doc.setFont("helvetica", "bold").setFontSize(9).setTextColor(...green).text("Good to know", left + 10, noteY + 7);
+  doc.setFont("helvetica", "normal").setFontSize(8).setTextColor(90);
+  noteLines.forEach((ln, i) => {
+    doc.text(ln, 105, noteY + 13 + i * 4.4, { align: "center" });
+  });
 
   doc.save("SolidMaint-care-plan-quote.pdf");
 }
