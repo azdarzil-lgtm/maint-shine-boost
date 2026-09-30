@@ -425,7 +425,7 @@ function Index() {
               <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
                 <div>
                   <p className="section-label text-coral">Three simple care packages</p>
-                  <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your hours. Your choice.</h3>
+                  <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your house. Your choice.</h3>
                   <p className="mt-5 max-w-xl text-lg leading-relaxed text-sunlit/70">Choose 2, 4 or 6 hours of dependable help each month. Use them wherever your home needs us, then add regular garden, pool, cleaning or scheduled AC care.</p>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-3">
