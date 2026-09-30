@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Check, ChevronDown, Download, Home, Phone, Video, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Download, Home, Phone, Video, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { downloadQuotePdf } from "@/lib/quote-pdf";
 
@@ -76,27 +76,21 @@ const serviceDetails: Record<DetailKey, { tagline: string; groups: { title: stri
 };
 
 function IncludedDisclosure({ detail, onDark = false }: { detail: DetailKey; onDark?: boolean }) {
-  const [open, setOpen] = useState(false);
   const info = serviceDetails[detail];
   return (
     <div className={onDark ? "mt-1 border-t border-sunlit/10" : "border-t border-deep/10"}>
-      <button type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} className="mt-2 flex w-full items-center justify-between gap-3 text-left text-[0.7rem] font-extrabold uppercase tracking-wide text-coral">
-        <span>{open ? "Hide what’s included" : "What’s included"}</span>
-        <ChevronDown className={`size-4 shrink-0 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true" />
-      </button>
-      {open && (
-        <div className="mt-3">
-          <p className={`font-display text-lg font-semibold ${onDark ? "text-sunlit" : "text-deep"}`}>{info.tagline}</p>
-          {info.groups.map((group) => (
-            <div key={group.title} className="mt-3 first:mt-2">
-              <p className={`text-xs font-bold uppercase tracking-wide ${onDark ? "text-sunlit/60" : "text-deep/50"}`}>{group.title}</p>
-              <ul className={`mt-2 grid gap-1.5 text-sm sm:grid-cols-2 ${onDark ? "text-sunlit/80" : "text-deep/75"}`}>
-                {group.items.map((item) => <li key={item} className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-coral" />{item}</li>)}
-              </ul>
-            </div>
-          ))}
-        </div>
-      )}
+      <p className={`mt-3 font-display font-semibold ${onDark ? "text-sm text-sunlit" : "text-lg text-deep"}`}>Look! what is included in your Home Care Package!</p>
+      <div className="mt-2">
+        <p className={`text-sm leading-relaxed ${onDark ? "text-sunlit/70" : "text-deep/70"}`}>{info.tagline}</p>
+        {info.groups.map((group) => (
+          <div key={group.title} className="mt-3 first:mt-2">
+            <p className={`text-xs font-bold uppercase tracking-wide ${onDark ? "text-sunlit/60" : "text-deep/50"}`}>{group.title}</p>
+            <ul className={`mt-2 grid gap-1.5 text-sm sm:grid-cols-2 ${onDark ? "text-sunlit/80" : "text-deep/75"}`}>
+              {group.items.map((item) => <li key={item} className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-coral" />{item}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
