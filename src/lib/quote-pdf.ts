@@ -41,9 +41,11 @@ export async function downloadQuotePdf({ lines, total, summary }: { lines: Quote
 
   const date = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
   doc.setFont("helvetica", "normal").setFontSize(9).setTextColor(110);
-  doc.text(`Quote date: ${date}`, right, 24, { align: "right" });
-  doc.text("info@solidmaint.com · +34 951 798 899", right, 29, { align: "right" });
-  doc.text("Costa del Sol, Spain", right, 34, { align: "right" });
+  doc.text(`Quote date: ${date}`, right, 22, { align: "right" });
+  doc.text("SolidMaint S.L. · NIF B27612159", right, 27, { align: "right" });
+  doc.text("Avda. Bulevar Príncipe Alfonso de Hohenlohe 2, 29602 Marbella", right, 32, { align: "right" });
+  doc.text("info@solidmaint.com · +34 951 798 899", right, 37, { align: "right" });
+  doc.text("Costa del Sol, Spain", right, 42, { align: "right" });
 
   doc.setFont("helvetica", "bold").setFontSize(18).setTextColor(...green).text("Your indicative home care plan", left, y);
   y += 10;
