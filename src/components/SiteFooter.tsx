@@ -35,6 +35,14 @@ export function SiteFooter() {
           <a href="tel:+34951798899" className="solid-button solid-button-outline">
             Call +34 951 798 899
           </a>
+          <a
+            href="https://wa.me/34951798899"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="solid-button solid-button-outline"
+          >
+            <MessageCircle aria-hidden="true" /> WhatsApp +34 951 798 899
+          </a>
         </div>
       </div>
       <div className="relative mx-auto max-w-4xl px-5 pb-16 pt-4 text-center md:px-10 md:pb-20">
