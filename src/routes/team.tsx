@@ -25,7 +25,7 @@ export const Route = createFileRoute("/team")({
   staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Management | SolidMaint — The people behind every visit" },
+      { title: "Our Team | SolidMaint — The people behind every visit" },
       {
         name: "description",
         content:
@@ -151,7 +151,7 @@ function TeamPage() {
 
       <section className="pb-14 md:pb-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Management</h2>
+          <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our Team</h2>
           <div className="mx-auto mt-10 grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {management.map((member) => (
               <MemberCard key={member.name} {...member} imageClass="max-w-[240px] md:max-w-[260px]" />
