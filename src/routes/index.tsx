@@ -145,6 +145,13 @@ const services: {
       "Drips, drains, taps and bathrooms sorted before small problems grow. Quiet, tidy work that keeps the water exactly where it belongs.",
     lead: { name: "Samuli", role: "Plumbing lead", photo: samuli },
   },
+  {
+    title: "Cleaning Services",
+    description: "Sparkling homes, holiday-ready, one deep clean at a time.",
+    icon: Sparkles,
+    detail:
+      "Deep cleans, end-of-tenancy sparkle jobs and pre-arrival refreshes that make your home feel brand new. Eco-friendly products, flawless attention to detail and a finish you can smell the moment you walk in — spotless homes, every single time.",
+  },
 ];
 
 function ServiceAccordion() {
