@@ -443,7 +443,8 @@ function Index() {
               <div className="mt-12 grid gap-6 md:grid-cols-3">
                 {[
                   {
-                    name: "Basic",
+                    key: "basic",
+                    name: "Essential Care",
                     price: "€89",
                     hours: "2 hours · every month",
                     tagline: "A watchful eye for lock-up-and-leave homes.",
@@ -455,7 +456,8 @@ function Index() {
                     ],
                   },
                   {
-                    name: "Middle",
+                    key: "middle",
+                    name: "Home Ready",
                     price: "€149",
                     hours: "4 hours · every month",
                     tagline: "The sweet spot for homes that live in all season.",
@@ -468,7 +470,8 @@ function Index() {
                     ],
                   },
                   {
-                    name: "Best",
+                    key: "best",
+                    name: "Signature Care",
                     price: "€199",
                     hours: "6 hours · every month",
                     tagline: "Complete cover for busy homes and rentals.",
