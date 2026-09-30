@@ -180,6 +180,25 @@
   text-transform: uppercase;
 }
 
+@utility policy-body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: color-mix(in oklab, var(--color-deep) 70%, transparent);
+  & p + p { margin-top: 1rem; }
+  & ul {
+    margin-left: 1.25rem;
+    list-style: disc;
+    & li + li { margin-top: 0.5rem; }
+  }
+  & a {
+    font-weight: 600;
+    color: var(--coral);
+    text-underline-offset: 4px;
+    &:hover { text-decoration: underline; }
+  }
+  & table a { color: var(--coral); }
+}
+
 @utility nav-link {
   padding: 0.5rem 0;
   transition: color 180ms ease;
