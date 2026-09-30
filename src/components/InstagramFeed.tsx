@@ -8,7 +8,6 @@ import ig5 from "@/assets/ig-5.jpg";
 import ig6 from "@/assets/ig-6.jpg";
 
 const HANDLE = "solidmaint";
-const PROFILE = `https://instagram.com/${HANDLE}`;
 
 const posts = [
   { image: ig1, caption: "Spring tidy-up in Benalmádena — palms trimmed, borders back in shape.", likes: 128, comments: 9 },
