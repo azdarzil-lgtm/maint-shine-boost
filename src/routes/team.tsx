@@ -173,7 +173,7 @@ function TeamPage() {
           </div>
 
 
-          <div className="mt-16 grid overflow-hidden rounded-[1.75rem] border border-deep/15 bg-olive/10 lg:grid-cols-[minmax(0,1fr)_19rem] lg:items-end xl:grid-cols-[minmax(0,1fr)_24rem]">
+          <div className="mt-16 grid overflow-hidden rounded-[1.75rem] border border-deep/15 bg-olive/10 lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-end xl:grid-cols-[minmax(0,1fr)_26.5rem]">
             <div className="p-8 lg:py-12 lg:pl-10 lg:pr-4">
               <h2 className="font-display text-2xl font-semibold leading-tight md:text-3xl lg:whitespace-nowrap xl:text-4xl">
                 Would you like us to look after Your Home?
@@ -190,7 +190,7 @@ function TeamPage() {
               <img
                 src={manMeditating}
                 alt="A homeowner relaxing while SolidMaint takes care of his home"
-                className="max-h-full w-full max-w-[17rem] object-contain object-bottom sm:max-w-[18.5rem]"
+                className="max-h-full w-full max-w-[18.7rem] object-contain object-bottom sm:max-w-[20.4rem]"
               />
             </div>
           </div>
