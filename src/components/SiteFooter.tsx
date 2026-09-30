@@ -65,6 +65,7 @@ export function SiteFooter() {
           <Brand light />
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-end">
             <Link to="/privacy" className="transition-colors hover:text-coral">Privacy Policy</Link>
+            <Link to="/cookie-policy" className="transition-colors hover:text-coral">Cookie Policy</Link>
             <p>© 2026 SolidMaint</p>
           </div>
         </div>
