@@ -147,7 +147,7 @@ function TeamPage() {
 
       <section className="pb-20 md:pb-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our crew</h2>
+          <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our people</h2>
           <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
             {team.map((member) => (
               <MemberCard key={member.name} {...member} imageClass="max-w-[200px] md:max-w-[220px]" />
