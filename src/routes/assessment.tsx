@@ -35,8 +35,8 @@ export const Route = createFileRoute("/assessment")({
 const steps = [
   {
     icon: ClipboardCheck,
-    title: "Pick who you are",
-    text: "Overseas owner, resident owner, property manager or buying a home — each path asks its own questions.",
+    title: "Start straight away",
+    text: "The home enquiry form is right here — fill it in and send. Or pick your situation below it and the questions shape themselves.",
   },
   {
     icon: Sparkles,
