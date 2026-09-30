@@ -421,53 +421,44 @@ function Index() {
           </div>
 
           <div id="builder" className="mt-8 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
-            <div className="grid gap-10 p-7 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:p-14">
-              <div className="order-2">
-                <p className="section-label text-coral">Bespoke plans</p>
-                <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your home. Your plan.</h3>
-                <p className="mt-5 max-w-xl text-lg leading-relaxed text-sunlit/70">
-                  No fixed bundles — and no paying for what your home doesn’t need. In about a minute we build one plan
-                  around your actual home: the outdoor care and the extra services you choose. Nothing else.
-                </p>
-                <ul className="mt-7 space-y-3 text-sm">
-                  {[
-                    "Garden, pool and home care — only what your property actually needs",
-                    "Tick the extra services you want, from AC servicing to solar panel cleaning",
-                    "Set the hours for each extra service — one clear rate of €45 per hour",
-                  ].map((point) => (
-                    <li key={point} className="flex items-start gap-3">
-                      <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
-                      <span className="text-sunlit/80">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button type="button" onClick={() => setBuilderOpen(true)} className="solid-button solid-button-coral mt-9">
-                  Build my home plan now <ArrowRight aria-hidden="true" />
-                </button>
-                <p className="mt-4 text-xs text-sunlit/55">Free Property Vault with every plan · Indicative pricing until we’ve viewed your property</p>
-              </div>
-              <div className="order-1 rounded-[1.5rem] border border-deep/10 bg-white p-6 text-deep shadow-[0_24px_50px_-32px_rgba(0,0,0,0.25)] md:p-8">
-                <p className="section-label text-coral">For example — a villa plan</p>
-                <ul className="mt-4 divide-y divide-deep/10 text-sm">
-                  {[
-                    ["Care plan base", "€89.00"],
-                    ["Villa", "+ €70.00"],
-                    ["Family garden", "+ €80.00"],
-                    ["Standard pool", "+ €60.00"],
-                    ["AC seasonal service · 1 hour", "€45.00"],
-                  ].map(([label, price]) => (
-                    <li key={label} className="flex items-center justify-between gap-4 py-2.5">
-                      <span>{label}</span>
-                      <span className="font-semibold">{price}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-4 flex items-end justify-between gap-4 border-t border-deep/15 pt-4">
-                  <span className="font-display text-2xl font-semibold">€344.00<span className="ml-1 text-sm font-normal text-deep/55">/ month</span></span>
-                  <span className="rounded-full bg-coral px-3 py-1 text-[0.6rem] font-extrabold uppercase tracking-wider text-sunlit">Indicative</span>
+            <div className="p-7 sm:p-10 lg:p-14">
+              <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+                <div>
+                  <p className="section-label text-coral">Three simple care packages</p>
+                  <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your hours. Your choice.</h3>
+                  <p className="mt-5 max-w-xl text-lg leading-relaxed text-sunlit/70">Choose 2, 4 or 6 hours of dependable help each month. Use them wherever your home needs us, then add regular garden, pool, cleaning or scheduled AC care.</p>
                 </div>
-                <p className="mt-3 text-xs leading-relaxed text-deep/55">Every plan is different — yours is built in the builder, around your home.</p>
+                <div className="grid gap-3 sm:grid-cols-3">
+                  {[
+                    { name: "Basic", hours: "2 hours", price: "€89", note: "Regular check + small fixes" },
+                    { name: "Middle", hours: "4 hours", price: "€149", note: "More time for everyday care", popular: true },
+                    { name: "Best", hours: "6 hours", price: "€199", note: "Our most complete care" },
+                  ].map((plan) => (
+                    <div key={plan.name} className={`relative rounded-2xl border p-5 ${plan.popular ? "border-coral bg-sunlit text-deep" : "border-sunlit/20 bg-sunlit/5"}`}>
+                      {plan.popular && <span className="absolute right-3 top-3 rounded-full bg-coral px-2 py-1 text-[0.55rem] font-extrabold uppercase tracking-wide text-sunlit">Popular</span>}
+                      <p className="section-label text-coral">{plan.name}</p>
+                      <p className="mt-3 font-display text-3xl font-semibold">{plan.price}<span className={`text-xs font-normal ${plan.popular ? "text-deep/55" : "text-sunlit/55"}`}> / month</span></p>
+                      <p className="mt-2 font-bold">{plan.hours}</p>
+                      <p className={`mt-1 text-xs leading-relaxed ${plan.popular ? "text-deep/60" : "text-sunlit/60"}`}>{plan.note}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
+              <div className="mt-8 flex flex-col gap-4 border-t border-sunlit/15 pt-7 sm:flex-row sm:items-center sm:justify-between">
+                <div className="grid gap-2 text-sm text-sunlit/75 sm:grid-cols-2 sm:gap-x-8">
+                  <p className="flex gap-2"><Check className="size-4 shrink-0 text-coral" />Free Property Vault and monthly report</p>
+                  <p className="flex gap-2"><Check className="size-4 shrink-0 text-coral" />Extra hours €45 · IVA included</p>
+                  <p className="flex gap-2"><Check className="size-4 shrink-0 text-coral" />Unused hours roll over for one month</p>
+                  <p className="flex gap-2"><Check className="size-4 shrink-0 text-coral" />No minimum term</p>
+                </div>
+                <button type="button" onClick={() => setBuilderOpen(true)} className="solid-button solid-button-coral shrink-0">Build my home plan now <ArrowRight aria-hidden="true" /></button>
+              </div>
+              <div className="mt-7 grid gap-3 border-t border-sunlit/15 pt-7 sm:grid-cols-3">
+                <p className="text-sm text-sunlit/70"><strong className="block text-sunlit">A Basic month</strong>Checked a slow leak, adjusted two doors and cleaned terrace drains.</p>
+                <p className="text-sm text-sunlit/70"><strong className="block text-sunlit">A Middle month</strong>Fixed a tap, cleaned solar panels and reset the irrigation timer.</p>
+                <p className="text-sm text-sunlit/70"><strong className="block text-sunlit">A Best month</strong>Handled small repairs, refreshed bathroom silicone and pressure-washed the terrace.</p>
+              </div>
+              <p className="mt-5 text-xs text-sunlit/55">Examples only — you decide how your package hours are used. Fixed-price services are added separately.</p>
             </div>
           </div>
 
@@ -504,7 +495,7 @@ function Index() {
               <h2 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">A care plan in four simple steps.</h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-deep/65 lg:pb-2">
-              Tell us about your property, choose the care it needs and we’ll build a bespoke monthly plan around it — then document every task on your phone.
+              Choose your monthly hours, add the regular care your home needs and we’ll keep every visit clear in your Property Vault.
             </p>
           </div>
 
@@ -547,9 +538,9 @@ function Index() {
               <h3 className="mt-4 font-display text-2xl font-semibold md:text-3xl">Set the hours each job needs</h3>
               <p className="mt-4 leading-relaxed text-deep/65">Tick the extra services your home needs and give each job its own hours — every hour at one clear rate of €45. Nothing you don't need, ever.</p>
               <div className="mt-8 border-t border-deep/15 pt-6 lg:mt-auto">
-                <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Hours per extra service</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-deep/50">Service hours in your package</p>
                 <div className="mt-4 grid grid-cols-5 gap-2" aria-hidden="true">
-                  {[{ h: 1, p: "15%" }, { h: 6, p: "40%" }, { h: 12, p: "62%" }, { h: 18, p: "82%" }, { h: 24, p: "100%", max: true }].map(({ h, p, max }) => (
+                  {[{ h: 2, p: "34%" }, { h: 3, p: "50%" }, { h: 4, p: "67%" }, { h: 5, p: "84%" }, { h: 6, p: "100%", max: true }].map(({ h, p, max }) => (
                     <div key={h} className="text-center">
                       <div className="relative h-24 w-full">
                         <div className={`absolute bottom-0 w-full rounded-t-full ${max ? "bg-coral" : "bg-olive/40"}`} style={{ height: p }} />
@@ -559,8 +550,8 @@ function Index() {
                   ))}
                 </div>
                 <p className="mt-2 flex items-baseline justify-between text-[0.65rem] font-bold uppercase tracking-wide">
-                  <span className="text-deep/45">From 1h</span>
-                   <span className="text-coral">Up to 24 hours</span>
+                  <span className="text-deep/45">Basic · 2h</span>
+                   <span className="text-coral">Best · 6h</span>
                 </p>
               </div>
             </article>
