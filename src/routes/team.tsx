@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
-import team4 from "@/assets/team-4.jpg";
 import antonioAsset from "@/assets/antonio.jpg.asset.json";
 import joseAntonio from "@/assets/jose-antonio.jpg";
 import samuliAsset from "@/assets/samuli.jpg.asset.json";
@@ -38,38 +37,48 @@ export const Route = createFileRoute("/team")({
 });
 
 const management = [
-  { name: "Marena López", role: "Client Care Director", photo: marenaAsset.url },
-  { name: "Carmen Vidal", role: "Property Manager", photo: team4 },
+  { name: "Jani Hämäläinen", role: "CEO", initials: "JH" },
+  { name: "Marena Christenses", role: "Head of Customer Relations", photo: marenaAsset.url },
+  { name: "Samuli Isoherranen", role: "Business Manager", photo: samuliAsset.url },
+  { name: "Anita Victoria Zdarzil", role: "Head of Marketing", initials: "AZ" },
+  { name: "Tero Keski-Valkama", role: "CTO", initials: "TK" },
 ];
 
 const team = [
   { name: "José Antonio", role: "Garden Maintenance", photo: joseAntonio },
   { name: "Antonio", role: "Pool Maintenance & AC Services", photo: antonio },
-  { name: "Samuli", role: "Handyman & Repairs, Electrical & Plumbing", photo: samuli },
 ];
 
 function MemberCard({
   name,
   role,
   photo,
+  initials,
   imageClass,
 }: {
   name: string;
   role: string;
-  photo: string;
+  photo?: string;
+  initials?: string;
   imageClass: string;
 }) {
   return (
     <div className="group text-center">
       <div className={`mx-auto overflow-hidden rounded-[1.75rem] ${imageClass}`}>
-        <img
-          src={photo}
-          alt={name}
-          loading="lazy"
-          width={600}
-          height={600}
-          className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+        {photo ? (
+          <img
+            src={photo}
+            alt={name}
+            loading="lazy"
+            width={600}
+            height={600}
+            className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex aspect-square w-full items-center justify-center bg-olive/15 transition-transform duration-500 group-hover:scale-105">
+            <span className="font-display text-4xl font-semibold text-deep/40">{initials}</span>
+          </div>
+        )}
       </div>
       <p className="mt-4 font-display text-lg font-semibold">{name}</p>
       <p className="mt-1 text-xs font-bold uppercase text-coral">{role}</p>
@@ -99,7 +108,7 @@ function TeamPage() {
       <section className="pb-14 md:pb-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Management</h2>
-          <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
+          <div className="mx-auto mt-10 grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {management.map((member) => (
               <MemberCard key={member.name} {...member} imageClass="max-w-[240px] md:max-w-[260px]" />
             ))}
@@ -110,7 +119,7 @@ function TeamPage() {
       <section className="pb-20 md:pb-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our crew</h2>
-          <div className="mx-auto mt-10 grid max-w-5xl gap-6 sm:grid-cols-3">
+          <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
             {team.map((member) => (
               <MemberCard key={member.name} {...member} imageClass="max-w-[200px] md:max-w-[220px]" />
             ))}
