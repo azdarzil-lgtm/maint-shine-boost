@@ -23,8 +23,7 @@ const propertyTypes: { key: PropertyKey; label: string; note: string }[] = [
 
 const outdoorSizes = [
   { label: "No garden / yard", note: "No regular outdoor care", add: 0 },
-  { label: "Patio / courtyard", note: "up to 100 m²", add: 20 },
-  { label: "Small garden", note: "100–300 m²", add: 35 },
+  { label: "Small garden", note: "up to 300 m²", add: 35 },
   { label: "Family garden", note: "300–700 m²", add: 80 },
   { label: "Large garden", note: "700–1,500 m²", add: 140 },
   { label: "Estate grounds", note: "1,500 m² +", add: 210 },
@@ -116,7 +115,7 @@ export function PlanBuilder({ onClose, initialPackage = "middle" }: { onClose: (
   const displayedTotal = Math.ceil(total);
 
   const lines = useMemo<{ label: string; frequency: string; amount: number }[]>(() => [
-    { label: `${selectedPackage.name} package · ${selectedPackage.hours} hours per month + free Property Vault`, frequency: "As needed", amount: selectedPackage.price },
+    { label: `${selectedPackage.name} package · ${selectedPackage.hours} hours per month · Property Vault included`, frequency: "As needed", amount: selectedPackage.price },
     ...(outdoorChoice.add ? [{ label: `Garden care · ${outdoorChoice.label}`, frequency: `${gardenVisits}× per week`, amount: outdoorChoice.add }] : []),
     ...(palms ? [{ label: `Palm trimming · ${palms} ${palms === 1 ? "palm" : "palms"}`, frequency: "Once a year", amount: palmAdd }] : []),
     ...(poolChoice.add ? [{ label: `Pool care · ${poolChoice.label}`, frequency: "At least once per week · chemical treatments included", amount: poolChoice.add }] : []),
@@ -144,7 +143,7 @@ export function PlanBuilder({ onClose, initialPackage = "middle" }: { onClose: (
           `${selectedPackage.name} gives you ${selectedPackage.hours} hours of our team's time every month, counted in 15-minute steps with travel time never counted.`,
           `Property: ${property.label}.`,
           "Use your hours for the work your home needs; unused hours roll over for one month.",
-          "One dedicated team and plan manager, with every visit documented in your free Property Vault.",
+          "One dedicated team and plan manager, with every visit documented in your included Property Vault.",
           "Fixed monthly fee, billed monthly in advance. No minimum term.",
         ],
       });
@@ -173,7 +172,7 @@ export function PlanBuilder({ onClose, initialPackage = "middle" }: { onClose: (
           <div className="mt-5 rounded-2xl border border-coral/40 bg-coral/10 p-5 md:p-6"><p className="section-label text-coral">Let’s connect</p><h4 className="mt-2 font-display text-xl font-semibold">Would you like a home visit from our specialist, or are you not ready yet?</h4>{nextSent ? <p className="mt-4 flex gap-2 text-sm font-semibold"><Check className="size-4 text-coral" />Your email app has opened with everything filled in. Press send and we’ll be in touch.</p> : <form className="mt-4" onSubmit={(event) => { event.preventDefault(); const details = [`Request: ${nextMode === "visit" ? "Free specialist home visit" : "Callback"}`, `Name: ${nextName}`, `Phone: ${nextPhone}`, `Email for estimate: ${nextEmail}`, `Property location: ${nextTown || "—"}`, `Best time: ${nextTime}`, `Notes: ${nextNote || "—"}`, "", "— My plan —", enquiryBody].join("\n"); window.location.href = `mailto:info@solidmaint.com?subject=${encodeURIComponent(nextMode === "visit" ? "Care plan — home visit request" : "Care plan — callback request")}&body=${encodeURIComponent(details)}`; setNextSent(true); }}><div className="grid gap-2 sm:grid-cols-2">{([ ["visit", "Yes, I’d like a home visit", Home], ["call", "Not ready yet? Request a callback", Phone] ] as const).map(([key, label, Icon]) => <button key={key} type="button" onClick={() => setNextMode(key)} className={`rounded-xl border p-3 text-left font-semibold ${nextMode === key ? "border-coral bg-white" : "border-deep/15"}`}><Icon className="mr-2 inline size-4 text-coral" />{label}</button>)}</div><div className="mt-4 grid gap-3 sm:grid-cols-2"><input required value={nextName} onChange={(e) => setNextName(e.target.value)} placeholder="Your name" className="rounded-xl border border-deep/15 bg-white px-3 py-2.5 text-sm" /><input required type="tel" value={nextPhone} onChange={(e) => setNextPhone(e.target.value)} placeholder="Phone number" className="rounded-xl border border-deep/15 bg-white px-3 py-2.5 text-sm" /><input required type="email" value={nextEmail} onChange={(e) => setNextEmail(e.target.value)} placeholder="Email for your estimate" className="rounded-xl border border-deep/15 bg-white px-3 py-2.5 text-sm" /><input value={nextTown} onChange={(e) => setNextTown(e.target.value)} placeholder="Property location" className="rounded-xl border border-deep/15 bg-white px-3 py-2.5 text-sm" /><select value={nextTime} onChange={(e) => setNextTime(e.target.value)} className="rounded-xl border border-deep/15 bg-white px-3 py-2.5 text-sm sm:col-span-2"><option>Any time, 09:00–18:00</option><option>Morning, 09:00–12:00</option><option>Midday, 12:00–15:00</option><option>Afternoon, 15:00–18:00</option></select><label className="text-sm font-semibold sm:col-span-2">Is there a service you don’t see in our offer?<textarea value={nextNote} onChange={(e) => setNextNote(e.target.value)} placeholder="Tell us what else your home needs (optional)" rows={3} className="mt-2 w-full rounded-xl border border-deep/15 bg-white px-3 py-2.5 text-sm" /></label></div><button type="submit" className="solid-button solid-button-coral mt-4 w-full">{nextMode === "visit" ? "Book my free home visit" : "Request my callback"}<ArrowRight /></button></form>}</div>
         </div>}
       </div>
-      <div className="flex items-center justify-between gap-3 border-t border-deep/10 px-5 py-4 md:px-8"><button type="button" onClick={() => (step === 0 ? onClose() : setStep((current) => current - 1))} className="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-deep/60 hover:text-coral"><ArrowLeft className="size-4" />{step === 0 ? "Close" : "Back"}</button>{step < steps.length - 1 ? <><p className="hidden text-sm text-deep/60 sm:block"><span className="font-display text-lg font-bold text-deep">{euro(displayedTotal)}</span> / month</p><button type="button" onClick={() => setStep((current) => current + 1)} className="solid-button solid-button-coral">Continue<ArrowRight /></button></> : <p className="font-display text-lg font-semibold">{euro(displayedTotal)} / month</p>}</div>
+       <div className="flex items-center justify-between gap-3 border-t border-deep/10 px-5 py-4 md:px-8"><button type="button" onClick={() => (step === 0 ? onClose() : setStep((current) => current - 1))} className="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-deep/60 hover:text-coral"><ArrowLeft className="size-4" />{step === 0 ? "Close" : "Back"}</button>{step < steps.length - 1 ? <>{step > 0 && <p className="hidden text-sm text-deep/60 sm:block"><span className="font-display text-lg font-bold text-deep">{euro(displayedTotal)}</span> / month</p>}<button type="button" onClick={() => setStep((current) => current + 1)} className="solid-button solid-button-coral">Continue<ArrowRight /></button></> : <p className="font-display text-lg font-semibold">{euro(displayedTotal)} / month</p>}</div>
     </div>
   </div>;
 }
