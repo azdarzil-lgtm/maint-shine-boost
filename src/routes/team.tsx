@@ -8,6 +8,7 @@ import antonio from "@/assets/antonio.jpg";
 import carlos from "@/assets/carlos.jpg";
 import jani from "@/assets/jani.jpg";
 import joseAntonio from "@/assets/jose-antonio.jpg";
+import manMeditating from "@/assets/man-meditating.png";
 import tero from "@/assets/tero.jpg";
 import tuukka from "@/assets/tuukka.jpg";
 import janita from "@/assets/janita.jpg";
@@ -172,16 +173,26 @@ function TeamPage() {
           </div>
 
 
-          <div className="mt-16 rounded-[1.75rem] border border-deep/15 bg-olive/10 p-8 md:p-12">
-            <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
-              Would you like us to look after Your Home?
-            </h2>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-deep/65">
-              Tell us about your property and we will match it with the right care plan — and the right people.
-            </p>
-            <a href="/#contact" className="solid-button solid-button-coral mt-8">
-              Talk to us <ArrowRight aria-hidden="true" />
-            </a>
+          <div className="mt-16 grid overflow-hidden rounded-[1.75rem] border border-deep/15 bg-olive/10 lg:grid-cols-[minmax(0,1fr)_27rem] lg:items-end">
+            <div className="p-8 lg:py-12 lg:pl-10 lg:pr-4">
+              <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
+                Would you like us to look after Your Home?
+              </h2>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-deep/65">
+                Put your feet up — we&apos;ve got it from here. While you enjoy the Costa life, our crew keeps your home
+                cared for, checked and running smoothly. You relax; we handle the rest.
+              </p>
+              <a href="/#contact" className="solid-button solid-button-coral mt-8">
+                Talk to us <ArrowRight aria-hidden="true" />
+              </a>
+            </div>
+            <div className="flex h-[24rem] items-end justify-center px-4 sm:h-[27rem] lg:h-full lg:min-h-96 lg:px-0 lg:pr-2">
+              <img
+                src={manMeditating}
+                alt="A homeowner relaxing while SolidMaint takes care of his home"
+                className="max-h-full w-full max-w-lg object-contain object-bottom"
+              />
+            </div>
           </div>
         </div>
       </section>
