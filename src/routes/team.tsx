@@ -52,8 +52,8 @@ const management = [
   { name: "Anita Victoria Zdarzil", role: "Head of Marketing", photo: anita },
   { name: "Samuli Isoherranen", role: "Business Manager", photo: samuliAsset.url },
   { name: "Tuukka Sariola", role: "Business Development & Partnerships Manager", photo: tuukka },
-  { name: "Janita Rintala", role: "Customer Success Manager", photo: janita },
   { name: "Jussi Koivulahti", role: "Service Manager", photo: jussi },
+  { name: "Janita Rintala", role: "Customer Success Manager", photo: janita },
   { name: "Carlos Moreno", role: "Product Designer / UX Engineer", photo: carlos },
 ];
 
