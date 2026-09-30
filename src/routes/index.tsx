@@ -37,6 +37,7 @@ import vaultWoman from "@/assets/vault-woman-phone.jpg";
 
 const antonio = antonioAsset.url;
 const samuli = samuliAsset.url;
+import greenLogo from "@/assets/solidmaint-logo-green-transparent.png.asset.json";
 import testimonialStill from "@/assets/testimonial-still.jpg";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -710,6 +711,7 @@ function Index() {
               },
               {
                 initials: "IC",
+                photo: antonio,
                 name: "Antonio",
                 role: "Electrical services",
                 quote: "No more exercising in the darkness, thank you Antonio & SolidMaint.",
