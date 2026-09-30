@@ -202,32 +202,41 @@ function ServiceAccordion() {
                 <div className="grid gap-5 px-0 pt-1 pb-7 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-4">
                   <span className="hidden sm:block" aria-hidden="true" />
                   <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-                    <div className="flex shrink-0 -space-x-3">
-                      <img
-                        src={service.lead.photo}
-                        alt={service.lead.name}
-                        loading="lazy"
-                        width={96}
-                        height={96}
-                          className="size-16 rounded-full object-cover ring-2 ring-white sm:size-20"
-                      />
-                      {service.secondLead ? (
-                        <img
-                          src={service.secondLead.photo}
-                          alt={service.secondLead.name}
-                          loading="lazy"
-                          width={96}
-                          height={96}
-                          className="size-16 rounded-full object-cover ring-2 ring-white sm:size-20"
-                        />
-                      ) : null}
-                    </div>
-                    <div>
-                      <p className="text-[0.7rem] font-bold uppercase tracking-widest text-coral">
-                        {service.secondLead
-                          ? `${service.lead.name} & ${service.secondLead.name} · ${service.lead.role}s`
-                          : `${service.lead.name} · ${service.lead.role}`}
-                      </p>
+                    {service.lead ? (
+                      <>
+                        <div className="flex shrink-0 -space-x-3">
+                          <img
+                            src={service.lead.photo}
+                            alt={service.lead.name}
+                            loading="lazy"
+                            width={96}
+                            height={96}
+                            className="size-16 rounded-full object-cover ring-2 ring-white sm:size-20"
+                          />
+                          {service.secondLead ? (
+                            <img
+                              src={service.secondLead.photo}
+                              alt={service.secondLead.name}
+                              loading="lazy"
+                              width={96}
+                              height={96}
+                              className="size-16 rounded-full object-cover ring-2 ring-white sm:size-20"
+                            />
+                          ) : null}
+                        </div>
+                        <div>
+                          <p className="text-[0.7rem] font-bold uppercase tracking-widest text-coral">
+                            {service.secondLead
+                              ? `${service.lead.name} & ${service.secondLead.name}`
+                              : `${service.lead.name}`}
+                          </p>
+                        </div>
+                      </>
+                    ) : (
+                      <div>
+                        <p className="text-[0.7rem] font-bold uppercase tracking-widest text-coral">Book early &mdash; our cleaning crew is being hand-picked right now</p>
+                      </div>
+                    )}
                       <p className="mt-2 max-w-xl text-sm leading-relaxed text-deep/70">{service.detail}</p>
                       <a href="#contact" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-coral hover:underline">
                         Book this service <ArrowRight className="size-4" aria-hidden="true" />
