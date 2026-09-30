@@ -60,6 +60,12 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
               {link.label}
             </Link>
           ))}
+          <a
+            href="https://app.solidmaint.com/"
+            className="solid-button solid-button-coral px-4 py-2 text-[0.7rem] font-extrabold uppercase tracking-[0.04em]"
+          >
+            Log in
+          </a>
         </div>
         <div className="flex items-center gap-2">
           <Link
@@ -93,8 +99,13 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
               {link.label}
             </Link>
           ))}
-        </div>
-      )}
+          <a
+            href="https://app.solidmaint.com/"
+            onClick={() => setMenuOpen(false)}
+            className="solid-button solid-button-coral mt-4 block w-full px-4 py-3 text-center text-xs font-extrabold uppercase tracking-[0.04em]"
+          >
+            Log in
+          </a>
     </header>
   );
 }
