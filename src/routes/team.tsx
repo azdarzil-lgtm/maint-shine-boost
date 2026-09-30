@@ -162,7 +162,7 @@ function TeamPage() {
 
       <section className="pb-20 md:pb-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our people</h2>
+          <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our Crew</h2>
           <p className="mx-auto mt-3 max-w-xl text-center text-sm leading-relaxed text-deep/65">
             The specialists out on the tools — each one the lead for their service.
           </p>
