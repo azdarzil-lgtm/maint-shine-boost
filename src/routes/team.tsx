@@ -1,14 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
-import team3 from "@/assets/team-3.jpg";
 import team4 from "@/assets/team-4.jpg";
 import antonioAsset from "@/assets/antonio.jpg.asset.json";
+import joseAntonio from "@/assets/jose-antonio.jpg";
+import samuliAsset from "@/assets/samuli.jpg.asset.json";
 
 const antonio = antonioAsset.url;
-import pekka from "@/assets/pekka.jpg";
-import mikko from "@/assets/mikko.jpg";
-import jonas from "@/assets/jonas.jpg";
+const samuli = samuliAsset.url;
 import marenaAsset from "@/assets/marena.webp.asset.json";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -39,16 +38,14 @@ export const Route = createFileRoute("/team")({
 });
 
 const management = [
-  { name: "Antonio Reyes", role: "Head of Operations", photo: antonio },
   { name: "Marena López", role: "Client Care Director", photo: marenaAsset.url },
   { name: "Carmen Vidal", role: "Property Manager", photo: team4 },
 ];
 
 const team = [
-  { name: "Daniel Torres", role: "Lead Technician", photo: team3 },
-  { name: "Pekka Lindqvist", role: "AC Specialist", photo: pekka },
-  { name: "Mikko Aaltonen", role: "Handyman Lead", photo: mikko },
-  { name: "Jonas Berg", role: "Electrical Lead", photo: jonas },
+  { name: "José Antonio", role: "Garden Maintenance", photo: joseAntonio },
+  { name: "Antonio", role: "Pool Maintenance & AC Services", photo: antonio },
+  { name: "Samuli", role: "Handyman & Repairs, Electrical & Plumbing", photo: samuli },
 ];
 
 function MemberCard({
@@ -102,7 +99,7 @@ function TeamPage() {
       <section className="pb-14 md:pb-20">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Management</h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+          <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
             {management.map((member) => (
               <MemberCard key={member.name} {...member} imageClass="max-w-[240px] md:max-w-[260px]" />
             ))}
@@ -113,7 +110,7 @@ function TeamPage() {
       <section className="pb-20 md:pb-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our crew</h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mx-auto mt-10 grid max-w-5xl gap-6 sm:grid-cols-3">
             {team.map((member) => (
               <MemberCard key={member.name} {...member} imageClass="max-w-[200px] md:max-w-[220px]" />
             ))}
