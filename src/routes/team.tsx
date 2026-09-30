@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
+import anita from "@/assets/anita.jpg";
 import antonioAsset from "@/assets/antonio.jpg.asset.json";
 import joseAntonio from "@/assets/jose-antonio.jpg";
 import samuliAsset from "@/assets/samuli.jpg.asset.json";
@@ -40,7 +41,7 @@ const management = [
   { name: "Jani Hämäläinen", role: "CEO", initials: "JH" },
   { name: "Tero Keski-Valkama", role: "CTO", initials: "TK" },
   { name: "Marena Christenses", role: "Head of Customer Relations", photo: marenaAsset.url },
-  { name: "Anita Victoria Zdarzil", role: "Head of Marketing", initials: "AZ" },
+  { name: "Anita Victoria Zdarzil", role: "Head of Marketing", photo: anita },
   { name: "Samuli Isoherranen", role: "Business Manager", photo: samuliAsset.url },
 ];
 
