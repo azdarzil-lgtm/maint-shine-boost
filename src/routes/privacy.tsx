@@ -105,11 +105,19 @@ const sections = [
   {
     title: "5. Cookies and website data",
     content: (
-      <p>
-        We currently use only the technology needed to display and operate this website. We do not currently use
-        advertising cookies on this site. External services you choose to open may set their own cookies. If we add
-        optional analytics or marketing cookies, we will update this policy and request consent where required.
-      </p>
+      <>
+        <p>
+          We currently use only the technology needed to display and operate this website. A setting in your browser’s
+          local storage remembers when you dismiss a website message so it does not keep appearing. We do not currently
+          use advertising cookies on this site.
+        </p>
+        <p>
+          Basic technical information may be processed by our website hosting and error-monitoring services to deliver
+          the site securely and diagnose faults. Our heading font is provided by Google Fonts, so your browser may
+          connect to Google when a page loads. External services you choose to open may set their own cookies. If we add
+          optional analytics or marketing cookies, we will update this policy and request consent where required.
+        </p>
+      </>
     ),
   },
   {
