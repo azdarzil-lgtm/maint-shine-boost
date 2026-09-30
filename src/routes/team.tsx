@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 import anita from "@/assets/anita.jpg";
 import antonioAsset from "@/assets/antonio.jpg.asset.json";
+import carlos from "@/assets/carlos.jpg";
 import jani from "@/assets/jani.jpg";
 import joseAntonio from "@/assets/jose-antonio.jpg";
 import tero from "@/assets/tero.jpg";
@@ -51,11 +52,14 @@ const management = [
   { name: "Tuukka Sariola", role: "Business Development & Partnerships Manager", photo: tuukka },
   { name: "Janita Rintala", role: "Customer Success Manager", photo: janita },
   { name: "Jussi Koivulahti", role: "Service Manager", photo: jussi },
+  { name: "Carlos Moreno", role: "Product Designer / UX Engineer", photo: carlos },
 ];
 
 const team = [
-  { name: "José Antonio", role: "Garden Maintenance", photo: joseAntonio },
-  { name: "Antonio", role: "Pool Maintenance & AC Services", photo: antonio },
+  { name: "Aldis", role: "Plumbing & Construction", initials: "A" },
+  { name: "Antonio", role: "AC, Electricity & Plumbing", photo: antonio },
+  { name: "José Antonio", role: "Garden & Pool", photo: joseAntonio },
+  { name: "Leevi", role: "Garden & Pool", initials: "L" },
 ];
 
 function MemberCard({
@@ -156,15 +160,16 @@ function TeamPage() {
 
       <section className="pb-20 md:pb-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
-            {/* Crew hidden for now — coming back to this later */}
-            {/*
-            <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our people</h2>
-            <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
-              {team.map((member) => (
-                <MemberCard key={member.name} {...member} imageClass="max-w-[200px] md:max-w-[220px]" />
-              ))}
-            </div>
-            */}
+          <h2 className="text-center font-display text-2xl font-semibold md:text-3xl">Our people</h2>
+          <p className="mx-auto mt-3 max-w-xl text-center text-sm leading-relaxed text-deep/65">
+            The specialists out on the tools — each one the lead for their service.
+          </p>
+          <div className="mx-auto mt-10 grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {team.map((member) => (
+              <MemberCard key={member.name} {...member} imageClass="max-w-[200px] md:max-w-[220px]" />
+            ))}
+          </div>
+
 
           <div className="mt-16 rounded-[1.75rem] border border-deep/15 bg-olive/10 p-8 md:p-12">
             <h2 className="max-w-[20ch] font-display text-2xl font-semibold leading-tight md:text-4xl">
