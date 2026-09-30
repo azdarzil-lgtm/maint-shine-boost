@@ -110,12 +110,3 @@ function AssessmentPage() {
     </>
   );
 }
-
-export const AssessmentCta = () => (
-  <Link
-    to="/assessment"
-    className="inline-flex items-center gap-2 rounded-full bg-coral px-7 py-3.5 text-base font-bold text-sunlit transition hover:-translate-y-0.5 hover:bg-[oklch(0.62_0.15_37)]"
-  >
-    Start your assessment <ArrowRight className="size-4" aria-hidden="true" />
-  </Link>
-);
