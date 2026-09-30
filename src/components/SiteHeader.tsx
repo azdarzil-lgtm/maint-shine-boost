@@ -106,6 +106,8 @@ export function SiteHeader({ solid = false }: { solid?: boolean }) {
           >
             Log in
           </a>
+        </div>
+      )}
     </header>
   );
 }
