@@ -14,7 +14,6 @@ import janita from "@/assets/janita.jpg";
 import jussi from "@/assets/jussi.jpg";
 import samuliAsset from "@/assets/samuli.jpg.asset.json";
 
-const antonio = antonioAsset.url;
 const samuli = samuliAsset.url;
 import marenaAsset from "@/assets/marena.webp.asset.json";
 import { SiteFooter } from "@/components/SiteFooter";
