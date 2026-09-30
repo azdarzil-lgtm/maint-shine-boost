@@ -97,11 +97,40 @@ function TeamPage() {
           <h1 className="mt-5 max-w-[14ch] font-display text-4xl font-semibold leading-tight md:text-6xl">
             The people behind every visit.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-deep/65">
-            A small, experienced crew based along the Costa del Sol. Our team has deep Nordic roots — precision,
-            delivered with genuine Costa warmth. We know the homes, the climate and the details that keep a
-            property running smoothly.
-          </p>
+          <div className="mt-6 grid gap-6 text-lg leading-relaxed text-deep/65 lg:grid-cols-2 lg:gap-10">
+            <p>
+              A small, experienced crew based along the Costa del Sol. Our team has deep Nordic roots — precision,
+              delivered with genuine Costa warmth. We know the homes, the climate and the details that keep a
+              property running smoothly.
+            </p>
+            <p>
+              SolidMaint started with a simple discovery: for all its beautiful homes, the Costa was missing a truly
+              quality home care service — the kind where visits actually happen on time, where you know exactly who
+              is coming and what was done. So we decided to build it ourselves: an innovative company with a
+              technical upper hand, created to serve the fantastic clients of this coast the way they deserve.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-5 sm:grid-cols-3">
+            {[
+              {
+                title: "Precision",
+                body: "Nordic attention to detail in every visit — schedules kept, checklists finished, nothing left to chance.",
+              },
+              {
+                title: "Innovation",
+                body: "The Property Vault, photo reports and smart planning put every visit, photo and invoice in your pocket.",
+              },
+              {
+                title: "Costa warmth",
+                body: "Real people who know your home by name — and treat it like their own, every single time.",
+              },
+            ].map((value) => (
+              <div key={value.title} className="rounded-[1.5rem] border border-deep/10 bg-white/70 p-6">
+                <p className="font-display text-base font-semibold text-coral">{value.title}</p>
+                <p className="mt-2 text-sm leading-relaxed text-deep/65">{value.body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
