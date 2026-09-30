@@ -217,7 +217,6 @@ export function AssessmentEnquiry() {
         <ArrowLeft className="size-4" aria-hidden="true" /> Back to the home enquiry
       </button>
       <EnquiryForm audience={active} />
-village
     </div>
   );
 }
