@@ -9,8 +9,6 @@ const socials = [
 ];
 
 export function SiteFooter() {
-  const [enquiryOpen, setEnquiryOpen] = useState(false);
-
   return (
     <footer id="contact" className="relative overflow-hidden bg-deep text-sunlit">
       <div className="relative mx-auto max-w-4xl px-5 py-20 text-center md:px-10 md:py-28">
@@ -22,14 +20,12 @@ export function SiteFooter() {
           Tell us where your home is and what needs care. Our team will reply within one working day.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <button
-            type="button"
-            onClick={() => setEnquiryOpen(true)}
-            aria-haspopup="dialog"
+          <Link
+            to="/assessment"
             className="solid-button solid-button-coral"
           >
             Start your enquiry <ArrowRight aria-hidden="true" />
-          </button>
+          </Link>
           <a href="tel:+34951798899" className="solid-button solid-button-outline">
             Call +34 951 798 899
           </a>
