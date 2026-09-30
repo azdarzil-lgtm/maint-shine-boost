@@ -63,7 +63,7 @@ export function InstagramFeed() {
                   <span className="flex items-center gap-1"><MessageCircle className="size-3.5" aria-hidden="true" />{post.comments}</span>
                 </span>
               </span>
-            </a>
+            </div>
           ))}
         </div>
       </div>
