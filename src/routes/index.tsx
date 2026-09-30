@@ -512,7 +512,7 @@ function Index() {
                     </ul>
                     <button
                       type="button"
-                      onClick={() => { setSelectedPackage(plan.key.toLowerCase() as "basic" | "middle" | "best"); setBuilderOpen(true); }}
+                      onClick={() => { setSelectedPackage(plan.name.toLowerCase() as "basic" | "middle" | "best"); setBuilderOpen(true); }}
                       className={`solid-button mt-7 w-full text-sm uppercase tracking-wider ${plan.popular ? "solid-button-coral" : "solid-button-white"}`}
                     >
                       Choose {plan.name}
