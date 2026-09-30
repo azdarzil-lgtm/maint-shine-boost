@@ -420,45 +420,109 @@ function Index() {
             })}
           </div>
 
-          <div id="builder" className="mt-8 scroll-mt-28 overflow-hidden rounded-[2rem] border border-deep/15 bg-deep text-sunlit">
-            <div className="p-7 sm:p-10 lg:p-14">
-              <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-                <div>
-                  <p className="section-label text-coral">Three simple care packages</p>
-                  <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your house. Your choice.</h3>
-                  <p className="mt-5 max-w-xl text-lg leading-relaxed text-sunlit/70">Choose 2, 4 or 6 hours of dependable help each month. Use them wherever your home needs us, then add regular garden, pool, cleaning or scheduled AC care.</p>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-3">
-                  {[
-                    { name: "Basic", hours: "2 hours", price: "€89", note: "Regular check + small fixes" },
-                    { name: "Middle", hours: "4 hours", price: "€149", note: "More time for everyday care", popular: true },
-                    { name: "Best", hours: "6 hours", price: "€199", note: "Our most complete care" },
-                  ].map((plan) => (
-                    <div key={plan.name} className={`relative rounded-2xl border p-5 ${plan.popular ? "border-coral bg-sunlit text-deep" : "border-sunlit/20 bg-sunlit/5"}`}>
-                      {plan.popular && <span className="absolute right-3 top-3 rounded-full bg-coral px-2 py-1 text-[0.55rem] font-extrabold uppercase tracking-wide text-sunlit">Popular</span>}
-                      <p className="section-label text-coral">{plan.name}</p>
-                      <p className="mt-3 font-display text-3xl font-semibold">{plan.price}<span className={`text-xs font-normal ${plan.popular ? "text-deep/55" : "text-sunlit/55"}`}> / month</span></p>
-                      <p className="mt-2 font-bold">{plan.hours}</p>
-                      <p className={`mt-1 text-xs leading-relaxed ${plan.popular ? "text-deep/60" : "text-sunlit/60"}`}>{plan.note}</p>
+          <div id="builder" className="relative mt-8 scroll-mt-28 overflow-hidden rounded-[2.5rem] border border-deep/15 bg-deep text-sunlit">
+            <div className="absolute -right-24 -top-24 size-64 rounded-full bg-sunlit/5 blur-3xl" aria-hidden="true" />
+            <div className="relative z-10 p-7 sm:p-10 lg:p-14">
+              <div className="mx-auto max-w-3xl text-center">
+                <p className="section-label text-coral">Three simple care packages</p>
+                <h3 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">Your house. Your choice.</h3>
+                <p className="mt-5 text-lg leading-relaxed text-sunlit/80">
+                  One dependable team, on standby for your home every month. Choose your hours — spend them on
+                  whatever the house asks for — and we'll keep everything running, documented and cared for.
+                </p>
+              </div>
+
+              <div className="mt-12 grid gap-6 md:grid-cols-3">
+                {[
+                  {
+                    name: "Basic",
+                    price: "€89",
+                    hours: "2 hours · every month",
+                    tagline: "A watchful eye for lock-up-and-leave homes.",
+                    features: [
+                      "2 hands-on hours — spent on whatever your home needs",
+                      "General repairs, checks and small fixes, done properly",
+                      "Free Property Vault — every visit photographed and logged",
+                      { text: "AC servicing not scheduled on this plan", muted: true },
+                    ],
+                  },
+                  {
+                    name: "Middle",
+                    price: "€149",
+                    hours: "4 hours · every month",
+                    tagline: "The sweet spot for homes that live in all season.",
+                    popular: true,
+                    features: [
+                      "4 hands-on hours for repairs, upkeep and odds and ends",
+                      "Annual AC service included — scheduled around you",
+                      "Unused hours roll over for a month, never wasted",
+                      "Free Property Vault — every visit photographed and logged",
+                    ],
+                  },
+                  {
+                    name: "Best",
+                    price: "€199",
+                    hours: "6 hours · every month",
+                    tagline: "Complete cover for busy homes and rentals.",
+                    features: [
+                      "6 hands-on hours — our most complete level of care",
+                      "AC serviced twice a year, spring and autumn",
+                      "Priority booking when something simply can't wait",
+                      "Free Property Vault — every visit photographed and logged",
+                    ],
+                  },
+                ].map((plan) => (
+                  <div
+                    key={plan.name}
+                    className={`relative flex flex-col rounded-3xl p-7 transition-all duration-300 ${
+                      plan.popular
+                        ? "bg-sunlit text-deep shadow-xl md:-translate-y-3"
+                        : "border border-sunlit/15 bg-sunlit/10 hover:border-sunlit/30"
+                    }`}
+                  >
+                    {plan.popular && (
+                      <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-coral px-4 py-1.5 text-[0.6rem] font-extrabold uppercase tracking-widest text-sunlit">Popular choice</span>
+                    )}
+                    <h4 className="font-display text-xl font-semibold">{plan.name}</h4>
+                    <p className={`mt-1 text-sm ${plan.popular ? "text-deep/60" : "text-sunlit/60"}`}>{plan.tagline}</p>
+                    <div className="mt-5 flex flex-wrap items-baseline gap-x-2">
+                      <span className="font-display text-4xl font-bold">{plan.price}</span>
+                      <span className={`text-sm ${plan.popular ? "text-deep/60" : "text-sunlit/60"}`}>/ month · IVA incl.</span>
                     </div>
-                  ))}
+                    <p className="mt-2 text-xs font-extrabold uppercase tracking-wider text-coral">{plan.hours}</p>
+                    <ul className="mt-6 flex-1 space-y-3 text-sm leading-relaxed">
+                      {plan.features.map((feature) => {
+                        const text = typeof feature === "string" ? feature : feature.text;
+                        const muted = typeof feature !== "string" && feature.muted;
+                        return (
+                          <li key={text} className={`flex items-start gap-3 ${muted ? (plan.popular ? "text-deep/40" : "text-sunlit/40") : ""}`}>
+                            <Check className={`mt-0.5 size-4 shrink-0 ${muted ? "opacity-40" : "text-coral"}`} aria-hidden="true" />
+                            <span>{text}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                    <button
+                      type="button"
+                      onClick={() => setBuilderOpen(true)}
+                      className={`solid-button mt-7 w-full text-sm uppercase tracking-wider ${plan.popular ? "solid-button-coral" : "solid-button-white"}`}
+                    >
+                      Choose {plan.name}
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-12 text-center">
+                <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-sunlit/70 md:text-sm">
+                  <span className="flex items-center gap-2"><Check className="size-4 shrink-0 text-coral" aria-hidden="true" />Billed monthly in advance</span>
+                  <span className="flex items-center gap-2"><Check className="size-4 shrink-0 text-coral" aria-hidden="true" />No minimum term</span>
+                  <span className="flex items-center gap-2"><Check className="size-4 shrink-0 text-coral" aria-hidden="true" />Away mode for long absences</span>
+                  <span className="flex items-center gap-2"><Check className="size-4 shrink-0 text-coral" aria-hidden="true" />Extra hours €45 · IVA included</span>
                 </div>
+                <p className="mt-4 text-sm text-sunlit/60">Every plan includes the complimentary SolidMaint Property Vault — your home's history, always in view.</p>
+                <button type="button" onClick={() => setBuilderOpen(true)} className="solid-button solid-button-coral mt-7">Build my home plan now <ArrowRight aria-hidden="true" /></button>
               </div>
-              <div className="mt-8 flex flex-col gap-4 border-t border-sunlit/15 pt-7 sm:flex-row sm:items-center sm:justify-between">
-                <div className="grid gap-2 text-sm text-sunlit/75 sm:grid-cols-2 sm:gap-x-8">
-                  <p className="flex gap-2"><Check className="size-4 shrink-0 text-coral" />Free Property Vault and monthly report</p>
-                  <p className="flex gap-2"><Check className="size-4 shrink-0 text-coral" />Extra hours €45 · IVA included</p>
-                  <p className="flex gap-2"><Check className="size-4 shrink-0 text-coral" />Unused hours roll over for one month</p>
-                  <p className="flex gap-2"><Check className="size-4 shrink-0 text-coral" />No minimum term</p>
-                </div>
-                <button type="button" onClick={() => setBuilderOpen(true)} className="solid-button solid-button-coral shrink-0">Build my home plan now <ArrowRight aria-hidden="true" /></button>
-              </div>
-              <div className="mt-7 grid gap-3 border-t border-sunlit/15 pt-7 sm:grid-cols-3">
-                <p className="text-sm text-sunlit/70"><strong className="block text-sunlit">A Basic month</strong>Checked a slow leak, adjusted two doors and cleaned terrace drains.</p>
-                <p className="text-sm text-sunlit/70"><strong className="block text-sunlit">A Middle month</strong>Fixed a tap, cleaned solar panels and reset the irrigation timer.</p>
-                <p className="text-sm text-sunlit/70"><strong className="block text-sunlit">A Best month</strong>Handled small repairs, refreshed bathroom silicone and pressure-washed the terrace.</p>
-              </div>
-              <p className="mt-5 text-xs text-sunlit/55">Examples only — you decide how your package hours are used. Fixed-price services are added separately.</p>
             </div>
           </div>
 
