@@ -722,10 +722,21 @@ function Index() {
                 quote: "One team, one plan, no chasing anyone. It was the easiest decision we have made about our home.",
                 author: "Claire T. · Benahavís",
               },
-            ].map(({ initials, name, role, quote, author }) => (
+            ].map(({ initials, photo, name, role, quote, author }: { initials: string; photo?: string; name: string; role: string; quote: string; author: string }) => (
               <figure key={name} className="flex flex-col rounded-2xl border border-deep/10 bg-white p-5">
                 <div className="flex items-center gap-3">
-                  <span className="grid size-10 shrink-0 place-items-center rounded-full bg-coral/15 font-display text-xs font-bold text-coral">{initials}</span>
+                  {photo ? (
+                    <img
+                      src={photo}
+                      alt={`${name}, ${role} at SolidMaint`}
+                      loading="lazy"
+                      width={96}
+                      height={96}
+                      className="size-10 shrink-0 rounded-full object-cover"
+                    />
+                  ) : (
+                    <span className="grid size-10 shrink-0 place-items-center rounded-full bg-coral/15 font-display text-xs font-bold text-coral">{initials}</span>
+                  )}
                   <div>
                     <p className="font-display text-sm font-semibold">{name}</p>
                     <p className="text-[0.7rem] font-bold uppercase text-coral">{role}</p>
