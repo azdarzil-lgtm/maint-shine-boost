@@ -186,11 +186,11 @@ function TeamPage() {
                 Talk to us <ArrowRight aria-hidden="true" />
               </a>
             </div>
-            <div className="flex h-[24rem] items-end justify-center px-4 sm:h-[27rem] lg:h-full lg:min-h-96 lg:px-0 lg:pr-2">
+            <div className="flex h-[18rem] items-end justify-center px-4 sm:h-[20rem] lg:h-full lg:min-h-96 lg:px-0 lg:pr-2">
               <img
                 src={manMeditating}
                 alt="A homeowner relaxing while SolidMaint takes care of his home"
-                className="max-h-full w-full max-w-lg object-contain object-bottom"
+                className="max-h-full w-full max-w-[20rem] object-contain object-bottom sm:max-w-[22rem]"
               />
             </div>
           </div>
