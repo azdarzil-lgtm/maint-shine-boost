@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   type LucideIcon,
   ArrowDownRight,
@@ -44,7 +44,6 @@ import { InstagramFeed } from "@/components/InstagramFeed";
 import { MarenaBanner } from "@/components/MarenaBanner";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PlanBuilder } from "@/components/PlanBuilder";
-import { SmartEnquiry } from "@/components/SmartEnquiry";
 
 export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
@@ -762,7 +761,10 @@ function Index() {
           <p className="section-label mt-8 text-[0.85rem] text-coral md:text-[1rem]">05 — A smarter first conversation</p>
           <h2 className="mx-auto mt-5 font-display text-5xl font-semibold leading-tight text-sunlit md:text-7xl"><span className="block">Tell us who you are.</span> <span className="block">We’ll ask what matters.</span></h2>
           <p className="mx-auto mt-7 max-w-2xl text-xl leading-relaxed text-sunlit md:text-2xl">Our guided chat shapes the questions around your property and priorities, so your first recommendation is useful—not generic.</p>
-          <SmartEnquiry />
+          <Link to="/assessment" className="solid-button solid-button-coral mt-12">
+            Start the assessment <ArrowRight aria-hidden="true" />
+          </Link>
+          <p className="mt-4 text-sm text-sunlit/60">Takes about two minutes — no pressure, no obligation.</p>
         </div>
       </section>
 

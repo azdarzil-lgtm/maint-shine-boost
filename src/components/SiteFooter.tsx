@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Facebook, Heart, Instagram, Linkedin, MessageCircle, Sparkles } from "lucide-react";
 
 import { Brand } from "@/components/SiteHeader";
-import { EnquiryFormModal, generalAudience } from "@/components/SmartEnquiry";
 
 const socials = [
   { href: "https://www.facebook.com/solidmaint", label: "SolidMaint on Facebook", icon: Facebook },
@@ -12,8 +10,6 @@ const socials = [
 ];
 
 export function SiteFooter() {
-  const [enquiryOpen, setEnquiryOpen] = useState(false);
-
   return (
     <footer id="contact" className="relative overflow-hidden bg-deep text-sunlit">
       <div className="relative mx-auto max-w-4xl px-5 py-20 text-center md:px-10 md:py-28">
@@ -25,14 +21,12 @@ export function SiteFooter() {
           Tell us where your home is and what needs care. Our team will reply within one working day.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <button
-            type="button"
-            onClick={() => setEnquiryOpen(true)}
-            aria-haspopup="dialog"
+          <Link
+            to="/assessment"
             className="solid-button solid-button-coral"
           >
             Start your enquiry <ArrowRight aria-hidden="true" />
-          </button>
+          </Link>
           <a href="tel:+34951798899" className="solid-button solid-button-outline">
             Call +34 951 798 899
           </a>
@@ -45,12 +39,6 @@ export function SiteFooter() {
             <MessageCircle aria-hidden="true" /> WhatsApp +34 951 798 899
           </a>
         </div>
-        <p className="mt-6 text-sm text-sunlit/60">
-          Prefer a guided start?{" "}
-          <Link to="/assessment" className="font-bold text-sunlit/85 underline decoration-coral decoration-2 underline-offset-4 transition hover:text-coral">
-            Try the free property assessment
-          </Link>
-        </p>
       </div>
       <div className="relative mx-auto max-w-4xl px-5 pb-16 pt-4 text-center md:px-10 md:pb-20">
         <div className="flex items-center justify-center gap-4">
@@ -89,7 +77,6 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      {enquiryOpen && <EnquiryFormModal audience={generalAudience} onClose={() => setEnquiryOpen(false)} />}
     </footer>
   );
 }
